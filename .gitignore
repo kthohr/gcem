@@ -1,0 +1,12 @@
+.DS_Store
+.Rproj.user
+.Rhistory
+Makefile
+*.dll
+*.exe
+*.log
+*.lp
+*.o
+*.so
+*.test
+*.vscode
