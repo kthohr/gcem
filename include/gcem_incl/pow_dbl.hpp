@@ -26,14 +26,14 @@
  * 07/02/2017
  */
 
-#ifndef _gcem_pow_HPP
-#define _gcem_pow_HPP
+#ifndef _gcem_pow_dbl_HPP
+#define _gcem_pow_dbl_HPP
 
 constexpr
 long double
-pow(const long double base, const int exp_term)
+pow_dbl(const long double base, const long double exp_term)
 {
-    return ( exp_term == 1 ? base : exp_term == 0 ? 1.0 : (exp_term < 0 ? 1.0 / pow(base, -exp_term) : base*pow(base, exp_term-1)) );
+    return ( exp(exp_term*log(base)) );
 }
 
 #endif
