@@ -1,5 +1,5 @@
 
-CXX = g++-mp-7
+CXX = g++
 
 CXX_STD = -std=c++11
 OPT_FLAGS = -O3 -Wall
