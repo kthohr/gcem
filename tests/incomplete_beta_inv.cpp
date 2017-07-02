@@ -30,6 +30,8 @@ int main()
     double p = 0.9;
     double q = 0.9;
     gcem::incomplete_beta_inv(p,q,x,ret_val);
+    gcem::incomplete_beta_inv(1.0,1.0,x,ret_val); // for coverage
+    gcem::incomplete_beta_inv(2.0,2.0,x,ret_val); // for coverage
 
     std::cout << "\nbegin incomplete_beta_inv test\n" << std::endl;
 

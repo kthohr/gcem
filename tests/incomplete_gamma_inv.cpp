@@ -26,10 +26,12 @@
 int main()
 {
     double ret_val;
-    double x = 0.5;
+    double x = 0.3;
     double shape = 2;
     double scale = 2;
     gcem::incomplete_gamma_inv(shape,x,ret_val);
+    gcem::incomplete_gamma_inv(shape,0.7,ret_val); // for coverage
+    gcem::incomplete_gamma_inv(0.7,x,ret_val); // for coverage
 
     std::cout << "\nbegin incomplete_gamma_inv test\n" << std::endl;
 
