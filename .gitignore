@@ -9,3 +9,5 @@
 *.so
 *.test
 *.vscode
+*.gcov
+*.gcno
