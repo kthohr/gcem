@@ -5,7 +5,7 @@ dist: trusty
 
 install:
     - sudo apt-get update
-    - sudo apt-get install gcc-7 libblas-dev liblapack-dev
+    - sudo apt-get install gcc-5 libblas-dev liblapack-dev
 
 script:
   - cd ./tests && make
