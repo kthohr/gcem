@@ -1,7 +1,6 @@
 .DS_Store
 .Rproj.user
 .Rhistory
-Makefile
 *.dll
 *.exe
 *.log

@@ -29,7 +29,7 @@ int main()
     double x2 = x;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_acos(" << x <<") = " << std::setprecision(18) << gcem::acos(x) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_acos(" << x <<")   = " << std::setprecision(18) << std::acos(x2) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_acos(" << x <<")  = " << std::setprecision(18) << std::acos(x2) << std::endl;
 
     return 0;
 }
