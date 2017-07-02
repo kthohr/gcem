@@ -9,6 +9,9 @@ install:
 script:
   - cd ./tests && make
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 after_failure:
   - ./travis-tool.sh dump_logs
 
