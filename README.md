@@ -1,2 +1,2 @@
 # GCE-Math
-A generalized constant expression-based math library
+GCE-Math (generalized constant expression math, or gcem) is a C++11 and C++14 library of common math functions that are evaluated at compile time (as opposed to run-time evaulation).
