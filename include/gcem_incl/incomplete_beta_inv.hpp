@@ -44,13 +44,14 @@ incomplete_beta_inv(double alpha_par, double beta_par, double p, double& ret)
     }
 
     double value;
-    const double lbeta = std::lgamma(alpha_par) + std::lgamma(beta_par) - std::lgamma(alpha_par + beta_par); // log beta function value
+    // const double lbeta = std::lgamma(alpha_par) + std::lgamma(beta_par) - std::lgamma(alpha_par + beta_par); // log beta function value
+    const double lbeta = lgamma(alpha_par) + lgamma(beta_par) - lgamma(alpha_par + beta_par); // log beta function value
     //
     if (alpha_par > 1.0 && beta_par > 1.0) {
         //
         // use 26.2.23 in Abramowitz and Stegun (1972 print)
-        const double p_term = (p > 0.5) ? std::log(1.0 - p) : std::log(p);
-        const double t_val = std::sqrt(-2.0*p_term);
+        const double p_term = (p > 0.5) ? log(1.0 - p) : log(p);
+        const double t_val = sqrt(-2.0*p_term);
 
         const double c_0 = 2.515517, c_1 = 0.802853, c_2 = 0.010328;
         const double d_0 = 1.0, d_1 = 1.432788, d_2 = 0.189269, d_3 = 0.001308;
@@ -67,20 +68,20 @@ incomplete_beta_inv(double alpha_par, double beta_par, double p, double& ret)
 
         const double lambda = (value*value - 3.0)/6.0;
         const double h_term = 2.0 / ab_term_1;
-        const double w_term = value * std::sqrt(h_term + lambda)/h_term - ab_term_2*(lambda + 5.0/6.0 -2.0/(3.0*h_term));
+        const double w_term = value * sqrt(h_term + lambda)/h_term - ab_term_2*(lambda + 5.0/6.0 -2.0/(3.0*h_term));
         
-        value = alpha_par / (alpha_par + beta_par*std::exp(2.0*w_term));
+        value = alpha_par / (alpha_par + beta_par*exp(2.0*w_term));
     } else {
-        const double term_1 = std::pow(alpha_par/(alpha_par+beta_par),alpha_par) / alpha_par;
-        const double term_2 = std::pow(beta_par/(alpha_par+beta_par),beta_par) / beta_par;
+        const double term_1 = pow_dbl(alpha_par/(alpha_par+beta_par),alpha_par) / alpha_par;
+        const double term_2 = pow_dbl(beta_par/(alpha_par+beta_par),beta_par) / beta_par;
         const double s_val = term_1 + term_2;
 
         const double check_val = term_1 / s_val;
 
         if (p <= check_val) {
-            value = std::pow(p*s_val*alpha_par,1.0/alpha_par);
+            value = pow_dbl(p*s_val*alpha_par,1.0/alpha_par);
         } else {
-            value = 1.0 - std::pow(p*s_val*beta_par,1.0/beta_par);
+            value = 1.0 - pow_dbl(p*s_val*beta_par,1.0/beta_par);
         }
     }
 
@@ -93,20 +94,20 @@ incomplete_beta_inv(double alpha_par, double beta_par, double p, double& ret)
     int iter = 0;
     double err_val, deriv_1, deriv_2, ratio_val_1, ratio_val_2, halley_direc=1.0, ib_val=1.0;
 
-    while (std::abs(halley_direc) >= err_tol && iter < iter_max) {
+    while (abs(halley_direc) >= err_tol && iter < iter_max) {
         iter++;
         //
         // incomplete_beta(alpha_par,beta_par,value,ib_val);
         ib_val = incomplete_beta(alpha_par,beta_par,value);
         err_val = ib_val - p; // err_val = f(x)
         
-        deriv_1 = std::exp( (alpha_par-1.0)*std::log(value) + (beta_par-1.0)*std::log(1.0 - value) - lbeta ); // derivative of the incomplete gamma function w.r.t. x
+        deriv_1 = exp( (alpha_par-1.0)*log(value) + (beta_par-1.0)*log(1.0 - value) - lbeta ); // derivative of the incomplete gamma function w.r.t. x
         deriv_2 = deriv_1*((alpha_par - 1.0)/value - (beta_par - 1.0)/(1.0 - value));                         // second derivative of the incomplete gamma function w.r.t. x
 
         ratio_val_1 = err_val / deriv_1;
         ratio_val_2 = deriv_2 / deriv_1;
 
-        halley_direc = ratio_val_1 / std::max( 0.8, std::min( 1.2, 1.0 - 0.5*ratio_val_1*ratio_val_2 ) );
+        halley_direc = ratio_val_1 / max( 0.8, min( 1.2, 1.0 - 0.5*ratio_val_1*ratio_val_2 ) );
         value -= halley_direc;
         //
         if (value <= 0.0) {
@@ -114,7 +115,7 @@ incomplete_beta_inv(double alpha_par, double beta_par, double p, double& ret)
         }
     }
     //
-    if (std::abs(halley_direc) < err_tol && iter < iter_max) {
+    if (abs(halley_direc) < err_tol && iter < iter_max) {
         ret = value;
         success = true;
     } else {
