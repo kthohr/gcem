@@ -1,0 +1,18 @@
+langauge: cpp
+sudo: required
+dist: trusty
+
+install:
+    - sudo apt-get update
+    - sudo apt-get install gcc-7 libblas-dev liblapack-dev
+
+script:
+  - cd ./tests && make
+
+after_failure:
+  - ./travis-tool.sh dump_logs
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
