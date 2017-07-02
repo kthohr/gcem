@@ -8,6 +8,7 @@ install:
 
 script:
   - cd ./tests && make
+  - ./run_tests
   - ./cov_check
   - cd ..
 

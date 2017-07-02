@@ -1,8 +1,9 @@
 
+#CXX = clang++
 CXX = g++
 
 CXX_STD = -std=c++11
-OPT_FLAGS = -O3 -Wall -coverage
+OPT_FLAGS = -g -O0 -Wall --coverage -fno-inline -fno-inline-small-functions -fno-default-inline
 
 # source directories
 SDIR = .
@@ -20,4 +21,4 @@ $(SDIR)/%.test: $(SDIR)/%.cpp
 # cleanup and install
 .PHONY: clean
 clean:
-	@rm -f *.test *.gcov *.gcno
+	@rm -rf *.test *.gcov *.gcno *.gcda *.dSYM
