@@ -1,4 +1,3 @@
-
 /*################################################################################
   ##
   ##   Copyright (C) 2016-2017 Keith O'Hara
@@ -17,46 +16,25 @@
   ##
   ################################################################################*/
 
-/* 
- * compile-time binomial coefficient
- *
- * Keith O'Hara
- * 06/23/2016
- *
- * This version:
- * 07/02/2017
- */
+// g++-mp-7 -O3 -Wall -std=c++11 -I./../include -I/opt/local/include binomial_coef.cpp -o binomial_coef.test -framework Accelerate
 
-#ifndef _gcem_binomial_coef_HPP
-#define _gcem_binomial_coef_HPP
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include "gcem.hpp"
 
-// inline
-// double
-// binomial_coef_old(int n, int k)
-// {
-//     const int k_run = (k > n - k) ? n - k : k;
-
-//     double ret = 1.0;
-
-//     for (int i=1; i <= k_run; i++) {
-//         ret *= (double) (n - k_run + i) / i;
-//     }
-
-//     return ret;
-// }
-
-constexpr
-long double
-binomial_coef_int(const int n, const int k, const int count)
+int main()
 {
-    return ( count < k ? binomial_coef_int(n,k,count+1) * (long double)(n - k + count) / count : (long double)(n) / count );
-}
+    constexpr int n = 5;
+    constexpr int k = 2;
 
-constexpr
-long double
-binomial_coef(const int n, const int k)
-{
-    return ( k > n - k ? binomial_coef_int(n,n-k,1) : binomial_coef_int(n,k,1) );
-}
+    constexpr long double result = gcem::binomial_coef(n,k);
 
-#endif
+    std::cout << "\nbegin binomial_coef test\n" << std::endl;
+    
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_binomial_coef(" << n <<"," << k << ") = " << std::setprecision(18) << result << std::endl;
+
+    std::cout << "\nend binomial_coef test" << std::endl;
+
+    return 0;
+}
