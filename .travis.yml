@@ -9,9 +9,9 @@ install:
 script:
   - cd ./tests && make
   - ./cov_check
+  - cd ..
 
 after_success:
-  - CODECOV_TOKEN=74a785c0-755a-4c6b-8301-141d0ca34f21
   - bash <(curl -s https://codecov.io/bash)
 
 after_failure:
