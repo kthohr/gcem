@@ -1,0 +1,4 @@
+
+for t in ./*.cpp; do
+   gcov "$t"
+done

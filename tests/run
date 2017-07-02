@@ -1,4 +1,4 @@
 
-for t in ./*.test; do  # or wget-*.sh instead of *.sh
+for t in ./*.test; do
    "$t"
 done

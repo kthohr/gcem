@@ -2,7 +2,7 @@
 CXX = g++
 
 CXX_STD = -std=c++11
-OPT_FLAGS = -O3 -Wall
+OPT_FLAGS = -O3 -Wall -coverage
 
 # source directories
 SDIR = .
@@ -20,4 +20,4 @@ $(SDIR)/%.test: $(SDIR)/%.cpp
 # cleanup and install
 .PHONY: clean
 clean:
-	@rm -f *.test
+	@rm -f *.test *.gcov *.gcno
