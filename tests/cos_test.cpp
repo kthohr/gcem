@@ -18,7 +18,7 @@
 
 // g++-mp-7 -O3 -Wall -std=c++11 -I./../include cos_test.cpp -o cos.test -framework Accelerate
 
-#include <math.h>
+#include <cmath>
 #include <iostream>
 #include <iomanip>
 #include "gcem.hpp"

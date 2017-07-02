@@ -18,7 +18,7 @@
 
 // g++-mp-7 -O3 -Wall -std=c++11 -I./../include tanh_test.cpp -o tanh.test -framework Accelerate
 
-#include <math.h>
+#include <cmath>
 #include <iostream>
 #include <iomanip>
 #include "gcem.hpp"

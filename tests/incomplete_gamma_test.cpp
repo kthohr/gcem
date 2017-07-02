@@ -18,7 +18,7 @@
 
 // g++-mp-7 -O2 -Wall -std=c++11 -I./../include incomplete_gamma_test.cpp -o incomplete_gamma.test -framework Accelerate
 
-#include <math.h>
+#include <cmath>
 #include <iostream>
 #include <iomanip>
 #include "gcem.hpp"

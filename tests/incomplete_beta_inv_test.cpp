@@ -16,9 +16,11 @@
   ##
   ################################################################################*/
 
-// g++-mp-5 -O2 -Wall -std=c++11 -I./../include incomplete_beta_inv_test.cpp -o incomplete_beta_inv.test -framework Accelerate
+// g++-mp-7 -O2 -Wall -std=c++11 -I./../include incomplete_beta_inv_test.cpp -o incomplete_beta_inv.test -framework Accelerate
 
-#include <math.h>
+#include <cmath>
+#include <iostream>
+#include <iomanip>
 #include "gcem.hpp"
 
 int main()

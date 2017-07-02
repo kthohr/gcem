@@ -19,7 +19,7 @@
 // g++-mp-7 -O3 -Wall -std=c++11 -I./../include -I/opt/local/include acos_test.cpp -o acos.test -framework Accelerate
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include <iomanip>
 #include "gcem.hpp"
 

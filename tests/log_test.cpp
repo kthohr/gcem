@@ -19,7 +19,7 @@
 // g++-mp-7 -O3 -Wall -std=c++11 -I./../include log_test.cpp -o log.test -framework Accelerate
 // g++-mp-7 -O3 -Wall -std=c++14 -fconstexpr-depth=20 -fconstexpr-steps=1271242 -I./../include log_test.cpp -o log.test -framework Accelerate
 
-#include <math.h>
+#include <cmath>
 #include <iostream>
 #include <iomanip>
 #include "gcem.hpp"
