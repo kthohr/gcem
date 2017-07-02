@@ -29,6 +29,8 @@ int main()
     constexpr long double x = 0.5;
     long double x2 = x;
 
+    std::cout << "\nbegin cosh test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_cosh(" << x <<") = " << std::setprecision(18) << gcem::cosh(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_cosh(" << x <<")  = " << std::setprecision(18) << std::cosh(x2) << std::endl;
 

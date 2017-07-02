@@ -29,6 +29,8 @@ int main()
     constexpr long double x = 0.5;
     long double x2 = x;
 
+    std::cout << "\nbegin atanh test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_atanh(" << x <<") = " << std::setprecision(18) << gcem::atanh(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x <<")  = " << std::setprecision(18) << std::atanh(x2) << std::endl;
 

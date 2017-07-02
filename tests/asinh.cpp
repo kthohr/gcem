@@ -29,6 +29,8 @@ int main()
     constexpr long double x = 0.5;
     long double x2 = x;
 
+    std::cout << "\nbegin asinh test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_asinh(" << x <<") = " << std::setprecision(18) << gcem::asinh(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_asinh(" << x <<")  = " << std::setprecision(18) << std::asinh(x2) << std::endl;
 

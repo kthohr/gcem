@@ -31,6 +31,8 @@ int main()
     double scale = 2;
     gcem::incomplete_gamma_inv(shape,x,ret_val);
 
+    std::cout << "\nbegin incomplete_gamma_inv test\n" << std::endl;
+
     std::cout << "incomplete_gamma_inv: " << scale*ret_val << std::endl;
 
     return 0;

@@ -28,6 +28,8 @@ int main()
     constexpr long double x = -0.7568025;
     long double x2 = x;
 
+    std::cout << "\nbegin asin test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_asin(" << x <<") = " << std::setprecision(18) << gcem::asin(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_asin(" << x <<")  = " << std::setprecision(18) << std::asin(x2) << std::endl;
 

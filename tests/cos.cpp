@@ -28,6 +28,8 @@ int main()
     constexpr long double x = 25.0;
     long double x2 = x;
 
+    std::cout << "\nbegin acos test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_cos(" << x <<") = " << std::setprecision(18) << gcem::cos(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_cos(" << x <<")  = " << std::setprecision(18) << std::cos(x2) << std::endl;
 

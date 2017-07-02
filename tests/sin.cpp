@@ -28,6 +28,8 @@ int main()
     constexpr long double x = 25.0;
     long double x2 = x;
 
+    std::cout << "\nbegin sin test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_sin(" << x <<") = " << std::setprecision(18) << gcem::sin(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_sin(" << x <<")  = " << std::setprecision(18) << std::sin(x2) << std::endl;
 

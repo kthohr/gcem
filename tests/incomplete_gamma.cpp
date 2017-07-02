@@ -30,6 +30,8 @@ int main()
     double shape = 2;
     double scale = 2;
 
+    std::cout << "\nbegin incomplete_gamma test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << x <<") = " << std::setprecision(18) << gcem::incomplete_gamma(shape,x/scale) << std::endl;
 
     return 0;

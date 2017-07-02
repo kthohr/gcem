@@ -35,6 +35,8 @@ int main()
     constexpr long double x5 = 41.5;
     long double x6 = x5;
 
+    std::cout << "\nbegin log test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x1 <<") = " << std::setprecision(18) << gcem::log(x1) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x2 <<")  = " << std::setprecision(18) << std::log(x2) << std::endl;
 

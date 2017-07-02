@@ -31,6 +31,8 @@ int main()
     double q = 0.9;
     gcem::incomplete_beta_inv(p,q,x,ret_val);
 
+    std::cout << "\nbegin incomplete_beta_inv test\n" << std::endl;
+
     std::cout << "incomplete_beta_inv: " << ret_val << std::endl;
 
     return 0;

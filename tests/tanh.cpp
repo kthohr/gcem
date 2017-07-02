@@ -29,6 +29,8 @@ int main()
     constexpr long double x = 0.5;
     long double x2 = x;
 
+    std::cout << "\nbegin tanh test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_tanh(" << x <<") = " << std::setprecision(18) << gcem::tanh(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_tanh(" << x <<")  = " << std::setprecision(18) << std::tanh(x2) << std::endl;
 

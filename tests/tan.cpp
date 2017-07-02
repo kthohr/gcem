@@ -28,6 +28,8 @@ int main()
     constexpr long double x = 25.0;
     long double x2 = x;
 
+    std::cout << "\nbegin tan test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_tan(" << x <<") = " << std::setprecision(18) << gcem::tan(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_tan(" << x <<")  = " << std::setprecision(18) << std::tan(x2) << std::endl;
 

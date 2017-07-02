@@ -34,6 +34,8 @@ int main()
     constexpr long double x5 = -40.0;
     long double x6 = x5;
 
+    std::cout << "\nbegin exp test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x1 <<") = " << std::setprecision(18) << gcem::exp(x1) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x2 <<")  = " << std::setprecision(18) << std::exp(x2) << std::endl;
 

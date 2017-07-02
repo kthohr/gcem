@@ -30,6 +30,8 @@ int main()
     double p = 2;
     double q = 2;
 
+    std::cout << "\nbegin incomplete_beta test\n" << std::endl;
+
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_beta(" << x <<") = "  << std::setprecision(18) << gcem::incomplete_beta(p,q,x) << std::endl;
 
     return 0;
