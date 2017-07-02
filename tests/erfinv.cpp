@@ -25,12 +25,11 @@
 
 int main()
 {
-
-    constexpr double x = 0.5;
+    constexpr long double x = 0.5;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erfinv(gcem_erf(" << x <<")) = " << std::setprecision(18) << gcem::erfinv(gcem::erf(x)) << std::endl;
 
-    constexpr double x3 = -0.999;
+    constexpr long double x3 = -0.999;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erfinv(" << x3 <<") = " << std::setprecision(18) << gcem::erfinv(x3) << std::endl;
 

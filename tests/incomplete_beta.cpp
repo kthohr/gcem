@@ -25,7 +25,7 @@
 
 int main()
 {
-    constexpr double x = 0.8;
+    constexpr long double x = 0.8;
 
     double p = 2;
     double q = 2;

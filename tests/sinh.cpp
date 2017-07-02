@@ -26,8 +26,8 @@
 int main()
 {
     // constexpr double x = 25.0;
-    constexpr double x = 0.5;
-    double x2 = x;
+    constexpr long double x = 0.5;
+    long double x2 = x;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_sinh(" << x <<") = " << std::setprecision(18) << gcem::sinh(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_sinh(" << x <<")  = " << std::setprecision(18) << std::sinh(x2) << std::endl;

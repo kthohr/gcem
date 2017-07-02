@@ -25,8 +25,8 @@
 
 int main()
 {
-    constexpr double x = 1.5;
-    double x2 = x;
+    constexpr long double x = 1.5;
+    long double x2 = x;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_lgamma(" << x <<") = " << std::setprecision(18) << gcem::lgamma(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_lgamma(" << x <<")  = " << std::setprecision(18) << std::lgamma(x2) << std::endl;

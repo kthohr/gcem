@@ -26,7 +26,7 @@
 
 int main()
 {
-    constexpr double x1 = 0.5;
+    constexpr long double x1 = 0.5;
     long double x2 = x1;
 
     constexpr long double x3 = 0.00199900000000000208;

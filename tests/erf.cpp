@@ -25,8 +25,8 @@
 
 int main()
 {
-    constexpr double x = 1.3;
-    double x2 = x;
+    constexpr long double x = 1.3;
+    long double x2 = x;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf(" << x <<") = " << std::setprecision(18) << gcem::erf(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_erf(" << x <<")  = " << std::setprecision(18) << std::erf(x2) << std::endl;

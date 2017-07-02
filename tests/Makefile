@@ -1,7 +1,5 @@
 
-CC  = gcc
-CXX = g++
-FC  = gfortran
+CXX = g++-mp-7
 
 CXX_STD = -std=c++11
 OPT_FLAGS = -O3 -Wall
