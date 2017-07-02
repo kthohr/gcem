@@ -53,8 +53,8 @@ namespace gcem {
     #include "gcem_incl/cosh.hpp"
     #include "gcem_incl/sinh.hpp"
 
-    #include "gcem_incl/tanh.hpp"
-    #include "gcem_incl/cosh.hpp"
+    #include "gcem_incl/atanh.hpp"
+    #include "gcem_incl/acosh.hpp"
     #include "gcem_incl/asinh.hpp"
 
     #include "gcem_incl/binomial_coef.hpp"

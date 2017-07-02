@@ -23,15 +23,16 @@
  * 06/25/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_find_whole_HPP
 #define _gcem_find_whole_HPP
 
+template<typename T>
 constexpr
-long double
-find_whole(const long double x)
+T
+find_whole(const T x)
 {
     return ( abs(x - int(x)) > 0.5 ? (int)x + sign_dbl(x) : (int)x );
 }

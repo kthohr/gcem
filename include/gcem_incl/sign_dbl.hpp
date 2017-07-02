@@ -23,17 +23,18 @@
  * 06/15/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_sign_dbl_HPP
 #define _gcem_sign_dbl_HPP
 
+template<typename T>
 constexpr
-long double
-sign_dbl(const long double x)
+T
+sign_dbl(const T x)
 {
-    return (x > 0 ? 1.0L : (x < 0 ? -1.0L : 0.0L));
+    return (x > 0 ? 1.0 : (x < 0 ? -1.0 : 0.0));
 }
 
 #endif

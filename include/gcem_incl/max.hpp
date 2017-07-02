@@ -23,15 +23,16 @@
  * 06/25/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_max_HPP
 #define _gcem_max_HPP
 
+template<typename T>
 constexpr
-long double
-max(const long double x, const long double y)
+T
+max(const T x, const T y)
 {
     return ( x > y ? x : y );
 }

@@ -29,9 +29,10 @@
 #ifndef _gcem_pow_HPP
 #define _gcem_pow_HPP
 
+template<typename T>
 constexpr
-long double
-pow(const long double base, const int exp_term)
+T
+pow(const T base, const int exp_term)
 {
     return ( exp_term == 1 ? base : exp_term == 0 ? 1.0 : (exp_term < 0 ? 1.0 / pow(base, -exp_term) : base*pow(base, exp_term-1)) );
 }

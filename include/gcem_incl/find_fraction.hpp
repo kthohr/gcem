@@ -23,15 +23,16 @@
  * 06/25/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_find_fraction_HPP
 #define _gcem_find_fraction_HPP
 
+template<typename T>
 constexpr
-long double
-find_fraction(const long double x)
+T
+find_fraction(const T x)
 {
     return ( abs(x - int(x)) > 0.5 ? x - (int)x - sign_dbl(x) : x - (int)x );
 }

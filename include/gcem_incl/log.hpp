@@ -23,7 +23,7 @@
  * 06/25/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_log_HPP
@@ -33,46 +33,53 @@
     #define GCEM_LOG_TOL 1E-14
 #endif
 
+template<typename T>
 constexpr
-long double
-log_taylor_int(const long double xx, int order)
+T
+log_taylor_int(const T xx, int order)
 {
-    return ( order == 505 ? 1.0 : (long double)(1.0 / (2.0*order-1.0)) + xx*log_taylor_int(xx,order+1) );
+    return ( order == 505 ? 1.0 : (T)(1.0 / (2.0*order-1.0)) + xx*log_taylor_int(xx,order+1) );
 }
 
+template<typename T>
 constexpr
-long double
-log_taylor(const long double x)
+T
+log_taylor(const T x)
 { 
     return ( 2*x*log_taylor_int(x*x,1) );
 }
 
 // continued fraction seems to be a better approximation for small x
+template<typename T>
 constexpr
-long double
-log_cf_int(const long double xx, const int depth)
+T
+log_cf_int(const T xx, const int depth)
 {
-    return ( abs(depth*depth*xx/(2*(depth+1) - 1) ) < GCEM_LOG_TOL ? (long double)(2*depth - 1) : (2*depth - 1) - depth*depth*xx/log_cf_int(xx,depth+1) );
+    // return ( abs(depth*depth*xx/(2*(depth+1) - 1) ) < GCEM_LOG_TOL ? (T)(2*depth - 1) : (2*depth - 1) - depth*depth*xx/log_cf_int(xx,depth+1) );
+    return ( depth == 505 ? (T)(2*depth - 1) : (2*depth - 1) - depth*depth*xx/log_cf_int(xx,depth+1) );
 }
 
+template<typename T>
 constexpr
-long double
-log_cf(const long double x)
+T
+log_cf(const T x)
 { 
     return ( 2*x/log_cf_int(x*x,1) );
 }
 
+template<typename T>
 constexpr
-long double
-log_int(const long double x)
+T
+log_int(const T x)
 { 
     return ( log_cf((x-1.0)/(x+1.0)) );
     // return ( log_taylor((x-1.0)/(x+1.0)) );
 }
 
+template<typename T>
 constexpr
-long double
-log(const long double x)
+T
+log(const T x)
 {
     // return ( x == 1 ? 0 : log_int(mantissa(x)) + 2.3025850929940459011*(find_exponent(x,0)) );
     return ( x == 1 ? 0 : log_int(x) );

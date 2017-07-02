@@ -23,36 +23,40 @@
  * 06/25/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_exp_HPP
 #define _gcem_exp_HPP
 
+template<typename T>
 constexpr
-long double
-exp_cf_int(const long double x, const int depth)
+T
+exp_cf_int(const T x, const int depth)
 {
-    return ( depth == 505 ? (long double)(1) : depth == 1 ? 1 - x/exp_cf_int(x,depth+1) : 1 +  x/(depth - 1) - x/depth/exp_cf_int(x,depth+1) );
+    return ( depth == 505 ? (T)(1) : depth == 1 ? 1 - x/exp_cf_int(x,depth+1) : 1 +  x/(depth - 1) - x/depth/exp_cf_int(x,depth+1) );
 }
 
+template<typename T>
 constexpr
-long double
-exp_cf(const long double x)
+T
+exp_cf(const T x)
 {
     return ( 1.0/exp_cf_int(x,1) );
 }
 
+template<typename T>
 constexpr
-long double
-exp_split(const long double x)
+T
+exp_split(const T x)
 {
     return ( pow(GCEM_E,find_whole(x)) * exp_cf(find_fraction(x)) );
 }
 
+template<typename T>
 constexpr
-long double
-exp(const long double x)
+T
+exp(const T x)
 {
     return ( x == 0 ? 1.0 : ( abs(x) < 5 ? exp_cf(x) : exp_split(x) ) );
 }

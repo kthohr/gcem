@@ -23,15 +23,16 @@
  * 06/25/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_find_exponent_HPP
 #define _gcem_find_exponent_HPP
 
+template<typename T>
 constexpr
 int
-find_exponent(const long double x, const int exponent)
+find_exponent(const T x, const int exponent)
 {
     return ( x < 1.0 ? find_exponent(x*10,exponent-1) : ( x > 10.0 ? find_exponent(x*0.1,exponent+1) : exponent ) );
 }

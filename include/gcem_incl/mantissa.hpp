@@ -23,15 +23,16 @@
  * 06/25/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_mantissa_HPP
 #define _gcem_mantissa_HPP
 
+template<typename T>
 constexpr
-long double
-mantissa(const long double x)
+T
+mantissa(const T x)
 {
     return ( x < 1.0 ? mantissa(x*10) : ( x > 10.0 ? mantissa(x*0.1) : x ) );
 }

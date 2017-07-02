@@ -23,22 +23,24 @@
  * 06/25/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_sqrt_HPP
 #define _gcem_sqrt_HPP
 
+template<typename T>
 constexpr
-long double
-sqrt_recur(const long double x, const double xn)
+T
+sqrt_recur(const T x, const T xn)
 {
     return ( abs(xn - x/xn) < GCEM_SQRT_TOL ? xn : sqrt_recur(x,0.5*(xn+x/xn)) );
 }
 
+template<typename T>
 constexpr
-long double
-sqrt(const long double x)
+T
+sqrt(const T x)
 {
     return ( x==1 ? x : sqrt_recur(x,x/2) );
 }

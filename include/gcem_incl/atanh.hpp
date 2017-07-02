@@ -23,7 +23,7 @@
  * 06/28/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_atanh_HPP
@@ -33,7 +33,7 @@ constexpr
 long double
 atanh(const long double x)
 {
-    return ( x == 0 ? 0 : log( (1+x)*(1-x) )/2 );
+    return ( x == 0 ? 0 : log( (1+x)/(1-x) )/2.0 );
 }
 
 #endif

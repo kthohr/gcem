@@ -23,15 +23,16 @@
  * 06/25/2017
  *
  * This version:
- * 07/01/2017
+ * 07/02/2017
  */
 
 #ifndef _gcem_abs_HPP
 #define _gcem_abs_HPP
 
+template<typename T>
 constexpr
-long double
-abs(const long double x)
+T
+abs(const T x)
 {
     return ( x < 0.0 ? - x : x );
 }
