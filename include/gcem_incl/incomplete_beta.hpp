@@ -81,7 +81,7 @@ constexpr
 long double
 incomplete_beta_decision(const long double a, const long double b, const long double z, const long double c_j, const long double d_j, const long double f_j, const int depth)
 {
-    return ( abs(c_j*d_j - 1.0L) < 1E-14 ? f_j*c_j*d_j : ( depth < 501 ? incomplete_beta_cf(a,b,z,c_j,d_j,f_j*c_j*d_j,depth+1) : f_j*c_j*d_j ) );
+    return ( abs(c_j*d_j - 1.0L) < GCEM_INCML_BETA_TOL ? f_j*c_j*d_j : ( depth < GCEM_INCML_BETA_MAX_ITER ? incomplete_beta_cf(a,b,z,c_j,d_j,f_j*c_j*d_j,depth+1) : f_j*c_j*d_j ) );
 }
 
 constexpr

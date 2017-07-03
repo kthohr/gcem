@@ -33,7 +33,7 @@ constexpr
 long double
 tan_cf(const long double xx, const int depth)
 {
-    return ( depth == 25 ? 2*depth - 1 : (2*depth - 1) - xx/tan_cf(xx,depth+1) );
+    return ( depth == GCEM_TAN_MAX_ITER ? 2*depth - 1 : (2*depth - 1) - xx/tan_cf(xx,depth+1) );
 }
 
 constexpr
@@ -49,12 +49,5 @@ tan(const long double x)
 {
     return ( x == 0 ? 0 : ( x > 0 ? tan_int(x) : -tan_int(-x) ) );
 }
-
-// constexpr
-// double
-// tan_cf(const double x, const int depth)
-// {
-//     return ( depth == 25 ? (double)(2*depth - 1) : (2*depth - 1) - x*x/tan_cf(x,depth+1) );
-// }
 
 #endif

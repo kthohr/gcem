@@ -30,21 +30,6 @@
 #ifndef _gcem_binomial_coef_HPP
 #define _gcem_binomial_coef_HPP
 
-// inline
-// double
-// binomial_coef_old(int n, int k)
-// {
-//     const int k_run = (k > n - k) ? n - k : k;
-
-//     double ret = 1.0;
-
-//     for (int i=1; i <= k_run; i++) {
-//         ret *= (double) (n - k_run + i) / i;
-//     }
-
-//     return ret;
-// }
-
 constexpr
 long double
 binomial_coef_int(const int n, const int k, const int count)

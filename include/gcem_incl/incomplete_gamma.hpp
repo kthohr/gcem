@@ -43,7 +43,7 @@ constexpr
 long double
 incomplete_gamma_cf_int(const long double a, const long double z, const int depth)
 {
-    return ( depth == 55 ? (a + depth - 1) : (a + depth - 1) + incomplete_gamma_cf_coef(a,z,depth)/incomplete_gamma_cf_int(a,z,depth+1) );
+    return ( depth == GCEM_INCML_GAMMA_MAX_ITER ? (a + depth - 1) : (a + depth - 1) + incomplete_gamma_cf_coef(a,z,depth)/incomplete_gamma_cf_int(a,z,depth+1) );
 }
 
 constexpr

@@ -33,7 +33,7 @@ constexpr
 long double
 atan_cf(const long double xx, const int depth)
 {
-    return ( depth == 35 ? (long double)(2*depth - 1) : (2*depth - 1) + depth*depth*xx/atan_cf(xx,depth+1) );
+    return ( depth == GCEM_ATAN_MAX_ITER ? (long double)(2*depth - 1) : (2*depth - 1) + depth*depth*xx/atan_cf(xx,depth+1) );
 }
 
 constexpr

@@ -16,7 +16,7 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -I./../include exp_test.cpp -o exp.test -framework Accelerate
+// g++-mp-7 -O3 -Wall -std=c++11 -I./../include exp.cpp -o exp.test -framework Accelerate
 
 #include <cmath>
 #include <iostream>
@@ -28,11 +28,14 @@ int main()
     constexpr long double x1 = 1.75;
     long double x2 = x1;
 
-    constexpr long double x3 = -4.0;
+    constexpr long double x3 = 2.10;
     long double x4 = x3;
 
-    constexpr long double x5 = -40.0;
+    constexpr long double x5 = -4.0;
     long double x6 = x5;
+
+    constexpr long double x7 = -40.0;
+    long double x8 = x7;
 
     std::cout << "\nbegin exp test\n" << std::endl;
 
@@ -44,6 +47,9 @@ int main()
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x5 <<") = " << std::setprecision(18) << gcem::exp(x5) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x6 <<")  = " << std::setprecision(18) << std::exp(x6) << std::endl;
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x7 <<") = " << std::setprecision(18) << gcem::exp(x7) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x8 <<")  = " << std::setprecision(18) << std::exp(x8) << std::endl;
 
     return 0;
 }

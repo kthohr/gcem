@@ -33,7 +33,7 @@ constexpr
 long double
 tanh_cf(const long double xx, const int depth)
 {
-    return ( depth == 35 ? 2*depth - 1 : (2*depth - 1) + xx/tanh_cf(xx,depth+1) );
+    return ( depth == GCEM_TANH_MAX_ITER ? 2*depth - 1 : (2*depth - 1) + xx/tanh_cf(xx,depth+1) );
 }
 
 constexpr

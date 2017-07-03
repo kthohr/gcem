@@ -33,7 +33,7 @@ constexpr
 long double
 erf_cf_int(const long double xx, const int depth)
 {
-    return ( depth == 35 ? (2*depth - 1) - 2*xx : (2*depth - 1) - 2*xx + 4*depth*xx/erf_cf_int(xx,depth+1) );
+    return ( depth == GCEM_ERF_MAX_ITER ? (2*depth - 1) - 2*xx : (2*depth - 1) - 2*xx + 4*depth*xx/erf_cf_int(xx,depth+1) );
 }
 
 constexpr
@@ -50,7 +50,7 @@ erf(const long double x)
     return ( x == 0 ? 0 : ( x > 0 ? erf_cf(x) : -erf_cf(-x) ) );
 }
 
-// the expansion above seems to possess better approximation properties than the others below
+// the expansion above seems to possess better approximation properties than those below
 
 // constexpr
 // double
