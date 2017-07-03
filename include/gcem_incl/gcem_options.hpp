@@ -16,6 +16,9 @@
   ##
   ################################################################################*/
 
+//
+// constants
+
 #ifndef GCEM_PI
     #define GCEM_PI 3.141592653589793
 #endif
@@ -33,8 +36,20 @@
 #endif
 
 //
-// tolerances
+// convergence settings
+
+#ifndef GCEM_LOG_TOL
+    #define GCEM_LOG_TOL 1E-14
+#endif
+
+#ifndef GCEM_LOG_MAX_ITER_SMALL
+    #define GCEM_LOG_MAX_ITER_SMALL 35
+#endif
+
+#ifndef GCEM_LOG_MAX_ITER_BIG
+    #define GCEM_LOG_MAX_ITER_BIG 255
+#endif
 
 #ifndef GCEM_SQRT_TOL
-    #define GCEM_SQRT_TOL 1E-12
+    #define GCEM_SQRT_TOL 1E-16
 #endif

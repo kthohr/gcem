@@ -16,8 +16,8 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -I./../include log_test.cpp -o log.test -framework Accelerate
-// g++-mp-7 -O3 -Wall -std=c++14 -fconstexpr-depth=20 -fconstexpr-steps=1271242 -I./../include log_test.cpp -o log.test -framework Accelerate
+// g++-mp-7 -O3 -Wall -std=c++11 -I./../include log.cpp -o log.test -framework Accelerate
+// g++-mp-7 -O3 -Wall -std=c++14 -fconstexpr-depth=20 -fconstexpr-steps=1271242 -I./../include log.cpp -o log.test -framework Accelerate
 
 #include <cmath>
 #include <iostream>
@@ -29,11 +29,14 @@ int main()
     constexpr long double x1 = 0.5;
     long double x2 = x1;
 
-    constexpr long double x3 = 0.00199900000000000208;
+    constexpr long double x3 = 1.5;
     long double x4 = x3;
 
-    constexpr long double x5 = 41.5;
+    constexpr long double x5 = 0.00199900000000000208;
     long double x6 = x5;
+
+    constexpr long double x7 = 41.5;
+    long double x8 = x7;
 
     std::cout << "\nbegin log test\n" << std::endl;
 
@@ -45,6 +48,9 @@ int main()
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x5 <<") = " << std::setprecision(18) << gcem::log(x5) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x6 <<")  = " << std::setprecision(18) << std::log(x6) << std::endl;
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x7 <<") = " << std::setprecision(18) << gcem::log(x7) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x8 <<")  = " << std::setprecision(18) << std::log(x8) << std::endl;
 
     return 0;
 }
