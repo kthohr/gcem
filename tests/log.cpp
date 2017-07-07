@@ -32,13 +32,13 @@ int main()
     constexpr long double x3 = 1.5;
     long double x4 = x3;
 
-    constexpr long double x5 = 0.00199900000000000208;
+    constexpr long double x5 = 0.00199900000000000208L;
     long double x6 = x5;
 
     constexpr long double x7 = 41.5;
     long double x8 = x7;
 
-    std::cout << "\nbegin log test\n" << std::endl;
+    std::cout << "\n*** begin log test ***\n" << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x1 <<") = " << std::setprecision(18) << gcem::log(x1) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x2 <<")  = " << std::setprecision(18) << std::log(x2) << std::endl;
@@ -51,6 +51,8 @@ int main()
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x7 <<") = " << std::setprecision(18) << gcem::log(x7) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x8 <<")  = " << std::setprecision(18) << std::log(x8) << std::endl;
+
+    std::cout << "\n*** end log test ***\n" << std::endl;
 
     return 0;
 }

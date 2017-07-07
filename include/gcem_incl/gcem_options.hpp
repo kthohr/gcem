@@ -19,20 +19,24 @@
 //
 // constants
 
+#ifndef GCEM_LOG_2
+    #define GCEM_LOG_2 0.69314718055994528623L
+#endif
+
 #ifndef GCEM_PI
-    #define GCEM_PI 3.141592653589793
+    #define GCEM_PI 3.141592653589793116L
 #endif
 
 #ifndef GCEM_LOG_PI
-    #define GCEM_LOG_PI 1.1447298858494001639
+    #define GCEM_LOG_PI 1.1447298858494001639L
 #endif
 
 #ifndef GCEM_SQRT_PI
-    #define GCEM_SQRT_PI 1.77245385090551588
+    #define GCEM_SQRT_PI 1.7724538509055158819L
 #endif
 
 #ifndef GCEM_E
-    #define GCEM_E 2.7182818284590450908
+    #define GCEM_E 2.7182818284590450908L
 #endif
 
 //
