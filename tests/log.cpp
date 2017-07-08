@@ -41,16 +41,16 @@ int main()
     std::cout << "\n*** begin log test ***\n" << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x1 <<") = " << std::setprecision(18) << gcem::log(x1) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x2 <<")  = " << std::setprecision(18) << std::log(x2) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x2 <<")  = " << std::setprecision(18) << std::log(x2)  << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x3 <<") = " << std::setprecision(18) << gcem::log(x3) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x4 <<")  = " << std::setprecision(18) << std::log(x4) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x4 <<")  = " << std::setprecision(18) << std::log(x4)  << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x5 <<") = " << std::setprecision(18) << gcem::log(x5) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x6 <<")  = " << std::setprecision(18) << std::log(x6) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x6 <<")  = " << std::setprecision(18) << std::log(x6)  << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x7 <<") = " << std::setprecision(18) << gcem::log(x7) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x8 <<")  = " << std::setprecision(18) << std::log(x8) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x8 <<")  = " << std::setprecision(18) << std::log(x8)  << std::endl;
 
     std::cout << "\n*** end log test ***\n" << std::endl;
 
