@@ -80,12 +80,11 @@ incomplete_gamma_inv(double a, double p, double& ret)
     while (abs(halley_direc) >= err_tol && iter < iter_max) {
         iter++;
         //
-        // incomplete_gamma(a,value,ig_val);
         ig_val = incomplete_gamma(a,value);
         err_val = ig_val - p; // err_val = f(x)
         
         deriv_1 = exp( - value + (a - 1.0)*log(value) - g ); // derivative of the incomplete gamma function w.r.t. x
-        deriv_2 = deriv_1*((a - 1.0)/value - 1.0);                     // second derivative of the incomplete gamma function w.r.t. x
+        deriv_2 = deriv_1*((a - 1.0)/value - 1.0);           // second derivative of the incomplete gamma function w.r.t. x
 
         ratio_val_1 = err_val / deriv_1;
         ratio_val_2 = deriv_2 / deriv_1;

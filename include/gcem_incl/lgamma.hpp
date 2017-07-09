@@ -24,7 +24,7 @@
  * 06/25/2017
  *
  * This version:
- * 07/01/2017
+ * 07/09/2017
  */
 
 #ifndef _gcem_lgamma_HPP
@@ -48,130 +48,21 @@
 //   -.26190838401581408670e-4
 //    .36899182659531622704e-5
 
-
-constexpr
-long double
-lgamma_godfrey_coef_0()
-{
-    return 0.99999999999999709182L;
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_1(const long double x)
-{
-    return 57.156235665862923517L / (x+1);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_2(const long double x)
-{
-    return -59.597960355475491248L / (x+2);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_3(const long double x)
-{
-    return 14.136097974741747174L / (x+3);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_4(const long double x)
-{
-    return -0.49191381609762019978L / (x+4);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_5(const long double x)
-{
-    return .33994649984811888699e-4L / (x+5);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_6(const long double x)
-{
-    return .46523628927048575665e-4L / (x+6);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_7(const long double x)
-{
-    return -.98374475304879564677e-4L / (x+7);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_8(const long double x)
-{
-    return .15808870322491248884e-3L / (x+8);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_9(const long double x)
-{
-    return -.21026444172410488319e-3L / (x+9);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_10(const long double x)
-{
-    return .21743961811521264320e-3L / (x+10);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_11(const long double x)
-{
-    return -.16431810653676389022e-3L / (x+11);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_12(const long double x)
-{
-    return .84418223983852743293e-4L / (x+12);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_13(const long double x)
-{
-    return -.26190838401581408670e-4L / (x+13);
-}
-
-constexpr
-long double
-lgamma_godfrey_coef_14(const long double x)
-{
-    return .36899182659531622704e-5L / (x+14);
-}
-
-//
-// 
-
 constexpr
 long double
 lgamma_coef_term(const long double x)
 {
-    return ( lgamma_godfrey_coef_0() + lgamma_godfrey_coef_1(x) + lgamma_godfrey_coef_2(x) + lgamma_godfrey_coef_3(x) + \
-             lgamma_godfrey_coef_4(x) + lgamma_godfrey_coef_5(x) + lgamma_godfrey_coef_6(x) + lgamma_godfrey_coef_7(x) + \
-             lgamma_godfrey_coef_8(x) + lgamma_godfrey_coef_9(x) + lgamma_godfrey_coef_10(x) + lgamma_godfrey_coef_11(x) + \
-             lgamma_godfrey_coef_12(x) + lgamma_godfrey_coef_13(x) + lgamma_godfrey_coef_14(x) );
+    return (  0.99999999999999709182L             + 57.156235665862923517L / (x+1)       - 59.597960355475491248L / (x+2)       + 14.136097974741747174L / (x+3)       + \
+             -0.49191381609762019978L / (x+4)     +   .33994649984811888699e-4L / (x+5)  +   .46523628927048575665e-4L / (x+6)  -   .98374475304879564677e-4L / (x+7)  + \
+               .15808870322491248884e-3L / (x+8)  -   .21026444172410488319e-3L / (x+9)  +   .21743961811521264320e-3L / (x+10) -   .16431810653676389022e-3L / (x+11) + \
+               .84418223983852743293e-4L / (x+12) -   .26190838401581408670e-4L / (x+13) +   .36899182659531622704e-5L / (x+14) );
 }
 
 constexpr
 long double
 lgamma_term_2(const long double x)
-{ // log (sqrt(2*pi)) = 0.91893853320467266954...
-    return ( 0.91893853320467266954L + log(lgamma_coef_term(x)) );
+{ //
+    return ( GCEM_LOG_SQRT_2PI + log(lgamma_coef_term(x)) );
 }
 
 constexpr
