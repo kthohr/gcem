@@ -25,7 +25,6 @@
 
 int main()
 {
-    double ret_val;
     constexpr long double x1 = 0.3;
     double x2 = x1;
     constexpr long double shape = 1.5;
@@ -33,19 +32,11 @@ int main()
 
     std::cout << "\nbegin incomplete_gamma_inv test\n" << std::endl;
 
-    gcem::incomplete_gamma_inv(shape,x2,ret_val);
-
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(18) << "incomplete_gamma_inv: " << scale*ret_val << std::endl;
-    std::cout << "incomplete_gamma_inv: " << scale*gcem::incomplete_gamma_inv_new(shape,x1) << std::endl;
+    std::cout << "incomplete_gamma_inv: " << scale*gcem::incomplete_gamma_inv(shape,x1) << std::endl;
 
 
-    gcem::incomplete_gamma_inv(2,0.7,ret_val); // for coverage
-    gcem::incomplete_gamma_inv(0.7,x2,ret_val); // for coverage
-
-    constexpr long double shape2 = 0.7;
-
-    std::cout << "incomplete_gamma_inv: " << scale*ret_val << std::endl;
-    std::cout << "incomplete_gamma_inv: " << scale*gcem::incomplete_gamma_inv_new(shape2,x1) << std::endl;
+    gcem::incomplete_gamma_inv(2,0.7);  // for coverage
+    gcem::incomplete_gamma_inv(0.7,x2); // for coverage
 
     return 0;
 }
