@@ -16,7 +16,7 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O2 -Wall -std=c++11 -I./../include incomplete_beta_inv_test.cpp -o incomplete_beta_inv.test -framework Accelerate
+// g++-mp-7 -O2 -Wall -std=c++11 -I./../include incomplete_beta_inv.cpp -o incomplete_beta_inv.test -framework Accelerate
 
 #include <cmath>
 #include <iostream>
@@ -25,17 +25,13 @@
 
 int main()
 {
-    double ret_val;
-    double x = 0.8;
-    double p = 0.9;
-    double q = 0.9;
-    gcem::incomplete_beta_inv(p,q,x,ret_val);
-    gcem::incomplete_beta_inv(1.0,1.0,x,ret_val); // for coverage
-    gcem::incomplete_beta_inv(2.0,2.0,x,ret_val); // for coverage
+    constexpr long double x = 0.8;
 
     std::cout << "\nbegin incomplete_beta_inv test\n" << std::endl;
 
-    std::cout << "incomplete_beta_inv: " << ret_val << std::endl;
+    std::cout << "incomplete_beta_inv: " << gcem::incomplete_beta_inv(0.9,0.9,x) << std::endl;
+    std::cout << "incomplete_beta_inv: " << gcem::incomplete_beta_inv(1.0,1.0,x) << std::endl;
+    std::cout << "incomplete_beta_inv: " << gcem::incomplete_beta_inv(2.0,2.0,x) << std::endl;
 
     return 0;
 }

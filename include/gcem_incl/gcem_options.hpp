@@ -82,6 +82,10 @@
     #define GCEM_INCML_BETA_MAX_ITER 205
 #endif
 
+#ifndef GCEM_INCML_BETA_INV_MAX_ITER
+    #define GCEM_INCML_BETA_INV_MAX_ITER 35
+#endif
+
 #ifndef GCEM_INCML_GAMMA_MAX_ITER
     #define GCEM_INCML_GAMMA_MAX_ITER 55
 #endif
