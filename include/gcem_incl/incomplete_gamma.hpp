@@ -49,8 +49,8 @@ incomplete_gamma_cf_int(const long double a, const long double z, const int dept
 constexpr
 long double
 incomplete_gamma_int(const long double a, const long double z)
-{ // upper incomplete gamma function
-    return ( tgamma(a) - exp(a*log(z)-z) / incomplete_gamma_cf_int(a,z,1) );
+{ // upper (regularized) incomplete gamma function
+    return ( 1.0 - exp(a*log(z)-z) / tgamma(a) / incomplete_gamma_cf_int(a,z,1) );
 }
 
 constexpr
