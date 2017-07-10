@@ -31,8 +31,8 @@ int main()
 
     std::cout << "\nbegin incomplete_gamma test\n" << std::endl;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << x <<") = " << std::setprecision(18) << gcem::incomplete_gamma(shape,x) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << x <<") = " << std::setprecision(18) << gcem::incomplete_gamma(1.5,x/scale) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << x <<") = " << std::setprecision(18) << gcem::incomplete_gamma(shape_1,x) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << x <<") = " << std::setprecision(18) << gcem::incomplete_gamma(shape_2,x) << std::endl;
 
     return 0;
 }
