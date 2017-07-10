@@ -16,7 +16,7 @@
   ##
   ################################################################################*/
 
-// g++-mp-5 -O2 -Wall -std=c++11 -I./../include incomplete_gamma_inv_test.cpp -o incomplete_gamma_inv.test -framework Accelerate
+// g++-mp-7 -O3 -Wall -std=c++11 -I./../include incomplete_gamma_inv.cpp -o incomplete_gamma_inv.test -framework Accelerate
 
 #include <cmath>
 #include <iostream>
@@ -26,16 +26,26 @@
 int main()
 {
     double ret_val;
-    double x = 0.3;
-    double shape = 2;
-    double scale = 2;
-    gcem::incomplete_gamma_inv(shape,x,ret_val);
-    gcem::incomplete_gamma_inv(shape,0.7,ret_val); // for coverage
-    gcem::incomplete_gamma_inv(0.7,x,ret_val); // for coverage
+    constexpr long double x1 = 0.3;
+    double x2 = x1;
+    constexpr long double shape = 1.5;
+    constexpr long double scale = 2;
 
     std::cout << "\nbegin incomplete_gamma_inv test\n" << std::endl;
 
+    gcem::incomplete_gamma_inv(shape,x2,ret_val);
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(18) << "incomplete_gamma_inv: " << scale*ret_val << std::endl;
+    std::cout << "incomplete_gamma_inv: " << scale*gcem::incomplete_gamma_inv_new(shape,x1) << std::endl;
+
+
+    gcem::incomplete_gamma_inv(2,0.7,ret_val); // for coverage
+    gcem::incomplete_gamma_inv(0.7,x2,ret_val); // for coverage
+
+    constexpr long double shape2 = 0.7;
+
     std::cout << "incomplete_gamma_inv: " << scale*ret_val << std::endl;
+    std::cout << "incomplete_gamma_inv: " << scale*gcem::incomplete_gamma_inv_new(shape2,x1) << std::endl;
 
     return 0;
 }

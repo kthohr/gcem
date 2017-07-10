@@ -86,6 +86,10 @@
     #define GCEM_INCML_GAMMA_MAX_ITER 55
 #endif
 
+#ifndef GCEM_INCML_GAMMA_INV_MAX_ITER
+    #define GCEM_INCML_GAMMA_INV_MAX_ITER 35
+#endif
+
 #ifndef GCEM_SQRT_TOL
     #define GCEM_SQRT_TOL 1E-15
 #endif

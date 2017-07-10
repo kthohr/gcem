@@ -16,7 +16,7 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O2 -Wall -std=c++11 -I./../include incomplete_gamma_test.cpp -o incomplete_gamma.test -framework Accelerate
+// g++-mp-7 -O2 -Wall -std=c++11 -I./../include incomplete_gamma.cpp -o incomplete_gamma.test -framework Accelerate
 
 #include <cmath>
 #include <iostream>
@@ -25,14 +25,14 @@
 
 int main()
 {
-    constexpr double x = 1;
-
-    double shape = 2;
-    double scale = 2;
+    constexpr long double x = 1.0;
+    constexpr long double shape_1 = 2.0;
+    constexpr long double shape_2 = 1.5;
 
     std::cout << "\nbegin incomplete_gamma test\n" << std::endl;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << x <<") = " << std::setprecision(18) << gcem::incomplete_gamma(shape,x/scale) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << x <<") = " << std::setprecision(18) << gcem::incomplete_gamma(shape,x) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << x <<") = " << std::setprecision(18) << gcem::incomplete_gamma(1.5,x/scale) << std::endl;
 
     return 0;
 }
