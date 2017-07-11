@@ -65,7 +65,7 @@ namespace gcem {
     #include "gcem_incl/log_multi_gamma.hpp"
 
     #include "gcem_incl/erf.hpp"
-    #include "gcem_incl/erfinv.hpp"
+    #include "gcem_incl/erf_inv.hpp"
     #include "gcem_incl/incomplete_beta.hpp"
     #include "gcem_incl/incomplete_beta_inv.hpp"
     #include "gcem_incl/incomplete_gamma.hpp"

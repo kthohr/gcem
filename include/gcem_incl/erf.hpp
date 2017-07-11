@@ -29,6 +29,9 @@
 #ifndef _gcem_erf_HPP
 #define _gcem_erf_HPP
 
+// see
+// http://functions.wolfram.com/GammaBetaErf/Erf/10/01/0005/
+
 constexpr
 long double
 erf_cf_int(const long double xx, const int depth)

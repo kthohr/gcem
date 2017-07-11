@@ -16,7 +16,7 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -I./../include erfinv_test.cpp -o erfinv.test -framework Accelerate
+// g++-mp-7 -O3 -Wall -std=c++11 -I./../include erf_inv.cpp -o erf_inv.test -framework Accelerate
 
 #include <cmath>
 #include <iostream>
@@ -25,15 +25,15 @@
 
 int main()
 {
-    std::cout << "\nbegin erfinv test\n" << std::endl;
+    std::cout << "\nbegin erf_inv test\n" << std::endl;
 
     constexpr long double x = 0.5;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erfinv(gcem_erf(" << x <<")) = " << std::setprecision(18) << gcem::erfinv(gcem::erf(x)) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf_inv(gcem_erf(" << x <<")) = " << std::setprecision(18) << gcem::erf_inv(gcem::erf(x)) << std::endl;
 
     constexpr long double x3 = -0.999;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erfinv(" << x3 <<") = " << std::setprecision(18) << gcem::erfinv(x3) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf_inv(" << x3 <<") = " << std::setprecision(18) << gcem::erf_inv(x3) << std::endl;
 
     return 0;
 }

@@ -58,6 +58,10 @@
     #define GCEM_ERF_MAX_ITER 35
 #endif
 
+#ifndef GCEM_ERF_INV_MAX_ITER
+    #define GCEM_ERF_INV_MAX_ITER 35
+#endif
+
 #ifndef GCEM_EXP_MAX_ITER_SMALL
     #define GCEM_EXP_MAX_ITER_SMALL 35
 #endif

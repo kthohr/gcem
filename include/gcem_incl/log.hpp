@@ -23,13 +23,15 @@
  * 06/25/2017
  *
  * This version:
- * 07/02/2017
+ * 07/11/2017
  */
 
 #ifndef _gcem_log_HPP
 #define _gcem_log_HPP
 
 // continued fraction seems to be a better approximation for small x
+// see
+// http://functions.wolfram.com/ElementaryFunctions/Log/10/0005/
 template<typename T>
 constexpr
 T
@@ -59,9 +61,9 @@ constexpr
 long double
 log_mantissa_integer(const int x)
 {
-    return ( x == 2 ? 0.69314718055994528623L : x == 3 ? 1.0986122886681097821L : x == 4  ? 1.3862943611198905725L : 
-             x == 5 ? 1.6094379124341002818L  : x == 6 ? 1.7917594692280549573L : x == 7  ? 1.9459101490553132319L : 
-             x == 8 ? 2.0794415416798357477L  : x == 9 ? 2.1972245773362195642L : x == 10 ? 2.3025850929940459011L : 0.0L );
+    return ( x == 2 ? 0.69314718055994530942L : x == 3 ? 1.09861228866810969140L : x == 4  ? 1.38629436111989061883L : 
+             x == 5 ? 1.60943791243410037460L : x == 6 ? 1.79175946922805500081L : x == 7  ? 1.94591014905531330511L : 
+             x == 8 ? 2.07944154167983592825L : x == 9 ? 2.19722457733621938279L : x == 10 ? 2.30258509299404568402L : 0.0L );
 }
 
 template<typename T>

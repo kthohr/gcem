@@ -23,7 +23,7 @@
  * 06/23/2016
  *
  * This version:
- * 07/01/2017
+ * 07/10/2017
  */
 
 #ifndef _gcem_factorial_HPP
@@ -32,7 +32,7 @@
 constexpr
 int
 factorial(const int x) {
-    return (x==1 ? x : x*factorial(x-1));
+    return ( x == 0 ? 1 : x == 1 ? x : x*factorial(x-1));
 }
 
 #endif
