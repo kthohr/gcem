@@ -105,7 +105,7 @@ constexpr
 long double
 incomplete_beta(const long double a, const long double b, const long double z)
 {
-    return ( z == 0 ? 0 : ( z < (a+1)/(a+b+2) ? incomplete_beta_int(a,b,z) : 1 - incomplete_beta_int(a,b,1 - z) ) );
+    return ( z == 0 ? 0 : ( z < (a+1)/(a+b+2) ? incomplete_beta_int(a,b,z) : 1 - incomplete_beta_int(b,a,1 - z) ) );
 }
 
 // Below is a modified version of ASA063 by John Burkardt
