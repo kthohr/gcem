@@ -26,6 +26,9 @@
  * 07/01/2017
  */
 
+// see
+// http://functions.wolfram.com/ElementaryFunctions/ArcTan/10/0001/
+
 #ifndef _gcem_atan_HPP
 #define _gcem_atan_HPP
 

@@ -79,7 +79,7 @@ constexpr
 T
 log_breakup(const T x)
 { // x = a*b, where b = 10^c
-    return ( log_mantissa(mantissa(x)) + 2.3025850929940459011*(find_exponent(x,0)) );
+    return ( log_mantissa(mantissa(x)) + 2.30258509299404568402L*(find_exponent(x,0)) );
 }
 
 template<typename T>
