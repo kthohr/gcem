@@ -1,4 +1,4 @@
 
 for t in ./*.cpp; do
-   gcov "$t"
+   gcov "$t" > /dev/null 2>&1
 done
