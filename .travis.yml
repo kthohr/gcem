@@ -1,4 +1,4 @@
-langauge: cpp
+language: c++
 compiler: gcc
 sudo: required
 dist: trusty
