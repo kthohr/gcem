@@ -18,12 +18,6 @@
 
 /*
  * compile-time arctangent function
- *
- * Keith O'Hara
- * 06/25/2017
- *
- * This version:
- * 07/01/2017
  */
 
 // see

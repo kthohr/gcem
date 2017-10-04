@@ -19,14 +19,8 @@
 /* 
  * compile-time inverse error function
  *
- * Based on:
+ * Initial approximation based on:
  * 'Approximating the erfinv function' by Mike Giles
- *
- * Keith O'Hara
- * 06/15/2016
- *
- * This version:
- * 07/11/2017
  */
 
 #ifndef _gcem_erf_inv_HPP

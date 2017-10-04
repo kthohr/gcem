@@ -18,12 +18,6 @@
 
 /*
  * compile-time inverse (aka area) hyperbolic tangent function
- *
- * Keith O'Hara
- * 06/28/2017
- *
- * This version:
- * 07/02/2017
  */
 
 #ifndef _gcem_atanh_HPP

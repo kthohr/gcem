@@ -18,13 +18,8 @@
 
 /*
  * compile-time sine function using tan(x/2)
+ * 
  * see eq. 5.4.8 in Numerical Recipes
- *
- * Keith O'Hara
- * 06/25/2017
- *
- * This version:
- * 07/01/2017
  */
 
 #ifndef _gcem_sin_HPP

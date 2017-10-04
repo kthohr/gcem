@@ -19,12 +19,6 @@
 
 /* 
  * compile-time binomial coefficient
- *
- * Keith O'Hara
- * 06/23/2016
- *
- * This version:
- * 07/02/2017
  */
 
 #ifndef _gcem_binomial_coef_HPP

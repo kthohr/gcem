@@ -18,12 +18,6 @@
 
 /*
  * compile-time sign function
- *
- * Keith O'Hara
- * 06/15/2017
- *
- * This version:
- * 07/02/2017
  */
 
 #ifndef _gcem_sign_dbl_HPP

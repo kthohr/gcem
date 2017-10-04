@@ -20,12 +20,6 @@
  * compile-time incomplete beta function
  *
  * see eq. 18.5.17a in the Handbook of Continued Fractions for Special Functions
- *
- * Keith O'Hara
- * 06/18/2016
- *
- * This version:
- * 07/01/2017
  */
 
 #ifndef _gcem_incomplete_beta_HPP
@@ -107,100 +101,5 @@ incomplete_beta(const long double a, const long double b, const long double z)
 {
     return ( z == 0 ? 0 : ( z < (a+1)/(a+b+2) ? incomplete_beta_int(a,b,z) : 1 - incomplete_beta_int(b,a,1 - z) ) );
 }
-
-// Below is a modified version of ASA063 by John Burkardt
-
-// inline
-// bool
-// incomplete_beta(double alpha_par, double beta_par, double x, double& ret) // beta(x;alpha_par,beta_par)
-// {
-//     bool success = false;
-//     //
-//     //  Check the input.
-//     if (alpha_par <= 0.0 || beta_par <= 0.0) {
-//         ret = 0.0;
-//         return false;
-//     }
-
-//     if (x <= 0.0) {
-//         ret = 0.0;
-//         return false;
-//     }
-
-//     if (1.0 <= x) {
-//         ret = 1.0;
-//         return false;
-//     }
-
-//     double acu = 1.0E-14;
-//     double lbeta = std::lgamma(alpha_par) + std::lgamma(beta_par) - std::lgamma(alpha_par + beta_par); // log beta function value
-//     //
-//     //  Change tail if necessary and determine S.
-//     //
-//     double ab_par = alpha_par + beta_par;
-//     double cx = 1.0 - x;
-
-//     bool indx;
-//     double alpha_par_use, beta_par_use, xx;
-
-//     if (alpha_par < ab_par * x) {
-//         xx = cx;
-//         cx = x;
-//         alpha_par_use = beta_par;
-//         beta_par_use = alpha_par;
-//         indx = true;
-//     } else {
-//         xx = x;
-//         alpha_par_use = alpha_par;
-//         beta_par_use = beta_par;
-//         indx = false;
-//     }
-
-//     int ns = ( int ) ( beta_par_use + cx * ab_par );
-//     //
-//     //  Use the Soper reduction formula.
-//     //
-//     double rx = xx / cx;
-//     if (ns == 0) {
-//         rx = xx;
-//     }
-
-//     double term = 1.0, ai = 1.0, value = 1.0;
-//     double temp = beta_par_use - ai;
-
-//     while (1) {
-//         term *= temp * rx / ( alpha_par_use + ai );
-//         value += term;
-//         temp = std::abs(term);
-
-//         if (temp <= acu && temp <= acu * value) {
-//             value = value * std::exp( alpha_par_use*std::log(xx) + (beta_par_use - 1.0)*std::log(cx) - lbeta ) / alpha_par_use;
-
-//             if (indx) {
-//                 value = 1.0 - value;
-//             }
-
-//             success = true;
-//             break;
-//         }
-
-//         ai += 1.0;
-//         ns--;
-
-//         if (0 <= ns) {
-//             temp = beta_par_use - ai;
-//             if (ns == 0) {
-//                 rx = xx;
-//             }
-//         } else {
-//             temp = ab_par;
-//             ab_par += 1.0;
-//         }
-//     }
-//     //
-//     ret = value;
-//     //
-//     return success;
-// }
 
 #endif

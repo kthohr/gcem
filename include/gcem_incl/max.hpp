@@ -18,12 +18,6 @@
 
 /*
  * compile-time maximum function
- *
- * Keith O'Hara
- * 06/25/2017
- *
- * This version:
- * 07/02/2017
  */
 
 #ifndef _gcem_max_HPP

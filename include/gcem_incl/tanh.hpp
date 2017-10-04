@@ -18,12 +18,6 @@
 
 /*
  * compile-time hyperbolic tangent function
- *
- * Keith O'Hara
- * 06/28/2017
- *
- * This version:
- * 07/01/2017
  */
 
 #ifndef _gcem_tanh_HPP

@@ -17,14 +17,10 @@
   ################################################################################*/
 
 /*
- * compile-time log-gamma function; see:
+ * compile-time log-gamma function
+ * 
+ * for coefficient values, see:
  * http://my.fit.edu/~gabdo/gamma.txt
- *
- * Keith O'Hara
- * 06/25/2017
- *
- * This version:
- * 07/09/2017
  */
 
 #ifndef _gcem_lgamma_HPP

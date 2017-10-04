@@ -18,12 +18,6 @@
 
 /* 
  * log multivariate gamma function
- *
- * Keith O'Hara
- * 06/01/2016
- *
- * This version:
- * 07/01/2017
  */
 
 #ifndef _gcem_log_multi_gamma_HPP

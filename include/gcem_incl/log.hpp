@@ -18,12 +18,6 @@
 
 /*
  * compile-time natural logarithm function
- *
- * Keith O'Hara
- * 06/25/2017
- *
- * This version:
- * 07/11/2017
  */
 
 #ifndef _gcem_log_HPP
@@ -32,6 +26,7 @@
 // continued fraction seems to be a better approximation for small x
 // see
 // http://functions.wolfram.com/ElementaryFunctions/Log/10/0005/
+
 template<typename T>
 constexpr
 T
