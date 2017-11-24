@@ -28,7 +28,7 @@ constexpr
 T
 find_fraction(const T x)
 {
-    return ( abs(x - int(x)) > 0.5 ? x - (int)x - sign_dbl(x) : x - (int)x );
+    return ( abs(x - int(x)) > 0.5 ? x - int(x) - sgn(x) : x - int(x) );
 }
 
 #endif

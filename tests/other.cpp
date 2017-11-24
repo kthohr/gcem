@@ -25,7 +25,7 @@ int main()
 {
     double x = 1.5;
     
-    gcem::sign_dbl(x);
+    gcem::sgn(x);
     gcem::find_fraction(x);
     gcem::find_whole(x);
 

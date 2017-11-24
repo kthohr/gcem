@@ -20,15 +20,15 @@
  * compile-time sign function
  */
 
-#ifndef _gcem_sign_dbl_HPP
-#define _gcem_sign_dbl_HPP
+#ifndef _gcem_sgn_HPP
+#define _gcem_sgn_HPP
 
 template<typename T>
 constexpr
 T
-sign_dbl(const T x)
+sgn(const T x)
 {
-    return (x > 0 ? 1.0 : (x < 0 ? -1.0 : 0.0));
+    return (x > T(0) ? 1.0 : (x < T(0) ? -1.0 : 0.0));
 }
 
 #endif
