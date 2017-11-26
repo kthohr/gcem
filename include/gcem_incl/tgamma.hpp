@@ -27,7 +27,7 @@ constexpr
 long double
 tgamma(const long double x)
 {
-    return ( x == 1 ? 1 : exp(lgamma(x)));
+    return ( x == 1.0L ? 1.0L : exp(lgamma(x)));
 }
 
 #endif

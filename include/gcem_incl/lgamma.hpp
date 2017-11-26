@@ -65,7 +65,7 @@ constexpr
 long double
 lgamma_term_1(const long double x)
 { // 607/128 + 0.5 = 5.2421875
-    return ( (x + 0.5)*log(x+5.2421875L) - (x + 5.2421875L) );
+    return ( (x + 0.5L)*log(x+5.2421875L) - (x + 5.2421875L) );
 }
 
 constexpr
@@ -79,7 +79,7 @@ constexpr
 long double
 lgamma(const long double x)
 {
-    return ( x == 1 ? 0 : lgamma_int(x-1) );
+    return ( x == 1.0L ? 0.0L : lgamma_int(x-1.0L) );
 }
 
 #endif

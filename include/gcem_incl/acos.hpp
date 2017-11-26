@@ -27,7 +27,7 @@ constexpr
 long double
 acos(const long double x)
 {
-    return ( x == 1 ? 0 : atan(sqrt(1-x*x)/x) );
+    return ( x == 1.0L ? 0.0L : atan(sqrt(1.0L - x*x)/x) );
 }
 
 #endif

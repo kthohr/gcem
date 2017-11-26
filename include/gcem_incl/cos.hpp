@@ -29,14 +29,14 @@ constexpr
 long double
 cos_int(const long double x)
 {
-    return (1-x*x)/(1+x*x);
+    return (1.0L - x*x)/(1.0L + x*x);
 }
 
 constexpr
 long double
 cos(const long double x)
 {
-    return ( x == 0 ? 1 : cos_int(tan(x/2)) );
+    return ( x == 0.0L ? 1.0L : cos_int(tan(x/2.0L)) );
 }
 
 #endif

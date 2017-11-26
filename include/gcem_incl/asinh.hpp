@@ -27,7 +27,7 @@ constexpr
 long double
 asinh(const long double x)
 {
-    return ( x == 0 ? 0 : log( x + sqrt(x*x+1) ) );
+    return ( x == 0.0L ? 0.0L : log( x + sqrt(x*x + 1.0L) ) );
 }
 
 #endif

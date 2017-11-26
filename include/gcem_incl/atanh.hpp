@@ -27,7 +27,7 @@ constexpr
 long double
 atanh(const long double x)
 {
-    return ( x == 0 ? 0 : log( (1+x)/(1-x) )/2.0 );
+    return ( x == 0.0L ? 0.0L : log( (1.0L + x)/(1.0L - x) )/2.0L );
 }
 
 #endif

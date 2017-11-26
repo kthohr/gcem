@@ -33,7 +33,7 @@ T
 log_cf_int(const T xx, const int depth)
 {
     // return ( abs(depth*depth*xx/(2*(depth+1) - 1) ) < GCEM_LOG_TOL ? (T)(2*depth - 1) : (2*depth - 1) - depth*depth*xx/log_cf_int(xx,depth+1) );
-    return ( depth == GCEM_LOG_MAX_ITER_SMALL ? (T)(2*depth - 1) : (2*depth - 1) - depth*depth*xx/log_cf_int(xx,depth+1) );
+    return ( depth == GCEM_LOG_MAX_ITER_SMALL ? T(2*depth - 1) : T(2*depth - 1) - depth*depth*xx/log_cf_int(xx,depth+1) );
 }
 
 template<typename T>
@@ -49,7 +49,7 @@ constexpr
 T
 log_int(const T x)
 { 
-    return ( log_cf((x-1.0)/(x+1.0)) );
+    return ( log_cf((x - T(1.0))/(x + T(1.0))) );
 }
 
 constexpr
@@ -82,7 +82,7 @@ constexpr
 T
 log(const T x)
 {
-    return ( x == 1 ? 0 : x < 0.5 ? log_breakup(x) : x > 1.5 ? log_breakup(x) : log_int(x) );
+    return ( x == T(1.0) ? T(0.0) : x < T(0.5) ? log_breakup(x) : x > T(1.5) ? log_breakup(x) : log_int(x) );
 }
 
 // using Taylor series

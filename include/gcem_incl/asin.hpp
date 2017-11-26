@@ -27,7 +27,7 @@ constexpr
 long double
 asin(const long double x)
 {
-    return ( x == 0 ? 0 : atan(x/sqrt(1-x*x)) );
+    return ( x == 0.0L ? 0.0L : atan(x/sqrt(1.0L - x*x)) );
 }
 
 #endif

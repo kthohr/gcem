@@ -36,7 +36,7 @@ constexpr
 T
 sqrt(const T x)
 {
-    return ( x==1 ? x : sqrt_recur(x,x/2) );
+    return ( x == T(1.0) ? x : sqrt_recur(x,x/T(2.0)) );
 }
 
 #endif

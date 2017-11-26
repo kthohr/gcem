@@ -44,7 +44,7 @@ constexpr
 long double
 atan(const long double x)
 {
-    return ( x == 0 ? 0 : ( x > 0 ? atan_int(x) : -atan_int(-x) ) );
+    return ( x == 0.0L ? 0.0L : ( x > 0.0L ? atan_int(x) : -atan_int(-x) ) );
 }
 
 #endif

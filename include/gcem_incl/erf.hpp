@@ -44,7 +44,7 @@ constexpr
 long double
 erf(const long double x)
 {
-    return ( x == 0 ? 0 : ( x > 0 ? erf_cf(x) : -erf_cf(-x) ) );
+    return ( x == 0.0L ? 0.0L : ( x > 0.0L ? erf_cf(x) : -erf_cf(-x) ) );
 }
 
 // the expansion above seems to possess better approximation properties than those below

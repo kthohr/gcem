@@ -41,7 +41,7 @@ constexpr
 long double
 tan(const long double x)
 {
-    return ( x == 0 ? 0 : ( x > 0 ? tan_int(x) : -tan_int(-x) ) );
+    return ( x == 0.0L ? 0.0L : ( x > 0.0L ? tan_int(x) : -tan_int(-x) ) );
 }
 
 #endif

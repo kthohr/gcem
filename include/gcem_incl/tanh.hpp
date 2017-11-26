@@ -41,7 +41,7 @@ constexpr
 long double
 tanh(const long double x)
 {
-    return ( x == 0 ? 0 : ( x > 0 ? tanh_int(x) : -tanh_int(-x) ) );
+    return ( x == 0.0L ? 0.0L : ( x > 0.0L ? tanh_int(x) : -tanh_int(-x) ) );
 }
 
 #endif

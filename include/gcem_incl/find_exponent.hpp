@@ -28,7 +28,7 @@ constexpr
 int
 find_exponent(const T x, const int exponent)
 {
-    return ( x < 1.0 ? find_exponent(x*10,exponent-1) : ( x > 10.0 ? find_exponent(x*0.1,exponent+1) : exponent ) );
+    return ( x < T(1.0) ? find_exponent(x*10,exponent-1) : ( x > T(10.0) ? find_exponent(x*0.1,exponent+1) : exponent ) );
 }
 
 #endif

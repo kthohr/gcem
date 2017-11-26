@@ -29,14 +29,14 @@ constexpr
 long double
 sin_int(const long double x)
 {
-    return 2*x/(1+x*x);
+    return 2.0L*x/(1.0L + x*x);
 }
 
 constexpr
 long double
 sin(const long double x)
 {
-    return ( x == 0 ? 0 : sin_int(tan(x/2)) );
+    return ( x == 0.0L ? 0.0L : sin_int(tan(x/2.0L)) );
 }
 
 #endif

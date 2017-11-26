@@ -30,7 +30,7 @@ constexpr
 long double
 incomplete_gamma_cf_coef(const long double a, const long double z, const int depth)
 {
-    return ( is_odd(depth) == 1 ? - (a-1+(depth+1)/2)*z : (depth/2)*z );
+    return ( is_odd(depth) == 1 ? - (a-1+(depth+1)/2.0)*z : (depth/2.0)*z );
 }
 
 constexpr
@@ -44,14 +44,14 @@ constexpr
 long double
 incomplete_gamma_int(const long double a, const long double z)
 { // upper (regularized) incomplete gamma function
-    return ( 1.0 - exp(a*log(z)-z) / tgamma(a) / incomplete_gamma_cf_int(a,z,1) );
+    return ( 1.0L - exp(a*log(z)-z) / tgamma(a) / incomplete_gamma_cf_int(a,z,1) );
 }
 
 constexpr
 long double
 incomplete_gamma(const long double a, const long double z)
 {
-    return ( a == 0 ? 0 : z <= 0.0 ? 0.0 : 1 - incomplete_gamma_int(a,z) );
+    return ( a == 0.0L ? 0.0L : z <= 0.0L ? 0.0L : 1.0L - incomplete_gamma_int(a,z) );
 }
 
 #endif

@@ -28,7 +28,7 @@ constexpr
 T
 pow(const T base, const int exp_term)
 {
-    return ( exp_term == 1 ? base : exp_term == 0 ? 1.0 : (exp_term < 0 ? 1.0 / pow(base, -exp_term) : base*pow(base, exp_term-1)) );
+    return ( exp_term == 1 ? base : exp_term == 0 ? T(1.0) : (exp_term < 0 ? T(1.0) / pow(base, -exp_term) : base*pow(base, exp_term-1)) );
 }
 
 #endif

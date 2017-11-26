@@ -35,14 +35,14 @@ constexpr
 long double
 incomplete_gamma_inv_t_val_1(const long double p)
 { // a > 1.0
-    return ( p > 0.5 ? sqrt(-2.0*log(1.0 - p)) : sqrt(-2.0*log(p)) );
+    return ( p > 0.5L ? sqrt(-2.0*log(1.0 - p)) : sqrt(-2.0*log(p)) );
 }
 
 constexpr
 long double
 incomplete_gamma_inv_t_val_2(const long double a)
 { // a <= 1.0
-    return ( 1.0 - 0.253*a - 0.12*a*a );
+    return ( 1.0L - 0.253L * a - 0.12L * a*a );
 }
 
 //
@@ -51,28 +51,28 @@ constexpr
 long double
 incomplete_gamma_inv_initial_val_1_int_begin(const long double t_val)
 { // internal for a > 1.0
-    return ( t_val - (2.515517 + 0.802853*t_val + 0.010328*t_val*t_val)/(1.0 + 1.432788*t_val + 0.189269*t_val*t_val + 0.001308*t_val*t_val*t_val) );
+    return ( t_val - (2.515517L + 0.802853L*t_val + 0.010328L*t_val*t_val)/(1.0L + 1.432788L*t_val + 0.189269L*t_val*t_val + 0.001308L*t_val*t_val*t_val) );
 }
 
 constexpr
 long double
 incomplete_gamma_inv_initial_val_1_int_end(const long double value_inp, const long double a)
 { // internal for a > 1.0
-    return ( max( (long double) 1E-04, a*pow(1.0 - 1.0/(9.0*a) - value_inp/(3.0*sqrt(a)),3) ) );
+    return ( max( 1E-04L, a*pow(1.0 - 1.0/(9.0*a) - value_inp/(3.0*sqrt(a)),3) ) );
 }
 
 constexpr
 long double
 incomplete_gamma_inv_initial_val_1(const long double a, const long double p, const long double t_val)
 { // a > 1.0
-    return ( p > 0.5 ? incomplete_gamma_inv_initial_val_1_int_end(-incomplete_gamma_inv_initial_val_1_int_begin(t_val), a) : incomplete_gamma_inv_initial_val_1_int_end(incomplete_gamma_inv_initial_val_1_int_begin(t_val), a) );
+    return ( p > 0.5L ? incomplete_gamma_inv_initial_val_1_int_end(-incomplete_gamma_inv_initial_val_1_int_begin(t_val), a) : incomplete_gamma_inv_initial_val_1_int_end(incomplete_gamma_inv_initial_val_1_int_begin(t_val), a) );
 }
 
 constexpr
 long double
 incomplete_gamma_inv_initial_val_2(const long double a, const long double p, const long double t_val)
 { // a <= 1.0
-    return ( p < t_val ? pow_dbl(p/t_val,1.0/a) : 1.0 - log(1.0 - (p - t_val)/(1.0 - t_val)) );
+    return ( p < t_val ? pow_dbl(p/t_val,1.0L/a) : 1.0L - log(1.0L - (p - t_val)/(1.0L - t_val)) );
 }
 
 // initial value
@@ -98,14 +98,14 @@ constexpr
 long double
 incomplete_gamma_inv_deriv_1(const long double value, const long double a, const long double lg_val)
 { // derivative of the incomplete gamma function w.r.t. x
-    return ( exp( - value + (a - 1.0)*log(value) - lg_val ) );
+    return ( exp( - value + (a - 1.0L)*log(value) - lg_val ) );
 }
 
 constexpr
 long double
 incomplete_gamma_inv_deriv_2(const long double value, const long double a, const long double deriv_1)
 { // second derivative of the incomplete gamma function w.r.t. x
-    return ( deriv_1*((a - 1.0)/value - 1.0) );
+    return ( deriv_1*((a - 1.0L)/value - 1.0L) );
 }
 
 constexpr
@@ -126,7 +126,7 @@ constexpr
 long double
 incomplete_gamma_inv_halley(const long double ratio_val_1, const long double ratio_val_2)
 {
-    return ( ratio_val_1 / max( 0.8L, min( 1.2L, 1.0 - 0.5*ratio_val_1*ratio_val_2 ) ) );
+    return ( ratio_val_1 / max( 0.8L, min( 1.2L, 1.0L - 0.5L*ratio_val_1*ratio_val_2 ) ) );
 }
 
 constexpr

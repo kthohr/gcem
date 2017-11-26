@@ -27,7 +27,7 @@ constexpr
 long double
 sinh(const long double x)
 {
-    return ( x == 0 ? 0 : (exp(x) - exp(-x))/2.0 );
+    return ( x == 0.0L ? 0.0L : (exp(x) - exp(-x))/2.0L );
 }
 
 #endif

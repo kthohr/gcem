@@ -29,7 +29,7 @@ constexpr
 long double
 log_multi_gamma(const long double a, const int p)
 {
-    return ( p==1 ? lgamma(a) : ((p-1.0)/2.0) * GCEM_LOG_PI + lgamma(a) + log_multi_gamma(a-0.5,p-1) );
+    return ( p==1 ? lgamma(a) : ((p-1.0L)/2.0L) * GCEM_LOG_PI + lgamma(a) + log_multi_gamma(a - 0.5L,p-1) );
 }
 
 #endif
