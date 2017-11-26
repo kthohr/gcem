@@ -99,7 +99,7 @@ constexpr
 long double
 incomplete_beta(const long double a, const long double b, const long double z)
 {
-    return ( z == 0 ? 0 : ( z < (a+1)/(a+b+2) ? incomplete_beta_int(a,b,z) : 1 - incomplete_beta_int(b,a,1 - z) ) );
+    return ( z == 0.0L ? 0.0 : ( z < (a+1.0)/(a+b+2.0) ? incomplete_beta_int(a,b,z) : 1.0 - incomplete_beta_int(b,a,1.0 - z) ) );
 }
 
 #endif
