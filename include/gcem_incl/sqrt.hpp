@@ -36,7 +36,7 @@ constexpr
 T
 sqrt(const T x)
 {
-    return ( x == T(1.0) ? x : sqrt_recur(x,x/T(2.0)) );
+    return ( GCEM_EPS > abs(x) ? 0.0 : ( x == T(1.0) ? x : sqrt_recur(x,x/T(2.0)) ) );
 }
 
 #endif

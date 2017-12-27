@@ -19,6 +19,10 @@
 //
 // constants
 
+#ifndef GCEM_EPS
+    #define GCEM_EPS 1E-16L
+#endif
+
 #ifndef GCEM_LOG_2
     #define GCEM_LOG_2 0.693147180559945309417L
 #endif
@@ -45,6 +49,10 @@
 
 #ifndef GCEM_SQRT_PI
     #define GCEM_SQRT_PI 1.77245385090551602730L
+#endif
+
+#ifndef GCEM_SQRT_HALF_PI
+    #define GCEM_SQRT_HALF_PI 1.25331413731550025121L
 #endif
 
 #ifndef GCEM_E
