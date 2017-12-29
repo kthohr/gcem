@@ -24,57 +24,59 @@
 #define _gcem_erf_HPP
 
 // see
+// http://functions.wolfram.com/GammaBetaErf/Erf/10/01/0007/
+
+template<typename T>
+constexpr
+T
+erf_int_cf_large_recur(const T x, const int depth)
+{
+    return ( depth < GCEM_ERF_MAX_ITER ? x + 2*depth/erf_int_cf_large_recur(x,depth+1) : x );
+}
+
+template<typename T>
+constexpr
+T
+erf_int_cf_large_main(const T x)
+{
+    return ( T(1.0) - T(2.0) * ( exp(-x*x) / T(GCEM_SQRT_PI) ) / erf_int_cf_large_recur(T(2.0)*x,1) );
+}
+
+// see
 // http://functions.wolfram.com/GammaBetaErf/Erf/10/01/0005/
 
+template<typename T>
 constexpr
-long double
-erf_cf_int(const long double xx, const int depth)
+T
+erf_int_cf_small_recur(const T xx, const int depth)
 {
-    return ( depth == GCEM_ERF_MAX_ITER ? (2*depth - 1) - 2*xx : (2*depth - 1) - 2*xx + 4*depth*xx/erf_cf_int(xx,depth+1) );
+    return ( depth < GCEM_ERF_MAX_ITER ? (2*depth - 1) - 2*xx + 4*depth*xx/erf_int_cf_small_recur(xx,depth+1) : (2*depth - 1) - 2*xx );
 }
 
+template<typename T>
 constexpr
-long double
-erf_cf(const long double x)
+T
+erf_int_cf_small_main(const T x)
 {
-    return ( 2*x*(exp(-x*x)/GCEM_SQRT_PI) / erf_cf_int(x*x,1) );
+    return ( T(2.0) * x * ( exp(-x*x) / T(GCEM_SQRT_PI) ) / erf_int_cf_small_recur(x*x,1) );
 }
 
+//
+
+template<typename T>
 constexpr
-long double
-erf(const long double x)
+T
+erf_int(const T x)
 {
-    return ( x == 0.0L ? 0.0L : ( x > 0.0L ? erf_cf(x) : -erf_cf(-x) ) );
+    return ( x > T(2.1) ? erf_int_cf_large_main(x) : erf_int_cf_small_main(x) );
 }
 
-// the expansion above seems to possess better approximation properties than those below
-
-// constexpr
-// double
-// erf_int(const double x, const double t)
-// { // eq 7.1.26
-//     return 1.0 - ( 0.254829592*t - 0.284496736*t*t + 1.421413741*t*t*t - 1.453152027*t*t*t*t + 1.061405429*t*t*t*t*t )*exp(-x*x);
-// }
-
-// constexpr
-// double
-// erf(const double x)
-// {
-//     return ( x == 0 ? 0 : ( x > 0 ? erf_int(x,1.0/(1+0.3275911*x)) : -erf_int(-x,1.0/(1-0.3275911*x)) ) );
-// }
-
-// constexpr
-// long double
-// erf_cf(const long double x, const int depth)
-// {
-//     return ( depth == 55 ? x : x + (depth/2.0)/erf_cf(x,depth+1) );
-// }
-
-// constexpr
-// long double
-// erf_int(const long double x)
-// {
-//     return ( 1.0 - (exp(-x*x)/GCEM_SQRT_PI) / erf_cf(x,1) );
-// }
+template<typename T>
+constexpr
+T
+erf(const T x)
+{
+    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : ( x < T(0.0) ? -erf_int(-x) : erf_int(x) ) );
+}
 
 #endif

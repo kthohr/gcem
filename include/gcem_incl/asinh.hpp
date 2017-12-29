@@ -17,7 +17,7 @@
   ################################################################################*/
 
 /*
- * compile-time inverse hyperbolic sine function (aka area hyperbolic sine function)
+ * compile-time inverse hyperbolic sine function
  */
 
 #ifndef _gcem_asinh_HPP

@@ -39,7 +39,7 @@ constexpr
 T
 acos(const T x)
 {
-    return ( x > T(0.0) ? acos_int(x) : GCEM_PI - acos_int(-x));
+    return ( x > T(0.0) ? acos_int(x) : T(GCEM_PI) - acos_int(-x));
 }
 
 #endif

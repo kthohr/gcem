@@ -61,7 +61,7 @@ constexpr
 T
 atan_series_order(const T x, const T x_pow, const int order, const int max_order)
 {
-    return ( order == 1 ? GCEM_HALF_PI - 1.0L/x + atan_series_order(x*x,pow(x,3),order+1,max_order) : // NOTE: x changes to x*x for order > 1
+    return ( order == 1        ? GCEM_HALF_PI - 1.0L/x + atan_series_order(x*x,pow(x,3),order+1,max_order) : // NOTE: x changes to x*x for order > 1
              order < max_order ? T(1.0)/( T((order-1)*4 - 1) * x_pow ) - T(1.0)/( T((order-1)*4 + 1) * x_pow*x) + atan_series_order(x,x_pow*x*x,order+1,max_order) :
                                  T(1.0)/( T((order-1)*4 - 1) * x_pow ) - T(1.0)/( T((order-1)*4 + 1) * x_pow*x) );
 }
@@ -121,7 +121,7 @@ constexpr
 T
 atan(const T x)
 {
-    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : ( x > T(0.0) ? atan_int(x) : -atan_int(-x) ) );
+    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : ( x < T(0.0) ? -atan_int(-x) : atan_int(x) ) );
 }
 
 #endif

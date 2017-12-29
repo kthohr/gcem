@@ -17,7 +17,7 @@
   ################################################################################*/
 
 /*
- * compile-time inverse hyperbolic cosine function (aka area hyperbolic cosine function)
+ * compile-time inverse hyperbolic cosine function
  */
 
 #ifndef _gcem_acosh_HPP
@@ -28,9 +28,9 @@ constexpr
 T
 acosh(const T x)
 {
-    return ( x < T(1.0) ? GCEM_LIM<T>::quiet_NaN() :
-             GCEM_LIM<T>::epsilon() > abs( x -  T(1.0) ) ? T(0.0) : 
-             log( x + sqrt(x*x - T(1.0)) ) );
+    return ( x < T(1.0)                                ? GCEM_LIM<T>::quiet_NaN() : // function defined for x >= 1
+             GCEM_LIM<T>::epsilon() > abs(x -  T(1.0)) ? T(0.0) : 
+                                                         log( x + sqrt(x*x - T(1.0)) ) );
 }
 
 #endif

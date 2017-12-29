@@ -62,7 +62,7 @@ int main()
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_asin(" << x9 <<")  = " << std::setprecision(18) << std::asin(x10) << std::endl;
     std::cout << std::endl;
 
-    constexpr long double x11 = 5.0L; // illegal value, defaults to 0
+    constexpr long double x11 = 5.0L; // illegal value
     long double x12 = x11;
     
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_asin(" << x11 <<") = " << std::setprecision(18) << gcem::asin(x11) << std::endl;
