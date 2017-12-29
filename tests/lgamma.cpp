@@ -30,13 +30,16 @@ int main()
     constexpr long double x3 = 0.7;
     long double x4 = x3;
 
-    std::cout << "\nbegin lgamma test\n" << std::endl;
+    std::cout << "\n*** begin lgamma test ***\n" << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_lgamma(" << x <<") = " << std::setprecision(18) << gcem::lgamma(x) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_lgamma(" << x <<")  = " << std::setprecision(18) << std::lgamma(x2) << std::endl;
+    std::cout << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_lgamma(" << x3 <<") = " << std::setprecision(18) << gcem::lgamma(x4) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_lgamma(" << x4 <<")  = " << std::setprecision(18) << std::lgamma(x3) << std::endl;
+
+    std::cout << "\n*** end lgamma test ***\n" << std::endl;
 
     return 0;
 }

@@ -23,11 +23,12 @@
 #ifndef _gcem_tgamma_HPP
 #define _gcem_tgamma_HPP
 
+template<typename T>
 constexpr
-long double
-tgamma(const long double x)
+T
+tgamma(const T x)
 {
-    return ( x == 1.0L ? 1.0L : exp(lgamma(x)));
+    return ( GCEM_LIM<T>::epsilon() > abs(x - T(1.0)) ? T(1.0) : exp(lgamma(x)));
 }
 
 #endif
