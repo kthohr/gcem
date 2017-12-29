@@ -17,7 +17,7 @@
   ################################################################################*/
 
 /* 
- * compile-time incomplete gamma function
+ * compile-time (regularized) incomplete gamma function
  */
 
 #ifndef _gcem_incomplete_gamma_HPP
@@ -46,8 +46,8 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_int(const T a, const T z)
-{ // upper (regularized) incomplete gamma function
-    return ( T(1.0) - exp(a*log(z) - z) / tgamma(a) / incomplete_gamma_cf_int(a,z,1) );
+{ // lower (regularized) incomplete gamma function
+    return ( exp(a*log(z) - z) / tgamma(a) / incomplete_gamma_cf_int(a,z,1) );
 }
 
 template<typename T>
@@ -55,7 +55,7 @@ constexpr
 T
 incomplete_gamma(const T a, const T z)
 {
-    return ( GCEM_LIM<T>::epsilon() > abs(a) ? T(0.0) : z <= T(0.0) ? T(0.0) : T(1.0) - incomplete_gamma_int(a,z) );
+    return ( GCEM_LIM<T>::epsilon() > z ? T(0.0) : GCEM_LIM<T>::epsilon() > a ? T(1.0) : z <= T(0.0) ? T(0.0) : incomplete_gamma_int(a,z) );
 }
 
 #endif
