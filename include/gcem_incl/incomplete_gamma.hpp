@@ -26,32 +26,36 @@
 // for the expansion, see:
 // http://functions.wolfram.com/GammaBetaErf/Gamma2/10/0009/
 
+template<typename T>
 constexpr
-long double
-incomplete_gamma_cf_coef(const long double a, const long double z, const int depth)
+T
+incomplete_gamma_cf_coef(const T a, const T z, const int depth)
 {
-    return ( is_odd(depth) == 1 ? - (a-1+(depth+1)/2.0)*z : (depth/2.0)*z );
+    return ( is_odd(depth) == 1 ? - T(a-1+(depth+1)/2.0) * z : T(depth/2.0) * z );
 }
 
+template<typename T>
 constexpr
-long double
-incomplete_gamma_cf_int(const long double a, const long double z, const int depth)
+T
+incomplete_gamma_cf_int(const T a, const T z, const int depth)
 {
-    return ( depth == GCEM_INCML_GAMMA_MAX_ITER ? (a + depth - 1) : (a + depth - 1) + incomplete_gamma_cf_coef(a,z,depth)/incomplete_gamma_cf_int(a,z,depth+1) );
+    return ( depth < GCEM_INCML_GAMMA_MAX_ITER ? (a + depth - 1) + incomplete_gamma_cf_coef(a,z,depth)/incomplete_gamma_cf_int(a,z,depth+1) : (a + depth - 1) );
 }
 
+template<typename T>
 constexpr
-long double
-incomplete_gamma_int(const long double a, const long double z)
+T
+incomplete_gamma_int(const T a, const T z)
 { // upper (regularized) incomplete gamma function
-    return ( 1.0L - exp(a*log(z)-z) / tgamma(a) / incomplete_gamma_cf_int(a,z,1) );
+    return ( T(1.0) - exp(a*log(z) - z) / tgamma(a) / incomplete_gamma_cf_int(a,z,1) );
 }
 
+template<typename T>
 constexpr
-long double
-incomplete_gamma(const long double a, const long double z)
+T
+incomplete_gamma(const T a, const T z)
 {
-    return ( a == 0.0L ? 0.0L : z <= 0.0L ? 0.0L : 1.0L - incomplete_gamma_int(a,z) );
+    return ( GCEM_LIM<T>::epsilon() > abs(a) ? T(0.0) : z <= T(0.0) ? T(0.0) : T(1.0) - incomplete_gamma_int(a,z) );
 }
 
 #endif
