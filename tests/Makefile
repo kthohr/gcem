@@ -1,6 +1,8 @@
 
-#CXX = clang++
-CXX = g++
+
+ifeq ($(CXX),)
+	CXX = g++
+endif
 
 CXX_STD = -std=c++11
 OPT_FLAGS = -g -O0 -Wall --coverage -fno-inline -fno-inline-small-functions -fno-default-inline
