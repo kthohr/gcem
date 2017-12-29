@@ -16,7 +16,7 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -I./../include incomplete_beta_test.cpp -o incomplete_beta.test -framework Accelerate
+// g++-mp-7 -O3 -Wall -std=c++11 -I./../include incomplete_beta.cpp -o incomplete_beta.test -framework Accelerate
 
 #include <cmath>
 #include <iostream>

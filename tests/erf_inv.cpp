@@ -33,7 +33,7 @@ int main()
 
     constexpr long double x3 = -0.999;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf_inv(" << x3 <<") = " << std::setprecision(18) << gcem::erf_inv(x3) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(3) << "gcem_erf_inv(" << x3 <<") = " << std::setprecision(18) << gcem::erf_inv(x3) << std::endl;
 
     return 0;
 }

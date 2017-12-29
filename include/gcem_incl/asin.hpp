@@ -23,11 +23,23 @@
 #ifndef _gcem_asin_HPP
 #define _gcem_asin_HPP
 
+template<typename T>
 constexpr
-long double
-asin(const long double x)
+T
+asin_int(const T x)
 {
-    return ( x == 0.0L ? 0.0L : atan(x/sqrt(1.0L - x*x)) );
+    return ( x > T(1.0) ? T(GCEM_HALF_PI) :                                  // only defined on [-1,1]
+             GCEM_LIM<T>::epsilon() > abs( x -  T(1.0) ) ? T(GCEM_HALF_PI) : // indistinguishable from 1
+             GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) :                      // indistinguishable from 0
+             atan(x/sqrt(T(1.0) - x*x)) );
+}
+
+template<typename T>
+constexpr
+T
+asin(const T x)
+{
+    return ( x < T(0.0) ? - asin_int(-x) : asin_int(x) );
 }
 
 #endif

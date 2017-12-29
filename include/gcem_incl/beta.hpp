@@ -23,9 +23,10 @@
 #ifndef _gcem_beta_HPP
 #define _gcem_beta_HPP
 
+template<typename T>
 constexpr
-long double
-beta(const long double a, const long double b)
+T
+beta(const T a, const T b)
 {
     return ( exp(lbeta(a,b)) );
 }

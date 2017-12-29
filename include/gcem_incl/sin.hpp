@@ -25,18 +25,20 @@
 #ifndef _gcem_sin_HPP
 #define _gcem_sin_HPP
 
+template<typename T>
 constexpr
-long double
-sin_int(const long double x)
+T
+sin_int(const T x)
 {
-    return 2.0L*x/(1.0L + x*x);
+    return T(2.0)*x/(T(1.0) + x*x);
 }
 
+template<typename T>
 constexpr
-long double
-sin(const long double x)
+T
+sin(const T x)
 {
-    return ( x == 0.0L ? 0.0L : sin_int(tan(x/2.0L)) );
+    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : sin_int( tan(x/T(2.0)) ) );
 }
 
 #endif

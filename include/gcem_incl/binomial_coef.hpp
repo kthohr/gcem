@@ -28,7 +28,7 @@ constexpr
 long double
 binomial_coef_int(const int n, const int k, const int count)
 {
-    return ( count < k ? binomial_coef_int(n,k,count+1) * (long double)(n - k + count) / count : (long double)(n) / count );
+    return ( count < k ? binomial_coef_int(n,k,count+1) * static_cast<long double>(n - k + count) / count : static_cast<long double>(n) / count );
 }
 
 constexpr

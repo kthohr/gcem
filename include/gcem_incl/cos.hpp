@@ -25,18 +25,20 @@
 #ifndef _gcem_cos_HPP
 #define _gcem_cos_HPP
 
+template<typename T>
 constexpr
-long double
-cos_int(const long double x)
+T
+cos_int(const T x)
 {
-    return (1.0L - x*x)/(1.0L + x*x);
+    return (T(1.0) - x*x)/(T(1.0) + x*x);
 }
 
+template<typename T>
 constexpr
-long double
-cos(const long double x)
+T
+cos(const T x)
 {
-    return ( x == 0.0L ? 1.0L : cos_int(tan(x/2.0L)) );
+    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(1.0) : cos_int( tan(x/T(2.0)) ) );
 }
 
 #endif

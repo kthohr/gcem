@@ -17,17 +17,20 @@
   ################################################################################*/
 
 /*
- * compile-time inverse (aka area) hyperbolic cosine function
+ * compile-time inverse hyperbolic cosine function (aka area hyperbolic cosine function)
  */
 
 #ifndef _gcem_acosh_HPP
 #define _gcem_acosh_HPP
 
+template<typename T>
 constexpr
-long double
-acosh(const long double x)
+T
+acosh(const T x)
 {
-    return ( x == 1.0L ? 0.0L : log( x + sqrt(x*x - 1.0L) ) );
+    return ( x < T(1.0) ? GCEM_LIM<T>::quiet_NaN() :
+             GCEM_LIM<T>::epsilon() > abs( x -  T(1.0) ) ? T(0.0) : 
+             log( x + sqrt(x*x - T(1.0)) ) );
 }
 
 #endif

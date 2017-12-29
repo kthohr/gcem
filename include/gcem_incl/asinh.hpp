@@ -17,17 +17,18 @@
   ################################################################################*/
 
 /*
- * compile-time inverse (aka area) hyperbolic sine function
+ * compile-time inverse hyperbolic sine function (aka area hyperbolic sine function)
  */
 
 #ifndef _gcem_asinh_HPP
 #define _gcem_asinh_HPP
 
+template<typename T>
 constexpr
-long double
-asinh(const long double x)
+T
+asinh(const T x)
 {
-    return ( x == 0.0L ? 0.0L : log( x + sqrt(x*x + 1.0L) ) );
+    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : log( x + sqrt(x*x + T(1.0)) ) );
 }
 
 #endif

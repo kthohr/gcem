@@ -17,17 +17,20 @@
   ################################################################################*/
 
 /*
- * compile-time inverse (aka area) hyperbolic tangent function
+ * compile-time inverse hyperbolic tangent function
  */
 
 #ifndef _gcem_atanh_HPP
 #define _gcem_atanh_HPP
 
+template<typename T>
 constexpr
-long double
-atanh(const long double x)
+T
+atanh(const T x)
 {
-    return ( x == 0.0L ? 0.0L : log( (1.0L + x)/(1.0L - x) )/2.0L );
+    return ( abs(x) > T(1.0) ? GCEM_LIM<T>::quiet_NaN() : // function is defined for |x| < 1
+             GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : 
+             log( (T(1.0L) + x)/(T(1.0) - x) ) / T(2.0) );
 }
 
 #endif

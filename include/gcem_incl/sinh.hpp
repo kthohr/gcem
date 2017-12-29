@@ -23,11 +23,12 @@
 #ifndef _gcem_sinh_HPP
 #define _gcem_sinh_HPP
 
+template<typename T>
 constexpr
-long double
-sinh(const long double x)
+T
+sinh(const T x)
 {
-    return ( x == 0.0L ? 0.0L : (exp(x) - exp(-x))/2.0L );
+    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : (exp(x) - exp(-x))/T(2.0) );
 }
 
 #endif

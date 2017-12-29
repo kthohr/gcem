@@ -37,19 +37,38 @@ int main()
     constexpr long double x7 = -40.0;
     long double x8 = x7;
 
-    std::cout << "\nbegin exp test\n" << std::endl;
+    constexpr long double x9 = 0.0001;
+    long double x10 = x9;
+
+    constexpr long double x11 = 1.9991;
+    long double x12 = x11;
+
+    std::cout << "\n*** begin exp test ***\n" << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x1 <<") = " << std::setprecision(18) << gcem::exp(x1) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x2 <<")  = " << std::setprecision(18) << std::exp(x2) << std::endl;
+    std::cout << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x3 <<") = " << std::setprecision(18) << gcem::exp(x3) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x4 <<")  = " << std::setprecision(18) << std::exp(x4) << std::endl;
+    std::cout << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x5 <<") = " << std::setprecision(18) << gcem::exp(x5) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x6 <<")  = " << std::setprecision(18) << std::exp(x6) << std::endl;
+    std::cout << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x7 <<") = " << std::setprecision(18) << gcem::exp(x7) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x8 <<")  = " << std::setprecision(18) << std::exp(x8) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x9 <<") = " << std::setprecision(18) << gcem::exp(x9) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x10 <<")  = " << std::setprecision(18) << std::exp(x10) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x11 <<") = " << std::setprecision(18) << gcem::exp(x11) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x12 <<")  = " << std::setprecision(18) << std::exp(x12) << std::endl;
+
+    std::cout << "\n*** end exp test ***\n" << std::endl;
 
     return 0;
 }

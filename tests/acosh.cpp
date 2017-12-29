@@ -16,7 +16,7 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -I./../include -I/opt/local/include acosh_test.cpp -o acosh.test -framework Accelerate
+// g++-mp-7 -O3 -Wall -std=c++11 -I./../include acosh.cpp -o acosh.test -framework Accelerate
 
 #include <cmath>
 #include <iostream>
@@ -25,14 +25,37 @@
 
 int main()
 {
-    // constexpr double x = 25.0;
-    constexpr long double x = 1.5;
-    long double x2 = x;
+    
+    std::cout << "\n*** begin acosh test ***\n" << std::endl;
 
-    std::cout << "\nbegin acosh test\n" << std::endl;
+    constexpr long double x1 = 1.001;
+    long double x2 = x1;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_acosh(" << x <<") = " << std::setprecision(18) << gcem::acosh(x) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_acosh(" << x <<")  = " << std::setprecision(18) << std::acosh(x2) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_acosh(" << x1 <<") = " << std::setprecision(18) << gcem::acosh(x1) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_acosh(" << x1 <<")  = " << std::setprecision(18) << std::acosh(x2) << std::endl;
+    std::cout << std::endl;
+
+    constexpr long double x3 = 1.5;
+    long double x4 = x3;
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_acosh(" << x3 <<") = " << std::setprecision(18) << gcem::acosh(x3) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_acosh(" << x3 <<")  = " << std::setprecision(18) << std::acosh(x4) << std::endl;
+    std::cout << std::endl;
+
+    constexpr long double x5 = 11.1;
+    long double x6 = x5;
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_acosh(" << x5 <<") = " << std::setprecision(18) << gcem::acosh(x5) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_acosh(" << x5 <<")  = " << std::setprecision(18) << std::acosh(x6) << std::endl;
+    std::cout << std::endl;
+
+    constexpr long double x7 = 50.0;
+    long double x8 = x7;
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_acosh(" << x7 <<") = " << std::setprecision(18) << gcem::acosh(x7) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_acosh(" << x7 <<")  = " << std::setprecision(18) << std::acosh(x8) << std::endl;
+
+    std::cout << "\n*** end acosh test ***\n" << std::endl;
 
     return 0;
 }

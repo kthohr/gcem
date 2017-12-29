@@ -28,7 +28,7 @@ constexpr
 T
 exp_cf_int(const T x, const int depth)
 {
-    return ( depth == GCEM_EXP_MAX_ITER_SMALL ? T(1.0) : depth == 1 ? T(1.0) - x/exp_cf_int(x,depth+1) : T(1.0) + x/T(depth - 1) - x/depth/exp_cf_int(x,depth+1) );
+    return ( depth < GCEM_EXP_MAX_ITER_SMALL ? ( depth == 1 ? T(1.0) - x/exp_cf_int(x,depth+1) : T(1.0) + x/T(depth - 1) - x/depth/exp_cf_int(x,depth+1) ) : T(1.0) );
 }
 
 template<typename T>

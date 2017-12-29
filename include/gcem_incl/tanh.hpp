@@ -23,25 +23,28 @@
 #ifndef _gcem_tanh_HPP
 #define _gcem_tanh_HPP
 
+template<typename T>
 constexpr
-long double
-tanh_cf(const long double xx, const int depth)
+T
+tanh_cf(const T xx, const int depth)
 {
-    return ( depth == GCEM_TANH_MAX_ITER ? 2*depth - 1 : (2*depth - 1) + xx/tanh_cf(xx,depth+1) );
+    return ( depth < GCEM_TANH_MAX_ITER ? (2*depth - 1) + xx/tanh_cf(xx,depth+1) : T(2*depth - 1) );
 }
 
+template<typename T>
 constexpr
-long double
-tanh_int(const long double x)
+T
+tanh_int(const T x)
 {
     return ( x/tanh_cf(x*x,1) );
 }
 
+template<typename T>
 constexpr
-long double
-tanh(const long double x)
+T
+tanh(const T x)
 {
-    return ( x == 0.0L ? 0.0L : ( x > 0.0L ? tanh_int(x) : -tanh_int(-x) ) );
+    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : ( x < T(0.0) ? -tanh_int(-x) : tanh_int(x) ) );
 }
 
 #endif

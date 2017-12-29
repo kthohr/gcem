@@ -23,11 +23,23 @@
 #ifndef _gcem_acos_HPP
 #define _gcem_acos_HPP
 
+template<typename T>
 constexpr
-long double
-acos(const long double x)
+T
+acos_int(const T x)
 {
-    return ( x == 1.0L ? 0.0L : atan(sqrt(1.0L - x*x)/x) );
+    return ( abs(x) > T(1.0) ? GCEM_LIM<T>::quiet_NaN() :           // only defined on [-1,1]
+             GCEM_LIM<T>::epsilon() > abs( x -  T(1.0) ) ? T(0.0) : // indistinguishable from 1
+             GCEM_LIM<T>::epsilon() > abs(x) ? T(GCEM_HALF_PI) :    // indistinguishable from 0
+             atan( sqrt(T(1.0) - x*x)/x ) );
+}
+
+template<typename T>
+constexpr
+T
+acos(const T x)
+{
+    return ( x > T(0.0) ? acos_int(x) : GCEM_PI - acos_int(-x));
 }
 
 #endif

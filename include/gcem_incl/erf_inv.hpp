@@ -140,7 +140,7 @@ constexpr
 long double
 erf_inv_decision(const long double value, const long double p, const long double direc, const int iter_count)
 {
-    return ( iter_count <= GCEM_ERF_INV_MAX_ITER ? erf_inv_recur(value-direc,p, erf_inv_deriv_1(value), iter_count+1) : value - direc );
+    return ( iter_count < GCEM_ERF_INV_MAX_ITER ? erf_inv_recur(value-direc,p, erf_inv_deriv_1(value), iter_count+1) : value - direc );
 }
 
 constexpr
