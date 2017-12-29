@@ -5,7 +5,12 @@ ifeq ($(CXX),)
 endif
 
 CXX_STD = -std=c++11
-OPT_FLAGS = -g -O0 -Wall --coverage -fno-inline -fno-inline-small-functions -fno-default-inline
+
+ifeq ($(CXX),clang++-5.0)
+	OPT_FLAGS = -g -O0 -Wall --coverage -fno-inline
+else
+	OPT_FLAGS = -g -O0 -Wall --coverage -fno-inline -fno-inline-small-functions -fno-default-inline
+endif
 
 # source directories
 SDIR = .
