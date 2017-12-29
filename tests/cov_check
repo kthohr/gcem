@@ -1,4 +1,6 @@
 
-for t in ./*.cpp; do
-   gcov "$t" > /dev/null 2>&1
-done
+if [[ "${CXX}" != "clang++-5.0" ]]; then
+    for t in ./*.cpp; do
+    gcov "$t" > /dev/null 2>&1
+    done
+fi

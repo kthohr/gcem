@@ -71,7 +71,10 @@ script:
   - cd ..
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - |
+    if [[ "${CXX}" != "clang++-5.0" ]]; then
+      bash <(curl -s https://codecov.io/bash)
+    fi
 
 after_failure:
   - ./travis-tool.sh dump_logs
