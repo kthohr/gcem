@@ -35,7 +35,7 @@ constexpr
 long double
 incomplete_beta_inv_initial_val_1_tval(const long double p)
 { // a > 1.0
-    return ( p > 0.5 ? sqrt(-2.0*log(1.0 - p)) : sqrt(-2.0*log(p)) );
+    return ( p > 0.5L ? sqrt(-2.0L*log(1.0L - p)) : sqrt(-2.0L*log(p)) );
 }
 
 constexpr
@@ -70,7 +70,7 @@ constexpr
 long double
 incomplete_beta_inv_initial_val_1_int_h(const long double ab_term_1)
 {
-    return ( 2.0 / ab_term_1 );
+    return ( 2.0L / ab_term_1 );
 }
 
 constexpr
@@ -92,8 +92,8 @@ constexpr
 long double
 incomplete_beta_inv_initial_val_1(const long double alpha_par, const long double beta_par, const long double p, const long double t_val)
 { // a > 1.0
-    return ( p > 0.5 ? incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, incomplete_beta_inv_initial_val_1_int_w(-incomplete_beta_inv_initial_val_1_int_begin(t_val),incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),incomplete_beta_inv_initial_val_1_int_h(incomplete_beta_inv_initial_val_1_int_ab1(alpha_par,beta_par))) ) : 
-                       incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, incomplete_beta_inv_initial_val_1_int_w(-incomplete_beta_inv_initial_val_1_int_begin(t_val),incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),incomplete_beta_inv_initial_val_1_int_h(incomplete_beta_inv_initial_val_1_int_ab1(alpha_par,beta_par))) ) );
+    return ( p > 0.5L ? incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, incomplete_beta_inv_initial_val_1_int_w(-incomplete_beta_inv_initial_val_1_int_begin(t_val),incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),incomplete_beta_inv_initial_val_1_int_h(incomplete_beta_inv_initial_val_1_int_ab1(alpha_par,beta_par))) ) : 
+                        incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, incomplete_beta_inv_initial_val_1_int_w(incomplete_beta_inv_initial_val_1_int_begin(t_val),incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),incomplete_beta_inv_initial_val_1_int_h(incomplete_beta_inv_initial_val_1_int_ab1(alpha_par,beta_par))) ) );
 }
 
 //
@@ -144,14 +144,14 @@ constexpr
 long double
 incomplete_beta_inv_deriv_1(const long double value, const long double alpha_par, const long double beta_par, const long double lb_val)
 { // derivative of the incomplete beta function w.r.t. x
-    return ( exp( (alpha_par-1.0)*log(value) + (beta_par-1.0)*log(1.0 - value) - lb_val ) );
+    return ( exp( (alpha_par-1.0L)*log(value) + (beta_par-1.0L)*log(1.0L - value) - lb_val ) );
 }
 
 constexpr
 long double
 incomplete_beta_inv_deriv_2(const long double value, const long double alpha_par, const long double beta_par, const long double deriv_1)
 { // second derivative of the incomplete beta function w.r.t. x
-    return ( deriv_1*((alpha_par - 1.0)/value - (beta_par - 1.0)/(1.0 - value)) );
+    return ( deriv_1*((alpha_par - 1.0L)/value - (beta_par - 1.0L)/(1.0L - value)) );
 }
 
 constexpr
@@ -172,7 +172,7 @@ constexpr
 long double
 incomplete_beta_inv_halley(const long double ratio_val_1, const long double ratio_val_2)
 {
-    return ( ratio_val_1 / max( 0.8L, min( 1.2L, 1.0 - 0.5*ratio_val_1*ratio_val_2 ) ) );
+    return ( ratio_val_1 / max( 0.8L, min( 1.2L, 1.0L - 0.5L*ratio_val_1*ratio_val_2 ) ) );
 }
 
 constexpr

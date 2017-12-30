@@ -27,11 +27,23 @@ int main()
 {
     constexpr long double x = 0.8;
 
-    std::cout << "\nbegin incomplete_beta_inv test\n" << std::endl;
+    std::cout << "\n*** begin incomplete_beta_inv test ***\n" << std::endl;
 
-    std::cout << "incomplete_beta_inv: " << gcem::incomplete_beta_inv(0.9,0.9,x) << std::endl;
-    std::cout << "incomplete_beta_inv: " << gcem::incomplete_beta_inv(1.0,1.0,x) << std::endl;
-    std::cout << "incomplete_beta_inv: " << gcem::incomplete_beta_inv(2.0,2.0,x) << std::endl;
+    std::cout << "incomplete_beta_inv(" << 0.9 << "," << 0.9 << "," << x << ") = " << gcem::incomplete_beta_inv(0.9,0.9,x) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "incomplete_beta_inv(" << 1.0 << "," << 1.0 << "," << x << ") = " << gcem::incomplete_beta_inv(1.0,1.0,x) << std::endl;
+    std::cout << "incomplete_beta_inv(" << 2.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta_inv(2.0,2.0,x) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "incomplete_beta_inv(" << 3.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta_inv(3.0,2.0,x) << std::endl;
+    std::cout << "1.0 - incomplete_beta_inv(" << 2.0 << "," << 3.0 << ",1-" << x << ") = " << 1.0L - gcem::incomplete_beta_inv(2.0,3.0,1-x) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "incomplete_beta_inv(" << 3.0 << "," << 2.0 << "," << 0.001 << ") = " << gcem::incomplete_beta_inv(3.0L,2.0L,0.001L) << std::endl;
+    std::cout << "incomplete_beta_inv(" << 2.0 << "," << 2.0 << "," << 0.4 << ") = " << gcem::incomplete_beta_inv(3.0L,2.0L,0.4L) << std::endl;
+
+    std::cout << "\n*** end incomplete_beta_inv test ***\n" << std::endl;
 
     return 0;
 }
