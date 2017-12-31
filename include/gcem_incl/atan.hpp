@@ -88,9 +88,10 @@ atan_cf_main(const T x)
              x < T(1.0) ? x/atan_cf_recur(x*x,1, 25 ) : 
              x < T(1.5) ? x/atan_cf_recur(x*x,1, 35 ) : 
              x < T(2.0) ? x/atan_cf_recur(x*x,1, 45 ) : 
-             x < T(2.5) ? x/atan_cf_recur(x*x,1, 52 ) : 
-             x < T(3.0) ? x/atan_cf_recur(x*x,1, 65 ) :
-                          x/atan_cf_recur(x*x,1, 72 ) );
+                          x/atan_cf_recur(x*x,1, 52 ) );
+            //  x < T(2.5) ? x/atan_cf_recur(x*x,1, 52 ) : 
+            //  x < T(3.0) ? x/atan_cf_recur(x*x,1, 65 ) :
+            //               x/atan_cf_recur(x*x,1, 72 ) );
 }
 
 //
