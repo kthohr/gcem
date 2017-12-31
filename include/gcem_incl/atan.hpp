@@ -43,19 +43,6 @@
 //                           GCEM_HALF_PI - 1.0L/x + 1.0L/(3.0L * x*x*x) - 1/(5.0L * pow(x,5)) + 1.0L/(7.0L * pow(x,7)) - 1/(9.0L * pow(x,9)) + 1.0L/(11.0L * pow(x,11)) - 1/(13.0L * pow(x,13)) + 1.0L/(15.0L * pow(x,15)) - 1/(17.0L * pow(x,17)) + 1.0L/(19.0L * pow(x,19)) - 1/(21.0L * pow(x,21)) + 1.0L/(23.0L * pow(x,23)) - 1/(25.0L * pow(x,25)) );
 // }
 
-// template<typename T>
-// constexpr
-// T
-// atan_series_main(const T x)
-// {
-//     return ( x < T(7)    ? atan_series_order(x,7) :  // O(1/x^27)
-//              x < T(11)   ? atan_series_order(x,6) :  // O(1/x^23)
-//              x < T(25)   ? atan_series_order(x,5) :  // O(1/x^19)
-//              x < T(100)  ? atan_series_order(x,4) :  // O(1/x^15)
-//              x < T(1000) ? atan_series_order(x,3) :  // O(1/x^11)
-//                            atan_series_order(x,2) ); // O(1/x^7)
-// }
-
 template<typename T>
 constexpr
 T

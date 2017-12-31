@@ -62,11 +62,32 @@ int main()
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_atan(" << x9 <<")  = " << std::setprecision(18) << std::atan(x10) << std::endl;
     std::cout << std::endl;
 
+    constexpr long double x41 = 0.99;
+    long double x42 = x41;
+    
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_atan(" << x41 <<") = " << std::setprecision(18) << gcem::atan(x41) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_atan(" << x41 <<")  = " << std::setprecision(18) << std::atan(x42) << std::endl;
+    std::cout << std::endl;
+
+    constexpr long double x43 = 1.49;
+    long double x44 = x43;
+    
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_atan(" << x43 <<") = " << std::setprecision(18) << gcem::atan(x43) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_atan(" << x43 <<")  = " << std::setprecision(18) << std::atan(x44) << std::endl;
+    std::cout << std::endl;
+
     constexpr long double x11 = 1.99L;
     long double x12 = x11;
     
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_atan(" << x11 <<") = " << std::setprecision(18) << gcem::atan(x11) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_atan(" << x11 <<")  = " << std::setprecision(18) << std::atan(x12) << std::endl;
+    std::cout << std::endl;
+
+    constexpr long double x45 = 2.49;
+    long double x46 = x45;
+    
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_atan(" << x45 <<") = " << std::setprecision(18) << gcem::atan(x45) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_atan(" << x45 <<")  = " << std::setprecision(18) << std::atan(x46) << std::endl;
     std::cout << std::endl;
 
     constexpr long double x27 = 2.51L;
