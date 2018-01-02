@@ -1,6 +1,6 @@
 /*################################################################################
   ##
-  ##   Copyright (C) 2016-2017 Keith O'Hara
+  ##   Copyright (C) 2016-2018 Keith O'Hara
   ##
   ##   This file is part of the GCE-Math C++ library.
   ##
@@ -27,12 +27,23 @@ int main()
 {
     constexpr long double x = 0.8;
 
-    double p = 2;
-    double q = 2;
+    std::cout << "\n*** begin incomplete_beta test ***\n" << std::endl;
 
-    std::cout << "\nbegin incomplete_beta test\n" << std::endl;
+    std::cout << "incomplete_beta(" << 0.9 << "," << 0.9 << "," << x << ") = " << gcem::incomplete_beta(0.9,0.9,x) << std::endl;
+    std::cout << std::endl;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_beta(" << x <<") = "  << std::setprecision(18) << gcem::incomplete_beta(p,q,x) << std::endl;
+    std::cout << "incomplete_beta(" << 1.0 << "," << 1.0 << "," << x << ") = " << gcem::incomplete_beta(1.0,1.0,x) << std::endl;
+    std::cout << "incomplete_beta(" << 2.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta(2.0,2.0,x) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "incomplete_beta(" << 3.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta(3.0,2.0,x) << std::endl;
+    std::cout << "1.0 - incomplete_beta(" << 2.0 << "," << 3.0 << ",1-" << x << ") = " << 1.0L - gcem::incomplete_beta(2.0,3.0,1-x) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "incomplete_beta(" << 3.0 << "," << 2.0 << "," << 0.001 << ") = " << gcem::incomplete_beta(3.0L,2.0L,0.001L) << std::endl;
+    std::cout << "incomplete_beta(" << 2.0 << "," << 2.0 << "," << 0.4 << ") = " << gcem::incomplete_beta(3.0L,2.0L,0.4L) << std::endl;
+
+    std::cout << "\n*** end incomplete_beta test ***\n" << std::endl;
 
     return 0;
 }
