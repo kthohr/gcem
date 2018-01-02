@@ -20,7 +20,7 @@ A list of features includes:
 * trigonometric functions:
     - basic: ```cos```, ```sin```, ```tan```
     - inverse: ```acos```, ```asin```, ```atan```
-    - hyperbolic (area) functions: ```cosh```, ```sih```, ```tanh```, ```acosh```, ```asih```, ```atanh```
+    - hyperbolic (area) functions: ```cosh```, ```sinh```, ```tanh```, ```acosh```, ```asinh```, ```atanh```
 * special functions:
     - beta and gamma functions: ```beta```, ```lbeta```, ```lgamma```, ```tgamma```
     - the Gaussian error function and inverse error function: ```erf```, ```erf_inv```
@@ -72,7 +72,7 @@ make
 
 ## Related libraries
 
-For a library built on GCEM compile-time functionality, see [StatsLib](https://github.com/kthohr/stats).
+For a library built on the GCEM compile-time functionality, see [StatsLib](https://github.com/kthohr/stats).
 
 ## Author
 
