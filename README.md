@@ -27,14 +27,18 @@ A list of features includes:
     - (regularized) incomplete beta and incomplete gamma functions: ```incomplete_beta```, ```incomplete_gamma```
     - inverse incomplete beta and incomplete gamma functions: ```incomplete_beta_inv```, ```incomplete_gamma_inv```
 
-GCE-Math functions are written in a generic template format. For example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) is written as:
+## Syntax
+
+GCE-Math functions are written as C++ templates. For example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (```erf```) is defined as:
 ```cpp
 template<typename T>
 constexpr
 T
 erf(const T x)
 ```
-For users unfamiliar with template programming, note that the output type ('T') is determined based on the input type: ```float```, ```double```, ```long double```, etc. So take care when passing integral-type inputs.
+where a series of internal templated ```constexpr``` functions implement a recursive continued fraction expansion. 
+
+For users unfamiliar with C++ template programming, note that the output type ('```T```') in this example is determined by the input type ('x'), e.g., ```float```, ```double```, ```long double```, etc. So take care when passing integral-type inputs and use recasts where appropriate.
 
 
 ## Installation
