@@ -27,7 +27,9 @@ The library is actively maintained, and is still being extended. A list of curre
 
 ## Installation
 
-GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply include the gcem header files with your project.
+GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). 
+
+Simply include the gcem header files with your project.
 
 ## Example
 
