@@ -97,6 +97,41 @@ int main()
     return 0;
 }
 ```
+Assembly code:
+```assembly
+LCPI0_0:
+	.long	1069547520              ## float 1.5
+	.section	__TEXT,__literal16,16byte_literals
+	.p2align	4
+LCPI0_1:
+	.quad	-622431863250851168     ## x86_fp80 -0.120782237635245167208
+	.short	49147
+	.space	6
+	.section	__TEXT,__text,regular,pure_instructions
+	.globl	_main
+	.p2align	4, 0x90
+_main:                                  ## @main
+	.cfi_startproc
+## BB#0:
+	push	rbp
+Lcfi0:
+	.cfi_def_cfa_offset 16
+Lcfi1:
+	.cfi_offset rbp, -16
+	mov	rbp, rsp
+Lcfi2:
+	.cfi_def_cfa_register rbp
+	xor	eax, eax
+	mov	dword ptr [rbp - 4], 0
+	fld	dword ptr [rip + LCPI0_0]
+	fstp	xword ptr [rbp - 32]
+	fld	xword ptr [rip + LCPI0_1]
+	fstp	xword ptr [rbp - 48]
+	pop	rbp
+	ret
+	.cfi_endproc
+```
+
 
 To build the full test suite:
 
