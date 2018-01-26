@@ -32,9 +32,10 @@ int main()
 
     std::cout << "incomplete_gamma_inv: " << scale*gcem::incomplete_gamma_inv(shape,x1) << std::endl;
 
+    // for coverage:
 
-    gcem::incomplete_gamma_inv(2,0.7);  // for coverage
-    gcem::incomplete_gamma_inv(0.7,x2); // for coverage
+    gcem::incomplete_gamma_inv(2.0,0.7);
+    gcem::incomplete_gamma_inv(0.7,x2);
 
     return 0;
 }

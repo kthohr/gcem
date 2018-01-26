@@ -31,7 +31,7 @@ constexpr
 T
 incomplete_gamma_cf_coef(const T a, const T z, const int depth)
 {
-    return ( is_odd(depth) == 1 ? - T(a-1+(depth+1)/2.0) * z : T(depth/2.0) * z );
+    return ( is_odd(depth) == 1 ? - (a - 1 + T(depth+1)/T(2.0)) * z : T(depth)/T(2.0) * z );
 }
 
 template<typename T>

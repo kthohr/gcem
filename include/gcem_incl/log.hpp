@@ -66,7 +66,7 @@ constexpr
 T
 log_int_mantissa(const T x)
 { // divide by the integer part of x, which will be in [1,10], then adjust using tables
-    return ( log_int_main(x/static_cast<int>(x)) + log_int_mantissa_integer(static_cast<int>(x)) );
+    return ( log_int_main(x/static_cast<int>(x)) + T(log_int_mantissa_integer(static_cast<int>(x))) );
 }
 
 template<typename T>
@@ -74,7 +74,7 @@ constexpr
 T
 log_int_breakup(const T x)
 { // x = a*b, where b = 10^c
-    return ( log_int_mantissa(mantissa(x)) + 2.30258509299404568402L*(find_exponent(x,0)) );
+    return ( log_int_mantissa(mantissa(x)) + T(2.30258509299404568402L)*(find_exponent(x,0)) );
 }
 
 template<typename T>

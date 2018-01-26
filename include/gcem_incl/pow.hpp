@@ -28,7 +28,10 @@ constexpr
 T
 pow(const T base, const int exp_term)
 {
-    return ( exp_term == 1 ? base : exp_term == 0 ? T(1.0) : (exp_term < 0 ? T(1.0) / pow(base, -exp_term) : base*pow(base, exp_term-1)) );
+    return ( exp_term == 1 ? base : exp_term == 0 ? T(1.0) : 
+             exp_term == GCEM_LIM<int>::min() ? T(0.0) :
+             exp_term == GCEM_LIM<int>::max() ? GCEM_LIM<T>::infinity() :
+             exp_term < 0 ? T(1.0) / pow(base, -exp_term) : base*pow(base, exp_term-1) );
 }
 
 #endif
