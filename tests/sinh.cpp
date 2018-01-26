@@ -16,8 +16,6 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -I./../include sinh.cpp -o sinh.test -framework Accelerate
-
 #include <iostream>
 #include <cmath>
 #include <iomanip>

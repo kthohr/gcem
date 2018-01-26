@@ -16,8 +16,6 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O2 -Wall -std=c++11 -I./../include incomplete_beta_inv.cpp -o incomplete_beta_inv.test -framework Accelerate
-
 #include <cmath>
 #include <iostream>
 #include <iomanip>
@@ -29,15 +27,15 @@ int main()
 
     std::cout << "\n*** begin incomplete_beta_inv test ***\n" << std::endl;
 
-    std::cout << "incomplete_beta_inv(" << 0.9 << "," << 0.9 << "," << x << ") = " << gcem::incomplete_beta_inv(0.9,0.9,x) << std::endl;
+    std::cout << "incomplete_beta_inv(" << 0.9 << "," << 0.9 << "," << x << ") = " << gcem::incomplete_beta_inv(0.9L,0.9L,x) << std::endl;
     std::cout << std::endl;
 
-    std::cout << "incomplete_beta_inv(" << 1.0 << "," << 1.0 << "," << x << ") = " << gcem::incomplete_beta_inv(1.0,1.0,x) << std::endl;
-    std::cout << "incomplete_beta_inv(" << 2.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta_inv(2.0,2.0,x) << std::endl;
+    std::cout << "incomplete_beta_inv(" << 1.0 << "," << 1.0 << "," << x << ") = " << gcem::incomplete_beta_inv(1.0L,1.0L,x) << std::endl;
+    std::cout << "incomplete_beta_inv(" << 2.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta_inv(2.0L,2.0L,x) << std::endl;
     std::cout << std::endl;
 
-    std::cout << "incomplete_beta_inv(" << 3.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta_inv(3.0,2.0,x) << std::endl;
-    std::cout << "1.0 - incomplete_beta_inv(" << 2.0 << "," << 3.0 << ",1-" << x << ") = " << 1.0L - gcem::incomplete_beta_inv(2.0,3.0,1-x) << std::endl;
+    std::cout << "incomplete_beta_inv(" << 3.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta_inv(3.0L,2.0L,x) << std::endl;
+    std::cout << "1.0 - incomplete_beta_inv(" << 2.0 << "," << 3.0 << ",1-" << x << ") = " << 1.0L - gcem::incomplete_beta_inv(2.0L,3.0L,1-x) << std::endl;
     std::cout << std::endl;
 
     std::cout << "incomplete_beta_inv(" << 3.0 << "," << 2.0 << "," << 0.001 << ") = " << gcem::incomplete_beta_inv(3.0L,2.0L,0.001L) << std::endl;

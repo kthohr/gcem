@@ -16,8 +16,6 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -I./../include -I/opt/local/include binomial_coef.cpp -o binomial_coef.test -framework Accelerate
-
 #include <iostream>
 #include <cmath>
 #include <iomanip>

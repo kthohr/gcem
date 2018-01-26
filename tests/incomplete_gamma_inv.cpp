@@ -16,8 +16,6 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -I./../include incomplete_gamma_inv.cpp -o incomplete_gamma_inv.test -framework Accelerate
-
 #include <cmath>
 #include <iostream>
 #include <iomanip>

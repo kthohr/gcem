@@ -16,8 +16,6 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -I./../include exp.cpp -o exp.test -framework Accelerate
-
 #include <cmath>
 #include <iostream>
 #include <iomanip>

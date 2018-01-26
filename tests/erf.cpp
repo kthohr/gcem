@@ -16,8 +16,6 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -I./../include erf.cpp -o erf.test -framework Accelerate
-
 #include <cmath>
 #include <iostream>
 #include <iomanip>
