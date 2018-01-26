@@ -6,7 +6,7 @@ endif
 
 CXX_STD = -std=c++11
 
-ifeq ($(CXX),clang++-5.0)
+ifeq ($(CXX),clang++-mp-5.0)
 	OPT_FLAGS = -g -O0 -Wall --coverage -fno-inline
 else
 	OPT_FLAGS = -g -O0 -Wall --coverage -fno-inline -fno-inline-small-functions -fno-default-inline

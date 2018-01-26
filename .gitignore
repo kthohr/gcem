@@ -9,5 +9,7 @@
 *.so
 *.test
 *.vscode
-*.gcov
+*.gcda
 *.gcno
+*.gcov
+*.dSYM
