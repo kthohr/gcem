@@ -29,15 +29,15 @@ int main()
 
     std::cout << "\n*** begin incomplete_beta test ***\n" << std::endl;
 
-    std::cout << "incomplete_beta(" << 0.9 << "," << 0.9 << "," << x << ") = " << gcem::incomplete_beta(0.9,0.9,x) << std::endl;
+    std::cout << "incomplete_beta(" << 0.9 << "," << 0.9 << "," << x << ") = " << gcem::incomplete_beta(0.9L,0.9L,x) << std::endl;
     std::cout << std::endl;
 
-    std::cout << "incomplete_beta(" << 1.0 << "," << 1.0 << "," << x << ") = " << gcem::incomplete_beta(1.0,1.0,x) << std::endl;
-    std::cout << "incomplete_beta(" << 2.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta(2.0,2.0,x) << std::endl;
+    std::cout << "incomplete_beta(" << 1.0 << "," << 1.0 << "," << x << ") = " << gcem::incomplete_beta(1.0L,1.0L,x) << std::endl;
+    std::cout << "incomplete_beta(" << 2.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta(2.0L,2.0L,x) << std::endl;
     std::cout << std::endl;
 
-    std::cout << "incomplete_beta(" << 3.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta(3.0,2.0,x) << std::endl;
-    std::cout << "1.0 - incomplete_beta(" << 2.0 << "," << 3.0 << ",1-" << x << ") = " << 1.0L - gcem::incomplete_beta(2.0,3.0,1-x) << std::endl;
+    std::cout << "incomplete_beta(" << 3.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta(3.0L,2.0L,x) << std::endl;
+    std::cout << "1.0 - incomplete_beta(" << 2.0 << "," << 3.0 << ",1-" << x << ") = " << 1.0L - gcem::incomplete_beta(2.0L,3.0L,1-x) << std::endl;
     std::cout << std::endl;
 
     std::cout << "incomplete_beta(" << 3.0 << "," << 2.0 << "," << 0.001 << ") = " << gcem::incomplete_beta(3.0L,2.0L,0.001L) << std::endl;

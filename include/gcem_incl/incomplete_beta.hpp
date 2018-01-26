@@ -25,28 +25,32 @@
 #ifndef _gcem_incomplete_beta_HPP
 #define _gcem_incomplete_beta_HPP
 
-constexpr long double incomplete_beta_cf(const long double a, const long double b, const long double z, const long double c_j, const long double d_j, const long double f_j, const int depth);
+template<typename T>
+constexpr T incomplete_beta_cf(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth);
 
 //
 // coefficients; see eq. 18.5.17b
 
+template<typename T>
 constexpr
-long double
-incomplete_beta_coef_even(const long double a, const long double b, const long double z, const int k)
+T
+incomplete_beta_coef_even(const T a, const T b, const T z, const int k)
 {
-    return ( -z*(a + k)*(a + b + k)/( (a + 2*k)*(a + 2*k + 1.0) ) );
+    return ( -z*(a + k)*(a + b + k)/( (a + 2*k)*(a + 2*k + T(1.0)) ) );
 }
 
+template<typename T>
 constexpr
-long double
-incomplete_beta_coef_odd(const long double a, const long double b, const long double z, const int k)
+T
+incomplete_beta_coef_odd(const T a, const T b, const T z, const int k)
 {
-    return ( z*k*(b - k)/((a + 2*k - 1.0)*(a + 2*k)) );
+    return ( z*k*(b - k)/((a + 2*k - T(1.0))*(a + 2*k)) );
 }
 
+template<typename T>
 constexpr
-long double
-incomplete_beta_coef(const long double a, const long double b, const long double z, const int depth)
+T
+incomplete_beta_coef(const T a, const T b, const T z, const int depth)
 {
     return ( is_odd(depth) == 0 ? incomplete_beta_coef_even(a,b,z,depth/2) : incomplete_beta_coef_odd(a,b,z,(depth+1)/2) );
 }
@@ -54,33 +58,37 @@ incomplete_beta_coef(const long double a, const long double b, const long double
 //
 // update formulae for the modified Lentz method
 
+template<typename T>
 constexpr
-long double
-incomplete_beta_c_update(const long double a, const long double b, const long double z, const long double c_j, const int depth)
+T
+incomplete_beta_c_update(const T a, const T b, const T z, const T c_j, const int depth)
 {
-    return ( 1.0L + incomplete_beta_coef(a,b,z,depth)/c_j );
+    return ( T(1.0) + incomplete_beta_coef(a,b,z,depth)/c_j );
 }
 
+template<typename T>
 constexpr
-long double
-incomplete_beta_d_update(const long double a, const long double b, const long double z, const long double d_j, const int depth)
+T
+incomplete_beta_d_update(const T a, const T b, const T z, const T d_j, const int depth)
 {
-    return ( 1.0L / (1.0L + incomplete_beta_coef(a,b,z,depth)*d_j) );
+    return ( T(1.0) / (T(1.0) + incomplete_beta_coef(a,b,z,depth)*d_j) );
 }
 
 //
 // convergence-type condition
 
+template<typename T>
 constexpr
-long double
-incomplete_beta_decision(const long double a, const long double b, const long double z, const long double c_j, const long double d_j, const long double f_j, const int depth)
+T
+incomplete_beta_decision(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth)
 {
-    return ( abs(c_j*d_j - 1.0L) < GCEM_INCML_BETA_TOL ? f_j*c_j*d_j : ( depth < GCEM_INCML_BETA_MAX_ITER ? incomplete_beta_cf(a,b,z,c_j,d_j,f_j*c_j*d_j,depth+1) : f_j*c_j*d_j ) );
+    return ( abs(c_j*d_j - T(1.0)) < GCEM_INCML_BETA_TOL ? f_j*c_j*d_j : ( depth < GCEM_INCML_BETA_MAX_ITER ? incomplete_beta_cf(a,b,z,c_j,d_j,f_j*c_j*d_j,depth+1) : f_j*c_j*d_j ) );
 }
 
+template<typename T>
 constexpr
-long double
-incomplete_beta_cf(const long double a, const long double b, const long double z, const long double c_j, const long double d_j, const long double f_j, const int depth)
+T
+incomplete_beta_cf(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth)
 {
     return ( incomplete_beta_decision(a,b,z,incomplete_beta_c_update(a,b,z,c_j,depth),incomplete_beta_d_update(a,b,z,d_j,depth),f_j,depth) );
 }
@@ -88,18 +96,20 @@ incomplete_beta_cf(const long double a, const long double b, const long double z
 //
 // x^a (1-x)^{b} / (a beta(a,b)) * cf
 
+template<typename T>
 constexpr
-long double
-incomplete_beta_int(const long double a, const long double b, const long double z)
+T
+incomplete_beta_int(const T a, const T b, const T z)
 {
-    return ( (exp(a*log(z) + b*log(1.0-z) - lbeta(a,b)) / a) * incomplete_beta_cf(a,b,z,1.0,incomplete_beta_d_update(a,b,z,1.0,0),incomplete_beta_d_update(a,b,z,1.0,0),1) );
+    return ( (exp(a*log(z) + b*log(T(1.0)-z) - lbeta(a,b)) / a) * incomplete_beta_cf(a,b,z,T(1.0),incomplete_beta_d_update(a,b,z,T(1.0),0),incomplete_beta_d_update(a,b,z,T(1.0),0),1) );
 }
 
+template<typename T>
 constexpr
-long double
-incomplete_beta(const long double a, const long double b, const long double z)
+T
+incomplete_beta(const T a, const T b, const T z)
 {
-    return ( z == 0.0L ? 0.0L : ( z < (a+1.0)/(a+b+2.0) ? incomplete_beta_int(a,b,z) : 1.0L - incomplete_beta_int(b,a,1.0L - z) ) );
+    return ( z == T(0.0) ? T(0.0) : ( z < (a + T(1.0))/(a + b + T(2.0)) ? incomplete_beta_int(a,b,z) : T(1.0) - incomplete_beta_int(b,a,T(1.0) - z) ) );
 }
 
 #endif
