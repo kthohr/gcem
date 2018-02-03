@@ -23,7 +23,7 @@
 
 int main()
 {
-    std::cout << "\nbegin erf_inv test\n" << std::endl;
+    std::cout << "\n*** begin erf_inv test ***\n" << std::endl;
 
     constexpr long double x = 0.5;
 
@@ -32,6 +32,8 @@ int main()
     constexpr long double x3 = -0.999;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(3) << "gcem_erf_inv(" << x3 <<") = " << std::setprecision(18) << gcem::erf_inv(x3) << std::endl;
+
+    std::cout << "\n*** end inv_erf test ***\n" << std::endl;
 
     return 0;
 }
