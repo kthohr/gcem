@@ -82,7 +82,9 @@ constexpr
 T
 log(const T x)
 {
-    return ( x == T(1.0) ? T(0.0) : x < T(0.5) ? log_int_breakup(x) : x > T(1.5) ? log_int_breakup(x) : log_int_main(x) );
+    return ( GCEM_LIM<T>::epsilon() > x               ? - GCEM_LIM<T>::infinity() :
+             GCEM_LIM<T>::epsilon() > abs(x - T(1.0)) ? T(0.0) : 
+             x < T(0.5) ? log_int_breakup(x) : x > T(1.5) ? log_int_breakup(x) : log_int_main(x) );
 }
 
 // using Taylor series
