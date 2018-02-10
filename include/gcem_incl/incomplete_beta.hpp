@@ -111,7 +111,8 @@ constexpr
 T
 incomplete_beta(const T a, const T b, const T z)
 {
-    return ( (a + T(1.0))/(a + b + T(2.0)) > z ? incomplete_beta_int(a,b,z) :
+    return ( GCEM_LIM<T>::epsilon() > z        ? T(0.0) :
+             (a + T(1.0))/(a + b + T(2.0)) > z ? incomplete_beta_int(a,b,z) :
                                                  T(1.0) - incomplete_beta_int(b,a,T(1.0) - z) );
 }
 
