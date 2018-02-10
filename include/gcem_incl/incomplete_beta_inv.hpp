@@ -16,7 +16,7 @@
   ##
   ################################################################################*/
 
-/* 
+/*
  * inverse of the incomplete beta function
  */
 
@@ -101,7 +101,7 @@ constexpr
 T
 incomplete_beta_inv_initial_val_1(const T alpha_par, const T beta_par, const T p, const T t_val)
 { // a > 1.0
-    return ( p > T(0.5) ? incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, incomplete_beta_inv_initial_val_1_int_w(-incomplete_beta_inv_initial_val_1_int_begin(t_val),incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),incomplete_beta_inv_initial_val_1_int_h(incomplete_beta_inv_initial_val_1_int_ab1(alpha_par,beta_par))) ) : 
+    return ( p > T(0.5) ? incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, incomplete_beta_inv_initial_val_1_int_w(-incomplete_beta_inv_initial_val_1_int_begin(t_val),incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),incomplete_beta_inv_initial_val_1_int_h(incomplete_beta_inv_initial_val_1_int_ab1(alpha_par,beta_par))) ) :
                           incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, incomplete_beta_inv_initial_val_1_int_w( incomplete_beta_inv_initial_val_1_int_begin(t_val),incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),incomplete_beta_inv_initial_val_1_int_h(incomplete_beta_inv_initial_val_1_int_ab1(alpha_par,beta_par))) ) );
 }
 
@@ -129,7 +129,8 @@ constexpr
 T
 incomplete_beta_inv_initial_val_2(const T alpha_par, const T beta_par, const T p, const T s_1, const T s_2)
 {
-    return ( p <= s_1/(s_1+s_2) ? pow_dbl(p*(s_1+s_2)*alpha_par,T(1.0)/alpha_par) : T(1.0) - pow_dbl(p*(s_1+s_2)*beta_par,T(1.0)/beta_par) );
+    return ( p <= s_1/(s_1 + s_2) ? pow_dbl(p*(s_1+s_2)*alpha_par,T(1.0)/alpha_par) :
+                                    T(1.0) - pow_dbl(p*(s_1+s_2)*beta_par,T(1.0)/beta_par) );
 }
 
 // initial value
@@ -139,8 +140,9 @@ constexpr
 T
 incomplete_beta_inv_initial_val(const T alpha_par, const T beta_par, const T p)
 {
-    return ( (alpha_par > T(1.0) && beta_par > T(1.0)) ? incomplete_beta_inv_initial_val_1(alpha_par,beta_par,p,incomplete_beta_inv_initial_val_1_tval(p)) : 
-                                                         incomplete_beta_inv_initial_val_2(alpha_par,beta_par,p,incomplete_beta_inv_initial_val_2_s1(alpha_par,beta_par),incomplete_beta_inv_initial_val_2_s2(alpha_par,beta_par)) );
+    return ( (alpha_par > T(1.0) && beta_par > T(1.0)) ? incomplete_beta_inv_initial_val_1(alpha_par,beta_par,p,incomplete_beta_inv_initial_val_1_tval(p)) :
+                                            p > T(0.5) ? T(1.0) - incomplete_beta_inv_initial_val_2(beta_par,alpha_par,T(1.0) - p,incomplete_beta_inv_initial_val_2_s1(beta_par,alpha_par),incomplete_beta_inv_initial_val_2_s2(beta_par,alpha_par)) : // regularization
+                                                         incomplete_beta_inv_initial_val_2(alpha_par,beta_par,p,incomplete_beta_inv_initial_val_2_s1(alpha_par,beta_par),incomplete_beta_inv_initial_val_2_s2(alpha_par,beta_par)));
 }
 
 //

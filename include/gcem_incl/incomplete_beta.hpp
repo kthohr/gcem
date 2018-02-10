@@ -16,7 +16,7 @@
   ##
   ################################################################################*/
 
-/* 
+/*
  * compile-time incomplete beta function
  *
  * see eq. 18.5.17a in the Handbook of Continued Fractions for Special Functions
@@ -82,7 +82,9 @@ constexpr
 T
 incomplete_beta_decision(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth)
 {
-    return ( abs(c_j*d_j - T(1.0)) < GCEM_INCML_BETA_TOL ? f_j*c_j*d_j : ( depth < GCEM_INCML_BETA_MAX_ITER ? incomplete_beta_cf(a,b,z,c_j,d_j,f_j*c_j*d_j,depth+1) : f_j*c_j*d_j ) );
+    return ( abs(c_j*d_j - T(1.0)) < GCEM_INCML_BETA_TOL ? f_j*c_j*d_j :
+                        depth < GCEM_INCML_BETA_MAX_ITER ? incomplete_beta_cf(a,b,z,c_j,d_j,f_j*c_j*d_j,depth+1) :
+                                                           f_j*c_j*d_j );
 }
 
 template<typename T>
@@ -109,7 +111,8 @@ constexpr
 T
 incomplete_beta(const T a, const T b, const T z)
 {
-    return ( z == T(0.0) ? T(0.0) : ( z < (a + T(1.0))/(a + b + T(2.0)) ? incomplete_beta_int(a,b,z) : T(1.0) - incomplete_beta_int(b,a,T(1.0) - z) ) );
+    return ( (a + T(1.0))/(a + b + T(2.0)) > z ? incomplete_beta_int(a,b,z) :
+                                                 T(1.0) - incomplete_beta_int(b,a,T(1.0) - z) );
 }
 
 #endif
