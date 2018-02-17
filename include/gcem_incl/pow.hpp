@@ -36,8 +36,8 @@ pow_integral(const Ta base, const Tb exp_term)
              exp_term == GCEM_LIM<Tb>::min() ? Ta(0.0) :
              exp_term == GCEM_LIM<Tb>::max() ? GCEM_LIM<Ta>::infinity() :
              //
-             exp_term < Tb(0) ? Ta(1.0) / pow(base, - exp_term) : 
-                                base*pow(base, exp_term - 1) );
+             exp_term < Tb(0) ? Ta(1.0) / pow_integral(base, - exp_term) : 
+                                base*pow_integral(base, exp_term - 1) );
 }
 
 // otherwise
