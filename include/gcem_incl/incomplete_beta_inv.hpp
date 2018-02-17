@@ -113,7 +113,7 @@ constexpr
 T
 incomplete_beta_inv_initial_val_2_s1(const T alpha_par, const T beta_par)
 {
-    return ( pow_dbl(alpha_par/(alpha_par+beta_par),alpha_par) / alpha_par );
+    return ( pow(alpha_par/(alpha_par+beta_par),alpha_par) / alpha_par );
 }
 
 template<typename T>
@@ -121,7 +121,7 @@ constexpr
 T
 incomplete_beta_inv_initial_val_2_s2(const T alpha_par, const T beta_par)
 {
-    return ( pow_dbl(beta_par/(alpha_par+beta_par),beta_par) / beta_par );
+    return ( pow(beta_par/(alpha_par+beta_par),beta_par) / beta_par );
 }
 
 template<typename T>
@@ -129,8 +129,8 @@ constexpr
 T
 incomplete_beta_inv_initial_val_2(const T alpha_par, const T beta_par, const T p, const T s_1, const T s_2)
 {
-    return ( p <= s_1/(s_1 + s_2) ? pow_dbl(p*(s_1+s_2)*alpha_par,T(1.0)/alpha_par) :
-                                    T(1.0) - pow_dbl(p*(s_1+s_2)*beta_par,T(1.0)/beta_par) );
+    return ( p <= s_1/(s_1 + s_2) ? pow(p*(s_1+s_2)*alpha_par,T(1.0)/alpha_par) :
+                                    T(1.0) - pow(p*(s_1+s_2)*beta_par,T(1.0)/beta_par) );
 }
 
 // initial value

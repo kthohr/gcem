@@ -39,7 +39,6 @@ namespace gcem {
 
     #include "gcem_incl/exp.hpp"
     #include "gcem_incl/log.hpp"
-    #include "gcem_incl/pow_dbl.hpp"
 
     #include "gcem_incl/tan.hpp"
     #include "gcem_incl/cos.hpp"

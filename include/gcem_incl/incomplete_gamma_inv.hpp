@@ -78,7 +78,7 @@ constexpr
 T
 incomplete_gamma_inv_initial_val_2(const T a, const T p, const T t_val)
 { // a <= 1.0
-    return ( p < t_val ? pow_dbl(p/t_val,T(1.0)/a) : T(1.0) - log(T(1.0) - (p - t_val)/(T(1.0) - t_val)) );
+    return ( p < t_val ? pow(p/t_val,T(1.0)/a) : T(1.0) - log(T(1.0) - (p - t_val)/(T(1.0) - t_val)) );
 }
 
 // initial value

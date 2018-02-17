@@ -23,15 +23,42 @@
 #ifndef _gcem_pow_HPP
 #define _gcem_pow_HPP
 
+// integral-valed powers
+
+template<typename Ta, typename Tb>
+constexpr
+Ta
+pow_integral(const Ta base, const Tb exp_term)
+{
+    return ( exp_term == Tb(1) ? base : 
+             exp_term == Tb(0) ? Ta(1.0) : 
+             //
+             exp_term == GCEM_LIM<Tb>::min() ? Ta(0.0) :
+             exp_term == GCEM_LIM<Tb>::max() ? GCEM_LIM<Ta>::infinity() :
+             //
+             exp_term < Tb(0) ? Ta(1.0) / pow(base, - exp_term) : 
+                                base*pow(base, exp_term - 1) );
+}
+
+// otherwise
+
 template<typename T>
 constexpr
 T
-pow(const T base, const int exp_term)
+pow_dbl(const T base, const T exp_term)
 {
-    return ( exp_term == 1 ? base : exp_term == 0 ? T(1.0) : 
-             exp_term == GCEM_LIM<int>::min() ? T(0.0) :
-             exp_term == GCEM_LIM<int>::max() ? GCEM_LIM<T>::infinity() :
-             exp_term < 0 ? T(1.0) / pow(base, -exp_term) : base*pow(base, exp_term-1) );
+    return exp(exp_term*log(base));
+}
+
+//
+
+template<typename Ta, typename Tb>
+constexpr
+Ta
+pow(const Ta base, const Tb exp_term)
+{
+    return ( std::is_integral<Tb>::value ? \
+             pow_integral(base,exp_term) : pow_dbl(base,Ta(exp_term)) );
 }
 
 #endif
