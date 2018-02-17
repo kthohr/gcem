@@ -17,6 +17,7 @@
   ################################################################################*/
 
 #include <limits>
+#include <type_traits> // for is_integral
 
 //
 // constants

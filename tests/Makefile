@@ -24,7 +24,7 @@ OBJECTS_TESTS= $(SOURCES_TESTS:.cpp=.test)
 all: $(OBJECTS_TESTS)
 
 $(SDIR)/%.test: $(SDIR)/%.cpp
-	$(CXX) $(OPT_FLAGS) $(CXX_STD) -I$(HEADER_DIR) $< -o $@ $(LIBS)
+	$(CXX) $(CXX_STD) $(OPT_FLAGS) -I$(HEADER_DIR) $< -o $@ $(LIBS)
 
 # cleanup and install
 .PHONY: clean
