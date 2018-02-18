@@ -38,7 +38,9 @@ constexpr
 T
 sin(const T x)
 {
-    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : sin_int( tan(x/T(2.0)) ) );
+    return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
+             //
+             sin_int( tan(x/T(2.0)) ) );
 }
 
 #endif

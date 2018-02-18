@@ -51,8 +51,8 @@ int main()
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x7 <<") = " << std::setprecision(18) << gcem::log(x7) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x8 <<")  = " << std::setprecision(18) << std::log(x8)  << std::endl;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "\ngcem_log(" << 2 <<")  = " << std::setprecision(20) << gcem::log(2.0L) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "log(" << 2 <<")         = " << std::setprecision(20) << GCEM_LOG_2 << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "\ngcem_log(" << 2 <<") = " << std::setprecision(20) << gcem::log(2.0L) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "log2_cons   = " << std::setprecision(20) << GCEM_LOG_2 << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "\ngcem_log(" <<  0.0 <<") = " << std::setprecision(20) << gcem::log(0.0L) << std::endl; // should be - inf
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log("   << -1.0 <<") = " << std::setprecision(20) << gcem::log(0.0L) << std::endl; // should be - inf

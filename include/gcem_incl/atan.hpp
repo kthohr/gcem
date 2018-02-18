@@ -109,7 +109,9 @@ constexpr
 T
 atan(const T x)
 {
-    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : ( x < T(0.0) ? -atan_int(-x) : atan_int(x) ) );
+    return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
+             //
+             x < T(0.0) ? -atan_int(-x) : atan_int(x) );
 }
 
 #endif

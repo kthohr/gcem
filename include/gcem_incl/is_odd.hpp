@@ -24,10 +24,10 @@
 #define _gcem_is_odd_HPP
 
 constexpr
-int
+bool
 is_odd(const int x)
 {
-    return ( x % 2 == 0 ? 0 : 1 );
+    return ( x % 2 == 0 ? false : true );
 }
 
 #endif

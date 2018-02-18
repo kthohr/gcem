@@ -52,7 +52,9 @@ constexpr
 T
 exp(const T x)
 {
-    return ( x == T(0.0) ? T(1.0) : ( abs(x) < T(2.0) ? exp_cf(x) : exp_split(x) ) );
+    return ( GCLIM<T>::epsilon() > abs(x) ? T(1.0) : 
+             //
+             abs(x) < T(2.0) ? exp_cf(x) : exp_split(x) );
 }
 
 // #ifndef GCEM_EXP_TOL

@@ -76,7 +76,9 @@ constexpr
 T
 erf(const T x)
 {
-    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : ( x < T(0.0) ? -erf_int(-x) : erf_int(x) ) );
+    return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
+             //
+             x < T(0.0) ? -erf_int(-x) : erf_int(x) );
 }
 
 #endif

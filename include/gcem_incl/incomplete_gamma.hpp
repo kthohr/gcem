@@ -31,7 +31,7 @@ constexpr
 T
 incomplete_gamma_cf_coef(const T a, const T z, const int depth)
 {
-    return ( is_odd(depth) == 1 ? - (a - 1 + T(depth+1)/T(2.0)) * z : T(depth)/T(2.0) * z );
+    return ( is_odd(depth) ? - (a - 1 + T(depth+1)/T(2.0)) * z : T(depth)/T(2.0) * z );
 }
 
 template<typename T>
@@ -39,7 +39,8 @@ constexpr
 T
 incomplete_gamma_cf_int(const T a, const T z, const int depth)
 {
-    return ( depth < GCEM_INCML_GAMMA_MAX_ITER ? (a + depth - 1) + incomplete_gamma_cf_coef(a,z,depth)/incomplete_gamma_cf_int(a,z,depth+1) : (a + depth - 1) );
+    return ( depth < GCEM_INCML_GAMMA_MAX_ITER ? (a + depth - 1) + incomplete_gamma_cf_coef(a,z,depth)/incomplete_gamma_cf_int(a,z,depth+1) :
+                                                 (a + depth - 1) );
 }
 
 template<typename T>
@@ -55,7 +56,10 @@ constexpr
 T
 incomplete_gamma(const T a, const T z)
 {
-    return ( GCEM_LIM<T>::epsilon() > z ? T(0.0) : GCEM_LIM<T>::epsilon() > a ? T(1.0) : z <= T(0.0) ? T(0.0) : incomplete_gamma_int(a,z) );
+    return ( GCLIM<T>::epsilon() > z ? T(0.0) : 
+             GCLIM<T>::epsilon() > a ? T(1.0) : 
+             //
+             z <= T(0.0) ? T(0.0) : incomplete_gamma_int(a,z) );
 }
 
 #endif

@@ -38,7 +38,7 @@ constexpr
 T
 cos(const T x)
 {
-    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(1.0) : cos_int( tan(x/T(2.0)) ) );
+    return ( GCLIM<T>::epsilon() > abs(x) ? T(1.0) : cos_int( tan(x/T(2.0)) ) );
 }
 
 #endif

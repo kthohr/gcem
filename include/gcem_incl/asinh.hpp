@@ -28,7 +28,9 @@ constexpr
 T
 asinh(const T x)
 {
-    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : log( x + sqrt(x*x + T(1.0)) ) );
+    return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
+             //
+             log( x + sqrt(x*x + T(1.0)) ) );
 }
 
 #endif

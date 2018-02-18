@@ -28,9 +28,9 @@ constexpr
 T
 atanh(const T x)
 {
-    return ( T(1.0) < abs(x)                 ? GCEM_LIM<T>::quiet_NaN() : // function is defined for |x| < 1
-             GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : 
-                                               log( (T(1.0) + x)/(T(1.0) - x) ) / T(2.0) );
+    return ( T(1.0) < abs(x)              ? GCLIM<T>::quiet_NaN() : // function is defined for |x| < 1
+             GCLIM<T>::epsilon() > abs(x) ? T(0.0) : 
+                                            log( (T(1.0) + x)/(T(1.0) - x) ) / T(2.0) );
 }
 
 #endif

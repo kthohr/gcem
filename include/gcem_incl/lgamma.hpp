@@ -66,7 +66,7 @@ template<typename T>
 constexpr
 T
 lgamma_term_1(const T x)
-{ // 607/128 + 0.5 = 5.2421875
+{   // note: 607/128 + 0.5 = 5.2421875
     return ( (x + T(0.5))*log(x + T(5.2421875L)) - (x + T(5.2421875L)) );
 }
 
@@ -74,7 +74,7 @@ template<typename T>
 constexpr
 T
 lgamma_int(const T x)
-{ // returns lngamma(x+1)
+{   // returns lngamma(x+1)
     return ( lgamma_term_1(x) + lgamma_term_2(x) );
 }
 
@@ -83,7 +83,9 @@ constexpr
 T
 lgamma(const T x)
 {
-    return ( GCEM_LIM<T>::epsilon() > abs(x - T(1.0)) ? T(0.0) : lgamma_int(x - T(1.0)) );
+    return ( GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(0.0) :
+             //
+             lgamma_int(x - T(1.0)) );
 }
 
 #endif

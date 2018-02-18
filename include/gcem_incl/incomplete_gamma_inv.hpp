@@ -70,7 +70,8 @@ constexpr
 T
 incomplete_gamma_inv_initial_val_1(const T a, const T p, const T t_val)
 { // a > 1.0
-    return ( p > T(0.5) ? incomplete_gamma_inv_initial_val_1_int_end(-incomplete_gamma_inv_initial_val_1_int_begin(t_val), a) : incomplete_gamma_inv_initial_val_1_int_end(incomplete_gamma_inv_initial_val_1_int_begin(t_val), a) );
+    return ( p > T(0.5) ? incomplete_gamma_inv_initial_val_1_int_end(-incomplete_gamma_inv_initial_val_1_int_begin(t_val), a) :
+                          incomplete_gamma_inv_initial_val_1_int_end(incomplete_gamma_inv_initial_val_1_int_begin(t_val), a) );
 }
 
 template<typename T>
@@ -88,7 +89,8 @@ constexpr
 T
 incomplete_gamma_inv_initial_val(const T a, const T p)
 {
-    return ( a > T(1.0) ? incomplete_gamma_inv_initial_val_1(a,p,incomplete_gamma_inv_t_val_1(p)) : incomplete_gamma_inv_initial_val_2(a,p,incomplete_gamma_inv_t_val_2(a)) );
+    return ( a > T(1.0) ? incomplete_gamma_inv_initial_val_1(a,p,incomplete_gamma_inv_t_val_1(p)) :
+                          incomplete_gamma_inv_initial_val_2(a,p,incomplete_gamma_inv_t_val_2(a)) );
 }
 
 //
@@ -147,7 +149,8 @@ constexpr
 T
 incomplete_gamma_inv_recur(const T value, const T a, const T p, const T deriv_1, const T lg_val, const int iter_count)
 {
-    return ( incomplete_gamma_inv_decision( value, a, p, incomplete_gamma_inv_halley(incomplete_gamma_inv_ratio_val_1(value,a,p,deriv_1),incomplete_gamma_inv_ratio_val_2(value,a,p,deriv_1)), lg_val, iter_count ) );
+    return ( incomplete_gamma_inv_decision( value, a, p, incomplete_gamma_inv_halley(incomplete_gamma_inv_ratio_val_1(value,a,p,deriv_1), 
+                                                         incomplete_gamma_inv_ratio_val_2(value,a,p,deriv_1)), lg_val, iter_count ) );
 }
 
 template<typename T>
@@ -156,7 +159,8 @@ T
 incomplete_gamma_inv_decision(const T value, const T a, const T p, const T direc, const T lg_val, const int iter_count)
 {
     // return ( abs(direc) > GCEM_INCML_GAMMA_INV_TOL ? incomplete_gamma_inv_recur(value - direc, a, p, incomplete_gamma_inv_deriv_1(value,a,lg_val), lg_val) : value - direc );
-    return ( iter_count <= GCEM_INCML_GAMMA_INV_MAX_ITER ? incomplete_gamma_inv_recur(value-direc,a,p, incomplete_gamma_inv_deriv_1(value,a,lg_val), lg_val, iter_count+1) : value - direc );
+    return ( iter_count <= GCEM_INCML_GAMMA_INV_MAX_ITER ? incomplete_gamma_inv_recur(value-direc,a,p, incomplete_gamma_inv_deriv_1(value,a,lg_val), lg_val, iter_count+1) : 
+                                                           value - direc );
 }
 
 template<typename T>

@@ -24,7 +24,7 @@
 
 namespace gcem {
     template<class T>
-    using GCEM_LIM = std::numeric_limits<T>;
+    using GCLIM = std::numeric_limits<T>;
 }
 
 #ifndef GCEM_LOG_2

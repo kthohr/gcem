@@ -52,7 +52,7 @@ constexpr
 T
 incomplete_beta_coef(const T a, const T b, const T z, const int depth)
 {
-    return ( is_odd(depth) == 0 ? incomplete_beta_coef_even(a,b,z,depth/2) : incomplete_beta_coef_odd(a,b,z,(depth+1)/2) );
+    return ( !is_odd(depth) ? incomplete_beta_coef_even(a,b,z,depth/2) : incomplete_beta_coef_odd(a,b,z,(depth+1)/2) );
 }
 
 //
@@ -92,7 +92,7 @@ constexpr
 T
 incomplete_beta_cf(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth)
 {
-    return ( incomplete_beta_decision(a,b,z,incomplete_beta_c_update(a,b,z,c_j,depth),incomplete_beta_d_update(a,b,z,d_j,depth),f_j,depth) );
+    return incomplete_beta_decision(a,b,z,incomplete_beta_c_update(a,b,z,c_j,depth),incomplete_beta_d_update(a,b,z,d_j,depth),f_j,depth);
 }
 
 //
@@ -103,7 +103,8 @@ constexpr
 T
 incomplete_beta_int(const T a, const T b, const T z)
 {
-    return ( (exp(a*log(z) + b*log(T(1.0)-z) - lbeta(a,b)) / a) * incomplete_beta_cf(a,b,z,T(1.0),incomplete_beta_d_update(a,b,z,T(1.0),0),incomplete_beta_d_update(a,b,z,T(1.0),0),1) );
+    return ( (exp(a*log(z) + b*log(T(1.0)-z) - lbeta(a,b)) / a) * \
+             incomplete_beta_cf(a,b,z,T(1.0), incomplete_beta_d_update(a,b,z,T(1.0),0), incomplete_beta_d_update(a,b,z,T(1.0),0),1) );
 }
 
 template<typename T>
@@ -111,7 +112,7 @@ constexpr
 T
 incomplete_beta(const T a, const T b, const T z)
 {
-    return ( GCEM_LIM<T>::epsilon() > z        ? T(0.0) :
+    return ( GCLIM<T>::epsilon() > z           ? T(0.0) :
              (a + T(1.0))/(a + b + T(2.0)) > z ? incomplete_beta_int(a,b,z) :
                                                  T(1.0) - incomplete_beta_int(b,a,T(1.0) - z) );
 }

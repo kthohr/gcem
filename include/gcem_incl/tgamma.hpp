@@ -28,7 +28,7 @@ constexpr
 T
 tgamma(const T x)
 {
-    return ( GCEM_LIM<T>::epsilon() > abs(x - T(1.0)) ? T(1.0) : exp(lgamma(x)));
+    return ( GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(1.0) : exp(lgamma(x)));
 }
 
 #endif

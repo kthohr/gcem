@@ -28,10 +28,10 @@ constexpr
 T
 asin_int(const T x)
 {
-    return ( x > T(1.0)                                ? GCEM_LIM<T>::quiet_NaN() : // only defined on [-1,1]
-             GCEM_LIM<T>::epsilon() > abs(x -  T(1.0)) ? T(GCEM_HALF_PI) :          // indistinguishable from 1
-             GCEM_LIM<T>::epsilon() > abs(x)           ? T(0.0) :                   // indistinguishable from 0
-                                                         atan( x/sqrt(T(1.0) - x*x) ) );
+    return ( x > T(1.0)                             ? GCLIM<T>::quiet_NaN() :    // only defined on [-1,1]
+             GCLIM<T>::epsilon() > abs(x -  T(1.0)) ? T(GCEM_HALF_PI) :          // indistinguishable from 1
+             GCLIM<T>::epsilon() > abs(x)           ? T(0.0) :                   // indistinguishable from 0
+                                                      atan( x/sqrt(T(1.0) - x*x) ) );
 }
 
 template<typename T>

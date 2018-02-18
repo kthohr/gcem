@@ -65,7 +65,7 @@ template<typename T>
 constexpr
 T
 log_int_mantissa(const T x)
-{ // divide by the integer part of x, which will be in [1,10], then adjust using tables
+{   // divide by the integer part of x, which will be in [1,10], then adjust using tables
     return ( log_int_main(x/static_cast<int>(x)) + T(log_int_mantissa_integer(static_cast<int>(x))) );
 }
 
@@ -73,7 +73,7 @@ template<typename T>
 constexpr
 T
 log_int_breakup(const T x)
-{ // x = a*b, where b = 10^c
+{   // x = a*b, where b = 10^c
     return ( log_int_mantissa(mantissa(x)) + T(2.30258509299404568402L)*(find_exponent(x,0)) );
 }
 
@@ -82,9 +82,11 @@ constexpr
 T
 log(const T x)
 {
-    return ( GCEM_LIM<T>::epsilon() > x               ? - GCEM_LIM<T>::infinity() :
-             GCEM_LIM<T>::epsilon() > abs(x - T(1.0)) ? T(0.0) : 
-             x < T(0.5) ? log_int_breakup(x) : x > T(1.5) ? log_int_breakup(x) : log_int_main(x) );
+    return ( GCLIM<T>::epsilon() > x               ? - GCLIM<T>::infinity() :
+             GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(0.0) : 
+             //
+             x < T(0.5) ? log_int_breakup(x) : 
+             x > T(1.5) ? log_int_breakup(x) : log_int_main(x) );
 }
 
 // using Taylor series
