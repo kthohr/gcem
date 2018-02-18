@@ -36,7 +36,8 @@ constexpr
 T
 sqrt(const T x)
 {
-    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : ( x == T(1.0) ? x : sqrt_recur(x,x/T(2.0)) ) );
+    return ( GCEM_LIM<T>::epsilon() > abs(x) ? T(0.0) : 
+             x == T(1.0) ? x : sqrt_recur(x,x/T(2.0)) );
 }
 
 #endif

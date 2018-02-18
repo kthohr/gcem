@@ -28,7 +28,6 @@ namespace gcem {
     #include "gcem_incl/is_odd.hpp"
     #include "gcem_incl/max.hpp"
     #include "gcem_incl/min.hpp"
-    #include "gcem_incl/pow.hpp"
     #include "gcem_incl/sqrt.hpp"
 
     #include "gcem_incl/sgn.hpp"
@@ -37,8 +36,10 @@ namespace gcem {
     #include "gcem_incl/find_whole.hpp"
     #include "gcem_incl/mantissa.hpp"
 
+    #include "gcem_incl/pow_integral.hpp"
     #include "gcem_incl/exp.hpp"
     #include "gcem_incl/log.hpp"
+    #include "gcem_incl/pow.hpp"
 
     #include "gcem_incl/tan.hpp"
     #include "gcem_incl/cos.hpp"

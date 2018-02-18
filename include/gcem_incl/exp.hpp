@@ -44,7 +44,7 @@ constexpr
 T
 exp_split(const T x)
 {
-    return ( pow(GCEM_E,find_whole(x)) * exp_cf(find_fraction(x)) );
+    return ( pow_integral(GCEM_E,find_whole(x)) * exp_cf(find_fraction(x)) );
 }
 
 template<typename T>
