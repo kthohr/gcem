@@ -28,7 +28,7 @@ constexpr
 T
 sqrt_recur(const T x, const T xn)
 {
-    return ( abs(xn - x/xn) < GCEM_SQRT_TOL ? xn : sqrt_recur(x,0.5*(xn+x/xn)) );
+    return ( abs(xn - x/xn) < GCEM_SQRT_TOL ? xn : sqrt_recur(x,T(0.5)*(xn + x/xn)) );
 }
 
 template<typename T>
@@ -37,8 +37,9 @@ T
 sqrt(const T x)
 {
     return ( x < T(0.0) ? GCLIM<T>::quiet_NaN() :
-             GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
-             x == T(1.0) ? x :
+             //
+             GCLIM<T>::epsilon() > abs(x)        ? T(0.0) :
+             GCLIM<T>::epsilon() > abs(T(1.0)-x) ? x :
              //
              sqrt_recur(x,x/T(2.0)) );
 }

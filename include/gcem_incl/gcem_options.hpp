@@ -31,6 +31,10 @@ namespace gcem {
     #define GCEM_LOG_2 0.693147180559945309417L
 #endif
 
+#ifndef GCEM_LOG_10
+    #define GCEM_LOG_10 2.30258509299404568402L
+#endif
+
 #ifndef GCEM_PI
     #define GCEM_PI 3.14159265358979323846L
 #endif

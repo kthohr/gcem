@@ -33,7 +33,8 @@ T
 log_int_cf_main(const T xx, const int depth)
 {
     // return ( abs(depth*depth*xx/(2*(depth+1) - 1) ) < GCEM_LOG_TOL ? (T)(2*depth - 1) : (2*depth - 1) - depth*depth*xx/log_int_cf_main(xx,depth+1) );
-    return ( depth < GCEM_LOG_MAX_ITER_SMALL ? T(2*depth - 1) - depth*depth*xx/log_int_cf_main(xx,depth+1) : T(2*depth - 1) );
+    return ( depth < GCEM_LOG_MAX_ITER_SMALL ? T(2*depth - 1) - depth*depth*xx/log_int_cf_main(xx,depth+1) :
+                                               T(2*depth - 1) );
 }
 
 template<typename T>
@@ -56,9 +57,11 @@ constexpr
 long double
 log_int_mantissa_integer(const int x)
 {
-    return ( x == 2 ? 0.69314718055994530942L : x == 3 ? 1.09861228866810969140L : x == 4  ? 1.38629436111989061883L : 
-             x == 5 ? 1.60943791243410037460L : x == 6 ? 1.79175946922805500081L : x == 7  ? 1.94591014905531330511L : 
-             x == 8 ? 2.07944154167983592825L : x == 9 ? 2.19722457733621938279L : x == 10 ? 2.30258509299404568402L : 0.0L );
+    return ( x == 2  ? 0.69314718055994530942L : x == 3 ? 1.09861228866810969140L :
+             x == 4  ? 1.38629436111989061883L : x == 5 ? 1.60943791243410037460L :
+             x == 6  ? 1.79175946922805500081L : x == 7 ? 1.94591014905531330511L :
+             x == 8  ? 2.07944154167983592825L : x == 9 ? 2.19722457733621938279L :
+             x == 10 ? 2.30258509299404568402L : 0.0L );
 }
 
 template<typename T>
@@ -74,7 +77,7 @@ constexpr
 T
 log_int_breakup(const T x)
 {   // x = a*b, where b = 10^c
-    return ( log_int_mantissa(mantissa(x)) + T(2.30258509299404568402L)*(find_exponent(x,0)) );
+    return ( log_int_mantissa(mantissa(x)) + T(GCEM_LOG_10)*(find_exponent(x,0)) );
 }
 
 template<typename T>
@@ -85,8 +88,8 @@ log(const T x)
     return ( GCLIM<T>::epsilon() > x               ? - GCLIM<T>::infinity() :
              GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(0.0) : 
              //
-             x < T(0.5) ? log_int_breakup(x) : 
-             x > T(1.5) ? log_int_breakup(x) : log_int_main(x) );
+             (x < T(0.5) || x > T(1.5)) ? log_int_breakup(x) : 
+                                          log_int_main(x) );
 }
 
 // using Taylor series

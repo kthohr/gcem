@@ -1,4 +1,4 @@
-
+# GCEM Test build
 
 ifeq ($(CXX),)
 	CXX = g++
@@ -16,7 +16,6 @@ endif
 # source directories
 SDIR = .
 HEADER_DIR = $(SDIR)/../include
-# LIBS= -framework Accelerate
 
 SOURCES_TESTS= $(wildcard $(SDIR)/*.cpp)
 OBJECTS_TESTS= $(SOURCES_TESTS:.cpp=.test)
