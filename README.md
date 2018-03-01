@@ -154,4 +154,4 @@ Keith O'Hara
 
 ## License
 
-GPL (>= 2)
+Apache Version 2
