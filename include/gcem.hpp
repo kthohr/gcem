@@ -23,8 +23,8 @@
 
 #include "gcem_incl/gcem_options.hpp"
 
-namespace gcem {
-
+namespace gcem
+{
     #include "gcem_incl/abs.hpp"
     #include "gcem_incl/factorial.hpp"
     #include "gcem_incl/is_odd.hpp"
@@ -72,7 +72,6 @@ namespace gcem {
     #include "gcem_incl/incomplete_beta_inv.hpp"
     #include "gcem_incl/incomplete_gamma.hpp"
     #include "gcem_incl/incomplete_gamma_inv.hpp"
-
 }
 
 #endif

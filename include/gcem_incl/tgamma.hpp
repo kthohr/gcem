@@ -30,7 +30,11 @@ constexpr
 T
 tgamma(const T x)
 {
-    return ( GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(1.0) : exp(lgamma(x)));
+    return ( // indistinguishable from one or zero
+             GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(1.0) :
+             GCLIM<T>::epsilon() > abs(x)          ? GCLIM<T>::quiet_NaN() :
+             // else
+             exp(lgamma(x)));
 }
 
 #endif

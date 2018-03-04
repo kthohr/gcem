@@ -30,7 +30,7 @@ int main()
     constexpr long double shape = 1.5;
     constexpr long double scale = 2;
 
-    std::cout << "\nbegin incomplete_gamma_inv test\n" << std::endl;
+    std::cout << "\n*** begin incomplete_gamma_inv test ***\n" << std::endl;
 
     std::cout << "incomplete_gamma_inv: " << scale*gcem::incomplete_gamma_inv(shape,x1) << std::endl;
 
@@ -38,6 +38,8 @@ int main()
 
     gcem::incomplete_gamma_inv(2.0,0.7);
     gcem::incomplete_gamma_inv(0.7,x2);
+
+    std::cout << "\n*** end incomplete_gamma_inv test ***\n" << std::endl;
 
     return 0;
 }

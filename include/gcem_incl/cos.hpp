@@ -40,7 +40,10 @@ constexpr
 T
 cos(const T x)
 {
-    return ( GCLIM<T>::epsilon() > abs(x) ? T(1.0) : cos_int( tan(x/T(2.0)) ) );
+    return ( // indistinguishable from 0
+             GCLIM<T>::epsilon() > abs(x) ? T(1.0) :
+             // else
+             cos_int( tan(x/T(2.0)) ) );
 }
 
 #endif

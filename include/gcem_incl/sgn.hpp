@@ -30,7 +30,9 @@ constexpr
 T
 sgn(const T x)
 {
-    return ( x > T(0.0) ? T(1.0) : (x < T(0.0) ? T(-1.0) : T(0.0)) );
+    return ( x > T(0.0) ? T(1.0)  :
+             x < T(0.0) ? T(-1.0) :
+                          T(0.0)  );
 }
 
 #endif

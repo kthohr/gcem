@@ -35,7 +35,8 @@ log_multi_gamma(const T a, const int p)
     return ( p == 1 ? lgamma(a) : 
              p < 1  ? GCLIM<T>::quiet_NaN() :
              //
-             T(GCEM_LOG_PI) * (p - T(1.0))/T(2.0) + lgamma(a) + log_multi_gamma(a - T(0.5),p-1) );
+             T(GCEM_LOG_PI) * (p - T(1.0))/T(2.0) \
+                + lgamma(a) + log_multi_gamma(a - T(0.5),p-1) );
 }
 
 #endif

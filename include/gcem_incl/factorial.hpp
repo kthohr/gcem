@@ -32,9 +32,9 @@ constexpr
 T
 factorial_table(const T x)
 {   // table for x! when x = {2,...,10}
-    return ( x == 2 ? 2 :     x == 3 ? 6 :
-             x == 4 ? 24 :    x == 5 ? 120 :
-             x == 6 ? 720 :   x == 7 ? 5040 :
+    return ( x == 2 ? 2     : x == 3 ? 6      :
+             x == 4 ? 24    : x == 5 ? 120    :
+             x == 6 ? 720   : x == 7 ? 5040   :
              x == 8 ? 40320 : x == 9 ? 362880 : 3628800);
 }
 
@@ -43,8 +43,11 @@ constexpr
 T
 factorial(const T x)
 {
-    return ( x == 0 ? 1 : x == 1 ? x :
-             x < 11 ? factorial_table(x) : x*factorial(x-1) );
+    return ( x == 0 ? 1 :
+             x == 1 ? x :
+             //
+             x < 11 ? factorial_table(x) :
+                      x*factorial(x-1) );
 }
 
 #endif

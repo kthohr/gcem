@@ -55,25 +55,25 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_inv_initial_val_1_int_begin(const T t_val)
-{ // internal for a > 1.0
-    return ( t_val - (T(2.515517L) + T(0.802853L)*t_val + T(0.010328L)*t_val*t_val)/(T(1.0) + T(1.432788L)*t_val + T(0.189269L)*t_val*t_val + T(0.001308L)*t_val*t_val*t_val) );
+{   // internal for a > 1.0
+    return ( t_val - (T(2.515517L) + T(0.802853L)*t_val + T(0.010328L)*t_val*t_val) \
+                / (T(1.0) + T(1.432788L)*t_val + T(0.189269L)*t_val*t_val + T(0.001308L)*t_val*t_val*t_val) );
 }
 
 template<typename T>
 constexpr
 T
 incomplete_gamma_inv_initial_val_1_int_end(const T value_inp, const T a)
-{ // internal for a > 1.0
+{   // internal for a > 1.0
     return max( T(1E-04), a*pow(T(1.0) - T(1.0)/(9*a) - value_inp/(3*sqrt(a)), 3) );
 }
 
 template<typename T>
 constexpr
 T
-incomplete_gamma_inv_initial_val_1(const T a, const T p, const T t_val)
-{ // a > 1.0
-    return ( p > T(0.5) ? incomplete_gamma_inv_initial_val_1_int_end(-incomplete_gamma_inv_initial_val_1_int_begin(t_val), a) :
-                          incomplete_gamma_inv_initial_val_1_int_end(incomplete_gamma_inv_initial_val_1_int_begin(t_val), a) );
+incomplete_gamma_inv_initial_val_1(const T a, const T p, const T t_val, const T sgn_term)
+{   // a > 1.0
+    return incomplete_gamma_inv_initial_val_1_int_end(sgn_term*incomplete_gamma_inv_initial_val_1_int_begin(t_val), a);
 }
 
 template<typename T>
@@ -81,7 +81,11 @@ constexpr
 T
 incomplete_gamma_inv_initial_val_2(const T a, const T p, const T t_val)
 { // a <= 1.0
-    return ( p < t_val ? pow(p/t_val,T(1.0)/a) : T(1.0) - log(T(1.0) - (p - t_val)/(T(1.0) - t_val)) );
+    return ( p < t_val ? \
+             // if 
+                pow(p/t_val,T(1.0)/a) : 
+             // else
+                T(1.0) - log(T(1.0) - (p - t_val)/(T(1.0) - t_val)) );
 }
 
 // initial value
@@ -91,8 +95,14 @@ constexpr
 T
 incomplete_gamma_inv_initial_val(const T a, const T p)
 {
-    return ( a > T(1.0) ? incomplete_gamma_inv_initial_val_1(a,p,incomplete_gamma_inv_t_val_1(p)) :
-                          incomplete_gamma_inv_initial_val_2(a,p,incomplete_gamma_inv_t_val_2(a)) );
+    return ( a > T(1.0) ? \
+             // if
+                incomplete_gamma_inv_initial_val_1(a,p,
+                    incomplete_gamma_inv_t_val_1(p),
+                    p > T(0.5) ? T(-1) : T(1)) :
+             // else
+                incomplete_gamma_inv_initial_val_2(a,p,
+                    incomplete_gamma_inv_t_val_2(a)));
 }
 
 //
@@ -151,8 +161,10 @@ constexpr
 T
 incomplete_gamma_inv_recur(const T value, const T a, const T p, const T deriv_1, const T lg_val, const int iter_count)
 {
-    return ( incomplete_gamma_inv_decision( value, a, p, incomplete_gamma_inv_halley(incomplete_gamma_inv_ratio_val_1(value,a,p,deriv_1), 
-                                                         incomplete_gamma_inv_ratio_val_2(value,a,p,deriv_1)), lg_val, iter_count ) );
+    return incomplete_gamma_inv_decision(value, a, p,
+                incomplete_gamma_inv_halley(incomplete_gamma_inv_ratio_val_1(value,a,p,deriv_1), 
+                incomplete_gamma_inv_ratio_val_2(value,a,p,deriv_1)),
+                lg_val, iter_count);
 }
 
 template<typename T>
@@ -161,8 +173,13 @@ T
 incomplete_gamma_inv_decision(const T value, const T a, const T p, const T direc, const T lg_val, const int iter_count)
 {
     // return ( abs(direc) > GCEM_INCML_GAMMA_INV_TOL ? incomplete_gamma_inv_recur(value - direc, a, p, incomplete_gamma_inv_deriv_1(value,a,lg_val), lg_val) : value - direc );
-    return ( iter_count <= GCEM_INCML_GAMMA_INV_MAX_ITER ? incomplete_gamma_inv_recur(value-direc,a,p, incomplete_gamma_inv_deriv_1(value,a,lg_val), lg_val, iter_count+1) : 
-                                                           value - direc );
+    return ( iter_count <= GCEM_INCML_GAMMA_INV_MAX_ITER ? 
+                // if
+                    incomplete_gamma_inv_recur(value-direc,a,p,
+                        incomplete_gamma_inv_deriv_1(value,a,lg_val),
+                        lg_val,iter_count+1) :
+                // else 
+                    value - direc );
 }
 
 template<typename T>
@@ -170,7 +187,9 @@ constexpr
 T
 incomplete_gamma_inv_int(const T initial_val, const T a, const T p, const T lg_val)
 {
-    return ( incomplete_gamma_inv_recur(initial_val,a,p,incomplete_gamma_inv_deriv_1(initial_val,a,lg_val),lg_val,1) );
+    return incomplete_gamma_inv_recur(initial_val,a,p,
+                incomplete_gamma_inv_deriv_1(initial_val,a,lg_val),
+                lg_val,1);
 }
 
 template<typename T>
@@ -178,7 +197,7 @@ constexpr
 T
 incomplete_gamma_inv(const T a, const T p)
 {
-    return ( incomplete_gamma_inv_int(incomplete_gamma_inv_initial_val(a,p),a,p,lgamma(a)) );
+    return incomplete_gamma_inv_int(incomplete_gamma_inv_initial_val(a,p),a,p,lgamma(a));
 }
 
 #endif

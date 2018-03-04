@@ -30,8 +30,9 @@ constexpr
 T
 asinh(const T x)
 {
-    return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
-             //
+    return ( // indistinguishable from zero
+             GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
+             // else
              log( x + sqrt(x*x + T(1.0)) ) );
 }
 

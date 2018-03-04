@@ -33,13 +33,15 @@
 #endif
 
 #ifndef GCEM_VERSION_PATCH
-    #define GCEM_VERSION_PATCH 0
+    #define GCEM_VERSION_PATCH 1
 #endif
 
 //
 // constants
 
 namespace gcem {
+    using uint_t = unsigned int;
+
     template<class T>
     using GCLIM = std::numeric_limits<T>;
 }

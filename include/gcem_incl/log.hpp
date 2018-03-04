@@ -34,9 +34,11 @@ constexpr
 T
 log_int_cf_main(const T xx, const int depth)
 {
-    // return ( abs(depth*depth*xx/(2*(depth+1) - 1) ) < GCEM_LOG_TOL ? (T)(2*depth - 1) : (2*depth - 1) - depth*depth*xx/log_int_cf_main(xx,depth+1) );
-    return ( depth < GCEM_LOG_MAX_ITER_SMALL ? T(2*depth - 1) - depth*depth*xx/log_int_cf_main(xx,depth+1) :
-                                               T(2*depth - 1) );
+    return ( depth < GCEM_LOG_MAX_ITER_SMALL ? \
+             // if 
+                T(2*depth - 1) - depth*depth*xx/log_int_cf_main(xx,depth+1) :
+             // else 
+                T(2*depth - 1) );
 }
 
 template<typename T>
@@ -87,9 +89,11 @@ constexpr
 T
 log(const T x)
 {
-    return ( GCLIM<T>::epsilon() > x               ? - GCLIM<T>::infinity() :
+    return ( // x <= 0
+             GCLIM<T>::epsilon() > x               ? - GCLIM<T>::infinity() :
+             // indistinguishable from 1
              GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(0.0) : 
-             //
+             // else
              (x < T(0.5) || x > T(1.5)) ? log_int_breakup(x) : 
                                           log_int_main(x) );
 }

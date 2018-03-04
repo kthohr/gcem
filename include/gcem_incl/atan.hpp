@@ -31,28 +31,27 @@
 
 // Series
 
-// template<typename T>
-// constexpr
-// T
-// atan_series_order(const T x, const int order)
-// {
-//     return ( order == 1 ? GCEM_HALF_PI - 1.0L/x :
-//              order == 2 ? GCEM_HALF_PI - 1.0L/x + 1.0L/(3.0L * x*x*x) - 1/(5.0L * pow(x,5)) :
-//              order == 3 ? GCEM_HALF_PI - 1.0L/x + 1.0L/(3.0L * x*x*x) - 1/(5.0L * pow(x,5)) + 1.0L/(7.0L * pow(x,7)) - 1/(9.0L * pow(x,9)) :
-//              order == 4 ? GCEM_HALF_PI - 1.0L/x + 1.0L/(3.0L * x*x*x) - 1/(5.0L * pow(x,5)) + 1.0L/(7.0L * pow(x,7)) - 1/(9.0L * pow(x,9)) + 1.0L/(11.0L * pow(x,11)) - 1/(13.0L * pow(x,13)) :
-//              order == 5 ? GCEM_HALF_PI - 1.0L/x + 1.0L/(3.0L * x*x*x) - 1/(5.0L * pow(x,5)) + 1.0L/(7.0L * pow(x,7)) - 1/(9.0L * pow(x,9)) + 1.0L/(11.0L * pow(x,11)) - 1/(13.0L * pow(x,13)) + 1.0L/(15.0L * pow(x,15)) - 1/(17.0L * pow(x,17)) :
-//              order == 6 ? GCEM_HALF_PI - 1.0L/x + 1.0L/(3.0L * x*x*x) - 1/(5.0L * pow(x,5)) + 1.0L/(7.0L * pow(x,7)) - 1/(9.0L * pow(x,9)) + 1.0L/(11.0L * pow(x,11)) - 1/(13.0L * pow(x,13)) + 1.0L/(15.0L * pow(x,15)) - 1/(17.0L * pow(x,17)) + 1.0L/(19.0L * pow(x,19)) - 1/(21.0L * pow(x,21)) :
-//                           GCEM_HALF_PI - 1.0L/x + 1.0L/(3.0L * x*x*x) - 1/(5.0L * pow(x,5)) + 1.0L/(7.0L * pow(x,7)) - 1/(9.0L * pow(x,9)) + 1.0L/(11.0L * pow(x,11)) - 1/(13.0L * pow(x,13)) + 1.0L/(15.0L * pow(x,15)) - 1/(17.0L * pow(x,17)) + 1.0L/(19.0L * pow(x,19)) - 1/(21.0L * pow(x,21)) + 1.0L/(23.0L * pow(x,23)) - 1/(25.0L * pow(x,25)) );
-// }
+template<typename T>
+constexpr
+T
+atan_series_order_calc(const T x, const T x_pow, const uint_t order)
+{
+    return ( T(1.0)/( T((order-1)*4 - 1) * x_pow ) \
+              - T(1.0)/( T((order-1)*4 + 1) * x_pow*x) );
+}
 
 template<typename T>
 constexpr
 T
-atan_series_order(const T x, const T x_pow, const int order, const int max_order)
+atan_series_order(const T x, const T x_pow, const uint_t order, const uint_t max_order)
 {
-    return ( order == 1        ? GCEM_HALF_PI - 1.0L/x + atan_series_order(x*x,pow(x,3),order+1,max_order) : // NOTE: x changes to x*x for order > 1
-             order < max_order ? T(1.0)/( T((order-1)*4 - 1) * x_pow ) - T(1.0)/( T((order-1)*4 + 1) * x_pow*x) + atan_series_order(x,x_pow*x*x,order+1,max_order) :
-                                 T(1.0)/( T((order-1)*4 - 1) * x_pow ) - T(1.0)/( T((order-1)*4 + 1) * x_pow*x) );
+    return ( order == 1        ? GCEM_HALF_PI - T(1.0)/x \
+                                 + atan_series_order(x*x,pow(x,3),order+1,max_order) :
+             // NOTE: x changes to x*x for order > 1
+             order < max_order ? atan_series_order_calc(x,x_pow,order) \
+                                 + atan_series_order(x,x_pow*x*x,order+1,max_order) :
+             // order == max_order
+                                 atan_series_order_calc(x,x_pow,order) );
 }
 
 template<typename T>
@@ -60,15 +59,15 @@ constexpr
 T
 atan_series_main(const T x)
 {
-    return ( x < T(3)    ? atan_series_order(x,x,1,10) :  // O(1/x^39)
-             x < T(4)    ? atan_series_order(x,x,1,9) :   // O(1/x^35)
-             x < T(5)    ? atan_series_order(x,x,1,8) :   // O(1/x^31)
-             x < T(7)    ? atan_series_order(x,x,1,7) :   // O(1/x^27)
-             x < T(11)   ? atan_series_order(x,x,1,6) :   // O(1/x^23)
-             x < T(25)   ? atan_series_order(x,x,1,5) :   // O(1/x^19)
-             x < T(100)  ? atan_series_order(x,x,1,4) :   // O(1/x^15)
-             x < T(1000) ? atan_series_order(x,x,1,3) :   // O(1/x^11)
-                           atan_series_order(x,x,1,2) );  // O(1/x^7)
+    return ( x < T(3)    ? atan_series_order(x,x,1U,10U) :  // O(1/x^39)
+             x < T(4)    ? atan_series_order(x,x,1U,9U)  :  // O(1/x^35)
+             x < T(5)    ? atan_series_order(x,x,1U,8U)  :  // O(1/x^31)
+             x < T(7)    ? atan_series_order(x,x,1U,7U)  :  // O(1/x^27)
+             x < T(11)   ? atan_series_order(x,x,1U,6U)  :  // O(1/x^23)
+             x < T(25)   ? atan_series_order(x,x,1U,5U)  :  // O(1/x^19)
+             x < T(100)  ? atan_series_order(x,x,1U,4U)  :  // O(1/x^15)
+             x < T(1000) ? atan_series_order(x,x,1U,3U)  :  // O(1/x^11)
+                           atan_series_order(x,x,1U,2U) );  // O(1/x^7)
 }
 
 // CF
@@ -76,9 +75,10 @@ atan_series_main(const T x)
 template<typename T>
 constexpr
 T
-atan_cf_recur(const T xx, const int depth, const int max_depth)
+atan_cf_recur(const T xx, const int depth, const uint_t max_depth)
 {
-    return ( depth < max_depth ? (2*depth - 1) + depth*depth*xx/atan_cf_recur(xx,depth+1,max_depth) : T(2*depth - 1) );
+    return ( depth < max_depth ? T(2*depth - 1) + depth*depth*xx/atan_cf_recur(xx,depth+1,max_depth) :
+                                 T(2*depth - 1) );
 }
 
 template<typename T>

@@ -30,7 +30,11 @@ constexpr
 T
 tan_cf_recur(const T xx, const int depth, const int max_depth)
 {
-    return ( depth < max_depth ? T(2*depth - 1) - xx/tan_cf_recur(xx,depth+1,max_depth) : T(2*depth - 1) );
+    return ( depth < max_depth ? \
+             // if
+                T(2*depth - 1) - xx/tan_cf_recur(xx,depth+1,max_depth) :
+             // else
+                T(2*depth - 1) );
 }
 
 template<typename T>
@@ -38,7 +42,8 @@ constexpr
 T
 tan_cf_main(const T x)
 {
-    return ( x > 1.0 ? x/tan_cf_recur(x*x,1,35) : x/tan_cf_recur(x*x,1,25) );
+    return ( x > T(1.0) ? x/tan_cf_recur(x*x,1,35) :
+                          x/tan_cf_recur(x*x,1,25) );
 }
 
 template<typename T>
@@ -46,7 +51,11 @@ constexpr
 T
 tan_int(const T x)
 { // tan(x) = tan(x + pi)
-    return ( x > T(GCEM_PI) ? tan_int( x - T(GCEM_PI) * int(x/T(GCEM_PI)) ) : tan_cf_main(x) );
+    return ( x > T(GCEM_PI) ? \
+             // if
+                tan_int( x - T(GCEM_PI) * int(x/T(GCEM_PI)) ) :
+             // else 
+                tan_cf_main(x) );
 }
 
 template<typename T>

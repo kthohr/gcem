@@ -26,7 +26,8 @@
 #define _gcem_incomplete_beta_inv_HPP
 
 template<typename T>
-constexpr T incomplete_beta_inv_decision(const T value, const T alpha_par, const T beta_par, const T p, const T direc, const T lb_val, const int iter_count);
+constexpr T incomplete_beta_inv_decision(const T value, const T alpha_par, const T beta_par, const T p, 
+                                         const T direc, const T lb_val, const int iter_count);
 
 //
 // initial value for Halley
@@ -38,16 +39,18 @@ template<typename T>
 constexpr
 T
 incomplete_beta_inv_initial_val_1_tval(const T p)
-{ // a > 1.0
-    return ( p > T(0.5) ? sqrt(-T(2.0)*log(T(1.0) - p)) : sqrt(-T(2.0)*log(p)) );
+{   // a > 1.0
+    return ( p > T(0.5) ? sqrt(-T(2.0)*log(T(1.0) - p)) :
+                          sqrt(-T(2.0)*log(p)) );
 }
 
 template<typename T>
 constexpr
 T
 incomplete_beta_inv_initial_val_1_int_begin(const T t_val)
-{ // internal for a > 1.0
-    return ( t_val - (T(2.515517) + T(0.802853)*t_val + T(0.010328)*t_val*t_val)/(T(1.0) + T(1.432788)*t_val + T(0.189269)*t_val*t_val + T(0.001308)*t_val*t_val*t_val) );
+{   // internal for a > 1.0
+    return ( t_val - ( T(2.515517) + T(0.802853)*t_val + T(0.010328)*t_val*t_val ) \
+                / ( T(1.0) + T(1.432788)*t_val + T(0.189269)*t_val*t_val + T(0.001308)*t_val*t_val*t_val ) );
 }
 
 template<typename T>
@@ -66,13 +69,6 @@ incomplete_beta_inv_initial_val_1_int_ab2(const T alpha_par, const T beta_par)
     return ( T(1.0)/(2*beta_par - T(1.0)) - T(1.0)/(2*alpha_par - T(1.0)) );
 }
 
-// constexpr
-// T
-// incomplete_beta_inv_initial_val_1_int_lambda(const T value)
-// {
-//     return ( (value*value - 3.0)/6.0 );
-// }
-
 template<typename T>
 constexpr
 T
@@ -87,7 +83,8 @@ T
 incomplete_beta_inv_initial_val_1_int_w(const T value, const T ab_term_2, const T h_term)
 {
     // return ( value * sqrt(h_term + lambda)/h_term - ab_term_2*(lambda + 5.0/6.0 -2.0/(3.0*h_term)) );
-    return ( value * sqrt(h_term + (value*value - T(3.0))/T(6.0))/h_term - ab_term_2*((value*value - T(3.0))/T(6.0) + T(5.0)/T(6.0) - T(2.0)/(T(3.0)*h_term)) );
+    return ( value * sqrt(h_term + (value*value - T(3.0))/T(6.0))/h_term \
+                - ab_term_2*((value*value - T(3.0))/T(6.0) + T(5.0)/T(6.0) - T(2.0)/(T(3.0)*h_term)) );
 }
 
 template<typename T>
@@ -101,10 +98,17 @@ incomplete_beta_inv_initial_val_1_int_end(const T alpha_par, const T beta_par, c
 template<typename T>
 constexpr
 T
-incomplete_beta_inv_initial_val_1(const T alpha_par, const T beta_par, const T p, const T t_val)
-{ // a > 1.0
-    return ( p > T(0.5) ? incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, incomplete_beta_inv_initial_val_1_int_w(-incomplete_beta_inv_initial_val_1_int_begin(t_val),incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),incomplete_beta_inv_initial_val_1_int_h(incomplete_beta_inv_initial_val_1_int_ab1(alpha_par,beta_par))) ) :
-                          incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, incomplete_beta_inv_initial_val_1_int_w( incomplete_beta_inv_initial_val_1_int_begin(t_val),incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),incomplete_beta_inv_initial_val_1_int_h(incomplete_beta_inv_initial_val_1_int_ab1(alpha_par,beta_par))) ) );
+incomplete_beta_inv_initial_val_1(const T alpha_par, const T beta_par, const T p, const T t_val, const T sgn_term)
+{   // a > 1.0
+    return  incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, 
+                incomplete_beta_inv_initial_val_1_int_w(
+                    sgn_term*incomplete_beta_inv_initial_val_1_int_begin(t_val),
+                    incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),
+                    incomplete_beta_inv_initial_val_1_int_h(
+                        incomplete_beta_inv_initial_val_1_int_ab1(alpha_par,beta_par)
+                    )
+                )
+            );
 }
 
 //
@@ -142,9 +146,22 @@ constexpr
 T
 incomplete_beta_inv_initial_val(const T alpha_par, const T beta_par, const T p)
 {
-    return ( (alpha_par > T(1.0) && beta_par > T(1.0)) ? incomplete_beta_inv_initial_val_1(alpha_par,beta_par,p,incomplete_beta_inv_initial_val_1_tval(p)) :
-                                            p > T(0.5) ? T(1.0) - incomplete_beta_inv_initial_val_2(beta_par,alpha_par,T(1.0) - p,incomplete_beta_inv_initial_val_2_s1(beta_par,alpha_par),incomplete_beta_inv_initial_val_2_s2(beta_par,alpha_par)) : // regularization
-                                                         incomplete_beta_inv_initial_val_2(alpha_par,beta_par,p,incomplete_beta_inv_initial_val_2_s1(alpha_par,beta_par),incomplete_beta_inv_initial_val_2_s2(alpha_par,beta_par)));
+    return ( (alpha_par > T(1.0) && beta_par > T(1.0)) ? 
+             // if
+                incomplete_beta_inv_initial_val_1(alpha_par,beta_par,p,
+                    incomplete_beta_inv_initial_val_1_tval(p),
+                    p > T(0.5) ? T(1) : T(-1) ) :
+             // else
+                p > T(0.5) ?
+                    // if 
+                       T(1.0) - incomplete_beta_inv_initial_val_2(beta_par,alpha_par,T(1.0) - p,
+                                    incomplete_beta_inv_initial_val_2_s1(beta_par,alpha_par),
+                                    incomplete_beta_inv_initial_val_2_s2(beta_par,alpha_par)) :
+                    // else
+                       incomplete_beta_inv_initial_val_2(alpha_par,beta_par,p,
+                            incomplete_beta_inv_initial_val_2_s1(alpha_par,beta_par),
+                            incomplete_beta_inv_initial_val_2_s2(alpha_par,beta_par))
+            );
 }
 
 //
@@ -201,17 +218,29 @@ incomplete_beta_inv_halley(const T ratio_val_1, const T ratio_val_2)
 template<typename T>
 constexpr
 T
-incomplete_beta_inv_recur(const T value, const T alpha_par, const T beta_par, const T p, const T deriv_1, const T lb_val, const int iter_count)
+incomplete_beta_inv_recur(const T value, const T alpha_par, const T beta_par, const T p, const T deriv_1, 
+                          const T lb_val, const int iter_count)
 {
-    return ( incomplete_beta_inv_decision( value, alpha_par, beta_par, p, incomplete_beta_inv_halley(incomplete_beta_inv_ratio_val_1(value,alpha_par,beta_par,p,deriv_1),incomplete_beta_inv_ratio_val_2(value,alpha_par,beta_par,p,deriv_1)), lb_val, iter_count ) );
+    return incomplete_beta_inv_decision( value, alpha_par, beta_par, p, 
+               incomplete_beta_inv_halley(
+                   incomplete_beta_inv_ratio_val_1(value,alpha_par,beta_par,p,deriv_1),
+                   incomplete_beta_inv_ratio_val_2(value,alpha_par,beta_par,p,deriv_1)
+               ), lb_val, iter_count);
 }
 
 template<typename T>
 constexpr
 T
-incomplete_beta_inv_decision(const T value, const T alpha_par, const T beta_par, const T p, const T direc, const T lb_val, const int iter_count)
+incomplete_beta_inv_decision(const T value, const T alpha_par, const T beta_par, const T p, const T direc, 
+                             const T lb_val, const int iter_count)
 {
-    return ( iter_count <= GCEM_INCML_BETA_INV_MAX_ITER ? incomplete_beta_inv_recur(value-direc,alpha_par,beta_par,p, incomplete_beta_inv_deriv_1(value,alpha_par,beta_par,lb_val), lb_val, iter_count+1) : value - direc );
+    return ( iter_count <= GCEM_INCML_BETA_INV_MAX_ITER ? 
+             // if
+                incomplete_beta_inv_recur(value-direc,alpha_par,beta_par,p,
+                    incomplete_beta_inv_deriv_1(value,alpha_par,beta_par,lb_val),
+                    lb_val, iter_count+1) :
+             // else 
+                value - direc );
 }
 
 template<typename T>
@@ -219,7 +248,9 @@ constexpr
 T
 incomplete_beta_inv_int(const T initial_val, const T alpha_par, const T beta_par, const T p, const T lb_val)
 {
-    return ( incomplete_beta_inv_recur(initial_val,alpha_par,beta_par,p,incomplete_beta_inv_deriv_1(initial_val,alpha_par,beta_par,lb_val),lb_val,1) );
+    return incomplete_beta_inv_recur(initial_val,alpha_par,beta_par,p,
+               incomplete_beta_inv_deriv_1(initial_val,alpha_par,beta_par,lb_val),
+               lb_val,1);
 }
 
 template<typename T>
@@ -227,7 +258,8 @@ constexpr
 T
 incomplete_beta_inv(const T alpha_par, const T beta_par, const T p)
 {
-    return ( incomplete_beta_inv_int(incomplete_beta_inv_initial_val(alpha_par,beta_par,p),alpha_par,beta_par,p,lbeta(alpha_par,beta_par)) );
+    return incomplete_beta_inv_int(incomplete_beta_inv_initial_val(alpha_par,beta_par,p),
+               alpha_par,beta_par,p,lbeta(alpha_par,beta_par));
 }
 
 #endif

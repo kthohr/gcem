@@ -30,7 +30,11 @@ constexpr
 T
 sqrt_recur(const T x, const T xn)
 {
-    return ( abs(xn - x/xn) < GCEM_SQRT_TOL ? xn : sqrt_recur(x,T(0.5)*(xn + x/xn)) );
+    return ( abs(xn - x/xn) < GCEM_SQRT_TOL ? \
+             // if
+                xn :
+             // else
+                sqrt_recur(x,T(0.5)*(xn + x/xn)) );
 }
 
 template<typename T>

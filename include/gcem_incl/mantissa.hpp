@@ -30,7 +30,9 @@ constexpr
 T
 mantissa(const T x)
 {
-    return ( x < T(1.0) ? mantissa(x*10) : ( x > T(10.0) ? mantissa(x*0.1) : x ) );
+    return ( x < T(1.0)  ? mantissa(x*10) : 
+             x > T(10.0) ? mantissa(x*0.1) :
+                           x );
 }
 
 #endif

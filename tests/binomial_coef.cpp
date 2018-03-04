@@ -31,7 +31,10 @@ int main()
     // long double result = gcem::binomial_coef(n,k);
 
     std::cout << "\nbegin binomial_coef test\n" << std::endl;
-    
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_binomial_coef(" << 0 <<"," << 0 << ") = " << std::setprecision(2) << gcem::binomial_coef(0U,0U) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_binomial_coef(" << 0 <<"," << 1 << ") = " << std::setprecision(2) << gcem::binomial_coef(0U,1U) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_binomial_coef(" << 1 <<"," << 0 << ") = " << std::setprecision(2) << gcem::binomial_coef(1U,0U) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_binomial_coef(" << n <<"," << k << ") = " << std::setprecision(2) << gcem::binomial_coef(n,k) << std::endl;
 
     std::cout << "\nend binomial_coef test" << std::endl;

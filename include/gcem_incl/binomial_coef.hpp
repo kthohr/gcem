@@ -19,24 +19,35 @@
   ################################################################################*/
 
 /* 
- * compile-time binomial coefficient
+ * compile-time binomial coefficient: 'n choose k'
  */
 
 #ifndef _gcem_binomial_coef_HPP
 #define _gcem_binomial_coef_HPP
 
+template<typename T = double>
 constexpr
-long double
-binomial_coef_int(const int n, const int k, const int count)
+T
+binomial_coef_int(const uint_t n, const uint_t k, const uint_t count)
 {
-    return ( count < k ? binomial_coef_int(n,k,count+1) * static_cast<long double>(n - k + count) / count : static_cast<long double>(n) / count );
+    return ( count < k ? 
+             // if
+                binomial_coef_int(n,k,count+1) * static_cast<T>(n - k + count) / count : 
+             // else
+                static_cast<T>(n) / count );
 }
 
+template<typename T = double>
 constexpr
-long double
-binomial_coef(const int n, const int k)
+T
+binomial_coef(const uint_t n, const uint_t k)
 {
-    return ( k > n - k ? binomial_coef_int(n,n-k,1) : binomial_coef_int(n,k,1) );
+    return ( // edge cases
+             n == 0U ? T(0) :
+             k == 0U ? T(1) :
+             // else
+             k > n - k ? binomial_coef_int<T>(n,n-k,1U) :
+                         binomial_coef_int<T>(n,k,1U) );
 }
 
 #endif

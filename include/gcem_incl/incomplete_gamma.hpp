@@ -41,15 +41,18 @@ constexpr
 T
 incomplete_gamma_cf_int(const T a, const T z, const int depth)
 {
-    return ( depth < GCEM_INCML_GAMMA_MAX_ITER ? (a + depth - 1) + incomplete_gamma_cf_coef(a,z,depth)/incomplete_gamma_cf_int(a,z,depth+1) :
-                                                 (a + depth - 1) );
+    return ( depth < GCEM_INCML_GAMMA_MAX_ITER ?
+            // if
+                (a + depth - 1) + incomplete_gamma_cf_coef(a,z,depth)/incomplete_gamma_cf_int(a,z,depth+1) :
+            // else
+                (a + depth - 1) );
 }
 
 template<typename T>
 constexpr
 T
 incomplete_gamma_int(const T a, const T z)
-{ // lower (regularized) incomplete gamma function
+{   // lower (regularized) incomplete gamma function
     return ( exp(a*log(z) - z) / tgamma(a) / incomplete_gamma_cf_int(a,z,1) );
 }
 

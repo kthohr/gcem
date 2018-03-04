@@ -41,7 +41,10 @@ Ta
 pow(const Ta base, const Tb exp_term)
 {
     return ( std::is_integral<Tb>::value ? \
-             pow_integral(base,exp_term) : pow_dbl(base,Ta(exp_term)) );
+             // if
+                pow_integral(base,exp_term) :
+             // else
+                pow_dbl(base,Ta(exp_term)) );
 }
 
 #endif
