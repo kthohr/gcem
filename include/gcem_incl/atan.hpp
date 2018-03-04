@@ -75,7 +75,7 @@ atan_series_main(const T x)
 template<typename T>
 constexpr
 T
-atan_cf_recur(const T xx, const int depth, const uint_t max_depth)
+atan_cf_recur(const T xx, const uint_t depth, const uint_t max_depth)
 {
     return ( depth < max_depth ? T(2*depth - 1) + depth*depth*xx/atan_cf_recur(xx,depth+1,max_depth) :
                                  T(2*depth - 1) );
@@ -86,11 +86,11 @@ constexpr
 T
 atan_cf_main(const T x)
 {
-    return ( x < T(0.5) ? x/atan_cf_recur(x*x,1, 15 ) : 
-             x < T(1.0) ? x/atan_cf_recur(x*x,1, 25 ) : 
-             x < T(1.5) ? x/atan_cf_recur(x*x,1, 35 ) : 
-             x < T(2.0) ? x/atan_cf_recur(x*x,1, 45 ) : 
-                          x/atan_cf_recur(x*x,1, 52 ) );
+    return ( x < T(0.5) ? x/atan_cf_recur(x*x,1U, 15U ) : 
+             x < T(1.0) ? x/atan_cf_recur(x*x,1U, 25U ) : 
+             x < T(1.5) ? x/atan_cf_recur(x*x,1U, 35U ) : 
+             x < T(2.0) ? x/atan_cf_recur(x*x,1U, 45U ) : 
+                          x/atan_cf_recur(x*x,1U, 52U ) );
             //  x < T(2.5) ? x/atan_cf_recur(x*x,1, 52 ) : 
             //  x < T(3.0) ? x/atan_cf_recur(x*x,1, 65 ) :
             //               x/atan_cf_recur(x*x,1, 72 ) );

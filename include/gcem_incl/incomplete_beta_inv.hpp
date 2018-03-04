@@ -26,7 +26,7 @@
 #define _gcem_incomplete_beta_inv_HPP
 
 template<typename T>
-constexpr T incomplete_beta_inv_decision(const T value, const T alpha_par, const T beta_par, const T p, 
+constexpr T incomplete_beta_inv_decision(const T value, const T alpha_par, const T beta_par, const T p,
                                          const T direc, const T lb_val, const int iter_count);
 
 //
@@ -100,7 +100,7 @@ constexpr
 T
 incomplete_beta_inv_initial_val_1(const T alpha_par, const T beta_par, const T p, const T t_val, const T sgn_term)
 {   // a > 1.0
-    return  incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par, 
+    return  incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par,
                 incomplete_beta_inv_initial_val_1_int_w(
                     sgn_term*incomplete_beta_inv_initial_val_1_int_begin(t_val),
                     incomplete_beta_inv_initial_val_1_int_ab2(alpha_par,beta_par),
@@ -146,14 +146,14 @@ constexpr
 T
 incomplete_beta_inv_initial_val(const T alpha_par, const T beta_par, const T p)
 {
-    return ( (alpha_par > T(1.0) && beta_par > T(1.0)) ? 
+    return ( (alpha_par > T(1.0) && beta_par > T(1.0)) ?
              // if
                 incomplete_beta_inv_initial_val_1(alpha_par,beta_par,p,
                     incomplete_beta_inv_initial_val_1_tval(p),
-                    p > T(0.5) ? T(1) : T(-1) ) :
+                    p < T(0.5) ? T(1) : T(-1) ) :
              // else
                 p > T(0.5) ?
-                    // if 
+                    // if
                        T(1.0) - incomplete_beta_inv_initial_val_2(beta_par,alpha_par,T(1.0) - p,
                                     incomplete_beta_inv_initial_val_2_s1(beta_par,alpha_par),
                                     incomplete_beta_inv_initial_val_2_s2(beta_par,alpha_par)) :
@@ -218,10 +218,10 @@ incomplete_beta_inv_halley(const T ratio_val_1, const T ratio_val_2)
 template<typename T>
 constexpr
 T
-incomplete_beta_inv_recur(const T value, const T alpha_par, const T beta_par, const T p, const T deriv_1, 
+incomplete_beta_inv_recur(const T value, const T alpha_par, const T beta_par, const T p, const T deriv_1,
                           const T lb_val, const int iter_count)
 {
-    return incomplete_beta_inv_decision( value, alpha_par, beta_par, p, 
+    return incomplete_beta_inv_decision( value, alpha_par, beta_par, p,
                incomplete_beta_inv_halley(
                    incomplete_beta_inv_ratio_val_1(value,alpha_par,beta_par,p,deriv_1),
                    incomplete_beta_inv_ratio_val_2(value,alpha_par,beta_par,p,deriv_1)
@@ -231,15 +231,15 @@ incomplete_beta_inv_recur(const T value, const T alpha_par, const T beta_par, co
 template<typename T>
 constexpr
 T
-incomplete_beta_inv_decision(const T value, const T alpha_par, const T beta_par, const T p, const T direc, 
+incomplete_beta_inv_decision(const T value, const T alpha_par, const T beta_par, const T p, const T direc,
                              const T lb_val, const int iter_count)
 {
-    return ( iter_count <= GCEM_INCML_BETA_INV_MAX_ITER ? 
+    return ( iter_count <= GCEM_INCML_BETA_INV_MAX_ITER ?
              // if
                 incomplete_beta_inv_recur(value-direc,alpha_par,beta_par,p,
                     incomplete_beta_inv_deriv_1(value,alpha_par,beta_par,lb_val),
                     lb_val, iter_count+1) :
-             // else 
+             // else
                 value - direc );
 }
 

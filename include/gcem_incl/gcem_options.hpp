@@ -33,7 +33,7 @@
 #endif
 
 #ifndef GCEM_VERSION_PATCH
-    #define GCEM_VERSION_PATCH 1
+    #define GCEM_VERSION_PATCH 2
 #endif
 
 //
