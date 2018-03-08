@@ -38,12 +38,20 @@ cos_int(const T x)
 template<typename T>
 constexpr
 T
-cos(const T x)
+cos_check(const T x)
 {
     return ( // indistinguishable from 0
              GCLIM<T>::epsilon() > abs(x) ? T(1.0) :
              // else
              cos_int( tan(x/T(2.0)) ) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+cos(const T x)
+{
+    return cos_check(return_t<T>(x));
 }
 
 #endif

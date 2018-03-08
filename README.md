@@ -30,14 +30,14 @@ A list of features includes:
 
 ## Syntax
 
-GCE-Math functions are written as C++ templates which might be confusing for users unfamiliar with template programming. For example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (```erf```) is defined as:
+GCE-Math functions are written as C++ templates, the format of which might be confusing for users unfamiliar with template programming. For example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (```erf```) is defined as:
 ```cpp
 template<typename T>
 constexpr
-T
-erf(const T x)
+return_t<T>
+erf(const T x);
 ```
-where a series of internal templated ```constexpr``` functions implement a recursive continued fraction expansion. Note that the output type ('```T```') in this example is determined by the input type, e.g., ```float```, ```double```, ```long double```, etc. So take care when passing integral-type inputs and use recasts where appropriate.
+where a set of internal templated ```constexpr``` functions will implement a recursive continued fraction expansion to return a value. Note that the output type ('```return_t<T>```') in this example is determined by the input type, e.g., ```int```, ```float```, ```double```, ```long double```, etc. When ```T``` is an intergral-type, the output will be upgraded to ```double```, otherwise ```return_t<T> = T```. For types not covered by ```std::is_integral```, recasts should be used.
 
 
 ## Installation

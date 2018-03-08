@@ -28,11 +28,19 @@
 template<typename T>
 constexpr
 T
-sinh(const T x)
+sinh_check(const T x)
 {
     return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
              //
              (exp(x) - exp(-x))/T(2.0) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+sinh(const T x)
+{
+    return sinh_check(return_t<T>(x));
 }
 
 #endif

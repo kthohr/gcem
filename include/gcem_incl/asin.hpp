@@ -42,9 +42,17 @@ asin_int(const T x)
 template<typename T>
 constexpr
 T
-asin(const T x)
+asin_check(const T x)
 {
     return ( x < T(0.0) ? - asin_int(-x) : asin_int(x) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+asin(const T x)
+{
+    return asin_check(return_t<T>(x));
 }
 
 #endif

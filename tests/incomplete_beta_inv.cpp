@@ -29,6 +29,7 @@ int main()
 
     std::cout << "\n*** begin incomplete_beta_inv test ***\n" << std::endl;
 
+    std::cout << "incomplete_beta_inv(" << 0.9 << "," << 0.9 << "," << 0.1 << ") = " << gcem::incomplete_beta_inv(0.9L,0.9L,0.1L) << std::endl;
     std::cout << "incomplete_beta_inv(" << 0.9 << "," << 0.9 << "," << x << ") = " << gcem::incomplete_beta_inv(0.9L,0.9L,x) << std::endl;
     std::cout << std::endl;
 

@@ -88,11 +88,19 @@ erf_int(const T x)
 template<typename T>
 constexpr
 T
-erf(const T x)
+erf_check(const T x)
 {
     return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
              //
              x < T(0.0) ? -erf_int(-x) : erf_int(x) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+erf(const T x)
+{
+    return erf_check(return_t<T>(x));
 }
 
 #endif

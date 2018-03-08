@@ -57,11 +57,19 @@ exp_split(const T x)
 template<typename T>
 constexpr
 T
-exp(const T x)
+exp_check(const T x)
 {
     return ( GCLIM<T>::epsilon() > abs(x) ? T(1.0) : 
              //
              abs(x) < T(2.0) ? exp_cf(x) : exp_split(x) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+exp(const T x)
+{
+    return exp_check(return_t<T>(x));
 }
 
 // #ifndef GCEM_EXP_TOL

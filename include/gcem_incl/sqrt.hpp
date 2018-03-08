@@ -40,7 +40,7 @@ sqrt_recur(const T x, const T xn)
 template<typename T>
 constexpr
 T
-sqrt(const T x)
+sqrt_check(const T x)
 {
     return ( x < T(0.0) ? GCLIM<T>::quiet_NaN() :
              //
@@ -48,6 +48,14 @@ sqrt(const T x)
              GCLIM<T>::epsilon() > abs(T(1.0)-x) ? x :
              //
              sqrt_recur(x,x/T(2.0)) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+sqrt(const T x)
+{
+    return sqrt_check(return_t<T>(x));
 }
 
 #endif

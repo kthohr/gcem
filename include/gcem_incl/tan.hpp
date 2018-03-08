@@ -61,11 +61,19 @@ tan_int(const T x)
 template<typename T>
 constexpr
 T
-tan(const T x)
+tan_check(const T x)
 {
     return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
              //
              x < T(0.0) ? -tan_int(-x) : tan_int(x) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+tan(const T x)
+{
+    return tan_check(return_t<T>(x));
 }
 
 #endif
