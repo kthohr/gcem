@@ -36,7 +36,7 @@ log_multi_gamma_int(const Ta a, const Tb p)
              p <  Tb(1) ? GCLIM<Ta>::quiet_NaN() :
              //
              Ta(GCEM_LOG_PI) * (p - Ta(1.0))/Ta(2.0) \
-                + lgamma(a) + log_multi_gamma(a - Ta(0.5),p-1) );
+                + lgamma(a) + log_multi_gamma_int(a - Ta(0.5),p-1) );
 }
 
 template<typename Ta, typename Tb>
