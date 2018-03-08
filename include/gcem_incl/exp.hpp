@@ -69,7 +69,7 @@ constexpr
 return_t<T>
 exp(const T x)
 {
-    return exp(return_t<T>(x));
+    return exp_check(return_t<T>(x));
 }
 
 // #ifndef GCEM_EXP_TOL
