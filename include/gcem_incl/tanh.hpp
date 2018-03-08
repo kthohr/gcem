@@ -48,12 +48,20 @@ tanh_int(const T x)
 template<typename T>
 constexpr
 T
-tanh(const T x)
+tanh_check(const T x)
 {
     return ( // indistinguishable from zero
              GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
              // else
              x < T(0.0) ? -tanh_int(-x) : tanh_int(x) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+tanh(const T x)
+{
+    return tanh_check(return_t<T>(x));
 }
 
 #endif

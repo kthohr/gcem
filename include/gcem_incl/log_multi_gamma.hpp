@@ -27,16 +27,24 @@
 
 // see https://en.wikipedia.org/wiki/Multivariate_gamma_function
 
-template<typename T>
+template<typename Ta, typename Tb>
 constexpr
-T
-log_multi_gamma(const T a, const int p)
+Ta
+log_multi_gamma_int(const Ta a, const Tb p)
 {
-    return ( p == 1 ? lgamma(a) : 
-             p < 1  ? GCLIM<T>::quiet_NaN() :
+    return ( p == Tb(1) ? lgamma(a) :
+             p <  Tb(1) ? GCLIM<Ta>::quiet_NaN() :
              //
-             T(GCEM_LOG_PI) * (p - T(1.0))/T(2.0) \
-                + lgamma(a) + log_multi_gamma(a - T(0.5),p-1) );
+             Ta(GCEM_LOG_PI) * (p - Ta(1.0))/Ta(2.0) \
+                + lgamma(a) + log_multi_gamma(a - Ta(0.5),p-1) );
+}
+
+template<typename Ta, typename Tb>
+constexpr
+return_t<Ta>
+log_multi_gamma(const Ta a, const Tb p)
+{
+    return log_multi_gamma_int(return_t<Ta>(a),p);
 }
 
 #endif

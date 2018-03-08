@@ -29,11 +29,11 @@
 #endif
 
 #ifndef GCEM_VERSION_MINOR
-    #define GCEM_VERSION_MINOR 0
+    #define GCEM_VERSION_MINOR 1
 #endif
 
 #ifndef GCEM_VERSION_PATCH
-    #define GCEM_VERSION_PATCH 2
+    #define GCEM_VERSION_PATCH 0
 #endif
 
 //
@@ -44,6 +44,9 @@ namespace gcem {
 
     template<class T>
     using GCLIM = std::numeric_limits<T>;
+
+    template<typename T>
+    using return_t = typename std::conditional<std::is_integral<T>::value,double,T>::type;
 }
 
 #ifndef GCEM_LOG_2

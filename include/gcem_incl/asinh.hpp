@@ -28,12 +28,21 @@
 template<typename T>
 constexpr
 T
-asinh(const T x)
+asinh_int(const T x)
 {
     return ( // indistinguishable from zero
              GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
              // else
              log( x + sqrt(x*x + T(1.0)) ) );
 }
+
+template<typename T>
+constexpr
+return_t<T>
+asinh(const T x)
+{
+    return asinh_int(return_t<T>(x));
+}
+
 
 #endif

@@ -109,11 +109,19 @@ atan_int(const T x)
 template<typename T>
 constexpr
 T
-atan(const T x)
+atan_check(const T x)
 {
     return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
              //
              x < T(0.0) ? -atan_int(-x) : atan_int(x) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+atan(const T x)
+{
+    return atan_check(return_t<T>(x));
 }
 
 #endif

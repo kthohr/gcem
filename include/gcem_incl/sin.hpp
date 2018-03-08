@@ -38,11 +38,19 @@ sin_int(const T x)
 template<typename T>
 constexpr
 T
-sin(const T x)
+sin_check(const T x)
 {
     return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
              //
              sin_int( tan(x/T(2.0)) ) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+sin(const T x)
+{
+    return sin_check(return_t<T>(x));
 }
 
 #endif

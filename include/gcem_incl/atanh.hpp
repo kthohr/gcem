@@ -28,14 +28,22 @@
 template<typename T>
 constexpr
 T
-atanh(const T x)
+atanh_int(const T x)
 {
     return ( // function is defined for |x| < 1
              T(1.0) < abs(x)              ? GCLIM<T>::quiet_NaN() :
              // indistinguishable from zero
              GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
              // else
-                                            log( (T(1.0) + x)/(T(1.0) - x) ) / T(2.0) );
+             log( (T(1.0) + x)/(T(1.0) - x) ) / T(2.0) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+atanh(const T x)
+{
+    return atanh_int(return_t<T>(x));
 }
 
 #endif

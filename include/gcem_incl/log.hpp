@@ -87,16 +87,29 @@ log_int_breakup(const T x)
 template<typename T>
 constexpr
 T
-log(const T x)
+log_check(const T x)
 {
     return ( // x <= 0
-             GCLIM<T>::epsilon() > x               ? - GCLIM<T>::infinity() :
+             GCLIM<T>::epsilon() > x ? - GCLIM<T>::infinity() :
              // indistinguishable from 1
              GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(0.0) : 
              // else
-             (x < T(0.5) || x > T(1.5)) ? log_int_breakup(x) : 
-                                          log_int_main(x) );
+             (x < T(0.5) || x > T(1.5)) ?
+                // if 
+                    log_int_breakup(x) :
+                // else
+                    log_int_main(x) );
 }
+
+template<typename T>
+constexpr
+return_t<T>
+log(const T x)
+{
+    return log_check(return_t<T>(x));
+}
+
+
 
 // using Taylor series
 

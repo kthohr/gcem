@@ -196,10 +196,11 @@ erf_inv_int(const T initial_val, const T p)
 
 template<typename T>
 constexpr
-T
+return_t<T>
 erf_inv(const T p)
 {
-    return ( erf_inv_int(erf_inv_initial_val(p),p) );
+    return erf_inv_int(erf_inv_initial_val(return_t<T>(p)),
+                       return_t<T>(p));
 }
 
 

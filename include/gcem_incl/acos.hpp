@@ -41,10 +41,14 @@ acos_int(const T x)
 
 template<typename T>
 constexpr
-T
+return_t<T>
 acos(const T x)
 {
-    return ( x > T(0.0) ? acos_int(x) : T(GCEM_PI) - acos_int(-x));
+    return ( x > T(0.0) ? \
+             // if
+                acos_int(return_t<T>(x)) :
+             // else 
+                return_t<T>(GCEM_PI) - acos_int(-return_t<T>(x)) );
 }
 
 #endif

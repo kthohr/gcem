@@ -61,6 +61,9 @@ int main()
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf(" << x9 <<") = " << std::setprecision(18) << gcem::erf(x9) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_erf(" << x9 <<")  = " << std::setprecision(18) << std::erf(x10) << std::endl;
 
+    std::cout << "\nintegral check:\n" << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf(" << 2 <<") = " << std::setprecision(18) << gcem::erf(2) << std::endl;
+
     std::cout << "\n*** end erf test ***\n" << std::endl;
 
     return 0;

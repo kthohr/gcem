@@ -87,13 +87,21 @@ lgamma_int(const T x)
 template<typename T>
 constexpr
 T
-lgamma(const T x)
+lgamma_check(const T x)
 {
     return ( // indistinguishable from one or zero
              GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(0.0) :
              GCLIM<T>::epsilon() > abs(x)          ? GCLIM<T>::infinity() :
              //
              lgamma_int(x - T(1.0)) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+lgamma(const T x)
+{
+    return lgamma_check(return_t<T>(x));
 }
 
 #endif
