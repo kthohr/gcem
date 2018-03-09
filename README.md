@@ -8,6 +8,7 @@ GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ l
 * The library is written in a concise C++11 ```constexpr``` format, and is C++11/14/17 compatible.
 * The ```gcem::``` syntax is identical to that of the C++ standard library.
 * Tested and accurate to machine precision against the C++ standard library.
+* Released under a permissive, non-GPL license.
 
 ## Status
 
@@ -37,7 +38,7 @@ constexpr
 return_t<T>
 erf(const T x);
 ```
-where a set of internal templated ```constexpr``` functions will implement a recursive continued fraction expansion to return a value. Note that the output type ('```return_t<T>```') in this example is determined by the input type, e.g., ```int```, ```float```, ```double```, ```long double```, etc. When ```T``` is an intergral-type, the output will be upgraded to ```double```, otherwise ```return_t<T> = T```. For types not covered by ```std::is_integral```, recasts should be used.
+A a set of internal templated ```constexpr``` functions implement a recursive continued fraction expansion to return a value. The output type ('```return_t<T>```') in this example is determined by the input type, e.g., ```int```, ```float```, ```double```, ```long double```, etc. When ```T``` is an intergral-type, the output will be upgraded to ```double```, otherwise ```return_t<T> = T```. For types not covered by ```std::is_integral```, recasts should be used.
 
 
 ## Installation
