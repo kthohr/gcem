@@ -4,19 +4,17 @@
 
 GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ library for compile-time computation of mathematical functions.
 
-* GCE-Math makes extensive use of recursive templates and ```constexpr``` functions to perform continued fraction and series-type expansions of special mathematical functions.
-* The library is written in a concise C++11 ```constexpr``` format, and is C++11/14/17 compatible.
-* The ```gcem::``` syntax is identical to that of the C++ standard library.
+* The library is written in C++11 ```constexpr``` format, and is C++11/14/17 compatible.
+* Continued fraction and series expansions are implemented using recursive templates.
+* The ```gcem::``` syntax is identical to C++ standard library (`std::`).
 * Tested and accurate to machine precision against the C++ standard library.
 * Released under a permissive, non-GPL license.
 
 ## Status
 
-The library is actively maintained, and is still being extended.
+The library is actively maintained, and is still being extended. A list of features includes:
 
-A list of features includes:
-
-* basic standard library functions, such as:
+* basic C++ standard library functions:
     - ```abs```, ```exp```, ```log```, ```max```, ```min```, ```pow```, ```sqrt```
 * trigonometric functions:
     - basic: ```cos```, ```sin```, ```tan```
@@ -31,21 +29,19 @@ A list of features includes:
 
 ## Syntax
 
-GCE-Math functions are written as C++ templates, the format of which might be confusing for users unfamiliar with template programming. For example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (```erf```) is defined as:
+GCE-Math functions are written as C++ templates with `constexpr` specifiers, the format of which might be confusing to users unfamiliar with template-based programming. For example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (```erf```) is defined as:
 ```cpp
 template<typename T>
 constexpr
 return_t<T>
 erf(const T x);
 ```
-A a set of internal templated ```constexpr``` functions implement a recursive continued fraction expansion to return a value. The output type ('```return_t<T>```') in this example is determined by the input type, e.g., ```int```, ```float```, ```double```, ```long double```, etc. When ```T``` is an intergral-type, the output will be upgraded to ```double```, otherwise ```return_t<T> = T```. For types not covered by ```std::is_integral```, recasts should be used.
+where a set of internal templated ```constexpr``` functions will implement a continued fraction expansion to return a value of type ```return_t<T>```. This output type ('```return_t<T>```') is generally determined by the input type, e.g., ```int```, ```float```, ```double```, ```long double```, etc. When ```T``` is an intergral type, the output will be upgraded to ```return_t<T> = double```, otherwise ```return_t<T> = T```. For types not covered by ```std::is_integral```, recasts should be used.
 
 
 ## Installation
 
-GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). 
-
-Simply include the gcem header files with your project.
+GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply include the gcem header files with your project.
 
 ## Examples
 
@@ -83,7 +79,7 @@ Lcfi2:
 	ret
 	.cfi_endproc
 ```
-We see that a function call has been replaced by the answer (10! = 3628800).
+We see that a function call has been replaced by a numeric value (10! = 3628800).
 
 Similarly, to compute the log Gamma function at a point:
 
