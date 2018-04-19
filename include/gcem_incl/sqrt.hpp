@@ -30,7 +30,7 @@ constexpr
 T
 sqrt_recur(const T x, const T xn)
 {
-    return ( abs(xn - x/xn) < GCEM_SQRT_TOL ? \
+    return ( abs(xn - x/xn) / (1 + xn) < GCEM_SQRT_TOL ? \
              // if
                 xn :
              // else
