@@ -34,11 +34,15 @@ int main()
     std::cout << "\n*** begin factorial test ***\n" << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_factorial(" << x1 <<     ") = " << std::setprecision(1) << gcem::factorial(x1) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "    std_tgamma("     << x2 + 1 << ") = " << std::setprecision(1) << std::tgamma(x2+1) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "    std_tgamma(" << x2 + 1 << ") = " << std::setprecision(1) << std::tgamma(x2+1) << std::endl;
+    std::cout << std::endl;
+    
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_factorial(" << 7 <<     ") = " << std::setprecision(1) << gcem::factorial(7) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "    std_tgamma(" << 8 << ") = " << std::setprecision(1) << std::tgamma(8) << std::endl;
     std::cout << std::endl;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_factorial(" << x3     << ") = " << std::setprecision(18) << gcem::factorial(x3) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "    std_tgamma("     << x4 + 1 << ") = " << std::setprecision(18) << std::tgamma(x4+1) << std::endl;;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "    std_tgamma(" << x4 + 1 << ") = " << std::setprecision(18) << std::tgamma(x4+1) << std::endl;
 
     std::cout << "\n*** end factorial test ***\n" << std::endl;
 
