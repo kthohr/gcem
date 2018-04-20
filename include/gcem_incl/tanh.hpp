@@ -30,10 +30,10 @@ constexpr
 T
 tanh_cf(const T xx, const int depth)
 {
-    return ( depth < GCEM_TANH_MAX_ITER ? \
-             // if
+    return( depth < GCEM_TANH_MAX_ITER ? \
+            // if
                 (2*depth - 1) + xx/tanh_cf(xx,depth+1) :
-             // else
+            // else
                 T(2*depth - 1) );
 }
 
@@ -42,7 +42,7 @@ constexpr
 T
 tanh_int(const T x)
 {
-    return ( x/tanh_cf(x*x,1) );
+    return( x/tanh_cf(x*x,1) );
 }
 
 template<typename T>
@@ -50,10 +50,13 @@ constexpr
 T
 tanh_check(const T x)
 {
-    return ( // indistinguishable from zero
-             GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
+    return( // indistinguishable from zero
+             GCLIM<T>::epsilon() > abs(x) ? \
+                T(0) :
              // else
-             x < T(0.0) ? -tanh_int(-x) : tanh_int(x) );
+                x < T(0) ? \
+                    - tanh_int(-x) : 
+                      tanh_int( x) );
 }
 
 template<typename T>
@@ -61,7 +64,7 @@ constexpr
 return_t<T>
 tanh(const T x)
 {
-    return tanh_check(return_t<T>(x));
+    return tanh_check<return_t<T>>(x);
 }
 
 #endif

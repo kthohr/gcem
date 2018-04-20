@@ -30,7 +30,11 @@ constexpr
 T
 find_fraction(const T x)
 {
-    return ( abs(x - int(x)) > T(0.5) ? x - int(x) - sgn(x) : x - int(x) );
+    return( abs(x - int(x)) > T(0.5) ? \
+            // if 
+                x - int(x) - sgn(x) : 
+            //else 
+                x - int(x) );
 }
 
 #endif

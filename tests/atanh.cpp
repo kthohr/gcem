@@ -49,11 +49,25 @@ int main()
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x5 <<")  = " << std::setprecision(18) << std::atanh(x6) << std::endl;
     std::cout << std::endl;
 
-    constexpr long double x7 = 1.1L; // illegal value
+    // bad values
+
+    constexpr long double x7 = 1.0L; // bad value
     long double x8 = x7;
 
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_atanh(" << x7 <<") = " << std::setprecision(18) << gcem::atanh(x7) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x7 <<")  = " << std::setprecision(18) << std::atanh(x8) << std::endl;
+
+    constexpr long double x9 = -1.0L; // bad value
+    long double x10 = x9;
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_atanh(" << x9 <<") = " << std::setprecision(18) << gcem::atanh(x9) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x10 <<")  = " << std::setprecision(18) << std::atanh(x10) << std::endl;
+
+    constexpr long double x11 = 1.1L; // illegal value
+    long double x12 = x11;
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_atanh(" << x11 <<") = " << std::setprecision(18) << gcem::atanh(x11) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x12 <<")  = " << std::setprecision(18) << std::atanh(x12) << std::endl;
 
     std::cout << "\n*** end atanh test ***\n" << std::endl;
 

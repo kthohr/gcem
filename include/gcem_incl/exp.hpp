@@ -30,12 +30,13 @@ constexpr
 T
 exp_cf_int(const T x, const int depth)
 {
-    return ( depth < GCEM_EXP_MAX_ITER_SMALL ? \
-             // if
-                depth == 1 ? T(1.0) - x/exp_cf_int(x,depth+1) : 
-                             T(1.0) + x/T(depth - 1) - x/depth/exp_cf_int(x,depth+1) : 
+    return( depth < GCEM_EXP_MAX_ITER_SMALL ? \
+            // if
+                depth == 1 ? \
+                    T(1) - x/exp_cf_int(x,depth+1) : 
+                    T(1) + x/T(depth - 1) - x/depth/exp_cf_int(x,depth+1) : 
              // else
-                T(1.0) );
+                T(1) );
 }
 
 template<typename T>
@@ -43,7 +44,7 @@ constexpr
 T
 exp_cf(const T x)
 {
-    return ( T(1.0)/exp_cf_int(x,1) );
+    return( T(1)/exp_cf_int(x,1) );
 }
 
 template<typename T>
@@ -51,7 +52,7 @@ constexpr
 T
 exp_split(const T x)
 {
-    return ( pow_integral(GCEM_E,find_whole(x)) * exp_cf(find_fraction(x)) );
+    return( pow_integral(GCEM_E,find_whole(x)) * exp_cf(find_fraction(x)) );
 }
 
 template<typename T>
@@ -59,9 +60,12 @@ constexpr
 T
 exp_check(const T x)
 {
-    return ( GCLIM<T>::epsilon() > abs(x) ? T(1.0) : 
-             //
-             abs(x) < T(2.0) ? exp_cf(x) : exp_split(x) );
+    return( GCLIM<T>::epsilon() > abs(x) ? \
+            // if
+                T(1) : 
+            // else
+                abs(x) < T(2) ? exp_cf(x) : \
+                                exp_split(x) );
 }
 
 template<typename T>
@@ -69,7 +73,7 @@ constexpr
 return_t<T>
 exp(const T x)
 {
-    return exp_check(return_t<T>(x));
+    return exp_check<return_t<T>>(x);
 }
 
 // #ifndef GCEM_EXP_TOL
@@ -81,14 +85,14 @@ exp(const T x)
 // double
 // exp_taylor(const double x, const int order)
 // {
-//     return ( order == 1 ? 1.0 + x : ( pow(x,order) / factorial(order) ) + exp_taylor(x,order-1) );
+//     return( order == 1 ? 1.0 + x : ( pow(x,order) / factorial(order) ) + exp_taylor(x,order-1) );
 // }
 
 // constexpr
 // double
 // exp_int(const double x)
 // {
-//     return ( pow(GCEM_E,find_whole(x)) * exp_taylor(find_fraction(x),13) );
+//     return( pow(GCEM_E,find_whole(x)) * exp_taylor(find_fraction(x),13) );
 // }
 
 // second form of the continued fraction
@@ -96,14 +100,14 @@ exp(const T x)
 // long double
 // exp_cf(const long double x, const int depth)
 // {
-//     return ( depth == 205 ? (long double)(depth - 1 + x) : depth == 1 ? 1 - x/exp_cf(x,depth+1) : (depth - 1) + x - (depth - 1)*x/exp_cf(x,depth+1) );
+//     return( depth == 205 ? (long double)(depth - 1 + x) : depth == 1 ? 1 - x/exp_cf(x,depth+1) : (depth - 1) + x - (depth - 1)*x/exp_cf(x,depth+1) );
 // }
 
 // constexpr
 // long double
 // exp_cf(const long double x, const int depth)
 // {
-//     return ( abs((depth - 1)*x/depth) < GCEM_EXP_TOL ? (long double)(depth + x) : depth == 1 ? 1 - x/exp_cf(x,depth+1) : (depth - 1) + x - (depth - 1)*x/exp_cf(x,depth+1) );
+//     return( abs((depth - 1)*x/depth) < GCEM_EXP_TOL ? (long double)(depth + x) : depth == 1 ? 1 - x/exp_cf(x,depth+1) : (depth - 1) + x - (depth - 1)*x/exp_cf(x,depth+1) );
 // }
 
 #endif

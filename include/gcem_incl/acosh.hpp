@@ -30,12 +30,14 @@ constexpr
 T
 acosh_int(const T x)
 {
-    return ( // function defined for x >= 1
-             x < T(1.0)                            ? GCLIM<T>::quiet_NaN() :
-             // indistinguishable from 1
-             GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(0.0) :
-             // else
-             log( x + sqrt(x*x - T(1.0)) ) );
+    return( // function defined for x >= 1
+            x < T(1) ? \
+                GCLIM<T>::quiet_NaN() :
+            // indistinguishable from 1
+            GCLIM<T>::epsilon() > abs(x - T(1)) ? \
+                T(0) :
+            // else
+                log( x + sqrt(x*x - T(1)) ) );
 }
 
 template<typename T>
@@ -43,7 +45,7 @@ constexpr
 return_t<T>
 acosh(const T x)
 {
-    return acosh_int(return_t<T>(x));
+    return acosh_int<return_t<T>>(x);
 }
 
 #endif

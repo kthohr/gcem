@@ -32,11 +32,13 @@ constexpr
 Ta
 log_multi_gamma_int(const Ta a, const Tb p)
 {
-    return ( p == Tb(1) ? lgamma(a) :
-             p <  Tb(1) ? GCLIM<Ta>::quiet_NaN() :
-             //
-             Ta(GCEM_LOG_PI) * (p - Ta(1.0))/Ta(2.0) \
-                + lgamma(a) + log_multi_gamma_int(a - Ta(0.5),p-1) );
+    return( p == Tb(1) ? \
+                lgamma(a) :
+            p <  Tb(1) ? \
+                GCLIM<Ta>::quiet_NaN() :
+            // else
+                Ta(GCEM_LOG_PI) * (p - Ta(1))/Ta(2) \
+                    + lgamma(a) + log_multi_gamma_int(a - Ta(0.5),p-1) );
 }
 
 template<typename Ta, typename Tb>

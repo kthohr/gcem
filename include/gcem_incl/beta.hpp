@@ -27,10 +27,10 @@
 
 template<typename T>
 constexpr
-T
+return_t<T>
 beta(const T a, const T b)
 {
-    return ( exp(lbeta(a,b)) );
+    return exp( lbeta<return_t<T>>(a,b) );
 }
 
 #endif

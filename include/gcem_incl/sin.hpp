@@ -32,7 +32,7 @@ constexpr
 T
 sin_int(const T x)
 {
-    return T(2.0)*x/(T(1.0) + x*x);
+    return T(2)*x/(T(1) + x*x);
 }
 
 template<typename T>
@@ -40,9 +40,11 @@ constexpr
 T
 sin_check(const T x)
 {
-    return ( GCLIM<T>::epsilon() > abs(x) ? T(0.0) :
-             //
-             sin_int( tan(x/T(2.0)) ) );
+    return( // indistinguishable from zero
+            GCLIM<T>::epsilon() > abs(x) ? \
+                T(0) :
+            // else
+                sin_int( tan(x/T(2)) ) );
 }
 
 template<typename T>
@@ -50,7 +52,7 @@ constexpr
 return_t<T>
 sin(const T x)
 {
-    return sin_check(return_t<T>(x));
+    return sin_check<return_t<T>>(x);
 }
 
 #endif

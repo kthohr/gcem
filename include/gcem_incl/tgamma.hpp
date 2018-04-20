@@ -30,11 +30,13 @@ constexpr
 T
 tgamma_check(const T x)
 {
-    return ( // indistinguishable from one or zero
-             GCLIM<T>::epsilon() > abs(x - T(1.0)) ? T(1.0) :
-             GCLIM<T>::epsilon() > abs(x)          ? GCLIM<T>::quiet_NaN() :
+    return( // indistinguishable from one or zero
+            GCLIM<T>::epsilon() > abs(x - T(1)) ? \
+                T(1) :
+            GCLIM<T>::epsilon() > abs(x) ? \
+                GCLIM<T>::quiet_NaN() :
              // else
-             exp(lgamma(x)));
+                exp(lgamma(x)));
 }
 
 template<typename T>
@@ -42,7 +44,7 @@ constexpr
 return_t<T>
 tgamma(const T x)
 {
-    return tgamma_check(return_t<T>(x));
+    return tgamma_check<return_t<T>>(x);
 }
 
 #endif

@@ -29,11 +29,11 @@
 #endif
 
 #ifndef GCEM_VERSION_MINOR
-    #define GCEM_VERSION_MINOR 1
+    #define GCEM_VERSION_MINOR 2
 #endif
 
 #ifndef GCEM_VERSION_PATCH
-    #define GCEM_VERSION_PATCH 1
+    #define GCEM_VERSION_PATCH 0
 #endif
 
 //

@@ -40,10 +40,10 @@ constexpr
 Ta
 pow(const Ta base, const Tb exp_term)
 {
-    return ( std::is_integral<Tb>::value ? \
-             // if
+    return( std::is_integral<Tb>::value ? \
+            // if
                 pow_integral(base,exp_term) :
-             // else
+            // else
                 pow_dbl(base,Ta(exp_term)) );
 }
 

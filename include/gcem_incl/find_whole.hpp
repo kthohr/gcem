@@ -30,7 +30,11 @@ constexpr
 int
 find_whole(const T x)
 {
-    return ( abs(x - int(x)) > T(0.5) ? int(x) + sgn(x) : int(x) );
+    return( abs(x - int(x)) > T(0.5) ? \
+            // if 
+                int(x) + sgn(x) : \
+            //else 
+                int(x) );
 }
 
 #endif

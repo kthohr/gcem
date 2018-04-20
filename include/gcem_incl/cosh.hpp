@@ -30,10 +30,11 @@ constexpr
 T
 cosh_int(const T x)
 {
-    return ( // indistinguishable from zero
-             GCLIM<T>::epsilon() > abs(x) ? T(1.0) : 
-             // else
-             (exp(x) + exp(-x)) / T(2.0) );
+    return( // indistinguishable from zero
+            GCLIM<T>::epsilon() > abs(x) ? \
+                T(1) : 
+            // else
+                (exp(x) + exp(-x)) / T(2) );
 }
 
 template<typename T>
@@ -41,7 +42,7 @@ constexpr
 return_t<T>
 cosh(const T x)
 {
-    return cosh_int(return_t<T>(x));
+    return cosh_int<return_t<T>>(x);
 }
 
 #endif

@@ -30,7 +30,7 @@ constexpr
 T
 abs(const T x)
 {
-    return ( x < T(0.0) ? - x : x );
+    return( x < T(0) ? - x : x );
 }
 
 #endif

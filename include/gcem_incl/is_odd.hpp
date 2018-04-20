@@ -29,7 +29,7 @@ constexpr
 bool
 is_odd(const int x)
 {
-    return ( x % 2 == 0 ? false : true );
+    return( x % 2 == 0 ? false : true );
 }
 
 #endif

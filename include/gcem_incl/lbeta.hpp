@@ -30,7 +30,7 @@ constexpr
 T
 lbeta(const T a, const T b)
 {
-    return ( lgamma(a) + lgamma(b) - lgamma(a+b) );
+    return( lgamma(a) + lgamma(b) - lgamma(a+b) );
 }
 
 #endif

@@ -32,14 +32,21 @@ constexpr
 Ta
 pow_integral_int(const Ta base, const Tb exp_term)
 {
-    return ( exp_term == Tb(1) ? base : 
-             exp_term == Tb(0) ? Ta(1.0) : 
-             //
-             exp_term == GCLIM<Tb>::min() ? Ta(0.0) :
-             exp_term == GCLIM<Tb>::max() ? GCLIM<Ta>::infinity() :
-             //
-             exp_term < Tb(0) ? Ta(1.0) / pow_integral_int(base, - exp_term) : 
-                                base*pow_integral_int(base, exp_term - 1) );
+    return( exp_term == Tb(1) ? \
+                base :
+            exp_term == Tb(0) ? \
+                Ta(1) :
+            // overflow
+            exp_term == GCLIM<Tb>::min() ? \
+                Ta(0) :
+            exp_term == GCLIM<Tb>::max() ? \
+                GCLIM<Ta>::infinity() :
+            // else
+                exp_term < Tb(0) ? \
+                //
+                    Ta(1) / pow_integral_int(base, - exp_term) : 
+                //
+                    base*pow_integral_int(base, exp_term - 1) );
 }
 
 template<typename Ta, typename Tb>
