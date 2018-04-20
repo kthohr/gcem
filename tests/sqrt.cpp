@@ -56,8 +56,8 @@ int main()
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "\ngcem_sqrt(" << 2 <<") = " << std::setprecision(20) << gcem::sqrt(2.0L) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "sqrt2_cons   = " << std::setprecision(20) << GCEM_SQRT_2 << std::endl;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "\ngcem_sqrt(" <<  0.0 <<") = " << std::setprecision(20) << gcem::sqrt(0.0L) << std::endl; // should be NaN
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_sqrt("   << -1.0 <<") = " << std::setprecision(20) << gcem::sqrt(0.0L) << std::endl; // should be NaN
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "\ngcem_sqrt(" <<  0.0 <<") = " << std::setprecision(20) << gcem::sqrt(0.0L) << std::endl; // should be 0
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_sqrt("   << -1.0 <<") = " << std::setprecision(20) << gcem::sqrt(-1.0L) << std::endl; // should be NaN
 
     std::cout << "\n*** end sqrt test ***\n" << std::endl;
 
