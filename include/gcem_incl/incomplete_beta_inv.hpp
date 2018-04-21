@@ -174,7 +174,7 @@ template<typename T>
 constexpr
 T
 incomplete_beta_inv_err_val(const T value, const T alpha_par, const T beta_par, const T p)
-{ // err_val = f(x)
+{   // err_val = f(x)
     return( incomplete_beta(alpha_par,beta_par,value) - p );
 }
 
@@ -182,8 +182,14 @@ template<typename T>
 constexpr
 T
 incomplete_beta_inv_deriv_1(const T value, const T alpha_par, const T beta_par, const T lb_val)
-{ // derivative of the incomplete beta function w.r.t. x
-    return( exp( (alpha_par - T(1))*log(value) + (beta_par - T(1))*log(T(1) - value) - lb_val ) );
+{   // derivative of the incomplete beta function w.r.t. x
+    return( // indistinguishable from zero or one
+            GCLIM<T>::epsilon() > abs(value) ? \
+                T(0) :
+            GCLIM<T>::epsilon() > abs(T(1) - value) ? \
+                T(0) :
+            // else
+                exp( (alpha_par - T(1))*log(value) + (beta_par - T(1))*log(T(1) - value) - lb_val ) );
 }
 
 template<typename T>
@@ -224,11 +230,16 @@ T
 incomplete_beta_inv_recur(const T value, const T alpha_par, const T beta_par, const T p, const T deriv_1,
                           const T lb_val, const int iter_count)
 {
-    return incomplete_beta_inv_decision( value, alpha_par, beta_par, p,
+    return( // derivative = 0
+            GCLIM<T>::epsilon() > abs(deriv_1) ? \
+                incomplete_beta_inv_decision( value, alpha_par, beta_par, p, T(0), lb_val,
+                    GCEM_INCML_BETA_INV_MAX_ITER+1) :
+            // else
+            incomplete_beta_inv_decision( value, alpha_par, beta_par, p,
                incomplete_beta_inv_halley(
                    incomplete_beta_inv_ratio_val_1(value,alpha_par,beta_par,p,deriv_1),
                    incomplete_beta_inv_ratio_val_2(value,alpha_par,beta_par,p,deriv_1)
-               ), lb_val, iter_count);
+               ), lb_val, iter_count) );
 }
 
 template<typename T>
@@ -265,12 +276,26 @@ incomplete_beta_inv_int(const T alpha_par, const T beta_par, const T p)
                alpha_par,beta_par,p,lbeta(alpha_par,beta_par));
 }
 
+template<typename T>
+constexpr
+T
+incomplete_beta_inv_check(const T alpha_par, const T beta_par, const T p)
+{
+    return( // indistinguishable from zero or one
+            GCLIM<T>::epsilon() > p ? \
+                T(0) :
+            GCLIM<T>::epsilon() > abs(T(1) - p) ? \
+                T(1) :
+            // else
+                incomplete_beta_inv_int(alpha_par,beta_par,p) );
+}
+
 template<typename eT, typename pT>
 constexpr
 eT
 incomplete_beta_inv(const pT alpha_par, const pT beta_par, const eT p)
 {
-    return incomplete_beta_inv_int<eT>(alpha_par,beta_par,p);
+    return incomplete_beta_inv_check<eT>(alpha_par,beta_par,p);
 }
 
 #endif
