@@ -85,7 +85,7 @@ constexpr
 T
 incomplete_beta_decision(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth)
 {
-    return(// tolerance check
+    return( // tolerance check
                 abs(c_j*d_j - T(1)) < GCEM_INCML_BETA_TOL ? f_j*c_j*d_j :
             // max_iter check
                 depth < GCEM_INCML_BETA_MAX_ITER ? \
