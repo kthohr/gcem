@@ -85,7 +85,7 @@ incomplete_gamma_int_quad_lb(const T a, const T z)
             a > T(40)   ? z -  5*sqrt(a) :
             a > T(30)   ? z -  4*sqrt(a) :
             // else
-                max(T(0),z-2*sqrt(a)) );
+                max(T(0),z-3*sqrt(a)) );
 }
 
 template<typename T>
