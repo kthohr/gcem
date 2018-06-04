@@ -75,13 +75,36 @@ incomplete_gamma_int_quad_lb(const T a, const T z)
 {
     return( // break integration into ranges
             a > T(1000) ? z - 10*sqrt(a) :
-            a > T(800)  ? z -  9*sqrt(a) :
-            a > T(500)  ? z -  8*sqrt(a) :
-            a > T(300)  ? z -  7*sqrt(a) : 
-            a > T(100)  ? z -  6*sqrt(a) :
-            a > T(50)   ? z -  5*sqrt(a) :
+            a > T(800)  ? z - 10*sqrt(a) :
+            a > T(500)  ? z -  9*sqrt(a) :
+            a > T(300)  ? z -  9*sqrt(a) : 
+            a > T(100)  ? z -  8*sqrt(a) :
+            a > T(90)   ? z -  8*sqrt(a) :
+            a > T(70)   ? z -  7*sqrt(a) :
+            a > T(50)   ? z -  6*sqrt(a) :
+            a > T(40)   ? z -  5*sqrt(a) :
+            a > T(30)   ? z -  4*sqrt(a) :
             // else
-                min(T(0),z-4*sqrt(a)) );
+                max(T(0),z-2*sqrt(a)) );
+}
+
+template<typename T>
+constexpr
+T
+incomplete_gamma_int_quad_ub(const T a, const T z)
+{
+    return( // break integration into ranges
+            a > T(1000) ? min(z, a + 10*sqrt(a)) :
+            a > T(800)  ? min(z, a + 10*sqrt(a)) :
+            a > T(500)  ? min(z, a + 9*sqrt(a))  :
+            a > T(300)  ? min(z, a + 9*sqrt(a))  : 
+            a > T(100)  ? min(z, a + 8*sqrt(a))  :
+            a > T(90)   ? min(z, a + 8*sqrt(a))  :
+            a > T(70)   ? min(z, a + 7*sqrt(a))  :
+            a > T(50)   ? min(z, a + 6*sqrt(a))  :
+            a > T(40)   ? min(z, a + 5*sqrt(a))  :
+            // else
+                min(z, a + 4*sqrt(a)) );
 }
 
 template<typename T>
@@ -89,7 +112,9 @@ constexpr
 T
 incomplete_gamma_int_quad(const T a, const T z)
 {
-    return incomplete_gamma_int_quad_recur(incomplete_gamma_int_quad_lb(a,z),z,a,lgamma(a),0);
+    return incomplete_gamma_int_quad_recur(incomplete_gamma_int_quad_lb(a,z),
+                                           incomplete_gamma_int_quad_ub(a,z),
+                                           a,lgamma(a),0);
 }
 
 // cf expansion
