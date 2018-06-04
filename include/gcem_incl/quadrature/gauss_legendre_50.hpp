@@ -23,7 +23,7 @@
  */
 
 static const long double gauss_legendre_50_points[50] = \
-{ 
+{
     -0.03109833832718887611232898966595L,
      0.03109833832718887611232898966595L,
     -0.09317470156008614085445037763960L,
@@ -77,7 +77,7 @@ static const long double gauss_legendre_50_points[50] = \
 };
 
 static const long double gauss_legendre_50_weights[50] = \
-{ 
+{
     0.06217661665534726232103310736061L,
     0.06217661665534726232103310736061L,
     0.06193606742068324338408750978083L,

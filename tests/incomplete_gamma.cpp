@@ -50,6 +50,16 @@ int main()
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << shape_bad << "," << x4 << ") = " << std::setprecision(18) << gcem::incomplete_gamma(shape_bad,x4) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << shape_1 << "," << x_bad << ") = " << std::setprecision(18) << gcem::incomplete_gamma(shape_1,x_bad) << std::endl;
     std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << shape_bad << "," << x_bad << ") = " << std::setprecision(18) << gcem::incomplete_gamma(shape_bad,x_bad) << std::endl;
+    std::cout << std::endl;
+
+    //
+
+    constexpr long double x_big = 19.0;
+    constexpr long double shape_big = 20.0;
+
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << shape_big << "," << x_big << ") = " << std::setprecision(18) << gcem::incomplete_gamma(shape_big,x_big) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << shape_big << "," << x_big << ") = " << std::setprecision(18) << gcem::incomplete_gamma(shape_big,x_big) << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_inc_gamma(" << shape_big << "," << x_big << ") = " << std::setprecision(18) << gcem::incomplete_gamma(shape_big,x_big) << std::endl;
 
     std::cout << "\n*** end incomplete_gamma test ***\n" << std::endl;
 

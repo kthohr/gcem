@@ -29,7 +29,7 @@
 #endif
 
 #ifndef GCEM_VERSION_MINOR
-    #define GCEM_VERSION_MINOR 2
+    #define GCEM_VERSION_MINOR 3
 #endif
 
 #ifndef GCEM_VERSION_PATCH
