@@ -45,11 +45,30 @@ matrix:
       addons:
         apt:
           packages:
+            - g++-8
+            - gfortran-8
+          sources: &sources
+            - ubuntu-toolchain-r-test
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8 && FC=gfortran-8"
+      compiler: gcc
+
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
             - clang-5.0
           sources: &sources
             - llvm-toolchain-trusty-5.0
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+      compiler: clang
+
+    - os: osx
+      osx_image: xcode9
+      env:
+        - MATRIX_EVAL="CC=clang && CXX=clang++"
       compiler: clang
 
 before_install:
@@ -59,9 +78,9 @@ install:
     - |
       if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
         sudo apt-get update
-      else
+      # else
         # OSX
-        brew upgrade gcc || brew install gcc
+        # brew upgrade gcc || brew install gcc
       fi
 
 script:
