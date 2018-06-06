@@ -41,12 +41,12 @@ log_multi_gamma_int(const Ta a, const Tb p)
                     + lgamma(a) + log_multi_gamma_int(a - Ta(0.5),p-1) );
 }
 
-template<typename Ta, typename Tb>
+template<typename eT, typename pT>
 constexpr
-return_t<Ta>
-log_multi_gamma(const Ta a, const Tb p)
+return_t<eT>
+log_multi_gamma(const pT a, const eT p)
 {
-    return log_multi_gamma_int(return_t<Ta>(a),p);
+    return log_multi_gamma_int(return_t<eT>(a),p);
 }
 
 #endif
