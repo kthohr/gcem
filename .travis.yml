@@ -93,6 +93,7 @@ script:
 after_success:
   - |
     if [[ "${SHOULD_RUN_COVERAGE}" == "y" ]]; then 
+      alias gcov=$CCOV
       bash <(curl -s https://codecov.io/bash)
     fi
 
