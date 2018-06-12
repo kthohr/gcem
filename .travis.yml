@@ -49,7 +49,7 @@ matrix:
           sources: &sources
             - ubuntu-toolchain-r-test
       env:
-        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8 && CCOV=gcov-8 && SHOULD_RUN_COVERAGE=1"
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8 && CCOV=gcov-8 && SHOULD_RUN_COVERAGE=y"
       compiler: gcc
 
     - os: linux
@@ -90,7 +90,7 @@ script:
 
 after_success:
   - |
-    if [ "$SHOULD_RUN_COVERAGE" -eq "1" ]; then
+    if [[ "${SHOULD_RUN_COVERAGE}" == "y" ]]; then 
       bash <(curl -s https://codecov.io/bash)
     fi
 

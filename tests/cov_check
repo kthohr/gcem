@@ -1,5 +1,5 @@
 
-if [ "$SHOULD_RUN_COVERAGE" -eq "1" ]; then
+if [[ "${SHOULD_RUN_COVERAGE}" == "y" ]]; then 
 
     if [ -z ${CCOV+x} ]; then 
         CCOV=gcov
