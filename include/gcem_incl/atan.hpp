@@ -45,8 +45,8 @@ constexpr
 T
 atan_series_order(const T x, const T x_pow, const uint_t order, const uint_t max_order)
 {
-    return( order == 1        ? GCEM_HALF_PI - T(1)/x \
-                                 + atan_series_order(x*x,pow(x,3),order+1,max_order) :
+    return( order == 1 ? \
+                GCEM_HALF_PI - T(1)/x + atan_series_order(x*x,pow(x,3),order+1,max_order) :
             // NOTE: x changes to x*x for order > 1
             order < max_order ? \
                 atan_series_order_calc(x,x_pow,order) \

@@ -36,7 +36,7 @@ log_int_cf_main(const T xx, const int depth)
 {
     return( depth < GCEM_LOG_MAX_ITER_SMALL ? \
             // if 
-                T(2*depth - 1) - depth*depth*xx/log_int_cf_main(xx,depth+1) :
+                T(2*depth - 1) - T(depth*depth)*xx/log_int_cf_main(xx,depth+1) :
             // else 
                 T(2*depth - 1) );
 }
@@ -46,7 +46,7 @@ constexpr
 T
 log_int_cf_begin(const T x)
 { 
-    return( 2*x/log_int_cf_main(x*x,1) );
+    return( T(2)*x/log_int_cf_main(x*x,1) );
 }
 
 template<typename T>
@@ -61,11 +61,16 @@ constexpr
 long double
 log_int_mantissa_integer(const int x)
 {
-    return( x == 2  ? 0.69314718055994530942L : x == 3 ? 1.09861228866810969140L :
-            x == 4  ? 1.38629436111989061883L : x == 5 ? 1.60943791243410037460L :
-            x == 6  ? 1.79175946922805500081L : x == 7 ? 1.94591014905531330511L :
-            x == 8  ? 2.07944154167983592825L : x == 9 ? 2.19722457733621938279L :
-            x == 10 ? 2.30258509299404568402L : 0.0L );
+    return( x == 2  ? 0.6931471805599453094172321214581765680755L :
+            x == 3  ? 1.0986122886681096913952452369225257046475L :
+            x == 4  ? 1.3862943611198906188344642429163531361510L :
+            x == 5  ? 1.6094379124341003746007593332261876395256L :
+            x == 6  ? 1.7917594692280550008124773583807022727230L :
+            x == 7  ? 1.9459101490553133051053527434431797296371L :
+            x == 8  ? 2.0794415416798359282516963643745297042265L :
+            x == 9  ? 2.1972245773362193827904904738450514092950L :
+            x == 10 ? 2.3025850929940456840179914546843642076011L :
+                      0.0L );
 }
 
 template<typename T>
@@ -73,7 +78,7 @@ constexpr
 T
 log_int_mantissa(const T x)
 {   // divide by the integer part of x, which will be in [1,10], then adjust using tables
-    return( log_int_main(x/static_cast<int>(x)) + T(log_int_mantissa_integer(static_cast<int>(x))) );
+    return( log_int_main(x/T(static_cast<int>(x))) + T(log_int_mantissa_integer(static_cast<int>(x))) );
 }
 
 template<typename T>
@@ -81,7 +86,7 @@ constexpr
 T
 log_int_breakup(const T x)
 {   // x = a*b, where b = 10^c
-    return( log_int_mantissa(mantissa(x)) + T(GCEM_LOG_10)*(find_exponent(x,0)) );
+    return( log_int_mantissa(mantissa(x)) + T(GCEM_LOG_10)*T(find_exponent(x,0)) );
 }
 
 template<typename T>
@@ -89,7 +94,10 @@ constexpr
 T
 log_check(const T x)
 {
-    return( // x <= 0
+    return( // x < 0
+            x < T(0) ? \
+                GCLIM<T>::quiet_NaN() :
+            // x ~= 0
             GCLIM<T>::epsilon() > x ? \
                 - GCLIM<T>::infinity() :
             // indistinguishable from 1

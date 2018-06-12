@@ -25,15 +25,14 @@
 #ifndef _gcem_incomplete_gamma_HPP
 #define _gcem_incomplete_gamma_HPP
 
-// quadrature
+// 50 point Gauss-Legendre quadrature
 
 template<typename T>
 constexpr
 T
 incomplete_gamma_int_quad_inp_vals(const T lb, const T ub, const int counter)
 {
-    return( // 50 point Gauss-Legendre
-            (ub-lb) * gauss_legendre_50_points[counter] / T(2) + (ub + lb) / T(2) );
+    return (ub-lb) * gauss_legendre_50_points[counter] / T(2) + (ub + lb) / T(2);
 }
 
 template<typename T>
@@ -41,8 +40,7 @@ constexpr
 T
 incomplete_gamma_int_quad_weight_vals(const T lb, const T ub, const int counter)
 {
-    return( // 50 point Gauss-Legendre
-            (ub-lb) * gauss_legendre_50_weights[counter] / T(2));
+    return (ub-lb) * gauss_legendre_50_weights[counter] / T(2);
 }
 
 template<typename T>
@@ -73,8 +71,7 @@ constexpr
 T
 incomplete_gamma_int_quad_lb(const T a, const T z)
 {
-    return( // break integration into ranges
-            a > T(1000) ? z - 10*sqrt(a) :
+    return( a > T(1000) ? z - 10*sqrt(a) : // break integration into ranges
             a > T(800)  ? z - 10*sqrt(a) :
             a > T(500)  ? z -  9*sqrt(a) :
             a > T(300)  ? z -  9*sqrt(a) : 
@@ -93,8 +90,7 @@ constexpr
 T
 incomplete_gamma_int_quad_ub(const T a, const T z)
 {
-    return( // break integration into ranges
-            a > T(1000) ? min(z, a + 10*sqrt(a)) :
+    return( a > T(1000) ? min(z, a + 10*sqrt(a)) :
             a > T(800)  ? min(z, a + 10*sqrt(a)) :
             a > T(500)  ? min(z, a + 9*sqrt(a))  :
             a > T(300)  ? min(z, a + 9*sqrt(a))  : 
@@ -112,9 +108,7 @@ constexpr
 T
 incomplete_gamma_int_quad(const T a, const T z)
 {
-    return incomplete_gamma_int_quad_recur(incomplete_gamma_int_quad_lb(a,z),
-                                           incomplete_gamma_int_quad_ub(a,z),
-                                           a,lgamma(a),0);
+    return incomplete_gamma_int_quad_recur(incomplete_gamma_int_quad_lb(a,z), incomplete_gamma_int_quad_ub(a,z), a,lgamma(a),0);
 }
 
 // cf expansion
@@ -155,8 +149,7 @@ constexpr
 T
 incomplete_gamma_check(const T a, const T z)
 {
-    return( // sanity checks
-            GCLIM<T>::epsilon() > z ? \
+    return( GCLIM<T>::epsilon() > z ? \
                 T(0) : 
             GCLIM<T>::epsilon() > a ? \
                 T(1) : 

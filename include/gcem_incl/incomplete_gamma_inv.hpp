@@ -37,7 +37,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_inv_t_val_1(const T p)
-{ // a > 1.0
+{   // a > 1.0
     return( p > T(0.5) ? sqrt(-2*log(T(1) - p)) : sqrt(-2*log(p)) );
 }
 
@@ -45,7 +45,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_inv_t_val_2(const T a)
-{ // a <= 1.0
+{   // a <= 1.0
     return( T(1) - T(0.253) * a - T(0.12) * a*a );
 }
 
@@ -80,7 +80,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_inv_initial_val_2(const T a, const T p, const T t_val)
-{ // a <= 1.0
+{   // a <= 1.0
     return( p < t_val ? \
              // if 
                 pow(p/t_val,T(1)/a) : 

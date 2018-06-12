@@ -25,29 +25,37 @@
 #ifndef _gcem_binomial_coef_HPP
 #define _gcem_binomial_coef_HPP
 
-template<typename T = double>
+template<typename T>
 constexpr
 T
 binomial_coef_int(const uint_t n, const uint_t k, const uint_t count)
 {
     return( count < k ? 
             // if
-                binomial_coef_int(n,k,count+1) * static_cast<T>(n - k + count) / count : 
+                binomial_coef_int<T>(n,k,count+1) * static_cast<T>(n - k + count) / count : 
             // else
                 static_cast<T>(n) / count );
 }
 
-template<typename T = double>
+template<typename T>
 constexpr
 T
-binomial_coef(const uint_t n, const uint_t k)
+binomial_coef_check(const uint_t n, const uint_t k)
 {
     return( // edge cases
+            k == 0U ? T(1) : // deals with 0 choose 0 case
             n == 0U ? T(0) :
-            k == 0U ? T(1) :
             // else
             k > n - k ? binomial_coef_int<T>(n,n-k,1U) :
                         binomial_coef_int<T>(n,k,1U) );
+}
+
+template<typename pT, typename eT = double>
+constexpr
+eT
+binomial_coef(const pT n, const pT k)
+{
+    return binomial_coef_check<eT>(uint_t(n),uint_t(k));
 }
 
 #endif

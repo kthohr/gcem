@@ -28,19 +28,21 @@
 template<typename T>
 constexpr
 T
-sqrt_recur(const T x, const T xn)
+sqrt_recur(const T x, const T xn, const size_t count)
 {
-    return( abs(xn - x/xn) / (1 + xn) < T(GCEM_SQRT_TOL) ? \
+    return( abs(xn - x/xn) / (T(1) + xn) < GCLIM<T>::epsilon() ? \
             // if
                 xn :
+            count < GCEM_SQRT_MAX_ITER ? \
             // else
-                sqrt_recur(x,T(0.5)*(xn + x/xn)) );
+                sqrt_recur(x,T(0.5)*(xn + x/xn), count+1) :
+                xn );
 }
 
 template<typename T>
 constexpr
 T
-sqrt_check(const T x)
+sqrt_check(const T x, const T m_val)
 {
     return( // negative values
             x < T(0) ? \
@@ -51,7 +53,9 @@ sqrt_check(const T x)
             GCLIM<T>::epsilon() > abs(T(1)-x) ? \
                 x :
             // else
-                sqrt_recur(x,x/T(2)) );
+            x > T(4) ?
+                sqrt_check(x/T(4),T(2)*m_val) :
+                m_val*sqrt_recur(x,x/T(2),0) );
 }
 
 template<typename T>
@@ -59,7 +63,7 @@ constexpr
 return_t<T>
 sqrt(const T x)
 {
-    return sqrt_check<return_t<T>>(x);
+    return sqrt_check<return_t<T>>(x,T(1));
 }
 
 #endif
