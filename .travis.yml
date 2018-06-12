@@ -91,7 +91,7 @@ script:
 
 after_success:
   - |
-    if [[ "${CXX}" != "clang++-5.0" ]]; then
+    if [[ "${CXX}" == "g++-8" ]]; then
       bash <(curl -s https://codecov.io/bash)
     fi
 
