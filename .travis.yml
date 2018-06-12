@@ -38,6 +38,8 @@ matrix:
             - ubuntu-toolchain-r-test
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - CCOV=gcov-7
+        - SHOULD_RUN_COVERAGE="y"
       compiler: gcc
 
     - os: linux
@@ -50,8 +52,6 @@ matrix:
             - ubuntu-toolchain-r-test
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
-        - CCOV=gcov-8
-        - SHOULD_RUN_COVERAGE="y"
       compiler: gcc
 
     - os: linux
