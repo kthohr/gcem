@@ -18,30 +18,43 @@
   ##
   ################################################################################*/
 
-#include <cmath>
-#include <iostream>
-#include <iomanip>
-#include "gcem.hpp"
+#include "gcem_tests.hpp"
 
 int main()
 {
-    constexpr long double x = 0.8;
-
     std::cout << "\n*** begin incomplete_beta test ***\n" << std::endl;
 
-    std::cout << "incomplete_beta(" << 0.9 << "," << 0.9 << "," << x << ") = " << gcem::incomplete_beta(0.9L,0.9L,x) << std::endl;
-    std::cout << std::endl;
+    //
 
-    std::cout << "incomplete_beta(" << 1.0 << "," << 1.0 << "," << x << ") = " << gcem::incomplete_beta(1.0L,1.0L,x) << std::endl;
-    std::cout << "incomplete_beta(" << 2.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta(2.0L,2.0L,x) << std::endl;
-    std::cout << std::endl;
+    std::function<long double (long double, long double, long double)> test_fn = gcem::incomplete_beta<long double,long double>;
+    std::string test_fn_name = "gcem::incomplete_beta";
 
-    std::cout << "incomplete_beta(" << 3.0 << "," << 2.0 << "," << x << ") = " << gcem::incomplete_beta(3.0L,2.0L,x) << std::endl;
-    std::cout << "1.0 - incomplete_beta(" << 2.0 << "," << 3.0 << ",1-" << x << ") = " << 1.0L - gcem::incomplete_beta(2.0L,3.0L,1-x) << std::endl;
-    std::cout << std::endl;
+    //
 
-    std::cout << "incomplete_beta(" << 3.0 << "," << 2.0 << "," << 0.001 << ") = " << gcem::incomplete_beta(3.0L,2.0L,0.001L) << std::endl;
-    std::cout << "incomplete_beta(" << 2.0 << "," << 2.0 << "," << 0.4 << ") = " << gcem::incomplete_beta(3.0L,2.0L,0.4L) << std::endl;
+    static constexpr long double test_vals_1[] = { 0.9L, 0.9L, 1.0L, 2.0L, 3.0L, 2.0L,   3.0L, 2.0L }; // a
+    static constexpr long double test_vals_2[] = { 0.9L, 0.9L, 1.0L, 2.0L, 2.0L, 3.0L,   2.0L, 2.0L }; // b
+    static constexpr long double test_vals_3[] = { 0.1L, 0.8L, 0.8L, 0.8L, 0.8L, 0.8L, 0.001L, 0.4L }; // x
+
+    static constexpr long double expected_vals[] = { 0.11464699677582491921L,   \
+                                                     0.78492840804657726395L,   \
+                                                     0.80000000000000004441L,   \
+                                                     0.89600000000000001865L,   \
+                                                     0.81920000000000003926L,   \
+                                                     0.97279999999999999805L,   \
+                                                     3.9970000000000084279e-09L,\
+                                                     0.35200000000000003508L };
+                                                     
+
+    PRINT_TEST_3_EXPECT(test_fn_name,test_vals_1,test_vals_2,test_vals_3,0,test_fn,expected_vals[0],true," ",3,18,false,false);
+    PRINT_TEST_3_EXPECT(test_fn_name,test_vals_1,test_vals_2,test_vals_3,1,test_fn,expected_vals[1],true," ",3,18,false,false);
+    PRINT_TEST_3_EXPECT(test_fn_name,test_vals_1,test_vals_2,test_vals_3,2,test_fn,expected_vals[2],true," ",3,18,false,false);
+    PRINT_TEST_3_EXPECT(test_fn_name,test_vals_1,test_vals_2,test_vals_3,3,test_fn,expected_vals[3],true," ",3,18,false,false);
+    PRINT_TEST_3_EXPECT(test_fn_name,test_vals_1,test_vals_2,test_vals_3,4,test_fn,expected_vals[4],true," ",3,18,false,false);
+    PRINT_TEST_3_EXPECT(test_fn_name,test_vals_1,test_vals_2,test_vals_3,5,test_fn,expected_vals[5],true," ",3,18,false,false);
+    PRINT_TEST_3_EXPECT(test_fn_name,test_vals_1,test_vals_2,test_vals_3,6,test_fn,expected_vals[6],true," ",3,18,false,false);
+    PRINT_TEST_3_EXPECT(test_fn_name,test_vals_1,test_vals_2,test_vals_3,7,test_fn,expected_vals[7],false," ",3,18,false,false);
+
+    //
 
     std::cout << "\n*** end incomplete_beta test ***\n" << std::endl;
 

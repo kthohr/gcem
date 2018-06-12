@@ -18,63 +18,34 @@
   ##
   ################################################################################*/
 
-#include <iostream>
-#include <cmath>
-#include <iomanip>
-#include "gcem.hpp"
+#include "gcem_tests.hpp"
 
 int main()
 {
     std::cout << "\n*** begin sinh test ***\n" << std::endl;
 
-    constexpr long double x1 = 0.0L;
-    long double x2 = x1;
-    
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_sinh(" << x1 <<") = " << std::setprecision(18) << gcem::sinh(x1) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_sinh(" << x1 <<")  = " << std::setprecision(18) << std::sinh(x2) << std::endl;
-    std::cout << std::endl;
+    //
 
-    constexpr long double x3 = 0.001L;
-    long double x4 = x3;
-    
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_sinh(" << x3 <<") = " << std::setprecision(18) << gcem::sinh(x3) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_sinh(" << x3 <<")  = " << std::setprecision(18) << std::sinh(x4) << std::endl;
-    std::cout << std::endl;
+    std::function<long double (long double)> test_fn = gcem::sinh<long double>;
+    std::string test_fn_name = "gcem::sinh";
 
-    constexpr long double x5 = 0.5L;
-    long double x6 = x5;
-    
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_sinh(" << x5 <<") = " << std::setprecision(18) << gcem::sinh(x5) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_sinh(" << x5 <<")  = " << std::setprecision(18) << std::sinh(x6) << std::endl;
-    std::cout << std::endl;
+    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::sinh(x); };
+    std::string std_fn_name = "std::sinh";
 
-    constexpr long double x7 = 0.7568025;
-    long double x8 = x7;
-    
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_sinh(" << x7 <<") = " << std::setprecision(18) << gcem::sinh(x7) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_sinh(" << x7 <<")  = " << std::setprecision(18) << std::sinh(x8) << std::endl;
-    std::cout << std::endl;
+    //
 
-    constexpr long double x9 = 1.0L;
-    long double x10 = x9;
-    
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_sinh(" << x9 <<") = " << std::setprecision(18) << gcem::sinh(x9) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_sinh(" << x9 <<")  = " << std::setprecision(18) << std::sinh(x10) << std::endl;
-    std::cout << std::endl;
+    static constexpr long double test_vals[] = { 0.0L, 0.001L, 0.5L, -0.5L, 0.7568025L, 1.0L, 5.0L };
 
-    constexpr long double x11 = 5.0L;
-    long double x12 = x11;
-    
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_sinh(" << x11 <<") = " << std::setprecision(18) << gcem::sinh(x11) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_sinh(" << x11 <<")  = " << std::setprecision(18) << std::sinh(x12) << std::endl;
-    std::cout << std::endl;
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,false," ",6,18,false,false);
 
-    constexpr long double x13 = -0.5L;
-    long double x14 = x13;
+    //
     
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_sinh(" << x13 <<") = " << std::setprecision(18) << gcem::sinh(x13) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "std_sinh(" << x14 <<")  = " << std::setprecision(18) << std::sinh(x14) << std::endl;
-
     std::cout << "\n*** end sinh test ***\n" << std::endl;
 
     return 0;

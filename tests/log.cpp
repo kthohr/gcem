@@ -20,45 +20,33 @@
 
 // g++-mp-7 -O3 -Wall -std=c++11 -fconstexpr-depth=20 -fconstexpr-steps=1271242 -I./../include log.cpp -o log.test -framework Accelerate
 
-#include <cmath>
-#include <iostream>
-#include <iomanip>
-#include "gcem.hpp"
+#include "gcem_tests.hpp"
 
 int main()
 {
-    constexpr long double x1 = 0.5;
-    long double x2 = x1;
-
-    constexpr long double x3 = 1.5;
-    long double x4 = x3;
-
-    constexpr long double x5 = 0.00199900000000000208L;
-    long double x6 = x5;
-
-    constexpr long double x7 = 41.5;
-    long double x8 = x7;
-
     std::cout << "\n*** begin log test ***\n" << std::endl;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x1 <<") = " << std::setprecision(18) << gcem::log(x1) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x2 <<")  = " << std::setprecision(18) << std::log(x2)  << std::endl;
+    //
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x3 <<") = " << std::setprecision(18) << gcem::log(x3) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x4 <<")  = " << std::setprecision(18) << std::log(x4)  << std::endl;
+    std::function<long double (long double)> test_fn = gcem::log<long double>;
+    std::string test_fn_name = "gcem::log";
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x5 <<") = " << std::setprecision(18) << gcem::log(x5) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x6 <<")  = " << std::setprecision(18) << std::log(x6)  << std::endl;
+    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::log(x); };
+    std::string std_fn_name = "std::log";
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log(" << x7 <<") = " << std::setprecision(18) << gcem::log(x7) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_log(" << x8 <<")  = " << std::setprecision(18) << std::log(x8)  << std::endl;
+    //
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "\ngcem_log(" << 2 <<") = " << std::setprecision(20) << gcem::log(2.0L) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "log2_cons   = " << std::setprecision(20) << GCEM_LOG_2 << std::endl;
+    static constexpr long double test_vals[] = { 0.5L, 0.00199900000000000208L, 1.5L, 41.5L, 0.0L, -1.0L };
+    
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",6,18,true,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,false," ",6,18,false,true);
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "\ngcem_log(" <<  0.0 <<") = " << std::setprecision(20) << gcem::log(0.0L) << std::endl; // should be - inf
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_log("   << -1.0 <<") = " << std::setprecision(20) << gcem::log(0.0L) << std::endl; // should be - inf
-
+    //
+    
     std::cout << "\n*** end log test ***\n" << std::endl;
 
     return 0;

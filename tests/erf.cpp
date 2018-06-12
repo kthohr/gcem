@@ -18,51 +18,37 @@
   ##
   ################################################################################*/
 
-#include <cmath>
-#include <iostream>
-#include <iomanip>
-#include "gcem.hpp"
+#include "gcem_tests.hpp"
 
 int main()
 {
-    constexpr long double x1 = - 1.3;
-    long double x2 = x1;
-
-    constexpr long double x3 = 0.0;
-    long double x4 = x3;
-
-    constexpr long double x5 = 1.3;
-    long double x6 = x5;
-
-    constexpr long double x7 = 2.05;
-    long double x8 = x7;
-
-    constexpr long double x9 = 3.1;
-    long double x10 = x9;
-
     std::cout << "\n*** begin erf test ***\n" << std::endl;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf(" << x1 <<") = " << std::setprecision(18) << gcem::erf(x1) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_erf(" << x1 <<")  = " << std::setprecision(18) << std::erf(x2) << std::endl;
-    std::cout << std::endl;
+    //
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf(" << x3 <<") = " << std::setprecision(18) << gcem::erf(x3) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_erf(" << x3 <<")  = " << std::setprecision(18) << std::erf(x4) << std::endl;
-    std::cout << std::endl;
+    std::function<long double (long double)> test_fn = gcem::erf<long double>;
+    std::string test_fn_name = "gcem::erf";
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf(" << x5 <<") = " << std::setprecision(18) << gcem::erf(x5) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_erf(" << x5 <<")  = " << std::setprecision(18) << std::erf(x6) << std::endl;
-    std::cout << std::endl;
+    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::erf(x); };
+    std::string std_fn_name = "std::erf";
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf(" << x7 <<") = " << std::setprecision(18) << gcem::erf(x7) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_erf(" << x7 <<")  = " << std::setprecision(18) << std::erf(x8) << std::endl;
-    std::cout << std::endl;
+    //
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf(" << x9 <<") = " << std::setprecision(18) << gcem::erf(x9) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_erf(" << x9 <<")  = " << std::setprecision(18) << std::erf(x10) << std::endl;
+    static constexpr long double test_vals[] = { -3.0L, -2.5L, -2.11L, -2.05L, -1.3L, 0.0L, 1.3L, 2.05L, 2.11L, 2.5L, 3.1L };
 
-    std::cout << "\nintegral check:\n" << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_erf(" << 2 <<") = " << std::setprecision(18) << gcem::erf(2) << std::endl;
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,7,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,8,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,9,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,10,test_fn,std_fn,false," ",3,18,false,false);
+
+    //
 
     std::cout << "\n*** end erf test ***\n" << std::endl;
 

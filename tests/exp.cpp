@@ -18,55 +18,33 @@
   ##
   ################################################################################*/
 
-#include <cmath>
-#include <iostream>
-#include <iomanip>
-#include "gcem.hpp"
+#include "gcem_tests.hpp"
 
 int main()
 {
-    constexpr long double x1 = 1.75;
-    long double x2 = x1;
-
-    constexpr long double x3 = 2.10;
-    long double x4 = x3;
-
-    constexpr long double x5 = -4.0;
-    long double x6 = x5;
-
-    constexpr long double x7 = -40.0;
-    long double x8 = x7;
-
-    constexpr long double x9 = 0.0001;
-    long double x10 = x9;
-
-    constexpr long double x11 = 1.9991;
-    long double x12 = x11;
-
     std::cout << "\n*** begin exp test ***\n" << std::endl;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x1 <<") = " << std::setprecision(18) << gcem::exp(x1) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x2 <<")  = " << std::setprecision(18) << std::exp(x2) << std::endl;
-    std::cout << std::endl;
+    //
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x3 <<") = " << std::setprecision(18) << gcem::exp(x3) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x4 <<")  = " << std::setprecision(18) << std::exp(x4) << std::endl;
-    std::cout << std::endl;
+    std::function<long double (long double)> test_fn = gcem::exp<long double>;
+    std::string test_fn_name = "gcem::exp";
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x5 <<") = " << std::setprecision(18) << gcem::exp(x5) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x6 <<")  = " << std::setprecision(18) << std::exp(x6) << std::endl;
-    std::cout << std::endl;
+    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::exp(x); };
+    std::string std_fn_name = "std::exp";
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x7 <<") = " << std::setprecision(18) << gcem::exp(x7) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x8 <<")  = " << std::setprecision(18) << std::exp(x8) << std::endl;
-    std::cout << std::endl;
+    //
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x9 <<") = " << std::setprecision(18) << gcem::exp(x9) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x10 <<")  = " << std::setprecision(18) << std::exp(x10) << std::endl;
-    std::cout << std::endl;
+    static constexpr long double test_vals[] = { -40.0L, -4.0L, 0.0001L, 1.75L, 1.9991L, 2.10L, 4.0L };
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_exp(" << x11 <<") = " << std::setprecision(18) << gcem::exp(x11) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "std_exp(" << x12 <<")  = " << std::setprecision(18) << std::exp(x12) << std::endl;
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",5,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",5,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",5,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",5,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",5,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",5,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,false," ",5,18,false,false);
+
+    //
 
     std::cout << "\n*** end exp test ***\n" << std::endl;
 

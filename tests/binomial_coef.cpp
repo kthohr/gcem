@@ -18,26 +18,31 @@
   ##
   ################################################################################*/
 
-#include <iostream>
-#include <cmath>
-#include <iomanip>
-#include "gcem.hpp"
+#include "gcem_tests.hpp"
 
 int main()
 {
-    constexpr int n = 5;
-    constexpr int k = 2;
+    std::cout << "\n*** begin binomial_coef test ***\n" << std::endl;
 
-    // long double result = gcem::binomial_coef(n,k);
+    //
 
-    std::cout << "\nbegin binomial_coef test\n" << std::endl;
+    std::function<long double (long double, long double)> test_fn = gcem::binomial_coef<long double, long double>;
+    std::string test_fn_name = "gcem::binomial_coef";
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_binomial_coef(" << 0 <<"," << 0 << ") = " << std::setprecision(2) << gcem::binomial_coef(0U,0U) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_binomial_coef(" << 0 <<"," << 1 << ") = " << std::setprecision(2) << gcem::binomial_coef(0U,1U) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_binomial_coef(" << 1 <<"," << 0 << ") = " << std::setprecision(2) << gcem::binomial_coef(1U,0U) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << "gcem_binomial_coef(" << n <<"," << k << ") = " << std::setprecision(2) << gcem::binomial_coef(n,k) << std::endl;
+    //
 
-    std::cout << "\nend binomial_coef test" << std::endl;
+    static constexpr long double test_vals_1[] = { 0.0L, 0.0L, 1.0L, 1.0L, 5.0L };
+    static constexpr long double test_vals_2[] = { 0.0L, 1.0L, 0.0L, 1.0L, 2.0L };
+
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,0,test_fn,1.0L,true,"",2,2,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,1,test_fn,0.0L,true,"",2,2,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,2,test_fn,1.0L,true,"",2,2,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,3,test_fn,1.0L,true,"",2,2,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,4,test_fn,10.0L,false,"",2,2,false,false);
+
+    //
+
+    std::cout << "\n*** end binomial_coef test ***\n" << std::endl;
 
     return 0;
 }

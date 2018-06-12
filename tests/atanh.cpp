@@ -18,56 +18,32 @@
   ##
   ################################################################################*/
 
-#include <cmath>
-#include <iostream>
-#include <iomanip>
-#include "gcem.hpp"
+#include "gcem_tests.hpp"
 
 int main()
 {
-    
     std::cout << "\n*** begin atanh test ***\n" << std::endl;
 
-    constexpr long double x1 = -0.99;
-    long double x2 = x1;
+    //
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_atanh(" << x1 <<") = " << std::setprecision(18) << gcem::atanh(x1) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x1 <<")  = " << std::setprecision(18) << std::atanh(x2) << std::endl;
-    std::cout << std::endl;
+    std::function<long double (long double)> test_fn = gcem::atanh<long double>;
+    std::string test_fn_name = "gcem::atanh";
 
-    constexpr long double x3 = 0.0L;
-    long double x4 = x3;
+    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::atanh(x); };
+    std::string std_fn_name = "std::atanh";
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_atanh(" << x3 <<") = " << std::setprecision(18) << gcem::atanh(x3) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x3 <<")  = " << std::setprecision(18) << std::atanh(x4) << std::endl;
-    std::cout << std::endl;
+    //
 
-    constexpr long double x5 = 0.001;
-    long double x6 = x5;
+    static constexpr long double test_vals[] = { -0.99L, 0.0L, 0.001L, 1.0L, -1.0L, 1.1L };
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_atanh(" << x5 <<") = " << std::setprecision(18) << gcem::atanh(x5) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x5 <<")  = " << std::setprecision(18) << std::atanh(x6) << std::endl;
-    std::cout << std::endl;
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",3,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",3,18,true,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",3,18,true,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,false," ",3,18,false,true);
 
-    // bad values
-
-    constexpr long double x7 = 1.0L; // bad value
-    long double x8 = x7;
-
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_atanh(" << x7 <<") = " << std::setprecision(18) << gcem::atanh(x7) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x7 <<")  = " << std::setprecision(18) << std::atanh(x8) << std::endl;
-
-    constexpr long double x9 = -1.0L; // bad value
-    long double x10 = x9;
-
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_atanh(" << x9 <<") = " << std::setprecision(18) << gcem::atanh(x9) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x10 <<")  = " << std::setprecision(18) << std::atanh(x10) << std::endl;
-
-    constexpr long double x11 = 1.1L; // illegal value
-    long double x12 = x11;
-
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_atanh(" << x11 <<") = " << std::setprecision(18) << gcem::atanh(x11) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "std_atanh(" << x12 <<")  = " << std::setprecision(18) << std::atanh(x12) << std::endl;
+    //
 
     std::cout << "\n*** end atanh test ***\n" << std::endl;
 

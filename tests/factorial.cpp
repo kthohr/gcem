@@ -18,32 +18,32 @@
   ##
   ################################################################################*/
 
-#include <cmath>
-#include <iostream>
-#include <iomanip>
-#include "gcem.hpp"
+#include "gcem_tests.hpp"
 
 int main()
 {
-    constexpr int x1 = 5;
-    int x2 = x1;
-
-    constexpr long double x3 = 3.10;
-    long double x4 = x3;
-
     std::cout << "\n*** begin factorial test ***\n" << std::endl;
 
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "gcem_factorial(" << x1 <<     ") = " << std::setprecision(1) << gcem::factorial(x1) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(4) << "    std_tgamma(" << x2 + 1 << ") = " << std::setprecision(1) << std::tgamma(x2+1) << std::endl;
-    std::cout << std::endl;
+    //
+
+    std::function<long double (long double)> test_fn_int = [] (long double x) -> long double \
+        { return static_cast<long double>(gcem::factorial<size_t>(size_t(x))); };
+    std::function<long double (long double)> test_fn_dbl = gcem::factorial<long double>;
+    std::string test_fn_name = "gcem::factorial";
+
+    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::tgamma(x+1); };
+    std::string std_fn_name = "std::tgamma";
+
+    //
+
+    static constexpr long double test_vals[] = { 3.1L, 5.0L, 7.0L };
+
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn_dbl,std_fn,true,"    ",2,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn_int,std_fn,true,"    ",2,2,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn_int,std_fn,false,"    ",2,2,false,false);
+
+    //
     
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_factorial(" << 7 <<     ") = " << std::setprecision(1) << gcem::factorial(7) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "    std_tgamma(" << 8 << ") = " << std::setprecision(1) << std::tgamma(8) << std::endl;
-    std::cout << std::endl;
-
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "gcem_factorial(" << x3     << ") = " << std::setprecision(18) << gcem::factorial(x3) << std::endl;
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2) << "    std_tgamma(" << x4 + 1 << ") = " << std::setprecision(18) << std::tgamma(x4+1) << std::endl;
-
     std::cout << "\n*** end factorial test ***\n" << std::endl;
 
     return 0;
