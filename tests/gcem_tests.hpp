@@ -22,6 +22,7 @@
 #include <iostream>
 #include <iomanip>
 #include "gcem.hpp"
+#include <functional>
 
 //
 // one input
