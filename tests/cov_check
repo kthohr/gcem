@@ -1,6 +1,13 @@
 
-if [[ "${CXX}" != "clang++-5.0" ]]; then
+if [ "$SHOULD_RUN_COVERAGE" -eq "1" ]; then
+
+    if [ -z ${CCOV+x} ]; then 
+        CCOV=gcov
+    fi
+
+    echo "CCOV set to ${CCOV}"
+
     for t in ./*.cpp; do
-    gcov "$t" > /dev/null 2>&1
+        $CCOV "$t" > /dev/null 2>&1
     done
 fi
