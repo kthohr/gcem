@@ -1,4 +1,6 @@
 
+echo "SHOULD_RUN_COVERAGE: ${SHOULD_RUN_COVERAGE}"
+
 if [[ "${SHOULD_RUN_COVERAGE}" == "y" ]]; then 
 
     if [ -z ${CCOV+x} ]; then 
