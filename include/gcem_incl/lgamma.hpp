@@ -92,10 +92,10 @@ constexpr
 T
 lgamma_check(const T x)
 {
-    return( // indistinguishable from one or zero
+    return( // indistinguishable from one or <= zero
             GCLIM<T>::epsilon() > abs(x - T(1)) ? \
                 T(0) :
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::epsilon() > x ? \
                 GCLIM<T>::infinity() :
             // else
                 lgamma_begin(x - T(1)) );
