@@ -19,7 +19,8 @@
   ################################################################################*/
 
 #include <limits>
-#include <type_traits> // for is_integral
+#include <type_traits>  // for is_integral
+#include <cstddef>      // size_t
 
 //
 // version

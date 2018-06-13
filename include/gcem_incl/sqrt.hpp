@@ -31,7 +31,7 @@ namespace internal
 template<typename T>
 constexpr
 T
-sqrt_recur(const T x, const T xn, const size_t count)
+sqrt_recur(const T x, const T xn, const std::size_t count)
 {
     return( abs(xn - x/xn) / (T(1) + xn) < GCLIM<T>::epsilon() ? \
             // if
