@@ -28,6 +28,9 @@
 #ifndef _gcem_erf_inv_HPP
 #define _gcem_erf_inv_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr T erf_inv_decision(const T value, const T p, const T direc, const int iter_count);
 
@@ -191,7 +194,7 @@ erf_inv_decision(const T value, const T p, const T direc, const int iter_count)
 template<typename T>
 constexpr
 T
-erf_inv_start(const T initial_val, const T p)
+erf_inv_recur_begin(const T initial_val, const T p)
 {
     return erf_inv_recur(initial_val,p,erf_inv_deriv_1(initial_val),1);
 }
@@ -199,17 +202,22 @@ erf_inv_start(const T initial_val, const T p)
 template<typename T>
 constexpr
 T
-erf_inv_int(const T p)
+erf_inv_begin(const T p)
 {
-    return erf_inv_start(erf_inv_initial_val(p),p);
+    return erf_inv_recur_begin(erf_inv_initial_val(p),p);
 }
+
+}
+
+//
+// main function
 
 template<typename T>
 constexpr
 return_t<T>
 erf_inv(const T p)
 {
-    return erf_inv_int<return_t<T>>(p);
+    return internal::erf_inv_begin<return_t<T>>(p);
 }
 
 

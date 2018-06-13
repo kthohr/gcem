@@ -32,7 +32,7 @@ find_whole(const T x)
 {
     return( abs(x - T(int(x))) > T(0.5) ? \
             // if 
-                T(int(x)) + sgn(x) : \
+                T(int(x)) + sgn(x) :
             //else 
                 T(int(x)) );
 }

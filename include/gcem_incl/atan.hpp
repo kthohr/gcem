@@ -29,6 +29,9 @@
 #ifndef _gcem_atan_HPP
 #define _gcem_atan_HPP
 
+namespace internal
+{
+
 // Series
 
 template<typename T>
@@ -102,7 +105,7 @@ atan_cf_main(const T x)
 template<typename T>
 constexpr
 T
-atan_int(const T x)
+atan_begin(const T x)
 {
     return( x > T(2.5) ? atan_series_main(x) : atan_cf_main(x) );
 }
@@ -117,16 +120,21 @@ atan_check(const T x)
                 T(0) :
             // negative or positive
             x < T(0) ? \
-                - atan_int(-x) :
-                  atan_int( x) );
+                - atan_begin(-x) :
+                  atan_begin( x) );
 }
+
+}
+
+//
+// main function
 
 template<typename T>
 constexpr
 return_t<T>
 atan(const T x)
 {
-    return atan_check(return_t<T>(x));
+    return internal::atan_check<return_t<T>>(x);
 }
 
 #endif

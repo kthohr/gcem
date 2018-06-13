@@ -27,10 +27,13 @@
 #ifndef _gcem_sin_HPP
 #define _gcem_sin_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
-sin_int(const T x)
+sin_compute(const T x)
 {
     return T(2)*x/(T(1) + x*x);
 }
@@ -44,15 +47,20 @@ sin_check(const T x)
             GCLIM<T>::epsilon() > abs(x) ? \
                 T(0) :
             // else
-                sin_int( tan(x/T(2)) ) );
+                sin_compute( tan(x/T(2)) ) );
 }
+
+}
+
+//
+// main function
 
 template<typename T>
 constexpr
 return_t<T>
 sin(const T x)
 {
-    return sin_check<return_t<T>>(x);
+    return internal::sin_check<return_t<T>>(x);
 }
 
 #endif

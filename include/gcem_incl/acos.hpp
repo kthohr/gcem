@@ -25,10 +25,13 @@
 #ifndef _gcem_acos_HPP
 #define _gcem_acos_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
-acos_int(const T x)
+acos_compute(const T x)
 {
     return( // only defined on [-1,1]
             abs(x) > T(1) ? \
@@ -49,17 +52,22 @@ acos_check(const T x)
 {
     return( x > T(0) ? \
             // if
-                acos_int(x) :
+                acos_compute(x) :
             // else 
-                T(GCEM_PI) - acos_int(-x) );
+                T(GCEM_PI) - acos_compute(-x) );
 }
+
+}
+
+//
+// main function
 
 template<typename T>
 constexpr
 return_t<T>
 acos(const T x)
 {
-    return acos_check<return_t<T>>(x);
+    return internal::acos_check<return_t<T>>(x);
 }
 
 #endif

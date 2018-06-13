@@ -25,6 +25,9 @@
 #ifndef _gcem_tan_HPP
 #define _gcem_tan_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
@@ -52,11 +55,11 @@ tan_cf_main(const T x)
 template<typename T>
 constexpr
 T
-tan_int(const T x)
+tan_begin(const T x)
 {   // tan(x) = tan(x + pi)
     return( x > T(GCEM_PI) ? \
             // if
-                tan_int( x - T(GCEM_PI) * int(x/T(GCEM_PI)) ) :
+                tan_begin( x - T(GCEM_PI) * int(x/T(GCEM_PI)) ) :
             // else 
                 tan_cf_main(x) );
 }
@@ -71,16 +74,21 @@ tan_check(const T x)
                 T(0) :
             // else
                 x < T(0) ? \
-                    - tan_int(-x) : 
-                      tan_int( x) );
+                    - tan_begin(-x) : 
+                      tan_begin( x) );
 }
+
+}
+
+//
+// main function
 
 template<typename T>
 constexpr
 return_t<T>
 tan(const T x)
 {
-    return tan_check<return_t<T>>(x);
+    return internal::tan_check<return_t<T>>(x);
 }
 
 #endif

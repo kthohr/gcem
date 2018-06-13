@@ -25,10 +25,13 @@
 #ifndef _gcem_cos_HPP
 #define _gcem_cos_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
-cos_int(const T x)
+cos_compute(const T x)
 {
     return( T(1) - x*x)/(T(1) + x*x );
 }
@@ -42,15 +45,20 @@ cos_check(const T x)
             GCLIM<T>::epsilon() > abs(x) ? 
                 T(1) :
             // else
-                cos_int( tan(x/T(2)) ) );
+                cos_compute( tan(x/T(2)) ) );
 }
+
+}
+
+//
+// main function
 
 template<typename T>
 constexpr
 return_t<T>
 cos(const T x)
 {
-    return cos_check<return_t<T>>(x);
+    return internal::cos_check<return_t<T>>(x);
 }
 
 #endif

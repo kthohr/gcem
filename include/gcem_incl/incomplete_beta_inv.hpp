@@ -25,6 +25,9 @@
 #ifndef _gcem_incomplete_beta_inv_HPP
 #define _gcem_incomplete_beta_inv_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr T incomplete_beta_inv_decision(const T value, const T alpha_par, const T beta_par, const T p,
                                          const T direc, const T lb_val, const int iter_count);
@@ -270,15 +273,6 @@ incomplete_beta_inv_begin(const T initial_val, const T alpha_par, const T beta_p
 template<typename T>
 constexpr
 T
-incomplete_beta_inv_int(const T alpha_par, const T beta_par, const T p)
-{
-    return incomplete_beta_inv_begin(incomplete_beta_inv_initial_val(alpha_par,beta_par,p),
-               alpha_par,beta_par,p,lbeta(alpha_par,beta_par));
-}
-
-template<typename T>
-constexpr
-T
 incomplete_beta_inv_check(const T alpha_par, const T beta_par, const T p)
 {
     return( // indistinguishable from zero or one
@@ -287,15 +281,21 @@ incomplete_beta_inv_check(const T alpha_par, const T beta_par, const T p)
             GCLIM<T>::epsilon() > abs(T(1) - p) ? \
                 T(1) :
             // else
-                incomplete_beta_inv_int(alpha_par,beta_par,p) );
+                incomplete_beta_inv_begin(incomplete_beta_inv_initial_val(alpha_par,beta_par,p),
+                    alpha_par,beta_par,p,lbeta(alpha_par,beta_par)) );
 }
+
+}
+
+//
+// main function
 
 template<typename eT, typename pT>
 constexpr
 eT
 incomplete_beta_inv(const pT alpha_par, const pT beta_par, const eT p)
 {
-    return incomplete_beta_inv_check<eT>(alpha_par,beta_par,p);
+    return internal::incomplete_beta_inv_check<eT>(alpha_par,beta_par,p);
 }
 
 #endif

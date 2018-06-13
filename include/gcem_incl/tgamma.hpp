@@ -25,6 +25,9 @@
 #ifndef _gcem_tgamma_HPP
 #define _gcem_tgamma_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
@@ -39,12 +42,17 @@ tgamma_check(const T x)
                 exp(lgamma(x)));
 }
 
+}
+
+//
+// main function
+
 template<typename T>
 constexpr
 return_t<T>
 tgamma(const T x)
 {
-    return tgamma_check<return_t<T>>(x);
+    return internal::tgamma_check<return_t<T>>(x);
 }
 
 #endif

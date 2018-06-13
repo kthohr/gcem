@@ -25,12 +25,15 @@
 #ifndef _gcem_log_multi_gamma_HPP
 #define _gcem_log_multi_gamma_HPP
 
+namespace internal
+{
+
 // see https://en.wikipedia.org/wiki/Multivariate_gamma_function
 
 template<typename Ta, typename Tb>
 constexpr
 Ta
-log_multi_gamma_int(const Ta a, const Tb p)
+log_multi_gamma_recur(const Ta a, const Tb p)
 {
     return( p == Tb(1) ? \
                 lgamma(a) :
@@ -38,15 +41,20 @@ log_multi_gamma_int(const Ta a, const Tb p)
                 GCLIM<Ta>::quiet_NaN() :
             // else
                 Ta(GCEM_LOG_PI) * (p - Ta(1))/Ta(2) \
-                    + lgamma(a) + log_multi_gamma_int(a - Ta(0.5),p-1) );
+                    + lgamma(a) + log_multi_gamma_recur(a - Ta(0.5),p-1) );
 }
+
+}
+
+//
+// main function
 
 template<typename eT, typename pT>
 constexpr
 return_t<eT>
 log_multi_gamma(const pT a, const eT p)
 {
-    return log_multi_gamma_int(return_t<eT>(a),p);
+    return internal::log_multi_gamma_recur(return_t<eT>(a),p);
 }
 
 #endif

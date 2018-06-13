@@ -25,16 +25,19 @@
 #ifndef _gcem_exp_HPP
 #define _gcem_exp_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
-exp_cf_int(const T x, const int depth)
+exp_cf_recur(const T x, const int depth)
 {
     return( depth < GCEM_EXP_MAX_ITER_SMALL ? \
             // if
                 depth == 1 ? \
-                    T(1) - x/exp_cf_int(x,depth+1) : 
-                    T(1) + x/T(depth - 1) - x/depth/exp_cf_int(x,depth+1) : 
+                    T(1) - x/exp_cf_recur(x,depth+1) : 
+                    T(1) + x/T(depth - 1) - x/depth/exp_cf_recur(x,depth+1) : 
              // else
                 T(1) );
 }
@@ -44,7 +47,7 @@ constexpr
 T
 exp_cf(const T x)
 {
-    return( T(1)/exp_cf_int(x,1) );
+    return( T(1)/exp_cf_recur(x,1) );
 }
 
 template<typename T>
@@ -68,12 +71,17 @@ exp_check(const T x)
                                 exp_split(x) );
 }
 
+}
+
+//
+// main function
+
 template<typename T>
 constexpr
 return_t<T>
 exp(const T x)
 {
-    return exp_check<return_t<T>>(x);
+    return internal::exp_check<return_t<T>>(x);
 }
 
 // #ifndef GCEM_EXP_TOL

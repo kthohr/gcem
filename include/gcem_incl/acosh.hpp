@@ -25,10 +25,13 @@
 #ifndef _gcem_acosh_HPP
 #define _gcem_acosh_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
-acosh_int(const T x)
+acosh_compute(const T x)
 {
     return( // function defined for x >= 1
             x < T(1) ? \
@@ -40,12 +43,17 @@ acosh_int(const T x)
                 log( x + sqrt(x*x - T(1)) ) );
 }
 
+}
+
+//
+// main function
+
 template<typename T>
 constexpr
 return_t<T>
 acosh(const T x)
 {
-    return acosh_int<return_t<T>>(x);
+    return internal::acosh_compute<return_t<T>>(x);
 }
 
 #endif

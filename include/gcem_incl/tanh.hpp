@@ -25,6 +25,9 @@
 #ifndef _gcem_tanh_HPP
 #define _gcem_tanh_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
@@ -40,7 +43,7 @@ tanh_cf(const T xx, const int depth)
 template<typename T>
 constexpr
 T
-tanh_int(const T x)
+tanh_begin(const T x)
 {
     return( x/tanh_cf(x*x,1) );
 }
@@ -55,16 +58,21 @@ tanh_check(const T x)
                 T(0) :
              // else
                 x < T(0) ? \
-                    - tanh_int(-x) : 
-                      tanh_int( x) );
+                    - tanh_begin(-x) : 
+                      tanh_begin( x) );
 }
+
+}
+
+//
+// main function
 
 template<typename T>
 constexpr
 return_t<T>
 tanh(const T x)
 {
-    return tanh_check<return_t<T>>(x);
+    return internal::tanh_check<return_t<T>>(x);
 }
 
 #endif

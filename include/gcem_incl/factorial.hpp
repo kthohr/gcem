@@ -25,6 +25,9 @@
 #ifndef _gcem_factorial_HPP
 #define _gcem_factorial_HPP
 
+namespace internal
+{
+
 // T should be int, long int, unsigned int, etc.
 
 template<typename T>
@@ -50,6 +53,11 @@ factorial_integer(const T x)
                      x*factorial_integer(x-1) );
 }
 
+}
+
+//
+// main function
+
 template<typename T>
 constexpr
 T
@@ -57,7 +65,7 @@ factorial(const T x)
 {
     return( std::is_integral<T>::value ? \
             // if
-                factorial_integer(x) :
+                internal::factorial_integer(x) :
             // else
                 tgamma(x + 1) );
 }

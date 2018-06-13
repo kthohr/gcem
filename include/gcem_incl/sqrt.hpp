@@ -25,6 +25,9 @@
 #ifndef _gcem_sqrt_HPP
 #define _gcem_sqrt_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
@@ -58,12 +61,17 @@ sqrt_check(const T x, const T m_val)
                 m_val*sqrt_recur(x,x/T(2),0) );
 }
 
+}
+
+//
+// main function
+
 template<typename T>
 constexpr
 return_t<T>
 sqrt(const T x)
 {
-    return sqrt_check<return_t<T>>(x,T(1));
+    return internal::sqrt_check<return_t<T>>(x,T(1));
 }
 
 #endif

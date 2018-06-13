@@ -25,10 +25,13 @@
 #ifndef _gcem_cosh_HPP
 #define _gcem_cosh_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
-cosh_int(const T x)
+cosh_compute(const T x)
 {
     return( // indistinguishable from zero
             GCLIM<T>::epsilon() > abs(x) ? \
@@ -37,12 +40,17 @@ cosh_int(const T x)
                 (exp(x) + exp(-x)) / T(2) );
 }
 
+}
+
+//
+// main function
+
 template<typename T>
 constexpr
 return_t<T>
 cosh(const T x)
 {
-    return cosh_int<return_t<T>>(x);
+    return internal::cosh_compute<return_t<T>>(x);
 }
 
 #endif

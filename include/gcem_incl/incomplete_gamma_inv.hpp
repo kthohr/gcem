@@ -25,7 +25,8 @@
 #ifndef _gcem_incomplete_gamma_inv_HPP
 #define _gcem_incomplete_gamma_inv_HPP
 
-// #define GCEM_INCML_GAMMA_INV_TOL 1e-08
+namespace internal
+{
 
 template<typename T>
 constexpr T incomplete_gamma_inv_decision(const T value, const T a, const T p, const T direc, const T lg_val, const int iter_count);
@@ -188,24 +189,38 @@ T
 incomplete_gamma_inv_begin(const T initial_val, const T a, const T p, const T lg_val)
 {
     return incomplete_gamma_inv_recur(initial_val,a,p,
-                incomplete_gamma_inv_deriv_1(initial_val,a,lg_val),
-                lg_val,1);
+                incomplete_gamma_inv_deriv_1(initial_val,a,lg_val), lg_val,1);
 }
 
 template<typename T>
 constexpr
 T
-incomplete_gamma_inv_int(const T a, const T p)
+incomplete_gamma_inv_check(const T a, const T p)
 {
-    return incomplete_gamma_inv_begin(incomplete_gamma_inv_initial_val(a,p),a,p,lgamma(a));
+    return( GCLIM<T>::epsilon() > p ? \
+                T(0) :
+            p > T(1) ? \
+                GCLIM<T>::quiet_NaN() :
+            GCLIM<T>::epsilon() > abs(T(1) - p) ? \
+                GCLIM<T>::infinity() :
+            //
+            GCLIM<T>::epsilon() > a ? \
+                T(0) :
+            // else
+                incomplete_gamma_inv_begin(incomplete_gamma_inv_initial_val(a,p),a,p,lgamma(a)) );
 }
+
+}
+
+//
+// main function
 
 template<typename eT, typename pT>
 constexpr
 eT
 incomplete_gamma_inv(const pT a, const eT p)
 {
-    return incomplete_gamma_inv_int<eT>(a,p);
+    return internal::incomplete_gamma_inv_check<eT>(a,p);
 }
 
 #endif

@@ -34,6 +34,7 @@ pow_dbl(const T base, const T exp_term)
 }
 
 //
+// main function
 
 template<typename Ta, typename Tb>
 constexpr

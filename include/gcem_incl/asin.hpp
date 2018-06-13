@@ -25,10 +25,13 @@
 #ifndef _gcem_asin_HPP
 #define _gcem_asin_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
-asin_int(const T x)
+asin_compute(const T x)
 {
     return( // only defined on [-1,1]
             x > T(1) ? \
@@ -47,15 +50,20 @@ constexpr
 T
 asin_check(const T x)
 {
-    return( x < T(0) ? - asin_int(-x) : asin_int(x) );
+    return( x < T(0) ? - asin_compute(-x) : asin_compute(x) );
 }
+
+}
+
+//
+// main function
 
 template<typename T>
 constexpr
 return_t<T>
 asin(const T x)
 {
-    return asin_check<return_t<T>>(x);
+    return internal::asin_check<return_t<T>>(x);
 }
 
 #endif

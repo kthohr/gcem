@@ -27,6 +27,9 @@
 #ifndef _gcem_incomplete_beta_HPP
 #define _gcem_incomplete_beta_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr T incomplete_beta_cf(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth);
 
@@ -112,7 +115,7 @@ incomplete_beta_cf(const T a, const T b, const T z, const T c_j, const T d_j, co
 template<typename T>
 constexpr
 T
-incomplete_beta_int(const T a, const T b, const T z)
+incomplete_beta_begin(const T a, const T b, const T z)
 {
     return  ( (exp(a*log(z) + b*log(T(1)-z) - lbeta(a,b)) / a) * \
                 incomplete_beta_cf(a,b,z,T(1), 
@@ -131,16 +134,21 @@ incomplete_beta_check(const T a, const T b, const T z)
                 T(0) :
             // parameter check for performance
             (a + T(1))/(a + b + T(2)) > z ? \
-                incomplete_beta_int(a,b,z) :
-                T(1) - incomplete_beta_int(b,a,T(1) - z) );
+                incomplete_beta_begin(a,b,z) :
+                T(1) - incomplete_beta_begin(b,a,T(1) - z) );
 }
+
+}
+
+//
+// main function
 
 template<typename eT, typename pT>
 constexpr
 eT
 incomplete_beta(const pT a, const pT b, const eT z)
 {
-    return incomplete_beta_check<eT>(a,b,z);
+    return internal::incomplete_beta_check<eT>(a,b,z);
 }
 
 #endif

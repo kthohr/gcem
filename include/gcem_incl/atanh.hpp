@@ -25,10 +25,13 @@
 #ifndef _gcem_atanh_HPP
 #define _gcem_atanh_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
-atanh_int(const T x)
+atanh_compute(const T x)
 {
     return( log( (T(1) + x)/(T(1) - x) ) / T(2) );
 }
@@ -47,15 +50,20 @@ atanh_check(const T x)
             GCLIM<T>::epsilon() > abs(x) ? \
                 T(0) :
             // else
-                atanh_int(x) );
+                atanh_compute(x) );
 }
+
+}
+
+//
+// main function
 
 template<typename T>
 constexpr
 return_t<T>
 atanh(const T x)
 {
-    return atanh_check<return_t<T>>(x);
+    return internal::atanh_check<return_t<T>>(x);
 }
 
 #endif

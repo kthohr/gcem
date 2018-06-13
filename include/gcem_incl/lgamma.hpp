@@ -28,6 +28,9 @@
 #ifndef _gcem_lgamma_HPP
 #define _gcem_lgamma_HPP
 
+namespace internal
+{
+
 // P. Godfrey's coefficients:
 //
 //  0.99999999999999709182
@@ -79,7 +82,7 @@ lgamma_term_1(const T x)
 template<typename T>
 constexpr
 T
-lgamma_int(const T x)
+lgamma_begin(const T x)
 {   // returns lngamma(x+1)
     return( lgamma_term_1(x) + lgamma_term_2(x) );
 }
@@ -95,15 +98,20 @@ lgamma_check(const T x)
             GCLIM<T>::epsilon() > abs(x) ? \
                 GCLIM<T>::infinity() :
             // else
-                lgamma_int(x - T(1)) );
+                lgamma_begin(x - T(1)) );
 }
+
+}
+
+//
+// main function
 
 template<typename T>
 constexpr
 return_t<T>
 lgamma(const T x)
 {
-    return lgamma_check<return_t<T>>(x);
+    return internal::lgamma_check<return_t<T>>(x);
 }
 
 #endif
