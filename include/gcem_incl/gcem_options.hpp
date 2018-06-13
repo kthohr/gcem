@@ -18,9 +18,9 @@
   ##
   ################################################################################*/
 
+#include <cstddef>      // size_t
 #include <limits>
 #include <type_traits>  // for is_integral
-#include <cstddef>      // size_t
 
 //
 // version
@@ -38,9 +38,10 @@
 #endif
 
 //
-// constants
+// types
 
-namespace gcem {
+namespace gcem
+{
     using uint_t = unsigned int;
 
     template<class T>
@@ -49,6 +50,9 @@ namespace gcem {
     template<typename T>
     using return_t = typename std::conditional<std::is_integral<T>::value,double,T>::type;
 }
+
+//
+// constants
 
 #ifndef GCEM_LOG_2
     #define GCEM_LOG_2 0.6931471805599453094172321214581765680755L
@@ -96,10 +100,6 @@ namespace gcem {
 
 //
 // convergence settings
-
-// #ifndef GCEM_ATAN_MAX_ITER
-//     #define GCEM_ATAN_MAX_ITER 25
-// #endif
 
 #ifndef GCEM_ERF_MAX_ITER
     #define GCEM_ERF_MAX_ITER 60
