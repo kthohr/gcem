@@ -28,42 +28,33 @@
 namespace internal
 {
 
-template<typename T>
+template<typename rT>
 constexpr
-T
-binomial_coef_recur(const uint_t n, const uint_t k, const uint_t count)
+rT
+binomial_coef_recur(const uint_t n, const uint_t k)
 {
-    return( count < k ? 
+    return( k > 0U ?
             // if
-                binomial_coef_recur<T>(n,k,count+1) * static_cast<T>(n - k + count) / count : 
+            // Division works with int types because of i sequential numbers,
+            // one is divisible by i. Thus, their product is also divisible by i
+                binomial_coef_recur<rT>(n,k-1) * static_cast<rT>(n - k + 1) / k :
             // else
-                static_cast<T>(n) / count );
+                rT(1) );
 }
 
-template<typename T>
+}
+
+// main function: 'n choose k'
+template<typename rT = uint_t>
 constexpr
-T
-binomial_coef_check(const uint_t n, const uint_t k)
+rT
+binomial_coef(const uint_t n, const uint_t k)
 {
-    return( // edge cases
-            k == 0U ? T(1) : // deals with 0 choose 0 case
-            n == 0U ? T(0) :
-            // else
-            k > n - k ? binomial_coef_recur<T>(n,n-k,1U) :
-                        binomial_coef_recur<T>(n,k,1U) );
-}
-
-}
-
-//
-// main function
-
-template<typename pT, typename eT = double>
-constexpr
-eT
-binomial_coef(const pT n, const pT k)
-{
-    return internal::binomial_coef_check<eT>(uint_t(n),uint_t(k));
+  return  // if - edge cases
+          (n == 0U && k != 0U) ? rT(0) :  // deals with 0 choose 0 case
+          // else
+          k > n - k ? internal::binomial_coef_recur<rT>(n,n-k) :
+                      internal::binomial_coef_recur<rT>(n,k);
 }
 
 #endif
