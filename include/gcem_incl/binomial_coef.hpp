@@ -28,30 +28,16 @@
 namespace internal
 {
 
-template<typename T>
+template<typename pT, typename eT>
 constexpr
-T
-binomial_coef_recur(const uint_t n, const uint_t k, const uint_t count)
-{
-    return( count < k ? 
-            // if
-                binomial_coef_recur<T>(n,k,count+1) * static_cast<T>(n - k + count) / count : 
-            // else
-                static_cast<T>(n) / count );
-}
-
-template<typename T>
-constexpr
-T
-binomial_coef_check(const uint_t n, const uint_t k)
+eT
+binomial_coef_recur(const pT n, const pT k)
 {
     return( // edge cases
-            k == 0U ? T(1) : // deals with 0 choose 0 case
-            n == 0U ? T(0) :
-            n == k  ? T(1) :
+                (k == pT(0) || n == k) ? eT(1) : // deals with 0 choose 0 case
+                n == pT(0) ? eT(0) :
             // else
-            k > n - k ? binomial_coef_recur<T>(n,n-k,1U) :
-                        binomial_coef_recur<T>(n,k,1U) );
+                binomial_coef_recur<pT,eT>(n-1,k-1) + binomial_coef_recur<pT,eT>(n-1,k) );
 }
 
 }
@@ -59,12 +45,16 @@ binomial_coef_check(const uint_t n, const uint_t k)
 //
 // main function
 
-template<typename pT, typename eT = double>
+template<typename pT, typename eT = pT>
 constexpr
 eT
 binomial_coef(const pT n, const pT k)
 {
-    return internal::binomial_coef_check<eT>(uint_t(n),uint_t(k));
+    return( std::is_integral<pT>::value ? \
+        // if
+            internal::binomial_coef_recur<pT,eT>(n,k) :
+        // else
+            internal::binomial_coef_recur<uint_t,uint_t>(n,k) );
 }
 
 #endif
