@@ -44,6 +44,9 @@ namespace gcem
     #include "gcem_incl/log.hpp"
     #include "gcem_incl/pow.hpp"
 
+    #include "gcem_incl/gcd.hpp"
+    #include "gcem_incl/lcm.hpp"
+
     #include "gcem_incl/tan.hpp"
     #include "gcem_incl/cos.hpp"
     #include "gcem_incl/sin.hpp"
