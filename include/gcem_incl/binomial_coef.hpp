@@ -48,6 +48,7 @@ binomial_coef_check(const uint_t n, const uint_t k)
     return( // edge cases
             k == 0U ? T(1) : // deals with 0 choose 0 case
             n == 0U ? T(0) :
+            n == k  ? T(1) :
             // else
             k > n - k ? binomial_coef_recur<T>(n,n-k,1U) :
                         binomial_coef_recur<T>(n,k,1U) );

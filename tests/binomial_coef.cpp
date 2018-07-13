@@ -31,14 +31,17 @@ int main()
 
     //
 
-    static constexpr long double test_vals_1[] = { 0.0L, 0.0L, 1.0L, 1.0L, 5.0L };
-    static constexpr long double test_vals_2[] = { 0.0L, 1.0L, 0.0L, 1.0L, 2.0L };
+    static constexpr long double test_vals_1[] = { 0.0L, 0.0L, 1.0L, 1.0L, 5.0L, 10.0L, 10.0L, 10.0L };
+    static constexpr long double test_vals_2[] = { 0.0L, 1.0L, 0.0L, 1.0L, 2.0L, 8.0L,  9.0L,  10.0L };
 
     PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,0,test_fn,1.0L,true,"",2,2,false,false);
     PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,1,test_fn,0.0L,true,"",2,2,false,false);
     PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,2,test_fn,1.0L,true,"",2,2,false,false);
     PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,3,test_fn,1.0L,true,"",2,2,false,false);
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,4,test_fn,10.0L,false,"",2,2,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,4,test_fn,10.0L,true,"",2,2,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,5,test_fn,45.0L,true,"",2,2,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,6,test_fn,10.0L,true,"",2,2,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,7,test_fn,1.0L,false,"",2,2,false,false);
 
     //
 
