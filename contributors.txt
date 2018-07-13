@@ -1,0 +1,5 @@
+External contributions to GCEM
+----
+
+2018-07-13  @cpsauer
+    - fix bug in binomial_coef
