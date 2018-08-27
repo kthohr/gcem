@@ -55,11 +55,12 @@ tan_cf_main(const T x)
 template<typename T>
 constexpr
 T
-tan_begin(const T x)
+tan_begin(const T x, const int count = 0)
 {   // tan(x) = tan(x + pi)
     return( x > T(GCEM_PI) ? \
             // if
-                tan_begin( x - T(GCEM_PI) * internal::floor(x/T(GCEM_PI)) ) :
+                count > 1 ? GCLIM<T>::quiet_NaN() : // protect against undefined behavior
+                tan_begin( x - T(GCEM_PI) * internal::floor(x/T(GCEM_PI)), count+1 ) :
             // else 
                 tan_cf_main(x) );
 }
