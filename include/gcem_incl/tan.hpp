@@ -59,7 +59,7 @@ tan_begin(const T x)
 {   // tan(x) = tan(x + pi)
     return( x > T(GCEM_PI) ? \
             // if
-                tan_begin( x - T(GCEM_PI) * int(x/T(GCEM_PI)) ) :
+                tan_begin( x - T(GCEM_PI) * internal::floor(x/T(GCEM_PI)) ) :
             // else 
                 tan_cf_main(x) );
 }

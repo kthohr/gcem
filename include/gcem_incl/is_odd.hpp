@@ -27,9 +27,9 @@
 
 constexpr
 bool
-is_odd(const int x)
+is_odd(const llint_t x)
 {
-    return( x % 2 == 0 ? false : true );
+    return( x % llint_t(2) == llint_t(0) ? false : true );
 }
 
 #endif

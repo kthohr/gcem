@@ -34,7 +34,9 @@ int main()
 
     //
 
-    static constexpr long double test_vals[] = { 0.0L, 0.001L, 1.001L, 1.5L, 11.1L, 50.0L, -1.5L };
+    static constexpr long double lval = INT_MAX*100.0L;
+
+    static constexpr long double test_vals[] = { 0.0L, 0.001L, 1.001L, 1.5L, 11.1L, 50.0L, lval, -1.5L };
 
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",6,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",6,18,false,false);
@@ -42,7 +44,8 @@ int main()
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",6,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",6,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,false," ",6,18,false,false);
+    // PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,7,test_fn,std_fn,false," ",6,18,false,false);
 
     //
 

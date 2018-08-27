@@ -18,23 +18,20 @@
   ##
   ################################################################################*/
 
-/*
- * find the fraction part of x = n + r, where -0.5 < r < 0.5
- */
+#ifndef _gcem_floor_HPP
+#define _gcem_floor_HPP
 
-#ifndef _gcem_find_fraction_HPP
-#define _gcem_find_fraction_HPP
+namespace internal
+{
 
 template<typename T>
 constexpr
 T
-find_fraction(const T x)
+floor(const T x)
 {
-    return( abs(x - internal::floor(x)) > T(0.5) ? \
-            // if 
-                x - internal::floor(x) - sgn(x) : 
-            //else 
-                x - internal::floor(x) );
+    return T(static_cast<llint_t>(x));
+}
+
 }
 
 #endif

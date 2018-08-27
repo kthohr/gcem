@@ -34,7 +34,7 @@
 #endif
 
 #ifndef GCEM_VERSION_PATCH
-    #define GCEM_VERSION_PATCH 0
+    #define GCEM_VERSION_PATCH 1
 #endif
 
 //
@@ -43,6 +43,9 @@
 namespace gcem
 {
     using uint_t = unsigned int;
+    using ullint_t = unsigned long long int;
+
+    using llint_t = long long int;
 
     template<class T>
     using GCLIM = std::numeric_limits<T>;
@@ -143,10 +146,6 @@ namespace gcem
 
 #ifndef GCEM_INCML_GAMMA_INV_MAX_ITER
     #define GCEM_INCML_GAMMA_INV_MAX_ITER 35
-#endif
-
-#ifndef GCEM_SQRT_TOL
-    #define GCEM_SQRT_TOL 1E-15
 #endif
 
 #ifndef GCEM_SQRT_MAX_ITER

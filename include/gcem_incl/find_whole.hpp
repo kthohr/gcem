@@ -27,14 +27,14 @@
 
 template<typename T>
 constexpr
-int
+llint_t
 find_whole(const T x)
 {
-    return( abs(x - T(int(x))) > T(0.5) ? \
+    return( abs(x - internal::floor(x)) > T(0.5) ? \
             // if 
-                T(int(x)) + sgn(x) :
+                internal::floor(x) + sgn(x) :
             //else 
-                T(int(x)) );
+                internal::floor(x) );
 }
 
 #endif

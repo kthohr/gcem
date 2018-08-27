@@ -46,5 +46,5 @@ gcd(T a, T b)
             //
             std::is_integral<T>::value ? \
                 internal::gcd_recur(a,b) :
-                internal::gcd_recur<uint_t>(a,b) );
+                internal::gcd_recur<ullint_t>(a,b) );
 }

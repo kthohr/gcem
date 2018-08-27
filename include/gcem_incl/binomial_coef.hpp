@@ -54,7 +54,7 @@ binomial_coef(const pT n, const pT k)
         // if
             internal::binomial_coef_recur<pT,eT>(n,k) :
         // else
-            internal::binomial_coef_recur<uint_t,uint_t>(n,k) );
+            internal::binomial_coef_recur<ullint_t,ullint_t>(n,k) );
 }
 
 #endif

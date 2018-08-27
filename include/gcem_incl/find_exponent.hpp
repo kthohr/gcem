@@ -27,8 +27,8 @@
 
 template<typename T>
 constexpr
-int
-find_exponent(const T x, const int exponent)
+llint_t
+find_exponent(const T x, const llint_t exponent)
 {
     return( x < T(1)  ? \
                 find_exponent(x*T(10),exponent-1) :
