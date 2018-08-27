@@ -34,7 +34,7 @@ int main()
 
     //
 
-    static constexpr long double lval = INT_MAX*100.0L;
+    static constexpr long double lval = std::numeric_limits<int>::max()*100.0L;
 
     static constexpr long double test_vals[] = { 0.0L, 0.001L, 1.001L, 1.5L, 11.1L, 50.0L, lval, -1.5L };
 
