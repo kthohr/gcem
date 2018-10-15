@@ -28,18 +28,35 @@
 namespace internal
 {
 
-// integral-valed powers
+// integral-valued powers
+// using method described in https://en.wikipedia.org/wiki/Exponentiation_by_squaring
+
+template<typename Ta, typename Tb>
+constexpr
+Ta
+pow_integral_compute_recur(const Ta base, const Ta val, const Tb exp_term)
+{
+    return( exp_term > Tb(1) ? \
+                (is_odd(exp_term) ? \
+                    pow_integral_compute_recur(base*base,val*base,exp_term/2) :
+                    pow_integral_compute_recur(base*base,val,exp_term/2)) :
+                (exp_term == Tb(1) ? val*base : val) );
+}
 
 template<typename Ta, typename Tb>
 constexpr
 Ta
 pow_integral_compute(const Ta base, const Tb exp_term)
 {
-    return( exp_term == Tb(1) ? \
+    return( exp_term == Tb(3) ? \
+                base*base*base :
+            exp_term == Tb(2) ? \
+                base*base :
+            exp_term == Tb(1) ? \
                 base :
             exp_term == Tb(0) ? \
                 Ta(1) :
-            // overflow
+            // check for overflow
             exp_term == GCLIM<Tb>::min() ? \
                 Ta(0) :
             exp_term == GCLIM<Tb>::max() ? \
@@ -49,7 +66,7 @@ pow_integral_compute(const Ta base, const Tb exp_term)
                 //
                     Ta(1) / pow_integral_compute(base, - exp_term) : 
                 //
-                    base*pow_integral_compute(base, exp_term - 1) );
+                    pow_integral_compute_recur(base,Ta(1),exp_term) );
 }
 
 }

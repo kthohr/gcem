@@ -1,6 +1,6 @@
-# GCE-Math &nbsp; [![Build Status](https://travis-ci.org/kthohr/gcem.svg?branch=master)](https://travis-ci.org/kthohr/gcem) [![Coverage Status](https://codecov.io/github/kthohr/gcem/coverage.svg?branch=master)](https://codecov.io/github/kthohr/gcem?branch=master) [![License](https://img.shields.io/badge/Licence-Apache%202.0-blue.svg)](./LICENSE)
+# GCE-Math &nbsp; [![Build Status](https://travis-ci.org/kthohr/gcem.svg?branch=master)](https://travis-ci.org/kthohr/gcem) [![Coverage Status](https://codecov.io/github/kthohr/gcem/coverage.svg?branch=master)](https://codecov.io/github/kthohr/gcem?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/19bf49e64ca04c848f6a0a8030d1f131)](https://www.codacy.com/app/kthohr/gcem?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kthohr/gcem&amp;utm_campaign=Badge_Grade) [![License](https://img.shields.io/badge/Licence-Apache%202.0-blue.svg)](./LICENSE)
 
-GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ library for compile-time computation of mathematical functions.
+GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ library enabling compile-time computation of mathematical functions.
 
 * The library is written in C++11 ```constexpr``` format, and is C++11/14/17 compatible.
 * Continued fraction and series expansions are implemented using recursive templates.
@@ -12,8 +12,8 @@ GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ l
 
 The library is actively maintained, and is still being extended. A list of features includes:
 
-* basic C++ standard library functions:
-    - ```abs```, ```exp```, ```log```, ```max```, ```min```, ```pow```, ```sqrt```
+* basic library functions:
+    - ```abs```, ```exp```, ```log```, ```max```, ```min```, ```pow```, ```sqrt```, ```gcd```, ```lcm```, and more
 * trigonometric functions:
     - basic: ```cos```, ```sin```, ```tan```
     - inverse: ```acos```, ```asin```, ```atan```
@@ -25,9 +25,9 @@ The library is actively maintained, and is still being extended. A list of featu
     - (regularized) incomplete beta and incomplete gamma functions: ```incomplete_beta```, ```incomplete_gamma```
     - inverse incomplete beta and incomplete gamma functions: ```incomplete_beta_inv```, ```incomplete_gamma_inv```
 
-## Syntax
+## General Syntax
 
-GCE-Math functions are written as C++ templates with `constexpr` specifiers, the format of which might be confusing to users unfamiliar with template-based programming. For example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (```erf```) is defined as:
+GCE-Math functions are written as C++ templates with `constexpr` specifiers, the format of which might be confusing to users unfamiliar with template-based programming. As an example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (```erf```) is defined as:
 ```cpp
 template<typename T>
 constexpr
@@ -39,7 +39,7 @@ where a set of internal templated ```constexpr``` functions will implement a con
 
 ## Installation
 
-GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply include the gcem header files with your project.
+GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply include the `gcem` header files with your project.
 
 ## Examples
 
