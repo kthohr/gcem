@@ -25,7 +25,7 @@ install:
   - conda install cmake -c conda-forge
   - cmake -G "NMake Makefiles" -D BUILD_TESTS=1 -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -D CMAKE_BUILD_TYPE=Release .
   - nmake gtest
-  - cd test
+  - cd tests
 
 build_script:
   - .\exp.test
