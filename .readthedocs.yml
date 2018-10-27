@@ -1,2 +1,4 @@
 conda:
     file: docs/environment.yml
+
+requirements_file: .readthedocs.requirements.txt
