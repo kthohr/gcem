@@ -98,7 +98,7 @@ Mathematical functions
 +---------------------------------------+----------------------------------------------------+
 | :ref:`lgamma <lgamma-func-ref>`       | log-gamma function                                 |
 +---------------------------------------+----------------------------------------------------+
-| :ref:`lmgamma <lgamma-func-ref>`      | log-multivariate gamma function                    |
+| :ref:`lmgamma <lmgamma-func-ref>`     | log-multivariate gamma function                    |
 +---------------------------------------+----------------------------------------------------+
 | :ref:`erf <erf-function-reference>`   | error function                                     |
 +---------------------------------------+----------------------------------------------------+

@@ -15,6 +15,10 @@ GCE-Math (\ **G**\ eneralized **C**\ onstant **E**\ xpression Math) is a templat
 * Tested and accurate to machine precision against the C++ standard library.
 * Released under a permissive, non-GPL license.
 
+Author: Keith O'Hara
+
+License: Apache Version 2.0
+
 Status
 ------
 
@@ -47,15 +51,6 @@ GCE-Math functions are written as C++ templates with ``constexpr`` specifiers, t
 
 where a set of internal templated ``constexpr`` functions will implement a continued fraction expansion to return a value of type ``return_t<T>``. This output type ('``return_t<T>``') is generally determined by the input type, e.g., ``int``, ``float``, ``double``, ``long double``, etc. When ``T`` is an intergral type, the output will be upgraded to ``return_t<T> = double``, otherwise ``return_t<T> = T``. For types not covered by ``std::is_integral``, recasts should be used.
 
-Author
-------
-
-Keith O'Hara
-
-License
--------
-
-Apache Version 2.0
 
 Contents
 --------
