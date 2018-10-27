@@ -1,1 +1,1 @@
-pip install sphinxcontrib-katex
+sphinxcontrib-katex
