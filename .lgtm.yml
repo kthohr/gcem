@@ -13,4 +13,4 @@ extraction:
     index:
       build_command:
         - cd ./tests
-        - $GNU_MAKE -j2
+        - $GNU_MAKE
