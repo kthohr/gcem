@@ -1,4 +1,9 @@
 conda:
     file: docs/environment.yml
 
+python:
+    version: 3
+    setup_py_install: true
+    pip_install: true
+
 requirements_file: .readthedocs.requirements.txt
