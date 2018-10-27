@@ -2,15 +2,9 @@
 path_classifiers:
   test:
     - tests
-  docs:
-    - README.md
 extraction:
   cpp:
-    prepare:
-      packages:
-        - g++-6
-    # before_index:
     index:
       build_command:
         - cd ./tests
-        - $GNU_MAKE
+        - make
