@@ -1,0 +1,8 @@
+name: gcem-docs
+
+channels:
+  - conda-forge
+
+dependencies:
+  - breathe
+  - sphinxcontrib.katex

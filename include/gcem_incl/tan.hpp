@@ -81,8 +81,12 @@ tan_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time tangent function
+ *
+ * @param x a real-valued input.
+ * @return the tangent function using \f[ \tan(x) = \dfrac{x}{1 - \dfrac{x^2}{3 - \dfrac{x^2}{5 - \ddots}}} \f]
+ */
 
 template<typename T>
 constexpr

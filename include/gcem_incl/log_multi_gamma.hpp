@@ -46,8 +46,15 @@ log_multi_gamma_recur(const Ta a, const Tb p)
 
 }
 
-//
-// main function
+/**
+ * Compile-time log multivariate gamma function
+ *
+ * @param a a real-valued input.
+ * @param p integral-valued input.
+ * @return computes log-multivariate gamma function via recursion
+ * \f[ \Gamma_p(a) = \pi^{(p-1)/2} \Gamma(a) \Gamma_{p-1}(a-0.5) \f]
+ * where \f$ \Gamma_1(a) = \Gamma(a) \f$.
+ */
 
 template<typename eT, typename pT>
 constexpr

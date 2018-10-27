@@ -18,12 +18,17 @@
   ##
   ################################################################################*/
 
-/*
- * compile-time beta function
- */
-
 #ifndef _gcem_beta_HPP
 #define _gcem_beta_HPP
+
+/**
+ * Compile-time beta function
+ *
+ * @param a a real-valued input.
+ * @param b a real-valued input.
+ * @return the beta function using \f[ \text{B}(\alpha,\beta) := \int_0^1 t^{\alpha - 1} (1-t)^{\beta - 1} dt = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)} \f]
+ * where \f$ \Gamma \f$ denotes the gamma function.
+ */
 
 template<typename T>
 constexpr

@@ -42,8 +42,12 @@ cosh_compute(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time hyperbolic cosine function
+ *
+ * @param x a real-valued input.
+ * @return the hyperbolic cosine function using \f[ \cosh(x) = \frac{\exp(x) + \exp(-x)}{2} \f]
+ */
 
 template<typename T>
 constexpr

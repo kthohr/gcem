@@ -18,10 +18,6 @@
   ##
   ################################################################################*/
 
-/* 
- * compile-time binomial coefficient: 'n choose k'
- */
-
 #ifndef _gcem_binomial_coef_HPP
 #define _gcem_binomial_coef_HPP
 
@@ -42,8 +38,15 @@ binomial_coef_recur(const pT n, const pT k)
 
 }
 
-//
-// main function
+/**
+ * Compile-time binomial coefficient
+ *
+ * @param n integral-valued input.
+ * @param k integral-valued input.
+ * @return computes the Binomial coefficient
+ * \f[ \binom{n}{k} = \frac{n!}{k!(n-k)!} \f]
+ * also known as '\c n choose \c k '.
+ */
 
 template<typename pT, typename eT = pT>
 constexpr

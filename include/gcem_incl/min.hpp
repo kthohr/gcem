@@ -18,12 +18,16 @@
   ##
   ################################################################################*/
 
-/*
- * compile-time minimum function
- */
-
 #ifndef _gcem_min_HPP
 #define _gcem_min_HPP
+
+/**
+ * Compile-time minimum function
+ *
+ * @param x a real-valued input.
+ * @param y a real-valued input.
+ * @return Computes the minimum between \c x and \c y, where \c x and \c y have the same type (e.g., \c int, \c double, etc.)
+ */
 
 template<typename T>
 constexpr

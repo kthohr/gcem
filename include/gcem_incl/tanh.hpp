@@ -64,8 +64,12 @@ tanh_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time hyperbolic tangent function
+ *
+ * @param x a real-valued input.
+ * @return the hyperbolic tangent function using \f[ \tanh(x) = \dfrac{x}{1 + \dfrac{x^2}{3 + \dfrac{x^2}{5 + \dfrac{x^2}{7 + \ddots}}}} \f]
+ */
 
 template<typename T>
 constexpr

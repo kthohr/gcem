@@ -52,8 +52,12 @@ sin_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time sine function
+ *
+ * @param x a real-valued input.
+ * @return the sine function using \f[ \sin(x) = \frac{2\tan(x/2)}{1+\tan^2(x/2)} \f]
+ */
 
 template<typename T>
 constexpr

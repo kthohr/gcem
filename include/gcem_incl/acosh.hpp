@@ -45,8 +45,12 @@ acosh_compute(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time inverse hyperbolic cosine function
+ *
+ * @param x a real-valued input.
+ * @return the inverse hyperbolic cosine function using \f[ \text{acosh}(x) = \ln \left( x + \sqrt{x^2 - 1} \right) \f]
+ */
 
 template<typename T>
 constexpr

@@ -34,11 +34,19 @@ template<typename T>
 constexpr
 T
 factorial_table(const T x)
-{   // table for x! when x = {2,...,10}
-    return( x == 2 ? 2     : x == 3 ? 6      :
-            x == 4 ? 24    : x == 5 ? 120    :
-            x == 6 ? 720   : x == 7 ? 5040   :
-            x == 8 ? 40320 : x == 9 ? 362880 : 3628800);
+{   // table for x! when x = {2,...,16}
+    return( x == T(2)  ? T(2)     : x == T(3)  ? T(6)      :
+            x == T(4)  ? T(24)    : x == T(5)  ? T(120)    :
+            x == T(6)  ? T(720)   : x == T(7)  ? T(5040)   :
+            x == T(8)  ? T(40320) : x == T(9)  ? T(362880) :
+            //
+            x == T(10) ? T(3628800)       : 
+            x == T(11) ? T(39916800)      :
+            x == T(12) ? T(479001600)     :
+            x == T(13) ? T(6227020800)    : 
+            x == T(14) ? T(87178291200)   : 
+            x == T(15) ? T(1307674368000) : 
+                         T(20922789888000) );
 }
 
 template<typename T>
@@ -46,17 +54,26 @@ constexpr
 T
 factorial_integer(const T x)
 {
-    return( x == 0 ? 1 :
-            x == 1 ? x :
+    return( x == T(0) ? T(1) :
+            x == T(1) ? x :
             //
-            x < 11 ? factorial_table(x) :
-                     x*factorial_integer(x-1) );
+            x < T(17) ? \
+                // if
+                factorial_table(x) :
+                // else
+                x*factorial_integer(x-1) );
 }
 
 }
 
-//
-// main function
+/**
+ * Compile-time factorial function
+ *
+ * @param x a real-valued input.
+ * @return Computes the factorial value \f$ x! \f$. 
+ * When \c x is an integral type (\c int, <tt>long int</tt>, etc.), a simple recursion method is used, along with table values.
+ * When \c x is real-valued, <tt>factorial(x) = tgamma(x+1)</tt>.
+ */
 
 template<typename T>
 constexpr

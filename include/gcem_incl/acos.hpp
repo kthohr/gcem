@@ -59,8 +59,12 @@ acos_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time arccosine function
+ *
+ * @param x a real-valued input, where \f$ x \in [-1,1] \f$.
+ * @return the inverse cosine function using \f[ \text{acos}(x) = \text{atan} \left( \frac{\sqrt{1-x^2}}{x} \right) \f]
+ */
 
 template<typename T>
 constexpr

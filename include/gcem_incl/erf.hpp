@@ -107,8 +107,15 @@ erf_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time Gaussian error function
+ *
+ * @param x a real-valued input.
+ * @return computes the Gaussian error function
+ * \f[ \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x \exp( - t^2) dt \f]
+ * using a continued fraction representation:
+ * \f[ \text{erf}(x) = \frac{2x}{\sqrt{\pi}} \exp(-x^2) \dfrac{1}{1 - 2x^2 + \dfrac{4x^2}{3 - 2x^2 + \dfrac{8x^2}{5 - 2x^2 + \dfrac{12x^2}{7 - 2x^2 + \ddots}}}} \f]
+ */
 
 template<typename T>
 constexpr

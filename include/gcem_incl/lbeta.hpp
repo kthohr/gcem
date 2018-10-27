@@ -18,12 +18,17 @@
   ##
   ################################################################################*/
 
-/*
- * compile-time log-beta function
- */
-
 #ifndef _gcem_lbeta_HPP
 #define _gcem_lbeta_HPP
+
+/**
+ * Compile-time log-beta function
+ *
+ * @param a a real-valued input.
+ * @param b a real-valued input.
+ * @return the log-beta function using \f[ \ln \text{B}(\alpha,\beta) := \ln \int_0^1 t^{\alpha - 1} (1-t)^{\beta - 1} dt = \ln \Gamma(\alpha) + \ln \Gamma(\beta) - \ln \Gamma(\alpha + \beta) \f]
+ * where \f$ \Gamma \f$ denotes the gamma function.
+ */
 
 template<typename T>
 constexpr

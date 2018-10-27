@@ -55,8 +55,12 @@ asin_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time arcsine function
+ *
+ * @param x a real-valued input, where \f$ x \in [-1,1] \f$.
+ * @return the inverse sine function using \f[ \text{asin}(x) = \text{atan} \left( \frac{x}{\sqrt{1-x^2}} \right) \f]
+ */
 
 template<typename T>
 constexpr

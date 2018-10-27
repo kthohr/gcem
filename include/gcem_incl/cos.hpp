@@ -50,8 +50,12 @@ cos_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time cosine function
+ *
+ * @param x a real-valued input.
+ * @return the cosine function using \f[ \cos(x) = \frac{1-\tan^2(x/2)}{1+\tan^2(x/2)} \f]
+ */
 
 template<typename T>
 constexpr

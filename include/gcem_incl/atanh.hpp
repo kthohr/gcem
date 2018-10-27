@@ -55,8 +55,12 @@ atanh_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time inverse hyperbolic tangent function
+ *
+ * @param x a real-valued input.
+ * @return the inverse hyperbolic tangent function using \f[ \text{atanh}(x) = \frac{1}{2} \ln \left( \frac{1+x}{1-x} \right) \f]
+ */
 
 template<typename T>
 constexpr

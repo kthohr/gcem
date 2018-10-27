@@ -63,8 +63,13 @@ sqrt_check(const T x, const T m_val)
 
 }
 
-//
-// main function
+
+/**
+ * Compile-time square-root function
+ *
+ * @param x a real-valued input.
+ * @return Computes \f$ \sqrt{x} \f$ using a Newton-Raphson approach.
+ */
 
 template<typename T>
 constexpr

@@ -18,14 +18,24 @@
   ##
   ################################################################################*/
 
-/*
- * Find the LCM
+#ifndef _gcem_lcm_HPP
+#define _gcem_lcm_HPP
+
+/**
+ * Compile-time least common multiple (LCM) function
+ *
+ * @param a integral-valued input.
+ * @param b integral-valued input.
+ * @return the least common multiple between integers \c a and \c b using the representation \f[ \text{lcm}(a,b) = \dfrac{| a b |}{\text{gcd}(a,b)} \f]
+ * where \f$ \text{gcd}(a,b) \f$ denotes the greatest common divisor between \f$ a \f$ and \f$ b \f$.
  */
 
 template<typename T>
 constexpr
 T
-lcm(T a, T b)
+lcm(const T a, const T b)
 {
-    return a * (b / gcd(a,b));
+    return abs(a * (b / gcd(a,b)));
 }
+
+#endif

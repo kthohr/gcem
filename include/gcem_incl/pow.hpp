@@ -33,8 +33,13 @@ pow_dbl(const T base, const T exp_term)
     return exp(exp_term*log(base));
 }
 
-//
-// main function
+/**
+ * Compile-time power function
+ *
+ * @param base a real-valued input. 
+ * @param exp_term a real-valued input.
+ * @return Computes \c base raised to the power \c exp_term. In the case where \c exp_term is integral-valued, recursion by squaring is used, otherwise \f$ \text{base}^{\text{exp\_term}} = e^{\text{exp\_term} \log(\text{base})} \f$
+ */
 
 template<typename Ta, typename Tb>
 constexpr

@@ -39,7 +39,10 @@ where a set of internal templated ```constexpr``` functions will implement a con
 
 ## Installation
 
-GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply include the `gcem` header files with your project.
+GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply add the header files to your project using
+```cpp
+#include "gcem.hpp"
+```
 
 ## Examples
 
@@ -149,4 +152,4 @@ Keith O'Hara
 
 ## License
 
-Apache Version 2
+Apache Version 2.0

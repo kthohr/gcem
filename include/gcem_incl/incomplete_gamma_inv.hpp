@@ -72,7 +72,7 @@ incomplete_gamma_inv_initial_val_1_int_end(const T value_inp, const T a)
 template<typename T>
 constexpr
 T
-incomplete_gamma_inv_initial_val_1(const T a, const T p, const T t_val, const T sgn_term)
+incomplete_gamma_inv_initial_val_1(const T a, const T t_val, const T sgn_term)
 {   // a > 1.0
     return incomplete_gamma_inv_initial_val_1_int_end(sgn_term*incomplete_gamma_inv_initial_val_1_int_begin(t_val), a);
 }
@@ -98,7 +98,7 @@ incomplete_gamma_inv_initial_val(const T a, const T p)
 {
     return( a > T(1) ? \
              // if
-                incomplete_gamma_inv_initial_val_1(a,p,
+                incomplete_gamma_inv_initial_val_1(a,
                     incomplete_gamma_inv_t_val_1(p),
                     p > T(0.5) ? T(-1) : T(1)) :
              // else
@@ -144,7 +144,7 @@ incomplete_gamma_inv_ratio_val_1(const T value, const T a, const T p, const T de
 template<typename T>
 constexpr
 T
-incomplete_gamma_inv_ratio_val_2(const T value, const T a, const T p, const T deriv_1)
+incomplete_gamma_inv_ratio_val_2(const T value, const T a, const T deriv_1)
 {
     return( incomplete_gamma_inv_deriv_2(value,a,deriv_1) / deriv_1 );
 }
@@ -164,7 +164,7 @@ incomplete_gamma_inv_recur(const T value, const T a, const T p, const T deriv_1,
 {
     return incomplete_gamma_inv_decision(value, a, p,
                 incomplete_gamma_inv_halley(incomplete_gamma_inv_ratio_val_1(value,a,p,deriv_1), 
-                incomplete_gamma_inv_ratio_val_2(value,a,p,deriv_1)),
+                incomplete_gamma_inv_ratio_val_2(value,a,deriv_1)),
                 lg_val, iter_count);
 }
 
@@ -212,8 +212,21 @@ incomplete_gamma_inv_check(const T a, const T p)
 
 }
 
-//
-// main function
+/**
+ * Compile-time inverse incomplete gamma function
+ *
+ * @param a a real-valued, non-negative input.
+ * @param p a real-valued input with values in the unit-interval.
+ *
+ * @return Computes the inverse incomplete gamma function, a value \f$ x \f$ such that 
+ * \f[ f(x) := \frac{\gamma(a,x)}{\Gamma(a)} - p \f]
+ * equal to zero, for a given \c p.
+ * GCE-Math finds this root using Halley's method:
+ * \f[ x_{n+1} = x_n - \frac{f(x_n)/f'(x_n)}{1 - 0.5 \frac{f(x_n)}{f'(x_n)} \frac{f''(x_n)}{f'(x_n)} } \f]
+ * where
+ * \f[ \frac{\partial}{\partial x} \left(\frac{\gamma(a,x)}{\Gamma(a)}\right) = \frac{1}{\Gamma(a)} x^{a-1} \exp(-x) \f]
+ * \f[ \frac{\partial^2}{\partial x^2} \left(\frac{\gamma(a,x)}{\Gamma(a)}\right) = \frac{1}{\Gamma(a)} x^{a-1} \exp(-x) \left( \frac{a-1}{x} - 1 \right) \f]
+ */
 
 template<typename eT, typename pT>
 constexpr

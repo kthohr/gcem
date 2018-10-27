@@ -165,15 +165,27 @@ incomplete_gamma_check(const T a, const T z)
 
 }
 
-//
-// main function
+/**
+ * Compile-time regularized lower incomplete gamma function
+ *
+ * @param a a real-valued, non-negative input.
+ * @param x a real-valued, non-negative input.
+ *
+ * @return the regularized lower incomplete gamma function evaluated at (\c a, \c x),
+ * \f[ \frac{\gamma(a,x)}{\Gamma(a)} = \frac{1}{\Gamma(a)} \int_0^x t^{a-1} \exp(-t) dt \f]
+ * When \c a is not too large, the value is computed using the continued fraction representation of the upper incomplete gamma function, \f$ \Gamma(a,x) \f$, using
+ * \f[ \Gamma(a,x) = \Gamma(a) - \dfrac{x^a\exp(-x)}{a - \dfrac{ax}{a + 1 + \dfrac{x}{a + 2 - \dfrac{(a+1)x}{a + 3 + \dfrac{2x}{a + 4 - \ddots}}}}} \f]
+ * where \f$ \gamma(a,x) \f$ and \f$ \Gamma(a,x) \f$ are connected via
+ * \f[ \frac{\gamma(a,x)}{\Gamma(a)} + \frac{\Gamma(a,x)}{\Gamma(a)} = 1 \f]
+ * When \f$ a > 10 \f$, a 50-point Gauss-Legendre quadrature scheme is employed.
+ */
 
 template<typename eT, typename pT>
 constexpr
 return_t<eT>
-incomplete_gamma(const pT a, const eT z)
+incomplete_gamma(const pT a, const eT x)
 {
-    return internal::incomplete_gamma_check<return_t<eT>>(a,z);
+    return internal::incomplete_gamma_check<return_t<eT>>(a,x);
 }
 
 #endif

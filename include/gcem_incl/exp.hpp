@@ -73,8 +73,13 @@ exp_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time exponential function
+ *
+ * @param x a real-valued input.
+ * @return \f$ \exp(x) \f$ using \f[ \exp(x) = \dfrac{1}{1-\dfrac{x}{1+x-\dfrac{\frac{1}{2}x}{1 + \frac{1}{2}x - \dfrac{\frac{1}{3}x}{1 + \frac{1}{3}x - \ddots}}}} \f] 
+ * The continued fraction argument is split into two parts: \f$ x = n + r \f$, where \f$ n \f$ is an integer and \f$ r \in [-0.5,0.5] \f$.
+ */
 
 template<typename T>
 constexpr

@@ -44,8 +44,17 @@ tgamma_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time gamma function
+ *
+ * @param x a real-valued input.
+ * @return computes the `true' gamma function
+ * \f[ \Gamma(x) = \int_0^\infty y^{x-1} \exp(-y) dy \f]
+ * using a polynomial form:
+ * \f[ \Gamma(x+1) \approx (x+g+0.5)^{x+0.5} \exp(-x-g-0.5) \sqrt{2 \pi} \left[ c_0 + \frac{c_1}{x+1} + \frac{c_2}{x+2} + \cdots + \frac{c_n}{x+n} \right] \f]
+ * where the value \f$ g \f$ and the coefficients \f$ (c_0, c_1, \ldots, c_n) \f$
+ * are taken from Paul Godfrey, whose note can be found here: http://my.fit.edu/~gabdo/gamma.txt
+ */
 
 template<typename T>
 constexpr

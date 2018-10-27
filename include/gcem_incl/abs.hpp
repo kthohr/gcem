@@ -18,12 +18,15 @@
   ##
   ################################################################################*/
 
-/*
- * compile-time absolute value function
- */
-
 #ifndef _gcem_abs_HPP
 #define _gcem_abs_HPP
+
+/**
+ * Compile-time absolute value function
+ *
+ * @param x a real-valued input.
+ * @return the absolute value of \c x, \f$ |x| \f$.
+ */
 
 template<typename T>
 constexpr

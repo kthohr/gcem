@@ -42,8 +42,12 @@ asinh_compute(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time inverse hyperbolic sine function
+ *
+ * @param x a real-valued input.
+ * @return the inverse hyperbolic sine function using \f[ \text{asinh}(x) = \ln \left( x + \sqrt{x^2 + 1} \right) \f]
+ */
 
 template<typename T>
 constexpr

@@ -104,7 +104,7 @@ incomplete_beta_inv_initial_val_1_int_end(const T alpha_par, const T beta_par, c
 template<typename T>
 constexpr
 T
-incomplete_beta_inv_initial_val_1(const T alpha_par, const T beta_par, const T p, const T t_val, const T sgn_term)
+incomplete_beta_inv_initial_val_1(const T alpha_par, const T beta_par, const T t_val, const T sgn_term)
 {   // a > 1.0
     return  incomplete_beta_inv_initial_val_1_int_end( alpha_par, beta_par,
                 incomplete_beta_inv_initial_val_1_int_w(
@@ -154,7 +154,7 @@ incomplete_beta_inv_initial_val(const T alpha_par, const T beta_par, const T p)
 {
     return( (alpha_par > T(1) && beta_par > T(1)) ?
             // if
-                incomplete_beta_inv_initial_val_1(alpha_par,beta_par,p,
+                incomplete_beta_inv_initial_val_1(alpha_par,beta_par,
                     incomplete_beta_inv_initial_val_1_tval(p),
                     p < T(0.5) ? T(1) : T(-1) ) :
             // else
@@ -214,7 +214,7 @@ incomplete_beta_inv_ratio_val_1(const T value, const T alpha_par, const T beta_p
 template<typename T>
 constexpr
 T
-incomplete_beta_inv_ratio_val_2(const T value, const T alpha_par, const T beta_par, const T p, const T deriv_1)
+incomplete_beta_inv_ratio_val_2(const T value, const T alpha_par, const T beta_par, const T deriv_1)
 {
     return( incomplete_beta_inv_deriv_2(value,alpha_par,beta_par,deriv_1) / deriv_1 );
 }
@@ -241,7 +241,7 @@ incomplete_beta_inv_recur(const T value, const T alpha_par, const T beta_par, co
             incomplete_beta_inv_decision( value, alpha_par, beta_par, p,
                incomplete_beta_inv_halley(
                    incomplete_beta_inv_ratio_val_1(value,alpha_par,beta_par,p,deriv_1),
-                   incomplete_beta_inv_ratio_val_2(value,alpha_par,beta_par,p,deriv_1)
+                   incomplete_beta_inv_ratio_val_2(value,alpha_par,beta_par,deriv_1)
                ), lb_val, iter_count) );
 }
 
@@ -287,15 +287,29 @@ incomplete_beta_inv_check(const T alpha_par, const T beta_par, const T p)
 
 }
 
-//
-// main function
+/**
+ * Compile-time inverse incomplete beta function
+ *
+ * @param a a real-valued, non-negative input.
+ * @param b a real-valued, non-negative input.
+ * @param p a real-valued input with values in the unit-interval.
+ *
+ * @return Computes the inverse incomplete beta function, a value \f$ x \f$ such that 
+ * \f[ f(x) := \frac{\text{B}(x;\alpha,\beta)}{\text{B}(\alpha,\beta)} - p \f]
+ * equal to zero, for a given \c p.
+ * GCE-Math finds this root using Halley's method:
+ * \f[ x_{n+1} = x_n - \frac{f(x_n)/f'(x_n)}{1 - 0.5 \frac{f(x_n)}{f'(x_n)} \frac{f''(x_n)}{f'(x_n)} } \f]
+ * where
+ * \f[ \frac{\partial}{\partial x} \left(\frac{\text{B}(x;\alpha,\beta)}{\text{B}(\alpha,\beta)}\right) = \frac{1}{\text{B}(\alpha,\beta)} x^{\alpha-1} (1-x)^{\beta-1} \f]
+ * \f[ \frac{\partial^2}{\partial x^2} \left(\frac{\text{B}(x;\alpha,\beta)}{\text{B}(\alpha,\beta)}\right) = \frac{1}{\text{B}(\alpha,\beta)} x^{\alpha-1} (1-x)^{\beta-1} \left( \frac{\alpha-1}{x} - \frac{\beta-1}{1 - x} \right) \f]
+ */
 
 template<typename eT, typename pT>
 constexpr
 eT
-incomplete_beta_inv(const pT alpha_par, const pT beta_par, const eT p)
+incomplete_beta_inv(const pT a, const pT b, const eT p)
 {
-    return internal::incomplete_beta_inv_check<eT>(alpha_par,beta_par,p);
+    return internal::incomplete_beta_inv_check<eT>(a,b,p);
 }
 
 #endif

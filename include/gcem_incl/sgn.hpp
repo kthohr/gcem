@@ -18,12 +18,15 @@
   ##
   ################################################################################*/
 
-/*
- * compile-time sign function
- */
-
 #ifndef _gcem_sgn_HPP
 #define _gcem_sgn_HPP
+
+/**
+ * Compile-time sign function
+ *
+ * @param x a real-valued input
+ * @return a value \f$ y \f$ such that \f[ y = \begin{cases} 1 \ &\text{ if } x > 0 \\ 0 \ &\text{ if } x = 0 \\ -1 \ &\text{ if } x < 0 \end{cases} \f]
+ */
 
 template<typename T>
 constexpr

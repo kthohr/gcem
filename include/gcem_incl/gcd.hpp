@@ -18,9 +18,8 @@
   ##
   ################################################################################*/
 
-/*
- * Euclidean algorithm to find the GCD
- */
+#ifndef _gcem_gcd_HPP
+#define _gcem_gcd_HPP
 
 namespace internal
 {
@@ -28,17 +27,25 @@ namespace internal
 template<typename T>
 constexpr
 T
-gcd_recur(T a, T b)
+gcd_recur(const T a, const T b)
 {
     return b == T(0) ? a : gcd_recur(b, a % b);
 }
 
 }
 
+/**
+ * Compile-time greatest common divisor (GCD) function
+ *
+ * @param a integral-valued input.
+ * @param b integral-valued input.
+ * @return the greatest common divisor between integers \c a and \c b using a Euclidean algorithm.
+ */
+
 template<typename T>
 constexpr
 T
-gcd(T a, T b)
+gcd(const T a, const T b)
 {
     return( (a < T(0) || b < T(0)) ? \
             // sanity check
@@ -48,3 +55,5 @@ gcd(T a, T b)
                 internal::gcd_recur(a,b) :
                 internal::gcd_recur<ullint_t>(a,b) );
 }
+
+#endif

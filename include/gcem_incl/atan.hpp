@@ -126,8 +126,12 @@ atan_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time arctangent function
+ *
+ * @param x a real-valued input.
+ * @return the inverse tangent function using \f[ \text{atan}(x) = \dfrac{x}{1 + \dfrac{x^2}{3 + \dfrac{4x^2}{5 + \dfrac{9x^2}{7 + \ddots}}}} \f]
+ */
 
 template<typename T>
 constexpr

@@ -155,7 +155,7 @@ erf_inv_ratio_val_1(const T value, const T p, const T deriv_1)
 template<typename T>
 constexpr
 T
-erf_inv_ratio_val_2(const T value, const T p, const T deriv_1)
+erf_inv_ratio_val_2(const T value, const T deriv_1)
 {
     return( erf_inv_deriv_2(value,deriv_1) / deriv_1 );
 }
@@ -175,7 +175,7 @@ erf_inv_recur(const T value, const T p, const T deriv_1, const int iter_count)
 {
     return erf_inv_decision( value, p, 
                              erf_inv_halley(erf_inv_ratio_val_1(value,p,deriv_1), 
-                                            erf_inv_ratio_val_2(value,p,deriv_1)),
+                                            erf_inv_ratio_val_2(value,deriv_1)),
                              iter_count );
 }
 
@@ -209,8 +209,18 @@ erf_inv_begin(const T p)
 
 }
 
-//
-// main function
+/**
+ * Compile-time inverse Gaussian error function
+ *
+ * @param p a real-valued input with values in the unit-interval.
+ * @return Computes the inverse Gaussian error function, a value \f$ x \f$ such that 
+ * \f[ f(x) := \text{erf}(x) - p \f]
+ * is equal to zero, for a given \c p. 
+ * GCE-Math finds this root using Halley's method:
+ * \f[ x_{n+1} = x_n - \frac{f(x_n)/f'(x_n)}{1 - 0.5 \frac{f(x_n)}{f'(x_n)} \frac{f''(x_n)}{f'(x_n)} } \f]
+ * where
+ * \f[ \frac{\partial}{\partial x} \text{erf}(x) = \exp(-x^2), \ \ \frac{\partial^2}{\partial x^2} \text{erf}(x) = -2x\exp(-x^2) \f]
+ */
 
 template<typename T>
 constexpr

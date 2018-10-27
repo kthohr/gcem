@@ -140,8 +140,24 @@ incomplete_beta_check(const T a, const T b, const T z)
 
 }
 
-//
-// main function
+/**
+ * Compile-time regularized incomplete beta function
+ *
+ * @param a a real-valued, non-negative input.
+ * @param b a real-valued, non-negative input.
+ * @param z a real-valued, non-negative input.
+ *
+ * @return computes the regularized incomplete beta function,
+ * \f[ \frac{\text{B}(z;\alpha,\beta)}{\text{B}(\alpha,\beta)} = \frac{1}{\text{B}(\alpha,\beta)}\int_0^z t^{a-1} (1-t)^{\beta-1} dt \f]
+ * using a continued fraction representation, found in the Handbook of Continued Fractions for Special Functions, and a modified Lentz method.
+ * \f[ \frac{\text{B}(z;\alpha,\beta)}{\text{B}(\alpha,\beta)} = \frac{z^{\alpha} (1-t)^{\beta}}{\alpha \text{B}(\alpha,\beta)} \dfrac{a_1}{1 + \dfrac{a_2}{1 + \dfrac{a_3}{1 + \dfrac{a_4}{1 + \ddots}}}} \f]
+ * where \f$ a_1 = 1 \f$ and
+ * \f[ a_{2m+2} = - \frac{(\alpha + m)(\alpha + \beta + m)}{(\alpha + 2m)(\alpha + 2m + 1)}, \ m \geq 0 \f]
+ * \f[ a_{2m+1} = \frac{m(\beta - m)}{(\alpha + 2m - 1)(\alpha + 2m)}, \ m \geq 1 \f]
+ * The Lentz method works as follows: let \f$ f_j \f$ denote the value of the continued fraction up to the first \f$ j \f$ terms; \f$ f_j \f$ is updated as follows:
+ * \f[ c_j = 1 + a_j / c_{j-1}, \ \ d_j = 1 / (1 + a_j d_{j-1}) \f]
+ * \f[ f_j = c_j d_j f_{j-1} \f]
+ */
 
 template<typename eT, typename pT>
 constexpr

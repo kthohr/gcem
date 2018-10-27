@@ -42,8 +42,12 @@ sinh_check(const T x)
 
 }
 
-//
-// main function
+/**
+ * Compile-time hyperbolic sine function
+ *
+ * @param x a real-valued input.
+ * @return the hyperbolic sine function using \f[ \sinh(x) = \frac{\exp(x) - \exp(-x)}{2} \f]
+ */
 
 template<typename T>
 constexpr
