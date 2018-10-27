@@ -5,4 +5,4 @@ channels:
 
 dependencies:
   - breathe
-  - sphinxcontrib.katex
+  - sphinxcontrib-katex
