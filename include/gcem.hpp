@@ -71,7 +71,7 @@ namespace gcem
     #include "gcem_incl/factorial.hpp"
     #include "gcem_incl/lbeta.hpp"
     #include "gcem_incl/beta.hpp"
-    #include "gcem_incl/log_multi_gamma.hpp"
+    #include "gcem_incl/lmgamma.hpp"
 
     #include "gcem_incl/erf.hpp"
     #include "gcem_incl/erf_inv.hpp"

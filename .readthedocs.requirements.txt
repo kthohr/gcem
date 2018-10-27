@@ -1,2 +1,2 @@
-sphinxcontrib-katex
 breathe
+sphinxcontrib-katex

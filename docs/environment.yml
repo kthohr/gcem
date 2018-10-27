@@ -1,3 +1,5 @@
+# problem: katex is not available on conda, yet
+
 name: gcem-docs
 
 channels:

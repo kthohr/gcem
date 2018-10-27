@@ -73,7 +73,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/lcm.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lgamma.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/log.hpp
-    ${GCEM_INCLUDE_DIR}/gcem_incl/log_multi_gamma.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/lmgamma.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/mantissa.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/max.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/min.hpp

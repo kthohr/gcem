@@ -28,7 +28,7 @@ Special functions
    :project: gcem
 
 .. _lmgamma-func-ref:
-.. doxygenfunction:: log_multi_gamma(const pT, const eT)
+.. doxygenfunction:: lmgamma(const pT, const eT)
    :project: gcem
 
 Incomplete integral functions
