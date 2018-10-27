@@ -21,8 +21,10 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
-#include "gcem.hpp"
+#include <string>
 #include <functional>
+
+#include "gcem.hpp"
 
 //
 // tolerance
