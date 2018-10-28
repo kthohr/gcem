@@ -49,10 +49,10 @@ factorial_table(const T x)
                          T(20922789888000) );
 }
 
-template<typename T>
+template<typename T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr>
 constexpr
 T
-factorial_integer(const T x)
+factorial_recur(const T x)
 {
     return( x == T(0) ? T(1) :
             x == T(1) ? x :
@@ -61,7 +61,15 @@ factorial_integer(const T x)
                 // if
                 factorial_table(x) :
                 // else
-                x*factorial_integer(x-1) );
+                x*factorial_recur(x-1) );
+}
+
+template<typename T, typename std::enable_if<!std::is_integral<T>::value>::type* = nullptr>
+constexpr
+T
+factorial_recur(const T x)
+{
+    return tgamma(x + 1);
 }
 
 }
@@ -80,11 +88,7 @@ constexpr
 T
 factorial(const T x)
 {
-    return( std::is_integral<T>::value ? \
-            // if
-                internal::factorial_integer(x) :
-            // else
-                tgamma(x + 1) );
+    return internal::factorial_recur(x);
 }
 
 #endif
