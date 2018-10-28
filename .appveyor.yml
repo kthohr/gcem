@@ -28,4 +28,4 @@ install:
   - cd tests
 
 build_script:
-  - .\exp.test
+  - ./exp.test

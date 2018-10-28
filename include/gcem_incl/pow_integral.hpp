@@ -74,12 +74,21 @@ pow_integral_compute(const Ta base, const Tb exp_term)
 //
 // main function
 
-template<typename Ta, typename Tb>
+template<typename Ta, typename Tb, typename std::enable_if<std::is_integral<Tb>::value>::type* = nullptr>
 constexpr
 return_t<Ta>
 pow_integral(const Ta base, const Tb exp_term)
 {
     return internal::pow_integral_compute(return_t<Ta>(base),exp_term);
+}
+
+template<typename Ta, typename Tb, typename std::enable_if<!std::is_integral<Tb>::value>::type* = nullptr>
+constexpr
+return_t<Ta>
+pow_integral(const Ta base, const Tb exp_term)
+{
+    // return GCLIM<return_t<Ta>>::quiet_NaN();
+    return internal::pow_integral_compute(return_t<Ta>(base),static_cast<llint_t>(exp_term));
 }
 
 #endif
