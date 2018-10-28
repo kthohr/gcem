@@ -67,6 +67,7 @@ set(GCEM_TESTS
     erf.cpp
     erf_inv.cpp
     exp.cpp
+    factorial.cpp
     incomplete_beta.cpp
     incomplete_beta_inv.cpp
     incomplete_gamma.cpp
