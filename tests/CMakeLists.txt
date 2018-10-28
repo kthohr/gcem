@@ -96,6 +96,6 @@ foreach( file_ ${GCEM_TESTS} )
     list(APPEND GCEM_TESTS_EX ${testname})
 endforeach()
 
-add_custom_target(gtest DEPENDS ${GCEM_TESTS_EX})
+add_custom_target(gcem_tests DEPENDS ${GCEM_TESTS_EX})
 
 #

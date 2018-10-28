@@ -93,7 +93,7 @@ mkdir build
 
 cd build
 cmake ../ -DBUILD_TESTS=1 -DCMAKE_INSTALL_PREFIX=/gcem/install/location
-make gtest
+make gcem_tests
 
 cd tests
 ./exp.test

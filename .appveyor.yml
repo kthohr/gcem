@@ -24,7 +24,7 @@ install:
   - conda info -a
   - conda install cmake -c conda-forge
   - cmake -G "NMake Makefiles" -D BUILD_TESTS=1 -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -D CMAKE_BUILD_TYPE=Release .
-  - nmake gtest
+  - nmake gcem_tests
   - cd tests
 
 build_script:
@@ -53,4 +53,3 @@ build_script:
   - .\sqrt.test
   - .\tan.test
   - .\tanh.test
-  - ls -al
