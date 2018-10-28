@@ -30,15 +30,15 @@
 
 template<typename T>
 constexpr
-T
+int
 sgn(const T x)
 {
     return( // positive
-            x > T(0) ? T(1) :
+            x > T(0) ?  1 :
             // negative
-            x < T(0) ? T(-1) :
+            x < T(0) ? -1 :
             // else
-                T(0) );
+                0 );
 }
 
 #endif

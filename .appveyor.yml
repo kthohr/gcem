@@ -28,7 +28,28 @@ install:
   - cd tests
 
 build_script:
-  - |
-    for t in .\*.test; do
-      "$t"
-    done
+  - .\acos.test
+  - .\acosh.test
+  - .\asin.test
+  - .\asinh.test
+  - .\atan.test
+  - .\atanh.test
+  - .\binomial_coef.test
+  - .\cos.test
+  - .\cosh.test
+  - .\erf.test
+  - .\erf_inv.test
+  - .\factorial.test
+  - .\incomplete_beta.test
+  - .\incomplete_beta_inv.test
+  - .\incomplete_gamma.test
+  - .\incomplete_gamma_inv.test
+  - .\lgamma.test
+  - .\log.test
+  - .\other.test
+  - .\pow.test
+  - .\sin.test
+  - .\sinh.test
+  - .\sqrt.test
+  - .\tan.test
+  - .\tanh.test

@@ -32,9 +32,9 @@ find_whole(const T x)
 {
     return( abs(x - internal::floor(x)) > T(0.5) ? \
             // if 
-                internal::floor(x) + sgn(x) :
-            //else 
-                internal::floor(x) );
+                static_cast<llint_t>(internal::floor(x) + sgn(x)) :
+            // else 
+                static_cast<llint_t>(internal::floor(x)) );
 }
 
 #endif
