@@ -28,6 +28,10 @@
 namespace internal
 {
 
+template<typename Ta, typename Tb>
+constexpr
+Ta pow_integral_compute(const Ta base, const Tb exp_term);
+
 // integral-valued powers
 // using method described in https://en.wikipedia.org/wiki/Exponentiation_by_squaring
 
@@ -41,6 +45,26 @@ pow_integral_compute_recur(const Ta base, const Ta val, const Tb exp_term)
                     pow_integral_compute_recur(base*base,val*base,exp_term/2) :
                     pow_integral_compute_recur(base*base,val,exp_term/2)) :
                 (exp_term == Tb(1) ? val*base : val) );
+}
+
+template<typename Ta, typename Tb, typename std::enable_if<std::is_signed<Tb>::value>::type* = nullptr>
+constexpr
+Ta
+pow_integral_sgn_check(const Ta base, const Tb exp_term)
+{
+    return( exp_term < Tb(0) ? \
+            //
+                Ta(1) / pow_integral_compute(base, - exp_term) : 
+            //
+                pow_integral_compute_recur(base,Ta(1),exp_term) );
+}
+
+template<typename Ta, typename Tb, typename std::enable_if<!std::is_signed<Tb>::value>::type* = nullptr>
+constexpr
+Ta
+pow_integral_sgn_check(const Ta base, const Tb exp_term)
+{
+    return( pow_integral_compute_recur(base,Ta(1),exp_term) );
 }
 
 template<typename Ta, typename Tb>
@@ -62,11 +86,7 @@ pow_integral_compute(const Ta base, const Tb exp_term)
             exp_term == GCLIM<Tb>::max() ? \
                 GCLIM<Ta>::infinity() :
             // else
-                exp_term < Tb(0) ? \
-                //
-                    Ta(1) / pow_integral_compute(base, - exp_term) : 
-                //
-                    pow_integral_compute_recur(base,Ta(1),exp_term) );
+            pow_integral_sgn_check(base,exp_term) );
 }
 
 }

@@ -7,9 +7,9 @@ endif
 CXX_STD = -std=c++11
 
 ifneq (,$(findstring clang,$(CXX)))
-	OPT_FLAGS = -g -O0 -Wall --coverage -fno-inline
+	OPT_FLAGS = -g -O0 -Wall -Wextra --coverage -fno-inline
 else
-	OPT_FLAGS = -g -O0 -Wall --coverage -fno-inline -fno-inline-small-functions -fno-default-inline
+	OPT_FLAGS = -g -O0 -Wall -Wextra --coverage -fno-inline -fno-inline-small-functions -fno-default-inline
 endif
 
 # source directories

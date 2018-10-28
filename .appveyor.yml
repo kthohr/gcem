@@ -28,4 +28,7 @@ install:
   - cd tests
 
 build_script:
-  - ./exp.test
+  - |
+    for t in .\*.test; do
+      "$t"
+    done
