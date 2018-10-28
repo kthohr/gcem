@@ -20,7 +20,7 @@
 
 #include <cstddef>      // size_t
 #include <limits>
-#include <type_traits>  // for is_integral
+#include <type_traits>  // is_integral
 
 //
 // version
@@ -30,11 +30,11 @@
 #endif
 
 #ifndef GCEM_VERSION_MINOR
-    #define GCEM_VERSION_MINOR 5
+    #define GCEM_VERSION_MINOR 6
 #endif
 
 #ifndef GCEM_VERSION_PATCH
-    #define GCEM_VERSION_PATCH 1
+    #define GCEM_VERSION_PATCH 0
 #endif
 
 //

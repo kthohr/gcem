@@ -1,15 +1,27 @@
 # GCE-Math
-[![Build Status](https://travis-ci.org/kthohr/gcem.svg?branch=master)](https://travis-ci.org/kthohr/gcem) [![Coverage Status](https://codecov.io/github/kthohr/gcem/coverage.svg?branch=master)](https://codecov.io/github/kthohr/gcem?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/19bf49e64ca04c848f6a0a8030d1f131)](https://www.codacy.com/app/kthohr/gcem?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kthohr/gcem&amp;utm_campaign=Badge_Grade) [![License](https://img.shields.io/badge/Licence-Apache%202.0-blue.svg)](./LICENSE) [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/kthohr/gcem.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kthohr/gcem/alerts) [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/kthohr/gcem.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kthohr/gcem/alerts)
+[![Build Status](https://travis-ci.org/kthohr/gcem.svg?branch=master)](https://travis-ci.org/kthohr/gcem) [![Build status](https://ci.appveyor.com/api/projects/status/5kxxkmisln1j4h6b?svg=true)](https://ci.appveyor.com/project/kthohr/gcem) [![Coverage Status](https://codecov.io/github/kthohr/gcem/coverage.svg?branch=master)](https://codecov.io/github/kthohr/gcem?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/19bf49e64ca04c848f6a0a8030d1f131)](https://www.codacy.com/app/kthohr/gcem?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kthohr/gcem&amp;utm_campaign=Badge_Grade) [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/kthohr/gcem.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kthohr/gcem/alerts) [![Documentation Status](https://readthedocs.org/projects/gcem/badge/?version=latest)](https://gcem.readthedocs.io/en/latest/?badge=latest)
 
 GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ library enabling compile-time computation of mathematical functions.
 
 * The library is written in C++11 ```constexpr``` format, and is C++11/14/17 compatible.
 * Continued fraction and series expansions are implemented using recursive templates.
 * The ```gcem::``` syntax is identical to the C++ standard library (`std::`).
-* Tested and accurate to machine precision against the C++ standard library.
+* Tested and accurate to floating-point precision against the C++ standard library.
 * Released under a permissive, non-GPL license.
 
-## Status
+**Author**: Keith O'Hara
+
+[![License](https://img.shields.io/badge/Licence-Apache%202.0-blue.svg)](./LICENSE)
+
+### Contents:
+* [Status and Documentation](#status-and-documentation) 
+* [General Syntax](#general-syntax)
+* [Installation and Tests](#installation-and-tests)
+* [Documentation](#documentation)
+* [Jupyter Notebook](#jupyter-notebook)
+* [Examples](#examples)
+
+## Status and Documentation
 
 The library is actively maintained, and is still being extended. A list of features includes:
 
@@ -18,13 +30,18 @@ The library is actively maintained, and is still being extended. A list of featu
 * trigonometric functions:
     - basic: ```cos```, ```sin```, ```tan```
     - inverse: ```acos```, ```asin```, ```atan```
-    - hyperbolic (area) functions: ```cosh```, ```sinh```, ```tanh```, ```acosh```, ```asinh```, ```atanh```
+* hyperbolic (area) functions: 
+    - ```cosh```, ```sinh```, ```tanh```, ```acosh```, ```asinh```, ```atanh```
 * special functions:
     - factorials and the binomial coefficient: ```factorial```, ```binomial_coef```
-    - beta and gamma functions: ```beta```, ```lbeta```, ```lgamma```, ```tgamma```
+    - beta, gamma, and multivariate gamma functions: ```beta```, ```lbeta```, ```lgamma```, ```tgamma```, ```lmgamma```
     - the Gaussian error function and inverse error function: ```erf```, ```erf_inv```
     - (regularized) incomplete beta and incomplete gamma functions: ```incomplete_beta```, ```incomplete_gamma```
     - inverse incomplete beta and incomplete gamma functions: ```incomplete_beta_inv```, ```incomplete_gamma_inv```
+
+Full documentation is available online:
+
+[![Documentation Status](https://readthedocs.org/projects/gcem/badge/?version=latest)](https://gcem.readthedocs.io/en/latest/?badge=latest)
 
 ## General Syntax
 
@@ -38,12 +55,55 @@ erf(const T x);
 where a set of internal templated ```constexpr``` functions will implement a continued fraction expansion to return a value of type ```return_t<T>```. This output type ('```return_t<T>```') is generally determined by the input type, e.g., ```int```, ```float```, ```double```, ```long double```, etc. When ```T``` is an intergral type, the output will be upgraded to ```return_t<T> = double```, otherwise ```return_t<T> = T```. For types not covered by ```std::is_integral```, recasts should be used.
 
 
-## Installation
+## Installation and Tests
 
-GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply add the header files to your project using
+GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply add the header files to your project using:
 ```cpp
 #include "gcem.hpp"
 ```
+
+You can also install the library using CMake.
+
+```bash
+# clone gcem from GitHub
+git clone https://github.com/kthohr/gcem ./gcem
+# make a build directory
+cd ./gcem
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/gcem/install/location
+make install
+```
+For example, `/gcem/install/location` could be `/usr/local/`.
+
+### Test Suite
+
+There are two ways to build the test suite. On Unix-alike systems, a Makefile is available under `tests/`.
+
+```bash
+cd ./gcem/tests
+make
+./run_tests
+```
+
+With CMake, the option `BUILD_TESTS=1` generates the necessary Makefiles to build the test suite.
+```bash
+cd ./gcem
+mkdir build
+
+cd build
+cmake ../ -DBUILD_TESTS=1 -DCMAKE_INSTALL_PREFIX=/gcem/install/location
+make gtest
+
+cd tests
+./exp.test
+```
+
+## Jupyter Notebook
+
+You can test the library online using an interactive Jupyter notebook: 
+
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/kthohr/gcem/master?filepath=notebooks%2Fgcem.ipynb)
 
 ## Examples
 
@@ -131,26 +191,7 @@ Lcfi2:
 	.cfi_endproc
 ```
 
-
-To build the full test suite:
-
-```bash
-# clone gcem from GitHub
-git clone -b master --single-branch https://github.com/kthohr/gcem ./gcem
-# compile tests
-cd ./gcem/tests
-make
-./run_tests
-```
-
 ## Related libraries
 
 For a library built on the GCEM compile-time functionality, see [StatsLib](https://github.com/kthohr/stats).
 
-## Author
-
-Keith O'Hara
-
-## License
-
-Apache Version 2.0

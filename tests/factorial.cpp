@@ -18,6 +18,7 @@
   ##
   ################################################################################*/
 
+#define TEST_ERR_TOL 1e-02
 #include "gcem_tests.hpp"
 
 int main()
@@ -36,11 +37,19 @@ int main()
 
     //
 
-    static constexpr long double test_vals[] = { 3.1L, 5.0L, 7.0L };
+    static constexpr long double test_vals[] = { 3.1L, 5.0L, 7.0L, 9.0L, 10.0L, 11.0L, 12.0L, 13.0L, 14.0L, 15.0L, 16.0L };
 
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn_dbl,std_fn,true,"    ",2,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn_int,std_fn,true,"    ",2,2,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn_int,std_fn,false,"    ",2,2,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn_dbl,std_fn,true,"    ",2,2,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn_int,std_fn,true,"    ",2,2,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn_dbl,std_fn,true,"    ",2,2,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn_int,std_fn,true,"    ",2,2,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn_dbl,std_fn,true,"    ",2,2,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,7,test_fn_int,std_fn,true,"    ",2,2,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,8,test_fn_dbl,std_fn,true,"    ",2,2,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,9,test_fn_dbl,std_fn,true,"    ",2,2,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,10,test_fn_int,std_fn,false,"    ",2,2,false,false);
 
     //
     

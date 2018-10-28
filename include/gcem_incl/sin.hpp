@@ -46,6 +46,15 @@ sin_check(const T x)
     return( // indistinguishable from zero
             GCLIM<T>::epsilon() > abs(x) ? \
                 T(0) :
+            // special cases: pi/2 and pi
+            GCLIM<T>::epsilon() > abs(x - T(GCEM_HALF_PI)) ? \
+                T(1) :
+            GCLIM<T>::epsilon() > abs(x + T(GCEM_HALF_PI)) ? \
+                - T(1) :
+            GCLIM<T>::epsilon() > abs(x - T(GCEM_PI)) ? \
+                T(0) :
+            GCLIM<T>::epsilon() > abs(x + T(GCEM_PI)) ? \
+                - T(0) :
             // else
                 sin_compute( tan(x/T(2)) ) );
 }

@@ -86,7 +86,7 @@ print_test_1(const std::string fn_name, const T val_inp_1, std::function<T (cons
                                                                                                                 \
     if (new_line) std::cout << std::endl;                                                                       \
 }                                                                                                               \
-                                                                                                             \
+                                                                                                                \
 
 #define PRINT_TEST_1_COMPARE(fn_name_1, fn_name_2, vals_inp, j,                                                 \
                              fn_eval_1, fn_eval_2, new_line, extra_space,                                       \
