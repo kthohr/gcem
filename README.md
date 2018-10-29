@@ -1,5 +1,5 @@
 # GCE-Math
-[![Build Status](https://travis-ci.org/kthohr/gcem.svg?branch=master)](https://travis-ci.org/kthohr/gcem) [![Build status](https://ci.appveyor.com/api/projects/status/5kxxkmisln1j4h6b?svg=true)](https://ci.appveyor.com/project/kthohr/gcem) [![Coverage Status](https://codecov.io/github/kthohr/gcem/coverage.svg?branch=master)](https://codecov.io/github/kthohr/gcem?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/19bf49e64ca04c848f6a0a8030d1f131)](https://www.codacy.com/app/kthohr/gcem?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kthohr/gcem&amp;utm_campaign=Badge_Grade) [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/kthohr/gcem.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kthohr/gcem/alerts) [![Documentation Status](https://readthedocs.org/projects/gcem/badge/?version=latest)](https://gcem.readthedocs.io/en/latest/?badge=latest)
+[![Build Status](https://travis-ci.org/kthohr/gcem.svg?branch=master)](https://travis-ci.org/kthohr/gcem) [![Build status](https://ci.appveyor.com/api/projects/status/5kxxkmisln1j4h6b?svg=true)](https://ci.appveyor.com/project/kthohr/gcem) [![Coverage Status](https://codecov.io/github/kthohr/gcem/coverage.svg?branch=master)](https://codecov.io/github/kthohr/gcem?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/19bf49e64ca04c848f6a0a8030d1f131)](https://www.codacy.com/app/kthohr/gcem?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kthohr/gcem&amp;utm_campaign=Badge_Grade) [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/kthohr/gcem.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kthohr/gcem) [![Documentation Status](https://readthedocs.org/projects/gcem/badge/?version=latest)](https://gcem.readthedocs.io/en/latest/?badge=latest)
 
 GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ library enabling compile-time computation of mathematical functions.
 
@@ -18,7 +18,6 @@ Features:
 ### Contents:
 * [Status and Documentation](#status-and-documentation) 
 * [Installation and Tests](#installation-and-tests)
-* [Documentation](#documentation)
 * [Jupyter Notebook](#jupyter-notebook)
 * [General Syntax](#general-syntax)
 * [Examples](#examples)
