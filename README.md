@@ -3,6 +3,8 @@
 
 GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ library enabling compile-time computation of mathematical functions.
 
+Features:
+
 * The library is written in C++11 ```constexpr``` format, and is C++11/14/17 compatible.
 * Continued fraction and series expansions are implemented using recursive templates.
 * The ```gcem::``` syntax is identical to the C++ standard library (`std::`).
@@ -15,10 +17,10 @@ GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ l
 
 ### Contents:
 * [Status and Documentation](#status-and-documentation) 
-* [General Syntax](#general-syntax)
 * [Installation and Tests](#installation-and-tests)
 * [Documentation](#documentation)
 * [Jupyter Notebook](#jupyter-notebook)
+* [General Syntax](#general-syntax)
 * [Examples](#examples)
 
 ## Status and Documentation
@@ -43,18 +45,6 @@ Full documentation is available online:
 
 [![Documentation Status](https://readthedocs.org/projects/gcem/badge/?version=latest)](https://gcem.readthedocs.io/en/latest/?badge=latest)
 
-## General Syntax
-
-GCE-Math functions are written as C++ templates with `constexpr` specifiers, the format of which might be confusing to users unfamiliar with template-based programming. As an example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (```erf```) is defined as:
-```cpp
-template<typename T>
-constexpr
-return_t<T>
-erf(const T x);
-```
-where a set of internal templated ```constexpr``` functions will implement a continued fraction expansion to return a value of type ```return_t<T>```. This output type ('```return_t<T>```') is generally determined by the input type, e.g., ```int```, ```float```, ```double```, ```long double```, etc. When ```T``` is an intergral type, the output will be upgraded to ```return_t<T> = double```, otherwise ```return_t<T> = T```. For types not covered by ```std::is_integral```, recasts should be used.
-
-
 ## Installation and Tests
 
 GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply add the header files to your project using:
@@ -62,15 +52,30 @@ GCE-Math is a header-only library and does not require any additional libraries 
 #include "gcem.hpp"
 ```
 
-You can also install the library using CMake.
+### Conda
+
+<!-- [![Anaconda-Server Badge](https://anaconda.org/kthohr/gcem/badges/platforms.svg)](https://anaconda.org/kthohr/gcem) -->
+
+You can install GCE-Math using the conda package manager.
+
+```bash
+conda install gcem -c kthohr
+```
+
+### CMake
+
+You can also install the library from source using CMake.
 
 ```bash
 # clone gcem from GitHub
 git clone https://github.com/kthohr/gcem ./gcem
+
 # make a build directory
 cd ./gcem
 mkdir build
 cd build
+
+# generate Makefiles and install
 cmake .. -DCMAKE_INSTALL_PREFIX=/gcem/install/location
 make install
 ```
@@ -104,6 +109,17 @@ cd tests
 You can test the library online using an interactive Jupyter notebook: 
 
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/kthohr/gcem/master?filepath=notebooks%2Fgcem.ipynb)
+
+## General Syntax
+
+GCE-Math functions are written as C++ templates with `constexpr` specifiers, the format of which might be confusing to users unfamiliar with template-based programming. As an example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (```erf```) is defined as:
+```cpp
+template<typename T>
+constexpr
+return_t<T>
+erf(const T x);
+```
+where a set of internal templated ```constexpr``` functions will implement a continued fraction expansion to return a value of type ```return_t<T>```. This output type ('```return_t<T>```') is generally determined by the input type, e.g., ```int```, ```float```, ```double```, ```long double```, etc. When ```T``` is an intergral type, the output will be upgraded to ```return_t<T> = double```, otherwise ```return_t<T> = T```. For types not covered by ```std::is_integral```, recasts should be used.
 
 ## Examples
 
