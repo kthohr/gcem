@@ -52,7 +52,7 @@ T
 binomial_coef_sgn_check(const T n, const T k)
 noexcept
 {
-    return binomial_coef_recur(static_cast<ullint_t>(n),static_cast<ullint_t>(k));
+    return static_cast<T>(binomial_coef_recur(static_cast<ullint_t>(n),static_cast<ullint_t>(k)));
 }
 
 template<typename T1, typename T2, typename TC = common_type_t<T1,T2>>
