@@ -34,6 +34,7 @@ template<typename T>
 constexpr
 T
 factorial_table(const T x)
+noexcept
 {   // table for x! when x = {2,...,16}
     return( x == T(2)  ? T(2)     : x == T(3)  ? T(6)      :
             x == T(4)  ? T(24)    : x == T(5)  ? T(120)    :
@@ -53,6 +54,7 @@ template<typename T, typename std::enable_if<std::is_integral<T>::value>::type* 
 constexpr
 T
 factorial_recur(const T x)
+noexcept
 {
     return( x == T(0) ? T(1) :
             x == T(1) ? x :
@@ -68,6 +70,7 @@ template<typename T, typename std::enable_if<!std::is_integral<T>::value>::type*
 constexpr
 T
 factorial_recur(const T x)
+noexcept
 {
     return tgamma(x + 1);
 }
@@ -87,6 +90,7 @@ template<typename T>
 constexpr
 T
 factorial(const T x)
+noexcept
 {
     return internal::factorial_recur(x);
 }

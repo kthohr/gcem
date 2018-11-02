@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 abs(const T x)
+noexcept
 {
     return( x < T(0) ? - x : x );
 }

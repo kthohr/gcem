@@ -52,6 +52,7 @@ namespace internal
 constexpr
 long double
 lgamma_coef_term(const long double x)
+noexcept
 {
     return(     0.99999999999999709182L             + 57.156235665862923517L      / (x+1)  \
              - 59.597960355475491248L      / (x+2)  + 14.136097974741747174L      / (x+3)  \
@@ -67,6 +68,7 @@ template<typename T>
 constexpr
 T
 lgamma_term_2(const T x)
+noexcept
 { //
     return( T(GCEM_LOG_SQRT_2PI) + log(T(lgamma_coef_term(x))) );
 }
@@ -75,6 +77,7 @@ template<typename T>
 constexpr
 T
 lgamma_term_1(const T x)
+noexcept
 {   // note: 607/128 + 0.5 = 5.2421875
     return( (x + T(0.5))*log(x + T(5.2421875L)) - (x + T(5.2421875L)) );
 }
@@ -83,6 +86,7 @@ template<typename T>
 constexpr
 T
 lgamma_begin(const T x)
+noexcept
 {   // returns lngamma(x+1)
     return( lgamma_term_1(x) + lgamma_term_2(x) );
 }
@@ -91,6 +95,7 @@ template<typename T>
 constexpr
 T
 lgamma_check(const T x)
+noexcept
 {
     return( // indistinguishable from one or <= zero
             GCLIM<T>::epsilon() > abs(x - T(1)) ? \
@@ -119,8 +124,9 @@ template<typename T>
 constexpr
 return_t<T>
 lgamma(const T x)
+noexcept
 {
-    return internal::lgamma_check<return_t<T>>(x);
+    return internal::lgamma_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

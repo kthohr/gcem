@@ -34,6 +34,7 @@ template<typename T>
 constexpr
 T
 sin_compute(const T x)
+noexcept
 {
     return T(2)*x/(T(1) + x*x);
 }
@@ -42,6 +43,7 @@ template<typename T>
 constexpr
 T
 sin_check(const T x)
+noexcept
 {
     return( // indistinguishable from zero
             GCLIM<T>::epsilon() > abs(x) ? \
@@ -72,8 +74,9 @@ template<typename T>
 constexpr
 return_t<T>
 sin(const T x)
+noexcept
 {
-    return internal::sin_check<return_t<T>>(x);
+    return internal::sin_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

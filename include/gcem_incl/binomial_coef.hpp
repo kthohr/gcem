@@ -24,16 +24,44 @@
 namespace internal
 {
 
-template<typename pT, typename eT>
+template<typename T>
 constexpr
-eT
-binomial_coef_recur(const pT n, const pT k)
+T
+binomial_coef_recur(const T n, const T k)
+noexcept
 {
     return( // edge cases
-                (k == pT(0) || n == k) ? eT(1) : // deals with 0 choose 0 case
-                n == pT(0) ? eT(0) :
+                (k == T(0) || n == k) ? T(1) : // deals with 0 choose 0 case
+                n == T(0) ? T(0) :
             // else
-                binomial_coef_recur<pT,eT>(n-1,k-1) + binomial_coef_recur<pT,eT>(n-1,k) );
+                binomial_coef_recur(n-1,k-1) + binomial_coef_recur(n-1,k) );
+}
+
+template<typename T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr>
+constexpr
+T
+binomial_coef_check(const T n, const T k)
+noexcept
+{
+    return binomial_coef_recur(n,k);
+}
+
+template<typename T, typename std::enable_if<!std::is_integral<T>::value>::type* = nullptr>
+constexpr
+T
+binomial_coef_sgn_check(const T n, const T k)
+noexcept
+{
+    return binomial_coef_recur(static_cast<ullint_t>(n),static_cast<ullint_t>(k));
+}
+
+template<typename T1, typename T2, typename TC = common_type_t<T1,T2>>
+constexpr
+TC
+binomial_coef_type_check(const T1 n, const T2 k)
+noexcept
+{
+    return binomial_coef_sgn_check(static_cast<TC>(n),static_cast<TC>(k));
 }
 
 }
@@ -48,16 +76,13 @@ binomial_coef_recur(const pT n, const pT k)
  * also known as '\c n choose \c k '.
  */
 
-template<typename pT, typename eT = pT>
+template<typename T1, typename T2>
 constexpr
-eT
-binomial_coef(const pT n, const pT k)
+common_type_t<T1,T2>
+binomial_coef(const T1 n, const T2 k)
+noexcept
 {
-    return( std::is_integral<pT>::value ? \
-        // if
-            internal::binomial_coef_recur<pT,eT>(n,k) :
-        // else
-            internal::binomial_coef_recur<ullint_t,ullint_t>(static_cast<ullint_t>(n),static_cast<ullint_t>(k)) );
+    return internal::binomial_coef_type_check(n,k);
 }
 
 #endif

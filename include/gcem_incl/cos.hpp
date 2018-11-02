@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 cos_compute(const T x)
+noexcept
 {
     return( T(1) - x*x)/(T(1) + x*x );
 }
@@ -40,6 +41,7 @@ template<typename T>
 constexpr
 T
 cos_check(const T x)
+noexcept
 {
     return( // indistinguishable from 0
             GCLIM<T>::epsilon() > abs(x) ? 
@@ -70,8 +72,9 @@ template<typename T>
 constexpr
 return_t<T>
 cos(const T x)
+noexcept
 {
-    return internal::cos_check<return_t<T>>(x);
+    return internal::cos_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

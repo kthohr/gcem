@@ -35,6 +35,7 @@ template<typename T>
 constexpr
 T
 erf_cf_large_recur(const T x, const int depth)
+noexcept
 {
     return( depth < GCEM_ERF_MAX_ITER ? \
             // if
@@ -47,6 +48,7 @@ template<typename T>
 constexpr
 T
 erf_cf_large_main(const T x)
+noexcept
 {
     return( T(1) - T(2) * ( exp(-x*x) / T(GCEM_SQRT_PI) ) \
                 / erf_cf_large_recur(T(2)*x,1) );
@@ -59,6 +61,7 @@ template<typename T>
 constexpr
 T
 erf_cf_small_recur(const T xx, const int depth)
+noexcept
 {
     return( depth < GCEM_ERF_MAX_ITER ? \
             // if
@@ -72,6 +75,7 @@ template<typename T>
 constexpr
 T
 erf_cf_small_main(const T x)
+noexcept
 {
     return( T(2) * x * ( exp(-x*x) / T(GCEM_SQRT_PI) ) \
                 / erf_cf_small_recur(x*x,1) );
@@ -83,6 +87,7 @@ template<typename T>
 constexpr
 T
 erf_begin(const T x)
+noexcept
 {
     return( x > T(2.1) ? \
             // if
@@ -95,6 +100,7 @@ template<typename T>
 constexpr
 T
 erf_check(const T x)
+noexcept
 {
     return( // indistinguishable from zero
             GCLIM<T>::epsilon() > abs(x) ? \
@@ -121,8 +127,9 @@ template<typename T>
 constexpr
 return_t<T>
 erf(const T x)
+noexcept
 {
-    return internal::erf_check<return_t<T>>(x);
+    return internal::erf_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

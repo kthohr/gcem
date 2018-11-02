@@ -26,7 +26,7 @@ int main()
 
     //
 
-    std::function<long double (long double, long double, long double)> test_fn = gcem::incomplete_beta<long double,long double>;
+    std::function<long double (long double, long double, long double)> test_fn = gcem::incomplete_beta<long double,long double,long double>;
     std::string test_fn_name = "gcem::incomplete_beta";
 
     //

@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 atanh_compute(const T x)
+noexcept
 {
     return( log( (T(1) + x)/(T(1) - x) ) / T(2) );
 }
@@ -40,6 +41,7 @@ template<typename T>
 constexpr
 T
 atanh_check(const T x)
+noexcept
 {
     return( // function is defined for |x| < 1
             T(1) < abs(x) ? \
@@ -66,8 +68,9 @@ template<typename T>
 constexpr
 return_t<T>
 atanh(const T x)
+noexcept
 {
-    return internal::atanh_check<return_t<T>>(x);
+    return internal::atanh_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

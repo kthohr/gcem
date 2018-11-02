@@ -8,9 +8,9 @@ Algorithms
 ===============
 
 .. _gcd-function-reference:
-.. doxygenfunction:: gcd(const T, const T)
+.. doxygenfunction:: gcd(const T1, const T2)
    :project: gcem
 
 .. _lcm-function-reference:
-.. doxygenfunction:: lcm(const T, const T)
+.. doxygenfunction:: lcm(const T1, const T2)
    :project: gcem

@@ -18,24 +18,35 @@
   ##
   ################################################################################*/
 
-#ifndef _gcem_min_HPP
-#define _gcem_min_HPP
+#define TEST_VAL_TYPES int
 
-/**
- * Compile-time pairwise minimum function
- *
- * @param x a real-valued input.
- * @param y a real-valued input.
- * @return Computes the minimum between \c x and \c y, where \c x and \c y have the same type (e.g., \c int, \c double, etc.)
- */
+#include "gcem_tests.hpp"
 
-template<typename T1, typename T2>
-constexpr
-common_type_t<T1,T2>
-min(const T1 x, const T2 y)
-noexcept
+int main()
 {
-    return( y > x ? x : y );
-}
+    std::cout << "\n*** begin lcm test ***\n" << std::endl;
 
-#endif
+    //
+
+    std::function<int (int, int)> test_fn = gcem::lcm<int,int>;
+    std::string test_fn_name = "gcem::lcm";
+
+    //
+
+    static constexpr int test_vals_1[] = { 3, 12, 17 }; // shape
+    static constexpr int test_vals_2[] = { 4, 15, 81 }; // x
+
+    static constexpr int expected_vals[] = { 12, 60, 1377 };
+
+    //
+
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,0,test_fn,expected_vals[0],true,"",3,18,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,1,test_fn,expected_vals[1],true,"",3,18,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,2,test_fn,expected_vals[2],false,"",3,18,false,false);
+
+    //
+
+    std::cout << "\n*** end lcm test ***\n" << std::endl;
+
+    return 0;
+}

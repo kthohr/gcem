@@ -31,7 +31,7 @@ namespace internal
 {
 
 template<typename T>
-constexpr T incomplete_beta_cf(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth);
+constexpr T incomplete_beta_cf(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth) noexcept;
 
 //
 // coefficients; see eq. 18.5.17b
@@ -40,6 +40,7 @@ template<typename T>
 constexpr
 T
 incomplete_beta_coef_even(const T a, const T b, const T z, const int k)
+noexcept
 {
     return( -z*(a + k)*(a + b + k)/( (a + 2*k)*(a + 2*k + T(1)) ) );
 }
@@ -48,6 +49,7 @@ template<typename T>
 constexpr
 T
 incomplete_beta_coef_odd(const T a, const T b, const T z, const int k)
+noexcept
 {
     return( z*k*(b - k)/((a + 2*k - T(1))*(a + 2*k)) );
 }
@@ -56,9 +58,10 @@ template<typename T>
 constexpr
 T
 incomplete_beta_coef(const T a, const T b, const T z, const int depth)
+noexcept
 {
     return( !is_odd(depth) ? incomplete_beta_coef_even(a,b,z,depth/2) :
-                              incomplete_beta_coef_odd(a,b,z,(depth+1)/2) );
+                             incomplete_beta_coef_odd(a,b,z,(depth+1)/2) );
 }
 
 //
@@ -68,6 +71,7 @@ template<typename T>
 constexpr
 T
 incomplete_beta_c_update(const T a, const T b, const T z, const T c_j, const int depth)
+noexcept
 {
     return( T(1) + incomplete_beta_coef(a,b,z,depth)/c_j );
 }
@@ -76,6 +80,7 @@ template<typename T>
 constexpr
 T
 incomplete_beta_d_update(const T a, const T b, const T z, const T d_j, const int depth)
+noexcept
 {
     return( T(1) / (T(1) + incomplete_beta_coef(a,b,z,depth)*d_j) );
 }
@@ -87,6 +92,7 @@ template<typename T>
 constexpr
 T
 incomplete_beta_decision(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth)
+noexcept
 {
     return( // tolerance check
                 abs(c_j*d_j - T(1)) < GCEM_INCML_BETA_TOL ? f_j*c_j*d_j :
@@ -102,6 +108,7 @@ template<typename T>
 constexpr
 T
 incomplete_beta_cf(const T a, const T b, const T z, const T c_j, const T d_j, const T f_j, const int depth)
+noexcept
 {
     return  incomplete_beta_decision(a,b,z,
                 incomplete_beta_c_update(a,b,z,c_j,depth),
@@ -116,6 +123,7 @@ template<typename T>
 constexpr
 T
 incomplete_beta_begin(const T a, const T b, const T z)
+noexcept
 {
     return  ( (exp(a*log(z) + b*log(T(1)-z) - lbeta(a,b)) / a) * \
                 incomplete_beta_cf(a,b,z,T(1), 
@@ -128,6 +136,7 @@ template<typename T>
 constexpr
 T
 incomplete_beta_check(const T a, const T b, const T z)
+noexcept
 {
     return( // indistinguishable from zero
             GCLIM<T>::epsilon() > z ? \
@@ -136,6 +145,17 @@ incomplete_beta_check(const T a, const T b, const T z)
             (a + T(1))/(a + b + T(2)) > z ? \
                 incomplete_beta_begin(a,b,z) :
                 T(1) - incomplete_beta_begin(b,a,T(1) - z) );
+}
+
+template<typename T1, typename T2, typename T3, typename TC = common_return_type_t<T1,T2,T3>>
+constexpr
+TC
+incomplete_beta_type_check(const T1 a, const T2 b, const T3 p)
+noexcept
+{
+    return incomplete_beta_check(static_cast<TC>(a),
+                                 static_cast<TC>(b),
+                                 static_cast<TC>(p));
 }
 
 }
@@ -159,12 +179,13 @@ incomplete_beta_check(const T a, const T b, const T z)
  * \f[ f_j = c_j d_j f_{j-1} \f]
  */
 
-template<typename eT, typename pT>
+template<typename T1, typename T2, typename T3>
 constexpr
-eT
-incomplete_beta(const pT a, const pT b, const eT z)
+common_return_type_t<T1,T2,T3>
+incomplete_beta(const T1 a, const T2 b, const T3 z)
+noexcept
 {
-    return internal::incomplete_beta_check<eT>(a,b,z);
+    return internal::incomplete_beta_type_check(a,b,z);
 }
 
 #endif

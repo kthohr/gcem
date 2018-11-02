@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 tgamma_check(const T x)
+noexcept
 {
     return( // indistinguishable from one or zero
             GCLIM<T>::epsilon() > abs(x - T(1)) ? \
@@ -60,8 +61,9 @@ template<typename T>
 constexpr
 return_t<T>
 tgamma(const T x)
+noexcept
 {
-    return internal::tgamma_check<return_t<T>>(x);
+    return internal::tgamma_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

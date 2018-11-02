@@ -34,6 +34,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_quad_inp_vals(const T lb, const T ub, const int counter)
+noexcept
 {
     return (ub-lb) * gauss_legendre_50_points[counter] / T(2) + (ub + lb) / T(2);
 }
@@ -42,6 +43,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_quad_weight_vals(const T lb, const T ub, const int counter)
+noexcept
 {
     return (ub-lb) * gauss_legendre_50_weights[counter] / T(2);
 }
@@ -50,6 +52,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_quad_fn(const T x, const T a, const T lg_term)
+noexcept
 {
     return exp( -x + (a-T(1))*log(x) - lg_term );
 }
@@ -58,6 +61,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_quad_recur(const T lb, const T ub, const T a, const T lg_term, const int counter)
+noexcept
 {
     return( counter < 49 ? \
             // if 
@@ -73,6 +77,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_quad_lb(const T a, const T z)
+noexcept
 {
     return( a > T(1000) ? max(T(0),min(z,a) - 11*sqrt(a)) : // break integration into ranges
             a > T(800)  ? max(T(0),min(z,a) - 11*sqrt(a)) :
@@ -92,6 +97,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_quad_ub(const T a, const T z)
+noexcept
 {
     return( a > T(1000) ? min(z, a + 10*sqrt(a)) :
             a > T(800)  ? min(z, a + 10*sqrt(a)) :
@@ -110,6 +116,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_quad(const T a, const T z)
+noexcept
 {
     return incomplete_gamma_quad_recur(incomplete_gamma_quad_lb(a,z), incomplete_gamma_quad_ub(a,z), a,lgamma(a),0);
 }
@@ -121,6 +128,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_cf_coef(const T a, const T z, const int depth)
+noexcept
 {
     return( is_odd(depth) ? - (a - 1 + T(depth+1)/T(2)) * z : T(depth)/T(2) * z );
 }
@@ -129,6 +137,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_cf_recur(const T a, const T z, const int depth)
+noexcept
 {
     return( depth < GCEM_INCML_GAMMA_MAX_ITER ? \
             // if
@@ -141,6 +150,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_cf(const T a, const T z)
+noexcept
 {   // lower (regularized) incomplete gamma function
     return( exp(a*log(z) - z) / tgamma(a) / incomplete_gamma_cf_recur(a,z,1) );
 }
@@ -151,6 +161,7 @@ template<typename T>
 constexpr
 T
 incomplete_gamma_check(const T a, const T z)
+noexcept
 {
     return( GCLIM<T>::epsilon() > z ? \
                 T(0) : 
@@ -161,6 +172,16 @@ incomplete_gamma_check(const T a, const T z)
                 incomplete_gamma_cf(a,z) :
             // else
                 incomplete_gamma_quad(a,z) );
+}
+
+template<typename T1, typename T2, typename TC = common_return_type_t<T1,T2>>
+constexpr
+TC
+incomplete_gamma_type_check(const T1 a, const T2 p)
+noexcept
+{
+    return incomplete_gamma_check(static_cast<TC>(a),
+                                  static_cast<TC>(p));
 }
 
 }
@@ -180,12 +201,13 @@ incomplete_gamma_check(const T a, const T z)
  * When \f$ a > 10 \f$, a 50-point Gauss-Legendre quadrature scheme is employed.
  */
 
-template<typename eT, typename pT>
+template<typename T1, typename T2>
 constexpr
-return_t<eT>
-incomplete_gamma(const pT a, const eT x)
+common_return_type_t<T1,T2>
+incomplete_gamma(const T1 a, const T2 x)
+noexcept
 {
-    return internal::incomplete_gamma_check<return_t<eT>>(a,x);
+    return internal::incomplete_gamma_type_check(a,x);
 }
 
 #endif

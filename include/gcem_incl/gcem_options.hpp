@@ -30,7 +30,7 @@
 #endif
 
 #ifndef GCEM_VERSION_MINOR
-    #define GCEM_VERSION_MINOR 6
+    #define GCEM_VERSION_MINOR 7
 #endif
 
 #ifndef GCEM_VERSION_PATCH
@@ -52,6 +52,14 @@ namespace gcem
 
     template<typename T>
     using return_t = typename std::conditional<std::is_integral<T>::value,double,T>::type;
+
+#if(__cplusplus < 201402L)
+    template<typename ...T>
+    using common_type_t = typename std::common_type<T...>::type;
+#endif
+
+    template<typename ...T>
+    using common_return_type_t = return_t<common_type_t<T...>>;
 }
 
 //

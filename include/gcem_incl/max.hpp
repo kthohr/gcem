@@ -22,19 +22,20 @@
 #define _gcem_max_HPP
 
 /**
- * Compile-time maximum function
+ * Compile-time pairwise maximum function
  *
  * @param x a real-valued input.
  * @param y a real-valued input.
  * @return Computes the maximum between \c x and \c y, where \c x and \c y have the same type (e.g., \c int, \c double, etc.)
  */
 
-template<typename T>
+template<typename T1, typename T2>
 constexpr
-T
-max(const T x, const T y)
+common_type_t<T1,T2>
+max(const T1 x, const T2 y)
+noexcept
 {
-    return( x > y ? x : y );
+    return( y < x ? x : y );
 }
 
 #endif

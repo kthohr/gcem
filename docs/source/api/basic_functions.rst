@@ -24,15 +24,15 @@ Basic functions
    :project: gcem
 
 .. _max-function-reference:
-.. doxygenfunction:: max(const T, const T)
+.. doxygenfunction:: max(const T1, const T2)
    :project: gcem
 
 .. _min-function-reference:
-.. doxygenfunction:: min(const T, const T)
+.. doxygenfunction:: min(const T1, const T2)
    :project: gcem
 
 .. _pow-function-reference:
-.. doxygenfunction:: pow(const Ta, const Tb)
+.. doxygenfunction:: pow(const T1, const T2)
    :project: gcem
 
 .. _sgn-function-reference:

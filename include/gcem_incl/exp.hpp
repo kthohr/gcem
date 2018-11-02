@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 exp_cf_recur(const T x, const int depth)
+noexcept
 {
     return( depth < GCEM_EXP_MAX_ITER_SMALL ? \
             // if
@@ -46,6 +47,7 @@ template<typename T>
 constexpr
 T
 exp_cf(const T x)
+noexcept
 {
     return( T(1)/exp_cf_recur(x,1) );
 }
@@ -54,6 +56,7 @@ template<typename T>
 constexpr
 T
 exp_split(const T x)
+noexcept
 {
     return( pow_integral(GCEM_E,find_whole(x)) * exp_cf(find_fraction(x)) );
 }
@@ -62,6 +65,7 @@ template<typename T>
 constexpr
 T
 exp_check(const T x)
+noexcept
 {
     return( GCLIM<T>::epsilon() > abs(x) ? \
             // if
@@ -85,8 +89,9 @@ template<typename T>
 constexpr
 return_t<T>
 exp(const T x)
+noexcept
 {
-    return internal::exp_check<return_t<T>>(x);
+    return internal::exp_check( static_cast<return_t<T>>(x) );
 }
 
 // #ifndef GCEM_EXP_TOL

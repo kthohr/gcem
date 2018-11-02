@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 sinh_check(const T x)
+noexcept
 {
     return( // indistinguishable from zero
             GCLIM<T>::epsilon() > abs(x) ? \
@@ -53,8 +54,9 @@ template<typename T>
 constexpr
 return_t<T>
 sinh(const T x)
+noexcept
 {
-    return internal::sinh_check<return_t<T>>(x);
+    return internal::sinh_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

@@ -28,8 +28,36 @@ template<typename T>
 constexpr
 T
 gcd_recur(const T a, const T b)
+noexcept
 {
-    return b == T(0) ? a : gcd_recur(b, a % b);
+    return( b == T(0) ? a : gcd_recur(b, a % b) );
+}
+
+template<typename T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr>
+constexpr
+T
+gcd_int_check(const T a, const T b)
+noexcept
+{
+    return gcd_recur(a,b);
+}
+
+template<typename T, typename std::enable_if<!std::is_integral<T>::value>::type* = nullptr>
+constexpr
+T
+gcd_int_check(const T a, const T b)
+noexcept
+{
+    return gcd_recur( static_cast<ullint_t>(a), static_cast<ullint_t>(b) );
+}
+
+template<typename T1, typename T2, typename TC = common_type_t<T1,T2>>
+constexpr
+TC
+gcd_type_check(const T1 a, const T2 b)
+noexcept
+{
+    return gcd_int_check( static_cast<TC>(abs(a)), static_cast<TC>(abs(b)) );
 }
 
 }
@@ -42,18 +70,13 @@ gcd_recur(const T a, const T b)
  * @return the greatest common divisor between integers \c a and \c b using a Euclidean algorithm.
  */
 
-template<typename T>
+template<typename T1, typename T2>
 constexpr
-T
-gcd(const T a, const T b)
+common_type_t<T1,T2>
+gcd(const T1 a, const T2 b)
+noexcept
 {
-    return( (a < T(0) || b < T(0)) ? \
-            // sanity check
-                gcd(abs(a),abs(b)) :
-            //
-            std::is_integral<T>::value ? \
-                internal::gcd_recur(a,b) :
-                internal::gcd_recur<ullint_t>(a,b) );
+    return internal::gcd_type_check(a,b);
 }
 
 #endif

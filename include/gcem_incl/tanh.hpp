@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 tanh_cf(const T xx, const int depth)
+noexcept
 {
     return( depth < GCEM_TANH_MAX_ITER ? \
             // if
@@ -44,6 +45,7 @@ template<typename T>
 constexpr
 T
 tanh_begin(const T x)
+noexcept
 {
     return( x/tanh_cf(x*x,1) );
 }
@@ -52,6 +54,7 @@ template<typename T>
 constexpr
 T
 tanh_check(const T x)
+noexcept
 {
     return( // indistinguishable from zero
              GCLIM<T>::epsilon() > abs(x) ? \
@@ -75,8 +78,9 @@ template<typename T>
 constexpr
 return_t<T>
 tanh(const T x)
+noexcept
 {
-    return internal::tanh_check<return_t<T>>(x);
+    return internal::tanh_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

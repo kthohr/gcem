@@ -30,18 +30,19 @@ namespace internal
 
 // see https://en.wikipedia.org/wiki/Multivariate_gamma_function
 
-template<typename Ta, typename Tb>
+template<typename T1, typename T2>
 constexpr
-Ta
-lmgamma_recur(const Ta a, const Tb p)
+T1
+lmgamma_recur(const T1 a, const T2 p)
+noexcept
 {
-    return( p == Tb(1) ? \
+    return( p == T2(1) ? \
                 lgamma(a) :
-            p <  Tb(1) ? \
-                GCLIM<Ta>::quiet_NaN() :
+            p <  T2(1) ? \
+                GCLIM<T1>::quiet_NaN() :
             // else
-                Ta(GCEM_LOG_PI) * (p - Ta(1))/Ta(2) \
-                    + lgamma(a) + lmgamma_recur(a - Ta(0.5),p-1) );
+                T1(GCEM_LOG_PI) * (p - T1(1))/T1(2) \
+                    + lgamma(a) + lmgamma_recur(a - T1(0.5),p-T2(1)) );
 }
 
 }
@@ -56,12 +57,13 @@ lmgamma_recur(const Ta a, const Tb p)
  * where \f$ \Gamma_1(a) = \Gamma(a) \f$.
  */
 
-template<typename eT, typename pT>
+template<typename T1, typename T2>
 constexpr
-return_t<eT>
-lmgamma(const pT a, const eT p)
+return_t<T1>
+lmgamma(const T1 a, const T2 p)
+noexcept
 {
-    return internal::lmgamma_recur(return_t<eT>(a),p);
+    return internal::lmgamma_recur(static_cast<return_t<T1>>(a),p);
 }
 
 #endif
