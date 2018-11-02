@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 acosh_compute(const T x)
+noexcept
 {
     return( // function defined for x >= 1
             x < T(1) ? \
@@ -56,8 +57,9 @@ template<typename T>
 constexpr
 return_t<T>
 acosh(const T x)
+noexcept
 {
-    return internal::acosh_compute<return_t<T>>(x);
+    return internal::acosh_compute( static_cast<return_t<T>>(x) );
 }
 
 #endif

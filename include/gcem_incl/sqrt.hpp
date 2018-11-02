@@ -31,7 +31,8 @@ namespace internal
 template<typename T>
 constexpr
 T
-sqrt_recur(const T x, const T xn, const std::size_t count)
+sqrt_recur(const T x, const T xn, const int count)
+noexcept
 {
     return( abs(xn - x/xn) / (T(1) + xn) < GCLIM<T>::epsilon() ? \
             // if
@@ -46,6 +47,7 @@ template<typename T>
 constexpr
 T
 sqrt_check(const T x, const T m_val)
+noexcept
 {
     return( // negative values
             x < T(0) ? \
@@ -75,8 +77,9 @@ template<typename T>
 constexpr
 return_t<T>
 sqrt(const T x)
+noexcept
 {
-    return internal::sqrt_check<return_t<T>>(x,T(1));
+    return internal::sqrt_check( static_cast<return_t<T>>(x), return_t<T>(1) );
 }
 
 #endif

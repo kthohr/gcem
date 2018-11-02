@@ -38,6 +38,7 @@ template<typename T>
 constexpr
 T
 atan_series_order_calc(const T x, const T x_pow, const uint_t order)
+noexcept
 {
     return( T(1)/( T((order-1)*4 - 1) * x_pow ) \
               - T(1)/( T((order-1)*4 + 1) * x_pow*x) );
@@ -47,6 +48,7 @@ template<typename T>
 constexpr
 T
 atan_series_order(const T x, const T x_pow, const uint_t order, const uint_t max_order)
+noexcept
 {
     return( order == 1 ? \
                 GCEM_HALF_PI - T(1)/x + atan_series_order(x*x,pow(x,3),order+1,max_order) :
@@ -62,6 +64,7 @@ template<typename T>
 constexpr
 T
 atan_series_main(const T x)
+noexcept
 {
     return( x < T(3)    ? atan_series_order(x,x,1U,10U) :  // O(1/x^39)
             x < T(4)    ? atan_series_order(x,x,1U,9U)  :  // O(1/x^35)
@@ -80,6 +83,7 @@ template<typename T>
 constexpr
 T
 atan_cf_recur(const T xx, const uint_t depth, const uint_t max_depth)
+noexcept
 {
     return( depth < max_depth ? \
             // if
@@ -92,6 +96,7 @@ template<typename T>
 constexpr
 T
 atan_cf_main(const T x)
+noexcept
 {
     return( x < T(0.5) ? x/atan_cf_recur(x*x,1U, 15U ) : 
             x < T(1)   ? x/atan_cf_recur(x*x,1U, 25U ) : 
@@ -106,6 +111,7 @@ template<typename T>
 constexpr
 T
 atan_begin(const T x)
+noexcept
 {
     return( x > T(2.5) ? atan_series_main(x) : atan_cf_main(x) );
 }
@@ -114,6 +120,7 @@ template<typename T>
 constexpr
 T
 atan_check(const T x)
+noexcept
 {
     return( // indistinguishable from zero
             GCLIM<T>::epsilon() > abs(x) ? \
@@ -137,8 +144,9 @@ template<typename T>
 constexpr
 return_t<T>
 atan(const T x)
+noexcept
 {
-    return internal::atan_check<return_t<T>>(x);
+    return internal::atan_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

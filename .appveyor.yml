@@ -40,10 +40,12 @@ build_script:
   - .\erf.test
   - .\erf_inv.test
   - .\factorial.test
+  - .\gcd.test
   - .\incomplete_beta.test
   - .\incomplete_beta_inv.test
   - .\incomplete_gamma.test
   - .\incomplete_gamma_inv.test
+  - .\lcm.test
   - .\lgamma.test
   - .\log.test
   - .\other.test

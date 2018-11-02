@@ -29,6 +29,7 @@ template<typename T>
 constexpr
 T
 find_fraction(const T x)
+noexcept
 {
     return( abs(x - internal::floor(x)) > T(0.5) ? \
             // if 

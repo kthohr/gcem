@@ -32,7 +32,7 @@ namespace internal
 {
 
 template<typename T>
-constexpr T erf_inv_decision(const T value, const T p, const T direc, const int iter_count);
+constexpr T erf_inv_decision(const T value, const T p, const T direc, const int iter_count) noexcept;
 
 //
 // initial value
@@ -43,6 +43,7 @@ template<typename T>
 constexpr
 T
 erf_inv_initial_val_coef_2(const T a, const T p_term, const int order)
+noexcept
 {
     return( order == 1 ? T(-0.000200214257L) :
             order == 2 ? T( 0.000100950558L) + a*p_term :
@@ -60,6 +61,7 @@ template<typename T>
 constexpr
 T
 erf_inv_initial_val_case_2(const T a, const T p_term, const int order)
+noexcept
 {
     return( order == 9 ? \
             // if
@@ -72,6 +74,7 @@ template<typename T>
 constexpr
 T
 erf_inv_initial_val_coef_1(const T a, const T p_term, const int order)
+noexcept
 {
     return( order == 1 ? T( 2.81022636e-08L) : 
             order == 2 ? T( 3.43273939e-07L) + a*p_term :
@@ -89,6 +92,7 @@ template<typename T>
 constexpr
 T
 erf_inv_initial_val_case_1(const T a, const T p_term, const int order)
+noexcept
 {
     return( order == 9 ? \
             // if
@@ -101,6 +105,7 @@ template<typename T>
 constexpr
 T
 erf_inv_initial_val_int(const T a)
+noexcept
 {
     return( a < T(5) ? \
             // if
@@ -113,6 +118,7 @@ template<typename T>
 constexpr
 T
 erf_inv_initial_val(const T x)
+noexcept
 {
     return x*erf_inv_initial_val_int( -log( (T(1) - x)*(T(1) + x) ) );
 }
@@ -124,6 +130,7 @@ template<typename T>
 constexpr
 T
 erf_inv_err_val(const T value, const T p)
+noexcept
 {   // err_val = f(x)
     return( erf(value) - p );
 }
@@ -132,6 +139,7 @@ template<typename T>
 constexpr
 T
 erf_inv_deriv_1(const T value)
+noexcept
 {   // derivative of the error function w.r.t. x
     return( exp( -value*value ) );
 }
@@ -140,6 +148,7 @@ template<typename T>
 constexpr
 T
 erf_inv_deriv_2(const T value, const T deriv_1)
+noexcept
 {   // second derivative of the error function w.r.t. x
     return( deriv_1*( -T(2)*value ) );
 }
@@ -148,6 +157,7 @@ template<typename T>
 constexpr
 T
 erf_inv_ratio_val_1(const T value, const T p, const T deriv_1)
+noexcept
 {
     return( erf_inv_err_val(value,p) / deriv_1 );
 }
@@ -156,6 +166,7 @@ template<typename T>
 constexpr
 T
 erf_inv_ratio_val_2(const T value, const T deriv_1)
+noexcept
 {
     return( erf_inv_deriv_2(value,deriv_1) / deriv_1 );
 }
@@ -164,6 +175,7 @@ template<typename T>
 constexpr
 T
 erf_inv_halley(const T ratio_val_1, const T ratio_val_2)
+noexcept
 {
     return( ratio_val_1 / max( T(0.8), min( T(1.2), T(1) - T(0.5)*ratio_val_1*ratio_val_2 ) ) );
 }
@@ -172,6 +184,7 @@ template<typename T>
 constexpr
 T
 erf_inv_recur(const T value, const T p, const T deriv_1, const int iter_count)
+noexcept
 {
     return erf_inv_decision( value, p, 
                              erf_inv_halley(erf_inv_ratio_val_1(value,p,deriv_1), 
@@ -183,6 +196,7 @@ template<typename T>
 constexpr
 T
 erf_inv_decision(const T value, const T p, const T direc, const int iter_count)
+noexcept
 {
     return( iter_count < GCEM_ERF_INV_MAX_ITER ? \
             // if
@@ -195,6 +209,7 @@ template<typename T>
 constexpr
 T
 erf_inv_recur_begin(const T initial_val, const T p)
+noexcept
 {
     return erf_inv_recur(initial_val,p,erf_inv_deriv_1(initial_val),1);
 }
@@ -203,6 +218,7 @@ template<typename T>
 constexpr
 T
 erf_inv_begin(const T p)
+noexcept
 {
     return erf_inv_recur_begin(erf_inv_initial_val(p),p);
 }
@@ -226,8 +242,9 @@ template<typename T>
 constexpr
 return_t<T>
 erf_inv(const T p)
+noexcept
 {
-    return internal::erf_inv_begin<return_t<T>>(p);
+    return internal::erf_inv_begin( static_cast<return_t<T>>(p) );
 }
 
 

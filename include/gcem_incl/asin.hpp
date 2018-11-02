@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 asin_compute(const T x)
+noexcept
 {
     return( // only defined on [-1,1]
             x > T(1) ? \
@@ -49,6 +50,7 @@ template<typename T>
 constexpr
 T
 asin_check(const T x)
+noexcept
 {
     return( x < T(0) ? - asin_compute(-x) : asin_compute(x) );
 }
@@ -66,8 +68,9 @@ template<typename T>
 constexpr
 return_t<T>
 asin(const T x)
+noexcept
 {
-    return internal::asin_check<return_t<T>>(x);
+    return internal::asin_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

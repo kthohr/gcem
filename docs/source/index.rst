@@ -47,7 +47,7 @@ GCE-Math functions are written as C++ templates with ``constexpr`` specifiers, t
     template<typename T>
     constexpr
     return_t<T>
-    erf(const T x);
+    erf(const T x) noexcept;
 
 where a set of internal templated ``constexpr`` functions will implement a continued fraction expansion to return a value of type ``return_t<T>``. This output type ('``return_t<T>``') is generally determined by the input type, e.g., ``int``, ``float``, ``double``, ``long double``, etc. When ``T`` is an intergral type, the output will be upgraded to ``return_t<T> = double``, otherwise ``return_t<T> = T``. For types not covered by ``std::is_integral``, recasts should be used.
 

@@ -29,6 +29,7 @@ template<typename T>
 constexpr
 llint_t
 find_whole(const T x)
+noexcept
 {
     return( abs(x - internal::floor(x)) > T(0.5) ? \
             // if 

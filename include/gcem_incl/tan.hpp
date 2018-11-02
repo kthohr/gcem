@@ -32,14 +32,16 @@ template<typename T>
 constexpr
 T
 tan_series_exp_long(const T z)
+noexcept
 {   // this is based on a fourth-order expansion of tan(z) using Bernoulli numbers
-    return( - 1/z + z/3 + pow_integral(z,3)/45 + 2*pow_integral(z,5)/945 + pow_integral(z,7)/4725 );
+    return( - 1/z + (z/3 + (pow_integral(z,3)/45 + (2*pow_integral(z,5)/945 + pow_integral(z,7)/4725))) );
 }
 
 template<typename T>
 constexpr
 T
 tan_series_exp(const T x)
+noexcept
 {
     return( GCLIM<T>::epsilon() > abs(x - T(GCEM_HALF_PI)) ? \
             // the value tan(pi/2) is somewhat of a convention;
@@ -55,6 +57,7 @@ template<typename T>
 constexpr
 T
 tan_cf_recur(const T xx, const int depth, const int max_depth)
+noexcept
 {
     return( depth < max_depth ? \
             // if
@@ -67,6 +70,7 @@ template<typename T>
 constexpr
 T
 tan_cf_main(const T x)
+noexcept
 {
     return( (x > T(1.55) && x < T(1.60)) ? \
                 tan_series_exp(x) : // deals with a singularity at tan(pi/2)
@@ -83,6 +87,7 @@ template<typename T>
 constexpr
 T
 tan_begin(const T x, const int count = 0)
+noexcept
 {   // tan(x) = tan(x + pi)
     return( x > T(GCEM_PI) ? \
             // if
@@ -96,6 +101,7 @@ template<typename T>
 constexpr
 T
 tan_check(const T x)
+noexcept
 {
     return( // indistinguishable from zero 
             GCLIM<T>::epsilon() > abs(x) ? \
@@ -112,15 +118,20 @@ tan_check(const T x)
  * Compile-time tangent function
  *
  * @param x a real-valued input.
- * @return the tangent function using \f[ \tan(x) = \dfrac{x}{1 - \dfrac{x^2}{3 - \dfrac{x^2}{5 - \ddots}}} \f]
+ * @return the tangent function using
+ * \f[ \tan(x) = \dfrac{x}{1 - \dfrac{x^2}{3 - \dfrac{x^2}{5 - \ddots}}} \f]
+ * To deal with a singularity at \f$ \pi / 2 \f$, the following expansion is employed:
+ * \f[ \tan(x) = - \frac{1}{x-\pi/2} - \sum_{k=1}^\infty \frac{(-1)^k 2^{2k} B_{2k}}{(2k)!} (x - \pi/2)^{2k - 1} \f]
+ * where \f$ B_n \f$ is the n-th Bernoulli number.
  */
 
 template<typename T>
 constexpr
 return_t<T>
 tan(const T x)
+noexcept
 {
-    return internal::tan_check<return_t<T>>(x);
+    return internal::tan_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

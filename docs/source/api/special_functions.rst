@@ -8,15 +8,15 @@ Special functions
 ===============
 
 .. _binomial-func-ref:
-.. doxygenfunction:: binomial_coef(const pT, const pT)
+.. doxygenfunction:: binomial_coef(const T1, const T2)
    :project: gcem
 
 .. _beta-function-reference:
-.. doxygenfunction:: beta(const T, const T)
+.. doxygenfunction:: beta(const T1, const T2)
    :project: gcem
 
 .. _lbeta-func-ref:
-.. doxygenfunction:: lbeta(const T, const T)
+.. doxygenfunction:: lbeta(const T1, const T2)
    :project: gcem
 
 .. _tgamma-func-ref:
@@ -28,7 +28,7 @@ Special functions
    :project: gcem
 
 .. _lmgamma-func-ref:
-.. doxygenfunction:: lmgamma(const pT, const eT)
+.. doxygenfunction:: lmgamma(const T1, const T2)
    :project: gcem
 
 Incomplete integral functions
@@ -39,11 +39,11 @@ Incomplete integral functions
    :project: gcem
 
 .. _ib-func-ref:
-.. doxygenfunction:: incomplete_beta(const pT, const pT, const eT)
+.. doxygenfunction:: incomplete_beta(const T1, const T2, const T3)
    :project: gcem
 
 .. _ig-func-ref:
-.. doxygenfunction:: incomplete_gamma(const pT, const eT)
+.. doxygenfunction:: incomplete_gamma(const T1, const T2)
    :project: gcem
 
 Inverse incomplete integral functions
@@ -54,9 +54,9 @@ Inverse incomplete integral functions
    :project: gcem
 
 .. _iib-ref:
-.. doxygenfunction:: incomplete_beta_inv(const pT, const pT, const eT)
+.. doxygenfunction:: incomplete_beta_inv(const T1, const T2, const T3)
    :project: gcem
 
 .. _iig-ref:
-.. doxygenfunction:: incomplete_gamma_inv(const pT, const eT)
+.. doxygenfunction:: incomplete_gamma_inv(const T1, const T2)
    :project: gcem

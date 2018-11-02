@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 asinh_compute(const T x)
+noexcept
 {
     return( // indistinguishable from zero
             GCLIM<T>::epsilon() > abs(x) ? \
@@ -53,8 +54,9 @@ template<typename T>
 constexpr
 return_t<T>
 asinh(const T x)
+noexcept
 {
-    return internal::asinh_compute<return_t<T>>(x);
+    return internal::asinh_compute( static_cast<return_t<T>>(x) );
 }
 
 

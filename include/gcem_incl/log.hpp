@@ -35,6 +35,7 @@ template<typename T>
 constexpr
 T
 log_cf_main(const T xx, const int depth)
+noexcept
 {
     return( depth < GCEM_LOG_MAX_ITER_SMALL ? \
             // if 
@@ -47,6 +48,7 @@ template<typename T>
 constexpr
 T
 log_cf_begin(const T x)
+noexcept
 { 
     return( T(2)*x/log_cf_main(x*x,1) );
 }
@@ -55,6 +57,7 @@ template<typename T>
 constexpr
 T
 log_main(const T x)
+noexcept
 { 
     return( log_cf_begin((x - T(1))/(x + T(1))) );
 }
@@ -62,6 +65,7 @@ log_main(const T x)
 constexpr
 long double
 log_mantissa_integer(const int x)
+noexcept
 {
     return( x == 2  ? 0.6931471805599453094172321214581765680755L :
             x == 3  ? 1.0986122886681096913952452369225257046475L :
@@ -79,6 +83,7 @@ template<typename T>
 constexpr
 T
 log_mantissa(const T x)
+noexcept
 {   // divide by the integer part of x, which will be in [1,10], then adjust using tables
     return( log_main(x/T(static_cast<int>(x))) + T(log_mantissa_integer(static_cast<int>(x))) );
 }
@@ -87,6 +92,7 @@ template<typename T>
 constexpr
 T
 log_breakup(const T x)
+noexcept
 {   // x = a*b, where b = 10^c
     return( log_mantissa(mantissa(x)) + T(GCEM_LOG_10)*T(find_exponent(x,0)) );
 }
@@ -95,6 +101,7 @@ template<typename T>
 constexpr
 T
 log_check(const T x)
+noexcept
 {
     return( // x < 0
             x < T(0) ? \
@@ -127,8 +134,9 @@ template<typename T>
 constexpr
 return_t<T>
 log(const T x)
+noexcept
 {
-    return internal::log_check<return_t<T>>(x);
+    return internal::log_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

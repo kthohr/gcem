@@ -28,6 +28,7 @@ template<typename T>
 constexpr
 T
 floor(const T x)
+noexcept
 {
     return T(static_cast<llint_t>(x));
 }

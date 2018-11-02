@@ -32,6 +32,7 @@ template<typename T>
 constexpr
 T
 acos_compute(const T x)
+noexcept
 {
     return( // only defined on [-1,1]
             abs(x) > T(1) ? \
@@ -49,6 +50,7 @@ template<typename T>
 constexpr
 T
 acos_check(const T x)
+noexcept
 {
     return( x > T(0) ? \
             // if
@@ -70,8 +72,9 @@ template<typename T>
 constexpr
 return_t<T>
 acos(const T x)
+noexcept
 {
-    return internal::acos_check<return_t<T>>(x);
+    return internal::acos_check( static_cast<return_t<T>>(x) );
 }
 
 #endif
