@@ -54,6 +54,7 @@ namespace gcem
     #include "gcem_incl/sin.hpp"
 
     #include "gcem_incl/atan.hpp"
+    #include "gcem_incl/atan2.hpp"
     #include "gcem_incl/acos.hpp"
     #include "gcem_incl/asin.hpp"
 
