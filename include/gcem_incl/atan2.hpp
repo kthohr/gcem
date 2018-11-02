@@ -33,24 +33,24 @@
 /**
  * Compile-time 2-argument arctangent function
  *
- * @param x a real-valued input.
  * @param y a real-valued input.
+ * @param x a real-valued input.
  * @return the angle in radians of the vector <x, y>, in the range \f[ \left[ -\pi, \pi \right] \f].
  *
- * @note Behavior is undefined if both @p x and @p y are 0.
+ * @note Behavior is undefined if both @p y and @p x are 0.
  */
 
 template<typename T>
 constexpr
 return_t<T>
-atan2(const T x, const T y)
+atan2(const T y, const T x)
 noexcept {
     return( // Positive x half plane: just use atan().
             x > T(0) ? atan(y / x) :
             // Negative x half plane: need to adjust atan() result.
             x < T(0) ? atan(y / x) + (y >= T(0) ? GCEM_PI : -GCEM_PI) :
             // On the y-axis: answer is pi or -pi.
-            y > T(0) ? GCEM_PI : -GCEM_PI );
+            y > T(0) ? GCEM_HALF_PI : -GCEM_HALF_PI);
 }
 
 #endif
