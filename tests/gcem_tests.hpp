@@ -54,6 +54,13 @@
 }
 #endif
 
+#ifdef TEST_VAL_TYPES_V
+#define TEST_IS_INF(val) std::isinf(val)
+#define TEST_IS_NAN(val) std::isnan(val)
+#else
+#define TEST_IS_INF(val) false
+#define TEST_IS_NAN(val) false
+#endif
 
 //
 // one input
@@ -89,11 +96,11 @@ print_test_1(const std::string fn_name, const T val_inp_1, std::function<T (cons
         PRINT_ERR(err_val);                                                                                     \
         test_pass = (err_val < TEST_ERR_TOL) ? true : false;                                                    \
     } else if (is_nan) {                                                                                        \
-        if (std::isnan(f_val)) {                                                                                \
+        if (TEST_IS_NAN(f_val)) {                                                                               \
             test_pass = true;                                                                                   \
         }                                                                                                       \
     } else if (is_inf) {                                                                                        \
-        if (std::isinf(f_val)) {                                                                                \
+        if (TEST_IS_INF(f_val)) {                                                                               \
             test_pass = true;                                                                                   \
         }                                                                                                       \
     } else {                                                                                                    \
@@ -183,11 +190,11 @@ print_test_2(const std::string fn_name, const T val_inp_1, const T val_inp_2, st
         PRINT_ERR(err_val);                                                                                     \
         test_pass = (err_val < TEST_ERR_TOL) ? true : false;                                                    \
     } else if (is_nan) {                                                                                        \
-        if (std::isnan(f_val)) {                                                                                \
+        if (TEST_IS_NAN(f_val)) {                                                                               \
             test_pass = true;                                                                                   \
         }                                                                                                       \
     } else if (is_inf) {                                                                                        \
-        if (std::isinf(f_val)) {                                                                                \
+        if (TEST_IS_INF(f_val)) {                                                                               \
             test_pass = true;                                                                                   \
         }                                                                                                       \
     } else {                                                                                                    \
@@ -281,11 +288,11 @@ print_test_3(const std::string fn_name, const T val_inp_1, const T val_inp_2, co
         PRINT_ERR(err_val);                                                                                             \
         test_pass = (err_val < TEST_ERR_TOL) ? true : false;                                                            \
     } else if (is_nan) {                                                                                                \
-        if (std::isnan(f_val)) {                                                                                        \
+        if (TEST_IS_NAN(f_val)) {                                                                                       \
             test_pass = true;                                                                                           \
         }                                                                                                               \
     } else if (is_inf) {                                                                                                \
-        if (std::isinf(f_val)) {                                                                                        \
+        if (TEST_IS_INF(f_val)) {                                                                                       \
             test_pass = true;                                                                                           \
         }                                                                                                               \
     } else {                                                                                                            \
