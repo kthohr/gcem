@@ -35,7 +35,11 @@
 #endif
 
 #ifndef TEST_ERR_TOL
-#define TEST_ERR_TOL 1e-14
+#ifdef _WIN32
+    #define TEST_ERR_TOL 1e-10
+#else
+    #define TEST_ERR_TOL 1e-14
+#endif
 #endif
 
 #ifdef TEST_VAL_TYPES_V
