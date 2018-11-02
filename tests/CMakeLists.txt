@@ -68,10 +68,12 @@ set(GCEM_TESTS
     erf_inv.cpp
     exp.cpp
     factorial.cpp
+    gcd.cpp
     incomplete_beta.cpp
     incomplete_beta_inv.cpp
     incomplete_gamma.cpp
     incomplete_gamma_inv.cpp
+    lcm.cpp
     lgamma.cpp
     log.cpp
     other.cpp
