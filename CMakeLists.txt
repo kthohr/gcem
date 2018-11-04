@@ -48,6 +48,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/asin.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/asinh.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/atan.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/atan2.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/atanh.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/beta.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/binomial_coef.hpp

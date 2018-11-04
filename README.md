@@ -30,7 +30,7 @@ The library is actively maintained, and is still being extended. A list of featu
     - ```abs```, ```exp```, ```log```, ```max```, ```min```, ```pow```, ```sqrt```, ```gcd```, ```lcm```, and more
 * trigonometric functions:
     - basic: ```cos```, ```sin```, ```tan```
-    - inverse: ```acos```, ```asin```, ```atan```
+    - inverse: ```acos```, ```asin```, ```atan```, ```atan2```
 * hyperbolic (area) functions: 
     - ```cosh```, ```sinh```, ```tanh```, ```acosh```, ```asinh```, ```atanh```
 * special functions:

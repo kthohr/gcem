@@ -60,6 +60,7 @@ set(GCEM_TESTS
     asin.cpp
     asinh.cpp
     atan.cpp
+    atan2.cpp
     atanh.cpp
     binomial_coef.cpp
     cos.cpp
