@@ -78,6 +78,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/mantissa.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/max.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/min.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/neg_zero.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/pow.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/pow_integral.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/quadrature/gauss_legendre_30.hpp
