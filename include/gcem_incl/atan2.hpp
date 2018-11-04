@@ -69,7 +69,7 @@ noexcept
  * @param x a real-valued input.
  * @return \f[ \text{atan2}(y,x) = \begin{cases} \text{atan}(y/x) & \text{ if } x > 0 \\ \text{atan}(y/x) + \pi & \text{ if } x < 0 \text{ and } y \geq 0 \\ \text{atan}(y/x) - \pi & \text{ if } x < 0 \text{ and } y < 0 \\ + \pi/2 & \text{ if } x = 0 \text{ and } y > 0 \\ - \pi/2 & \text{ if } x = 0 \text{ and } y < 0 \end{cases} \f]
  * The function is undefined at the origin, however the following conventions are used.
- * \f[ \text{atan2}(y,x) = \begin{cases} +0 & \text{ if } x = +0 \text{ and } y = +0 \\ +\pi & \text{ if } x = +0 \text{ and } y = -0 \\ -0 & \text{ if } x = -0 \text{ and } y = +0 \\ - \pi & \text{ if } x = -0 \text{ and } y = -0 \end{cases} \f]
+ * \f[ \text{atan2}(y,x) = \begin{cases} +0 & \text{ if } x = +0 \text{ and } y = +0 \\ -0 & \text{ if } x = +0 \text{ and } y = -0 \\ +\pi & \text{ if } x = -0 \text{ and } y = +0 \\ - \pi & \text{ if } x = -0 \text{ and } y = -0 \end{cases} \f]
  */
 
 template<typename T1, typename T2>
