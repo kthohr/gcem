@@ -37,7 +37,7 @@ noexcept
     return exp(exp_term*log(base));
 }
 
-template<typename T1, typename T2, typename TC = common_type_t<T1,T2>, 
+template<typename T1, typename T2, typename TC = common_t<T1,T2>, 
          typename std::enable_if<!std::is_integral<T2>::value>::type* = nullptr>
 constexpr
 TC
@@ -50,7 +50,7 @@ noexcept
             pow_dbl(static_cast<TC>(base),static_cast<TC>(exp_term)) );
 }
 
-template<typename T1, typename T2, typename TC = common_type_t<T1,T2>, 
+template<typename T1, typename T2, typename TC = common_t<T1,T2>, 
          typename std::enable_if<std::is_integral<T2>::value>::type* = nullptr>
 constexpr
 TC
@@ -72,7 +72,7 @@ noexcept
 
 template<typename T1, typename T2>
 constexpr
-common_type_t<T1,T2>
+common_t<T1,T2>
 pow(const T1 base, const T2 exp_term)
 noexcept
 {

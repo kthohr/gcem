@@ -307,7 +307,7 @@ noexcept
                     alpha_par,beta_par,p,lbeta(alpha_par,beta_par)) );
 }
 
-template<typename T1, typename T2, typename T3, typename TC = common_type_t<T1,T2,T3>>
+template<typename T1, typename T2, typename T3, typename TC = common_t<T1,T2,T3>>
 constexpr
 TC
 incomplete_beta_inv_type_check(const T1 a, const T2 b, const T3 p)
@@ -339,7 +339,7 @@ noexcept
 
 template<typename T1, typename T2, typename T3>
 constexpr
-common_type_t<T1,T2,T3>
+common_t<T1,T2,T3>
 incomplete_beta_inv(const T1 a, const T2 b, const T3 p)
 noexcept
 {

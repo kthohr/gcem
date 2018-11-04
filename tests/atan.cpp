@@ -34,7 +34,7 @@ int main()
 
     //
 
-    static constexpr long double test_vals[] = { 0.0L, 0.001L, 0.49L, -0.5L, 0.7568025L, 0.99L, 1.49L, 1.99L, \
+    static constexpr long double test_vals[] = { 0.0L, 0.001L, 0.49L, -0.5L, -1.5L, 0.7568025L, 0.99L, 1.49L, 1.99L, \
                                                  2.49L, 2.51L, 3.99L, 7.0L, 11.0L, 25.0L, 101.0L, 900.0L, 1001.0L };
 
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",6,18,false,false);
@@ -53,7 +53,8 @@ int main()
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,13,test_fn,std_fn,true," ",6,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,14,test_fn,std_fn,true," ",6,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,15,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,16,test_fn,std_fn,false," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,16,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,17,test_fn,std_fn,false," ",6,18,false,false);
 
     std::cout << "\n*** end atan test ***\n" << std::endl;
 

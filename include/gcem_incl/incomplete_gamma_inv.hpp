@@ -227,7 +227,7 @@ noexcept
                 incomplete_gamma_inv_begin(incomplete_gamma_inv_initial_val(a,p),a,p,lgamma(a)) );
 }
 
-template<typename T1, typename T2, typename TC = common_return_type_t<T1,T2>>
+template<typename T1, typename T2, typename TC = common_return_t<T1,T2>>
 constexpr
 TC
 incomplete_gamma_inv_type_check(const T1 a, const T2 p)
@@ -257,7 +257,7 @@ noexcept
 
 template<typename T1, typename T2>
 constexpr
-common_return_type_t<T1,T2>
+common_return_t<T1,T2>
 incomplete_gamma_inv(const T1 a, const T2 p)
 noexcept
 {

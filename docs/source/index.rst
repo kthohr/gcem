@@ -17,7 +17,7 @@ GCE-Math (\ **G**\ eneralized **C**\ onstant **E**\ xpression Math) is a templat
 
 Author: Keith O'Hara
 
-License: Apache Version 2.0
+License: Apache 2.0
 
 Status
 ------
@@ -28,11 +28,12 @@ The library is actively maintained, and is still being extended. A list of featu
     - ``abs``, ``exp``, ``log``, ``max``, ``min``, ``pow``, ``sqrt``, ``gcd``, ``lcm``, and more
 * trigonometric functions:
     - basic: ``cos``, ``sin``, ``tan``
-    - inverse: ``acos``, ``asin``, ``atan``
-    - hyperbolic (area) functions: ``cosh``, ``sinh``, ``tanh``, ``acosh``, ``asinh``, ``atanh``
+    - inverse: ``acos``, ``asin``, ``atan``, ``atan2``
+* hyperbolic (area) functions: 
+    - ``cosh``, ``sinh``, ``tanh``, ``acosh``, ``asinh``, ``atanh``
 * special functions:
     - factorials and the binomial coefficient: ``factorial``, ``binomial_coef``
-    - beta and gamma functions: ``beta``, ``lbeta``, ``lgamma``, ``tgamma``
+    - beta, gamma, and multivariate gamma functions: ``beta``, ``lbeta``, ``lgamma``, ``tgamma``, ``lmgamma``
     - the Gaussian error function and inverse error function: ``erf``, ``erf_inv``
     - (regularized) incomplete beta and incomplete gamma functions: ``incomplete_beta``, ``incomplete_gamma``
     - inverse incomplete beta and incomplete gamma functions: ``incomplete_beta_inv``, ``incomplete_gamma_inv``
