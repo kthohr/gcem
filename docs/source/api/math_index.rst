@@ -124,9 +124,11 @@ Mathematical functions
 +---------------------------------------+----------------------------------------------------+
 | :ref:`tan <tan-function-reference>`   | tangent function                                   |
 +---------------------------------------+----------------------------------------------------+
-| :ref:`acos <acos-function-reference>` | arc cosine function                                |
+| :ref:`acos <acos-function-reference>` | arccosine function                                 |
 +---------------------------------------+----------------------------------------------------+
-| :ref:`asin <asin-function-reference>` | arc sine function                                  |
+| :ref:`asin <asin-function-reference>` | arcsine function                                   |
 +---------------------------------------+----------------------------------------------------+
-| :ref:`atan <atan-function-reference>` | arc tangent function                               |
+| :ref:`atan <atan-function-reference>` | arctangent function                                |
++---------------------------------------+----------------------------------------------------+
+| :ref:`atan2 <atan2-func-ref>`         | two-argument arctangent function                   |
 +---------------------------------------+----------------------------------------------------+

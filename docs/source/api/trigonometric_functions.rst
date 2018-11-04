@@ -33,3 +33,7 @@ Inverse trigonometric functions
 .. _atan-function-reference:
 .. doxygenfunction:: atan(const T)
    :project: gcem
+
+.. _atan2-func-ref:
+.. doxygenfunction:: atan2(const T1, const T2)
+   :project: gcem

@@ -20,32 +20,48 @@
 
 #include "gcem_tests.hpp"
 
-int main() {
-	std::cout << "\n*** begin atan2 test ***\n" << std::endl;
+int main()
+{
+    std::cout << "\n*** begin atan2 test ***\n" << std::endl;
 
-	//
+    //
 
-	std::function<long double(long double, long double)> test_fn = [](long double x, long double y) -> long double { return gcem::atan2(x, y); };
-	std::string test_fn_name = "gcem::atan2";
+    std::function<long double (long double,long double)> test_fn = gcem::atan2<long double,long double>;
+    std::string test_fn_name = "gcem::atan2";
 
-	std::function<long double(long double, long double)> std_fn = [](long double x, long double y) -> long double { return std::atan2(x, y); };
-	std::string std_fn_name = "std::atan2";
+    std::function<long double (long double, long double)> std_fn  = [] (long double x, long double y) -> long double { return std::atan2(x,y); };
+    std::string std_fn_name = "std::atan2";
 
-	//
+    //
 
-	static constexpr long double test_vals_1[] = {1.0L, 0.0L, -1.0L,  0.0L, 1.0L, -5.0L, -1000.0L,  0.1337L};
-	static constexpr long double test_vals_2[] = {0.0L, 1.0L,  0.0L, -1.0L, 3.0L,  2.5L,  -0.001L, -123456L};
+    static constexpr long double test_vals_1[] = { 0.0L, -0.0L, 0.0L, -0.0L, 0.2L, -0.2L, 0.001L, 0.49L, -0.5L,  0.5L, -0.5L, \
+                                                   9.6L, 1.0L, 0.0L, -1.0L,  0.0L, 1.0L, -5.0L, -1000.0L,  0.1337L };
 
-	PRINT_TEST_2_COMPARE(test_fn_name, std_fn_name, test_vals_1, test_vals_2, 0, test_fn, std_fn, true, " ", 6, 18, false, false);
-	PRINT_TEST_2_COMPARE(test_fn_name, std_fn_name, test_vals_1, test_vals_2, 1, test_fn, std_fn, true, " ", 6, 18, false, false);
-	PRINT_TEST_2_COMPARE(test_fn_name, std_fn_name, test_vals_1, test_vals_2, 2, test_fn, std_fn, true, " ", 6, 18, false, false);
-	PRINT_TEST_2_COMPARE(test_fn_name, std_fn_name, test_vals_1, test_vals_2, 3, test_fn, std_fn, true, " ", 6, 18, false, false);
-	PRINT_TEST_2_COMPARE(test_fn_name, std_fn_name, test_vals_1, test_vals_2, 4, test_fn, std_fn, true, " ", 6, 18, false, false);
-	PRINT_TEST_2_COMPARE(test_fn_name, std_fn_name, test_vals_1, test_vals_2, 5, test_fn, std_fn, true, " ", 6, 18, false, false);
-	PRINT_TEST_2_COMPARE(test_fn_name, std_fn_name, test_vals_1, test_vals_2, 6, test_fn, std_fn, true, " ", 6, 18, false, false);
-	PRINT_TEST_2_COMPARE(test_fn_name, std_fn_name, test_vals_1, test_vals_2, 7, test_fn, std_fn, true, " ", 6, 18, false, false);
+    static constexpr long double test_vals_2[] = { 0.0L, 0.0L, -0.0L, -0.0L, 0.0L,  0.0L, 0.001L, 0.49L, -0.5L, -0.5L,  0.5L, \
+                                                   8.4L, 0.0L, 1.0L,  0.0L, -1.0L, 3.0L,  2.5L,  -0.001L, -123456.0L };
 
-	std::cout << "\n*** end atan2 test ***\n" << std::endl;
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,0,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,1,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,2,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,3,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,4,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,5,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,6,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,7,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,8,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,9,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,10,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,11,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,12,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,13,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,14,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,15,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,16,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,17,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,18,test_fn,std_fn,true," ",6,18,false,false);
+    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,19,test_fn,std_fn,false," ",6,18,false,false);
 
-	return 0;
+    std::cout << "\n*** end atan2 test ***\n" << std::endl;
+
+    return 0;
 }

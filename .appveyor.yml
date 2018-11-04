@@ -33,6 +33,7 @@ build_script:
   - .\asin.test
   - .\asinh.test
   - .\atan.test
+  - .\atan2.test
   - .\atanh.test
   - .\binomial_coef.test
   - .\cos.test

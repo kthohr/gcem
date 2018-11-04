@@ -32,7 +32,7 @@
 
 template<typename T1, typename T2>
 constexpr
-common_return_type_t<T1,T2>
+common_return_t<T1,T2>
 beta(const T1 a, const T2 b)
 noexcept
 {

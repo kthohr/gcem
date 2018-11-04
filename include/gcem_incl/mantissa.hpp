@@ -25,6 +25,9 @@
 #ifndef _gcem_mantissa_HPP
 #define _gcem_mantissa_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 T
@@ -37,6 +40,8 @@ noexcept
                 mantissa(x/T(10)) :
             // else
                 x );
+}
+
 }
 
 #endif

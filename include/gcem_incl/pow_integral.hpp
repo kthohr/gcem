@@ -111,8 +111,6 @@ noexcept
     return pow_integral_compute(base,static_cast<llint_t>(exp_term));
 }
 
-}
-
 //
 // main function
 
@@ -123,6 +121,8 @@ pow_integral(const T1 base, const T2 exp_term)
 noexcept
 {
     return internal::pow_integral_type_check(base,exp_term);
+}
+
 }
 
 #endif

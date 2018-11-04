@@ -55,7 +55,7 @@ noexcept
     return static_cast<T>(binomial_coef_recur(static_cast<ullint_t>(n),static_cast<ullint_t>(k)));
 }
 
-template<typename T1, typename T2, typename TC = common_type_t<T1,T2>>
+template<typename T1, typename T2, typename TC = common_t<T1,T2>>
 constexpr
 TC
 binomial_coef_type_check(const T1 n, const T2 k)
@@ -78,7 +78,7 @@ noexcept
 
 template<typename T1, typename T2>
 constexpr
-common_type_t<T1,T2>
+common_t<T1,T2>
 binomial_coef(const T1 n, const T2 k)
 noexcept
 {

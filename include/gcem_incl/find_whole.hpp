@@ -25,6 +25,9 @@
 #ifndef _gcem_find_whole_HPP
 #define _gcem_find_whole_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 llint_t
@@ -36,6 +39,8 @@ noexcept
                 static_cast<llint_t>(internal::floor(x) + sgn(x)) :
             // else 
                 static_cast<llint_t>(internal::floor(x)) );
+}
+
 }
 
 #endif

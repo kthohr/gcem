@@ -25,6 +25,9 @@
 #ifndef _gcem_find_exponent_HPP
 #define _gcem_find_exponent_HPP
 
+namespace internal
+{
+
 template<typename T>
 constexpr
 llint_t
@@ -37,6 +40,8 @@ noexcept
                 find_exponent(x/T(10),exponent + llint_t(1)) :
             // else
                 exponent );
+}
+
 }
 
 #endif

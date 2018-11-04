@@ -27,8 +27,8 @@ int main()
     
     gcem::sgn(x);
     gcem::sgn(-x);
-    gcem::find_fraction(x);
-    gcem::find_whole(x);
+    gcem::internal::find_fraction(x);
+    gcem::internal::find_whole(x);
 
     return 0;
 }

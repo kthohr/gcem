@@ -147,7 +147,7 @@ noexcept
                 T(1) - incomplete_beta_begin(b,a,T(1) - z) );
 }
 
-template<typename T1, typename T2, typename T3, typename TC = common_return_type_t<T1,T2,T3>>
+template<typename T1, typename T2, typename T3, typename TC = common_return_t<T1,T2,T3>>
 constexpr
 TC
 incomplete_beta_type_check(const T1 a, const T2 b, const T3 p)
@@ -181,7 +181,7 @@ noexcept
 
 template<typename T1, typename T2, typename T3>
 constexpr
-common_return_type_t<T1,T2,T3>
+common_return_t<T1,T2,T3>
 incomplete_beta(const T1 a, const T2 b, const T3 z)
 noexcept
 {

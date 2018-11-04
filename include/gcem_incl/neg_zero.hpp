@@ -19,23 +19,19 @@
   ################################################################################*/
 
 /*
- * compile-time check if integer is even
+ * extract signbit for signed zeros
  */
-
-#ifndef _gcem_is_even_HPP
-#define _gcem_is_even_HPP
 
 namespace internal
 {
 
-constexpr
-bool
-is_even(const llint_t x)
+template<typename T>
+constexpr 
+bool 
+neg_zero(const T x)
 noexcept
 {
-    return !is_odd(x);
+    return( (x == T(0.0)) && (GCEM_COPYSIGN(T(1.0), x) == T(-1.0)) );
 }
 
 }
-
-#endif
