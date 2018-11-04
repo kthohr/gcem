@@ -74,6 +74,7 @@ matrix:
             - clang-6.0
           sources: &sources
             - llvm-toolchain-trusty-6.0
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
       compiler: clang
