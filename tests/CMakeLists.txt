@@ -68,6 +68,7 @@ set(GCEM_TESTS
     erf.cpp
     erf_inv.cpp
     exp.cpp
+    expm1.cpp
     factorial.cpp
     gcd.cpp
     incomplete_beta.cpp
@@ -77,6 +78,7 @@ set(GCEM_TESTS
     lcm.cpp
     lgamma.cpp
     log.cpp
+    log1p.cpp
     other.cpp
     pow.cpp
     sin.cpp

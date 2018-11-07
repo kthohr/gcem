@@ -57,6 +57,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/erf.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/erf_inv.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/exp.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/expm1.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/factorial.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/find_exponent.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/find_fraction.hpp
@@ -70,10 +71,12 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/incomplete_gamma_inv.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/is_even.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/is_odd.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/is_inf.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lbeta.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lcm.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lgamma.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/log.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/log1p.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lmgamma.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/mantissa.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/max.hpp

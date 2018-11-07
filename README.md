@@ -27,12 +27,15 @@ Features:
 The library is actively maintained, and is still being extended. A list of features includes:
 
 * basic library functions:
-    - ```abs```, ```exp```, ```log```, ```max```, ```min```, ```pow```, ```sqrt```, ```gcd```, ```lcm```, and more
+    - ```abs```, ```max```, ```min```, ```pow```, ```sqrt```, 
+    - ```exp```, ```expm1```, ```log```, ```logp1```, and more
 * trigonometric functions:
     - basic: ```cos```, ```sin```, ```tan```
     - inverse: ```acos```, ```asin```, ```atan```, ```atan2```
 * hyperbolic (area) functions: 
     - ```cosh```, ```sinh```, ```tanh```, ```acosh```, ```asinh```, ```atanh```
+* algorithms:
+    - ```gcd```, ```lcm```
 * special functions:
     - factorials and the binomial coefficient: ```factorial```, ```binomial_coef```
     - beta, gamma, and multivariate gamma functions: ```beta```, ```lbeta```, ```lgamma```, ```tgamma```, ```lmgamma```

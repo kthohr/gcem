@@ -67,12 +67,18 @@ T
 exp_check(const T x)
 noexcept
 {
-    return( GCLIM<T>::epsilon() > abs(x) ? \
-            // if
+    return( x == - GCLIM<T>::infinity() ? \
+                T(0) :
+            //
+            GCLIM<T>::epsilon() > abs(x) ? \
                 T(1) : 
-            // else
-                abs(x) < T(2) ? exp_cf(x) : \
-                                exp_split(x) );
+            //
+            x == GCLIM<T>::infinity() ? \
+                GCLIM<T>::infinity() :
+            //
+            abs(x) < T(2) ? \
+                exp_cf(x) : \
+                exp_split(x) );
 }
 
 }

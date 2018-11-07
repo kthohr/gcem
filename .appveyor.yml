@@ -40,6 +40,8 @@ build_script:
   - .\cosh.test
   - .\erf.test
   - .\erf_inv.test
+  - .\exp.test
+  - .\expm1.test
   - .\factorial.test
   - .\gcd.test
   - .\incomplete_beta.test
@@ -49,6 +51,7 @@ build_script:
   - .\lcm.test
   - .\lgamma.test
   - .\log.test
+  - .\log1p.test
   - .\other.test
   - .\pow.test
   - .\sin.test

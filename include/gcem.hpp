@@ -31,6 +31,7 @@ namespace gcem
     #include "gcem_incl/floor.hpp"
     #include "gcem_incl/is_odd.hpp"
     #include "gcem_incl/is_even.hpp"
+    #include "gcem_incl/is_inf.hpp"
     #include "gcem_incl/max.hpp"
     #include "gcem_incl/min.hpp"
     #include "gcem_incl/sqrt.hpp"
@@ -45,7 +46,9 @@ namespace gcem
 
     #include "gcem_incl/pow_integral.hpp"
     #include "gcem_incl/exp.hpp"
+    #include "gcem_incl/expm1.hpp"
     #include "gcem_incl/log.hpp"
+    #include "gcem_incl/log1p.hpp"
     #include "gcem_incl/pow.hpp"
 
     #include "gcem_incl/gcd.hpp"
