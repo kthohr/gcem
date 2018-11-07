@@ -46,7 +46,7 @@ int main()
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",5,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,true," ",5,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,7,test_fn,std_fn,true," ",5,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,8,test_fn,std_fn,false," ",5,18,false,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,8,test_fn,std_fn,false," ",5,18,true,false);
 
     //
 
