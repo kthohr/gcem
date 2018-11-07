@@ -18,25 +18,31 @@
   ##
   ################################################################################*/
 
-/*
- * compile-time check if integer is odd
- */
+#include "gcem_tests.hpp"
 
-#ifndef _gcem_is_odd_HPP
-#define _gcem_is_odd_HPP
-
-namespace internal
+int main()
 {
+    std::cout << "\n*** begin is_odd test ***\n" << std::endl;
 
-constexpr
-bool
-is_odd(const llint_t x)
-noexcept
-{
-    // return( x % llint_t(2) == llint_t(0) ? false : true );
-    return (x & 1U) != 0;
+    //
+
+    int run_val = 0;
+
+    run_val += gcem::internal::is_odd(1);
+    run_val += gcem::internal::is_odd(3);
+    run_val += gcem::internal::is_odd(-5);
+    run_val += gcem::internal::is_even(10UL);
+    run_val += gcem::internal::is_odd(-400009L);
+    run_val += gcem::internal::is_even(100000000L);
+
+    if (run_val == 6)
+        std::cout << "\033[32m All OK.\033[0m" << std::endl;
+    else
+        std::cout << "\033[32m Fail.\033[0m" << std::endl;
+
+    //
+
+    std::cout << "\n*** end is_odd test ***\n" << std::endl;
+
+    return 0;
 }
-
-}
-
-#endif

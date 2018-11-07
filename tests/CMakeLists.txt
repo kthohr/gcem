@@ -75,6 +75,7 @@ set(GCEM_TESTS
     incomplete_beta_inv.cpp
     incomplete_gamma.cpp
     incomplete_gamma_inv.cpp
+    is_odd.cpp
     lcm.cpp
     lgamma.cpp
     log.cpp
