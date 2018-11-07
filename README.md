@@ -28,7 +28,7 @@ The library is actively maintained, and is still being extended. A list of featu
 
 * basic library functions:
     - ```abs```, ```max```, ```min```, ```pow```, ```sqrt```, 
-    - ```exp```, ```expm1```, ```log```, ```logp1```, and more
+    - ```exp```, ```expm1```, ```log```, ```log1p```, and more
 * trigonometric functions:
     - basic: ```cos```, ```sin```, ```tan```
     - inverse: ```acos```, ```asin```, ```atan```, ```atan2```
