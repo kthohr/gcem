@@ -36,7 +36,8 @@ int main()
 
     static constexpr long double test_vals[] = { -40.0L, -4.0L, 0.0001L, 1.75L, 1.9991L, 2.10L, 4.0L,
                                                 - std::numeric_limits<long double>::infinity(),
-                                                  std::numeric_limits<long double>::infinity() };
+                                                  std::numeric_limits<long double>::infinity(),
+                                                  std::numeric_limits<long double>::quiet_NaN() };
 
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",5,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",5,18,false,false);
@@ -46,7 +47,8 @@ int main()
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",5,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,true," ",5,18,false,false);
     PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,7,test_fn,std_fn,true," ",5,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,8,test_fn,std_fn,false," ",5,18,true,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,8,test_fn,std_fn,true," ",5,18,true,false);
+    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,9,test_fn,std_fn,false," ",5,18,false,true);
 
     //
 
