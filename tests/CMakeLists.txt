@@ -80,6 +80,7 @@ set(GCEM_TESTS
     lgamma.cpp
     log.cpp
     log1p.cpp
+    log_binomial_coef.cpp
     other.cpp
     pow.cpp
     sin.cpp

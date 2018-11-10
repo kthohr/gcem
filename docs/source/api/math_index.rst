@@ -90,9 +90,10 @@ Mathematical functions
 
    special_functions
 
-
 +---------------------------------------+----------------------------------------------------+
-| :ref:`binomial <binomial-func-ref>`   | binomial coefficient                               |
+| :ref:`binomial_coef <binom-func-ref>` | binomial coefficient                               |
++---------------------------------------+----------------------------------------------------+
+| :ref:`log_binomial_coef <lbinom-ref>` | log binomial coefficient                           |
 +---------------------------------------+----------------------------------------------------+
 | :ref:`beta <beta-function-reference>` | beta function                                      |
 +---------------------------------------+----------------------------------------------------+

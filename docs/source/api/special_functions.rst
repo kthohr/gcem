@@ -7,8 +7,12 @@
 Special functions
 ===============
 
-.. _binomial-func-ref:
+.. _binom-func-ref:
 .. doxygenfunction:: binomial_coef(const T1, const T2)
+   :project: gcem
+
+.. _lbinom-ref:
+.. doxygenfunction:: log_binomial_coef(const T1, const T2)
    :project: gcem
 
 .. _beta-function-reference:
