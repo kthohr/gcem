@@ -53,7 +53,7 @@ build_script:
   - .\lgamma.test
   - .\log.test
   - .\log1p.test
-  - .\log_binom_coef.test
+  - .\log_binomial_coef.test
   - .\other.test
   - .\pow.test
   - .\sin.test
