@@ -49,7 +49,7 @@ noexcept
 template<typename T, typename std::enable_if<!std::is_integral<T>::value>::type* = nullptr>
 constexpr
 T
-binomial_coef_sgn_check(const T n, const T k)
+binomial_coef_check(const T n, const T k)
 noexcept
 {
     return static_cast<T>(binomial_coef_recur(static_cast<ullint_t>(n),static_cast<ullint_t>(k)));
@@ -61,7 +61,7 @@ TC
 binomial_coef_type_check(const T1 n, const T2 k)
 noexcept
 {
-    return binomial_coef_sgn_check(static_cast<TC>(n),static_cast<TC>(k));
+    return binomial_coef_check(static_cast<TC>(n),static_cast<TC>(k));
 }
 
 }

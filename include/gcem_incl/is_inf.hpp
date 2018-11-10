@@ -22,19 +22,68 @@
  * compile-time check if integer is odd
  */
 
-#ifndef _gcem_is_odd_HPP
-#define _gcem_is_odd_HPP
+#ifndef _gcem_is_inf_HPP
+#define _gcem_is_inf_HPP
 
 namespace internal
 {
 
+template<typename T>
 constexpr
 bool
-is_odd(const llint_t x)
+is_neginf(const T x)
 noexcept
 {
-    // return( x % llint_t(2) == llint_t(0) ? false : true );
-    return (x & 1U) != 0;
+    return x == - GCLIM<T>::infinity();
+}
+
+template<typename T1, typename T2>
+constexpr
+bool
+any_neginf(const T1 x, const T2 y)
+noexcept
+{
+    return( is_neginf(x) || is_neginf(y) );
+}
+
+//
+
+template<typename T>
+constexpr
+bool
+is_posinf(const T x)
+noexcept
+{
+    return x == GCLIM<T>::infinity();
+}
+
+template<typename T1, typename T2>
+constexpr
+bool
+any_posinf(const T1 x, const T2 y)
+noexcept
+{
+    return( is_posinf(x) || is_posinf(y) );
+}
+
+//
+
+template<typename T>
+constexpr
+bool
+is_inf(const T x)
+noexcept
+{
+    return is_neginf(x) || is_posinf(x);
+}
+
+template<typename T1, typename T2>
+constexpr
+bool
+any_inf(const T1 x, const T2 y)
+noexcept
+{
+    return( is_inf(x) || is_inf(y) );
 }
 
 }

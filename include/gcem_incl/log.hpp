@@ -103,7 +103,9 @@ T
 log_check(const T x)
 noexcept
 {
-    return( // x < 0
+    return( x == GCLIM<T>::quiet_NaN() ? \
+                GCLIM<T>::quiet_NaN() :
+            // x < 0
             x < T(0) ? \
                 GCLIM<T>::quiet_NaN() :
             // x ~= 0
@@ -112,6 +114,9 @@ noexcept
             // indistinguishable from 1
             GCLIM<T>::epsilon() > abs(x - T(1)) ? \
                 T(0) : 
+            // 
+            x == GCLIM<T>::infinity() ? \
+                GCLIM<T>::infinity() :
             // else
                 (x < T(0.5) || x > T(1.5)) ?
                 // if 

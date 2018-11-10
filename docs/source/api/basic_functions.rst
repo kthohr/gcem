@@ -15,12 +15,20 @@ Basic functions
 .. doxygenfunction:: exp(const T)
    :project: gcem
 
+.. _expm1-func-ref:
+.. doxygenfunction:: expm1(const T)
+   :project: gcem
+
 .. _factorial-func-ref:
 .. doxygenfunction:: factorial(const T)
    :project: gcem
 
 .. _log-function-reference:
 .. doxygenfunction:: log(const T)
+   :project: gcem
+
+.. _log1p-func-ref:
+.. doxygenfunction:: log1p(const T)
    :project: gcem
 
 .. _max-function-reference:

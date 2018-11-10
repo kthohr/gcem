@@ -40,15 +40,20 @@ build_script:
   - .\cosh.test
   - .\erf.test
   - .\erf_inv.test
+  - .\exp.test
+  - .\expm1.test
   - .\factorial.test
   - .\gcd.test
   - .\incomplete_beta.test
   - .\incomplete_beta_inv.test
   - .\incomplete_gamma.test
   - .\incomplete_gamma_inv.test
+  - .\is_odd.test
   - .\lcm.test
   - .\lgamma.test
   - .\log.test
+  - .\log1p.test
+  - .\log_binomial_coef.test
   - .\other.test
   - .\pow.test
   - .\sin.test
