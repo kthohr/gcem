@@ -54,23 +54,23 @@ Assembly code:
 
 .. code:: asm
 
-.LCPI0_0:
-        .long   1069547520              # float 1.5
-.LCPI0_1:
-        .quad   -622431863250842976     # x86_fp80 -0.120782237635245222719
-        .short  49147
-        .zero   6
-main:                                   # @main
-        push    rbp
-        mov     rbp, rsp
-        xor     eax, eax
-        mov     dword ptr [rbp - 4], 0
-        fld     dword ptr [rip + .LCPI0_0]
-        fstp    tbyte ptr [rbp - 32]
-        fld     tbyte ptr [rip + .LCPI0_1]
-        fstp    tbyte ptr [rbp - 48]
-        pop     rbp
-        ret
+    .LCPI0_0:
+            .long   1069547520              # float 1.5
+    .LCPI0_1:
+            .quad   -622431863250842976     # x86_fp80 -0.120782237635245222719
+            .short  49147
+            .zero   6
+    main:                                   # @main
+            push    rbp
+            mov     rbp, rsp
+            xor     eax, eax
+            mov     dword ptr [rbp - 4], 0
+            fld     dword ptr [rip + .LCPI0_0]
+            fstp    tbyte ptr [rbp - 32]
+            fld     tbyte ptr [rip + .LCPI0_1]
+            fstp    tbyte ptr [rbp - 48]
+            pop     rbp
+            ret
 
 Test suite
 ----------

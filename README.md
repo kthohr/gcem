@@ -183,7 +183,6 @@ main:                                   # @main
         fstp    tbyte ptr [rbp - 48]
         pop     rbp
         ret
-
 ```
 
 ## Related libraries

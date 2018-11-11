@@ -20,7 +20,7 @@
 
 #include <cstddef>      // size_t
 #include <limits>
-#include <type_traits>  // is_integral
+#include <type_traits>
 
 //
 // version
