@@ -163,8 +163,12 @@ T
 incomplete_gamma_check(const T a, const T z)
 noexcept
 {
-    return( GCLIM<T>::epsilon() > z ? \
+    return( a < T(0) ? \
+                GCLIM<T>::quiet_NaN() :
+            //
+            GCLIM<T>::epsilon() > z ? \
                 T(0) : 
+            //
             GCLIM<T>::epsilon() > a ? \
                 T(1) : 
             // cf or quadrature

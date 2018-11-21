@@ -33,10 +33,10 @@ int main()
 
     static constexpr long double test_vals_1[] = { \
          2.0L,  1.5L,  2.0L,   2.0L,   2.0L,   0.0L,   2.0L,   0.0L,  11.5L,  15.5L,  19.0L,   20.0L,\
-        38.0L, 56.0L, 98.0L, 102.0L, 298.0L, 302.0L, 498.0L, 502.0L, 798.0L, 801.0L, 997.0L, 1005.0L }; // shape
+        38.0L, 56.0L, 98.0L, 102.0L, 298.0L, 302.0L, 498.0L, 502.0L, 798.0L, 801.0L, 997.0L, 1005.0L, -0.1L }; // shape
     static constexpr long double test_vals_2[] = { \
          1.0L,  1.0L,  3.0L,   5.0L,   9.0L,   9.0L,   0.0L,   0.0L,  11.0L,  18.0L,  18.0L,   19.0L,\
-        39.0L, 55.0L, 99.0L, 101.0L, 297.0L, 301.0L, 497.0L, 501.0L, 799.0L, 800.0L, 999.0L, 1001.0L }; // x
+        39.0L, 55.0L, 99.0L, 101.0L, 297.0L, 301.0L, 497.0L, 501.0L, 799.0L, 800.0L, 999.0L, 1001.0L, 0.0L }; // x
 
     static constexpr long double expected_vals[] = { 0.26424111765711527644L,
                                                      0.42759329552912134220L,
@@ -88,7 +88,8 @@ int main()
     PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,20,test_fn,expected_vals[20],true,"",3,18,false,false);
     PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,21,test_fn,expected_vals[21],true,"",3,18,false,false);
     PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,22,test_fn,expected_vals[22],true,"",3,18,false,false);
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,23,test_fn,expected_vals[23],false,"",3,18,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,23,test_fn,expected_vals[23],true,"",3,18,false,false);
+    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,24,test_fn,0.0L,true,"",3,18,false,true);
 
     //
 
