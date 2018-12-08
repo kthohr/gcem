@@ -58,7 +58,7 @@ noexcept
             GCLIM<T>::epsilon() > abs(T(1)-x) ? \
                 x :
             // else
-            x > T(4) ?
+            x > T(4) ? \
                 sqrt_check(x/T(4),T(2)*m_val) :
                 m_val*sqrt_recur(x,x/T(2),0) );
 }
