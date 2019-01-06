@@ -1,6 +1,6 @@
 /*################################################################################
   ##
-  ##   Copyright (C) 2016-2018 Keith O'Hara
+  ##   Copyright (C) 2016-2019 Keith O'Hara
   ##
   ##   This file is part of the GCE-Math C++ library.
   ##
@@ -28,13 +28,15 @@
 namespace internal
 {
 
+// future: consider using __builtin_isnan(__x)
+
 template<typename T>
 constexpr
 bool
 is_nan(const T x)
 noexcept
 {
-    return x == GCLIM<T>::quiet_NaN();
+    return x != x;
 }
 
 template<typename T1, typename T2>
