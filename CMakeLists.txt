@@ -54,8 +54,8 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/binomial_coef.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/cos.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/cosh.hpp
-    ${GCEM_INCLUDE_DIR}/gcem_incl/erf.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/erf_inv.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/erf.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/exp.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/expm1.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/factorial.hpp
@@ -72,19 +72,20 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/is_even.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/is_odd.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/is_inf.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/is_nan.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lbeta.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lcm.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lgamma.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lmgamma.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/log_binomial_coef.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/log.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/log1p.hpp
-    ${GCEM_INCLUDE_DIR}/gcem_incl/log_binomial_coef.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/mantissa.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/max.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/min.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/neg_zero.hpp
-    ${GCEM_INCLUDE_DIR}/gcem_incl/pow.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/pow_integral.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/pow.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/quadrature/gauss_legendre_30.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/quadrature/gauss_legendre_50.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/sgn.hpp
