@@ -19,60 +19,58 @@
   ################################################################################*/
 
 /*
- * compile-time check if a float is NaN-valued
+ * compile-time check if a float is not NaN-valued or +/-Inf
  */
 
-#ifndef _gcem_is_nan_HPP
-#define _gcem_is_nan_HPP
+#ifndef _gcem_is_finite_HPP
+#define _gcem_is_finite_HPP
 
 namespace internal
 {
 
-// future: consider using __builtin_isnan(__x)
-
 template<typename T>
 constexpr
 bool
-is_nan(const T x)
+is_finite(const T x)
 noexcept
 {
-    return x != x;
+    return (!is_nan(x)) && (!is_inf(x));
 }
 
 template<typename T1, typename T2>
 constexpr
 bool
-any_nan(const T1 x, const T2 y)
+any_finite(const T1 x, const T2 y)
 noexcept
 {
-    return( is_nan(x) || is_nan(y) );
+    return( is_finite(x) || is_finite(y) );
 }
 
 template<typename T1, typename T2>
 constexpr
 bool
-all_nan(const T1 x, const T2 y)
+all_finite(const T1 x, const T2 y)
 noexcept
 {
-    return( is_nan(x) && is_nan(y) );
+    return( is_finite(x) && is_finite(y) );
 }
 
 template<typename T1, typename T2, typename T3>
 constexpr
 bool
-any_nan(const T1 x, const T2 y, const T3 z)
+any_finite(const T1 x, const T2 y, const T3 z)
 noexcept
 {
-    return( is_nan(x) || is_nan(y) || is_nan(z) );
+    return( is_finite(x) || is_finite(y) || is_finite(z) );
 }
 
 template<typename T1, typename T2, typename T3>
 constexpr
 bool
-all_nan(const T1 x, const T2 y, const T3 z)
+all_finite(const T1 x, const T2 y, const T3 z)
 noexcept
 {
-    return( is_nan(x) && is_nan(y) && is_nan(z) );
+    return( is_finite(x) && is_finite(y) && is_finite(z) );
 }
 
 }

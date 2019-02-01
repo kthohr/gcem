@@ -19,7 +19,7 @@
   ################################################################################*/
 
 /*
- * compile-time check if integer is odd
+ * compile-time check if a float is +/-Inf
  */
 
 #ifndef _gcem_is_inf_HPP

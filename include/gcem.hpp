@@ -33,6 +33,7 @@ namespace gcem
     #include "gcem_incl/is_even.hpp"
     #include "gcem_incl/is_inf.hpp"
     #include "gcem_incl/is_nan.hpp"
+    #include "gcem_incl/is_finite.hpp"
     #include "gcem_incl/max.hpp"
     #include "gcem_incl/min.hpp"
     #include "gcem_incl/sqrt.hpp"

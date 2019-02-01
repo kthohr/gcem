@@ -73,6 +73,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/is_odd.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/is_inf.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/is_nan.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/is_finite.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lbeta.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lcm.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/lgamma.hpp
