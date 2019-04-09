@@ -103,7 +103,7 @@ T
 log_check(const T x)
 noexcept
 {
-    return( x == GCLIM<T>::quiet_NaN() ? \
+    return( is_nan(x) ? \
                 GCLIM<T>::quiet_NaN() :
             // x < 0
             x < T(0) ? \
