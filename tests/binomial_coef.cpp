@@ -37,9 +37,9 @@ int main()
 
     //
 
-    GCEM_TEST_EXPECTED_VAL(gcem::binomial_coef, TEST_NAN, TEST_NAN,     1.0L);
-    GCEM_TEST_EXPECTED_VAL(gcem::binomial_coef, TEST_NAN,     1.0L, TEST_NAN);
-    GCEM_TEST_EXPECTED_VAL(gcem::binomial_coef, TEST_NAN, TEST_NAN, TEST_NAN);
+    // GCEM_TEST_EXPECTED_VAL(gcem::binomial_coef, TEST_NAN, TEST_NAN,     1.0L);
+    // GCEM_TEST_EXPECTED_VAL(gcem::binomial_coef, TEST_NAN,     1.0L, TEST_NAN);
+    // GCEM_TEST_EXPECTED_VAL(gcem::binomial_coef, TEST_NAN, TEST_NAN, TEST_NAN);
 
     //
 
