@@ -49,9 +49,14 @@ T
 sqrt_check(const T x, const T m_val)
 noexcept
 {
-    return( // negative values
+    return( is_nan(x) ? \
+                GCLIM<T>::quiet_NaN() :
+            //
             x < T(0) ? \
                 GCLIM<T>::quiet_NaN() :
+            //
+            is_posinf(x) ? \
+                x :
             // indistinguishable from zero or one
             GCLIM<T>::epsilon() > abs(x) ? \
                 T(0) :
