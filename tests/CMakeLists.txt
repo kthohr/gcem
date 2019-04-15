@@ -88,6 +88,7 @@ set(GCEM_TESTS
     sqrt.cpp
     tan.cpp
     tanh.cpp
+    tgamma.cpp
 )
 
 #

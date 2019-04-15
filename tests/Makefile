@@ -131,3 +131,6 @@ tan:
 
 tanh:
 	$(GCEM_MAKE_CALL)
+
+tgamma:
+	$(GCEM_MAKE_CALL)
