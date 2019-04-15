@@ -61,3 +61,4 @@ build_script:
   - .\sqrt.test
   - .\tan.test
   - .\tanh.test
+  - .\tgamma.test

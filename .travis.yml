@@ -79,6 +79,19 @@ matrix:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
       compiler: clang
 
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
+            - clang-7.0
+          sources: &sources
+            - llvm-toolchain-trusty-7
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+      env:
+        - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
+      compiler: clang
+
     - os: osx
       osx_image: xcode9
       env:
