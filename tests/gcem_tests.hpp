@@ -57,8 +57,8 @@ int GCEM_TEST_NUMBER = 0;
 #endif
 
 #ifdef TEST_VAL_TYPES_V
-    #define VAL_IS_INF(val) std::isinf(val)
-    #define VAL_IS_NAN(val) std::isnan(val)
+    #define VAL_IS_INF(val) std::isinf(static_cast<long double>(val))
+    #define VAL_IS_NAN(val) std::isnan(static_cast<long double>(val))
 #else
     #define VAL_IS_INF(val) false
     #define VAL_IS_NAN(val) false
@@ -111,7 +111,7 @@ print_test_pass(std::string fn_name, const int print_level,
               << "(" << par_1 << ") = "
               << std::setprecision(print_precision_2) << f_val << "\n";
 
-    if (print_level > 1 && !std::isnan(err_val))
+    if (print_level > 1 && !VAL_IS_NAN(err_val))
         std::cout << "    - error value = " << err_val << "\n";
 
     std::cout << std::endl;
@@ -131,7 +131,7 @@ print_test_pass(std::string fn_name, const int print_level,
               << "(" << par_1 << "," << par_2 << ") = "
               << std::setprecision(print_precision_2) << f_val << "\n";
 
-    if (print_level > 1 && !std::isnan(err_val))
+    if (print_level > 1 && !VAL_IS_NAN(err_val))
         std::cout << "    - error value = " << err_val << "\n";
 
     std::cout << std::endl;
@@ -151,7 +151,7 @@ print_test_pass(std::string fn_name, const int print_level,
               << "(" << par_1 << "," << par_2 << "," << par_3 << ") = "
               << std::setprecision(print_precision_2) << f_val << "\n";
 
-    if (print_level > 1 && !std::isnan(err_val))
+    if (print_level > 1 && !VAL_IS_NAN(err_val))
         std::cout << "    - error value = " << err_val << "\n";
 
     std::cout << std::endl;
@@ -276,9 +276,9 @@ print_test_fail(std::string fn_name, int test_number, const int print_level,
                                                                                                     \
     bool test_success = false;                                                                      \
                                                                                                     \
-    if (std::isnan(gcem_fn_val) && std::isnan(std_fn_val)) {                                        \
+    if (VAL_IS_NAN(gcem_fn_val) && VAL_IS_NAN(std_fn_val)) {                                        \
         test_success = true;                                                                        \
-    } else if(!std::isnan(gcem_fn_val) && std::isinf(gcem_fn_val) && gcem_fn_val == std_fn_val) {   \
+    } else if(!VAL_IS_NAN(gcem_fn_val) && VAL_IS_INF(gcem_fn_val) && gcem_fn_val == std_fn_val) {   \
         test_success = true;                                                                        \
     } else if(err_val < TEST_ERR_TOL) {                                                             \
         test_success = true;                                                                        \
