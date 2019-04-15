@@ -163,7 +163,11 @@ T
 incomplete_gamma_check(const T a, const T z)
 noexcept
 {
-    return( a < T(0) ? \
+    return( // NaN check
+            any_nan(a, z) ? \
+                GCLIM<T>::quiet_NaN() :
+            //
+            a < T(0) ? \
                 GCLIM<T>::quiet_NaN() :
             //
             GCLIM<T>::epsilon() > z ? \

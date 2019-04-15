@@ -18,38 +18,33 @@
   ##
   ################################################################################*/
 
+#define TEST_PRINT_PRECISION_1 3
+#define TEST_PRINT_PRECISION_2 18
+
 #include "gcem_tests.hpp"
 
 int main()
 {
-    std::cout << "\n*** begin tan test ***\n" << std::endl;
+    print_begin("tan");
 
     //
 
-    std::function<long double (long double)> test_fn = gcem::tan<long double>;
-    std::string test_fn_name = "gcem::tan";
+    // static constexpr long double lrgval = std::numeric_limits<int>::max()*100.0L;
 
-    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::tan(x); };
-    std::string std_fn_name = "std::tan";
+    GCEM_TEST_COMPARE_VALS(gcem::tan,std::tan, 0.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::tan,std::tan, 0.001L);
+    GCEM_TEST_COMPARE_VALS(gcem::tan,std::tan, 1.001L);
+    GCEM_TEST_COMPARE_VALS(gcem::tan,std::tan, 1.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::tan,std::tan, 11.1L);
+    GCEM_TEST_COMPARE_VALS(gcem::tan,std::tan, 50.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::tan,std::tan, -1.5L);
+    // GCEM_TEST_COMPARE_VALS(gcem::tan,std::tan, lrgval);
 
-    //
-
-    static constexpr long double lval = std::numeric_limits<int>::max()*100.0L;
-
-    static constexpr long double test_vals[] = { 0.0L, 0.001L, 1.001L, 1.5L, 11.1L, 50.0L, lval, -1.5L };
-
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",6,18,false,false);
-    // PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,7,test_fn,std_fn,false," ",6,18,false,false);
+    GCEM_TEST_COMPARE_VALS(gcem::tan,std::tan, TEST_NAN);
 
     //
 
-    std::cout << "\n*** end tan test ***\n" << std::endl;
+    print_final("tan");
 
     return 0;
 }

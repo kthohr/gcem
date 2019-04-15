@@ -18,33 +18,28 @@
   ##
   ################################################################################*/
 
+#define TEST_PRINT_PRECISION_1 3
+#define TEST_PRINT_PRECISION_2 18
+
 #include "gcem_tests.hpp"
 
 int main()
 {
-    std::cout << "\n*** begin acosh test ***\n" << std::endl;
+    print_begin("acosh");
 
     //
 
-    std::function<long double (long double)> test_fn = gcem::acosh<long double>;
-    std::string test_fn_name = "gcem::acosh";
+    GCEM_TEST_COMPARE_VALS(gcem::acosh,std::acosh,1.001L);
+    GCEM_TEST_COMPARE_VALS(gcem::acosh,std::acosh,1.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::acosh,std::acosh,11.1L);
+    GCEM_TEST_COMPARE_VALS(gcem::acosh,std::acosh,50.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::acosh,std::acosh,0.5L);
 
-    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::acosh(x); };
-    std::string std_fn_name = "std::acosh";
-
-    //
-
-    static constexpr long double test_vals[] = { 1.001L, 1.5L, 11.1L, 50.0L, 0.5L };
-
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,false," ",6,18,false,true);
+    GCEM_TEST_COMPARE_VALS(gcem::acosh,std::acosh,TEST_NAN);
 
     //
 
-    std::cout << "\n*** end acosh test ***\n" << std::endl;
+    print_final("acosh");
 
     return 0;
 }

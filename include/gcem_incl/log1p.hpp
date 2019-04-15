@@ -48,7 +48,11 @@ T
 log1p_check(const T x)
 noexcept
 {
-    return( abs(x) > T(1e-04) ? \
+    return( // NaN check
+            is_nan(x) ? \
+                GCLIM<T>::quiet_NaN() :
+            //
+            abs(x) > T(1e-04) ? \
             // if
                 log(T(1) + x) :
             // else    

@@ -102,7 +102,15 @@ T
 erf_check(const T x)
 noexcept
 {
-    return( // indistinguishable from zero
+    return( // NaN check
+            is_nan(x) ? \
+                GCLIM<T>::quiet_NaN() :
+            // +/-Inf
+            is_posinf(x) ? \
+                T(1) :
+            is_neginf(x) ? \
+                - T(1) :
+            // indistinguishable from zero
             GCLIM<T>::epsilon() > abs(x) ? \
                 T(0) :
             // else

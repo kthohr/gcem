@@ -45,7 +45,10 @@ T
 sin_check(const T x)
 noexcept
 {
-    return( // indistinguishable from zero
+    return( // NaN check
+            is_nan(x) ? \
+                GCLIM<T>::quiet_NaN() :
+            // indistinguishable from zero
             GCLIM<T>::epsilon() > abs(x) ? \
                 T(0) :
             // special cases: pi/2 and pi

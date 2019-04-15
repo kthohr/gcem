@@ -43,7 +43,10 @@ T
 cos_check(const T x)
 noexcept
 {
-    return( // indistinguishable from 0
+    return( // NaN check
+            is_nan(x) ? \
+                GCLIM<T>::quiet_NaN() :
+            // indistinguishable from 0
             GCLIM<T>::epsilon() > abs(x) ? 
                 T(1) :
             // special cases: pi/2 and pi

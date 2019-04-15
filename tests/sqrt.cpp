@@ -20,35 +20,32 @@
 
 // g++-mp-7 -O3 -Wall -std=c++11 -fconstexpr-depth=20 -fconstexpr-steps=1271242 -I./../include sqrt.cpp -o sqrt.test -framework Accelerate
 
+#define TEST_PRINT_PRECISION_1 6
+#define TEST_PRINT_PRECISION_2 18
+
 #include "gcem_tests.hpp"
 
 int main()
 {
-    std::cout << "\n*** begin sqrt test ***\n" << std::endl;
+    print_begin("sqrt");
 
     //
 
-    std::function<long double (long double)> test_fn = gcem::sqrt<long double>;
-    std::string test_fn_name = "gcem::sqrt";
-
-    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::sqrt(x); };
-    std::string std_fn_name = "std::sqrt";
-
-    //
-
-    static constexpr long double test_vals[] = { 0.00199900000000000208L, 0.5L, 1.5L, 2.0L, 41.5L, 0.0L, -1.0L };
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  0.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  0.00199900000000000208L);
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  1.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  2.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  41.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  0.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt, -1.0L);
     
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,false," ",6,18,false,true);
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt, -std::numeric_limits<long double>::infinity());
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  std::numeric_limits<long double>::infinity());
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  std::numeric_limits<long double>::quiet_NaN());
 
     //
 
-    std::cout << "\n*** end sqrt test ***\n" << std::endl;
+    print_final("sqrt");
 
     return 0;
 }

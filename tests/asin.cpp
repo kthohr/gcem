@@ -18,35 +18,30 @@
   ##
   ################################################################################*/
 
+#define TEST_PRINT_PRECISION_1 6
+#define TEST_PRINT_PRECISION_2 18
+
 #include "gcem_tests.hpp"
 
 int main()
 {
-    std::cout << "\n*** begin asin test ***\n" << std::endl;
+    print_begin("asin");
 
     //
 
-    std::function<long double (long double)> test_fn = gcem::asin<long double>;
-    std::string test_fn_name = "gcem::asin";
+    GCEM_TEST_COMPARE_VALS(gcem::asin,std::asin,0.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::asin,std::asin,0.001L);
+    GCEM_TEST_COMPARE_VALS(gcem::asin,std::asin,0.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::asin,std::asin,-0.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::asin,std::asin,0.7568025L);
+    GCEM_TEST_COMPARE_VALS(gcem::asin,std::asin,1.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::asin,std::asin,5.0L);
 
-    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::asin(x); };
-    std::string std_fn_name = "std::asin";
-
-    //
-
-    static constexpr long double test_vals[] = { 0.0L, 0.001L, 0.5L, -0.5L, 0.7568025L, 1.0L, 5.0L };
-
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,false," ",6,18,false,true);
+    GCEM_TEST_COMPARE_VALS(gcem::asin,std::asin,TEST_NAN);
 
     //
 
-    std::cout << "\n*** end asin test ***\n" << std::endl;
+    print_final("asin");
 
     return 0;
 }

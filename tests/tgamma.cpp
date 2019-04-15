@@ -25,21 +25,21 @@
 
 int main()
 {
-    print_begin("lgamma");
+    print_begin("tgamma");
 
     //
 
-    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma,  1.5L);
-    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma,  0.7L);
-    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma,  1.0L);
-    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma,  0.0L);
-    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma, -1.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma,  1.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma,  2.7L);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma,  3.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma,  4.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma,  5.0L);
 
-    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma, TEST_NAN);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, TEST_NAN);
 
     //
 
-    print_final("lgamma");
+    print_final("tgamma");
 
     return 0;
 }

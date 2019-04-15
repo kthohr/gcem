@@ -24,29 +24,17 @@
 
 int main()
 {
-    std::cout << "\n*** begin lcm test ***\n" << std::endl;
+    print_begin("lcm");
 
     //
 
-    std::function<int (int, int)> test_fn = gcem::lcm<int,int>;
-    std::string test_fn_name = "gcem::lcm";
+    GCEM_TEST_EXPECTED_VAL(gcem::lcm,12,3,4);
+    GCEM_TEST_EXPECTED_VAL(gcem::lcm,60,12,15);
+    GCEM_TEST_EXPECTED_VAL(gcem::lcm,1377,17,81);
 
     //
 
-    static constexpr int test_vals_1[] = { 3, 12, 17 }; // shape
-    static constexpr int test_vals_2[] = { 4, 15, 81 }; // x
-
-    static constexpr int expected_vals[] = { 12, 60, 1377 };
-
-    //
-
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,0,test_fn,expected_vals[0],true,"",3,18,false,false);
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,1,test_fn,expected_vals[1],true,"",3,18,false,false);
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,2,test_fn,expected_vals[2],false,"",3,18,false,false);
-
-    //
-
-    std::cout << "\n*** end lcm test ***\n" << std::endl;
+    print_final("lcm");
 
     return 0;
 }
