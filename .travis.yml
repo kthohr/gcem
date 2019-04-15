@@ -84,12 +84,12 @@ matrix:
       addons:
         apt:
           packages:
-            - clang-7.0
+            - clang-7
           sources: &sources
             - llvm-toolchain-trusty-7
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
       env:
-        - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
+        - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
       compiler: clang
 
     - os: osx
