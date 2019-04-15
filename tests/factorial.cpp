@@ -44,8 +44,10 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::factorial,std_fn, 5L);
     GCEM_TEST_COMPARE_VALS(gcem::factorial,std_fn, 9L);
     GCEM_TEST_COMPARE_VALS(gcem::factorial,std_fn, 11L);
+#ifndef _WIN32
     GCEM_TEST_COMPARE_VALS(gcem::factorial,std_fn, 13L);
     GCEM_TEST_COMPARE_VALS(gcem::factorial,std_fn, 16L);
+#endif
 
     //
 
