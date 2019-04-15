@@ -52,7 +52,11 @@ T
 acos_check(const T x)
 noexcept
 {
-    return( x > T(0) ? \
+    return( // NaN check
+            is_nan(x) ? \
+                GCLIM<T>::quiet_NaN() :
+            //
+            x > T(0) ? \
             // if
                 acos_compute(x) :
             // else 

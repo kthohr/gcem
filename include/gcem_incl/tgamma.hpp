@@ -34,13 +34,16 @@ T
 tgamma_check(const T x)
 noexcept
 {
-    return( // indistinguishable from one or zero
+    return( // NaN check
+            is_nan(x) ? \
+                GCLIM<T>::quiet_NaN() :
+            // indistinguishable from one or zero
             GCLIM<T>::epsilon() > abs(x - T(1)) ? \
                 T(1) :
             GCLIM<T>::epsilon() > abs(x) ? \
                 GCLIM<T>::quiet_NaN() :
              // else
-                exp(lgamma(x)));
+                exp(lgamma(x)) );
 }
 
 }

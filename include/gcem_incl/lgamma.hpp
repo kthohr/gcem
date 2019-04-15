@@ -97,7 +97,10 @@ T
 lgamma_check(const T x)
 noexcept
 {
-    return( // indistinguishable from one or <= zero
+    return( // NaN check
+            is_nan(x) ? \
+                GCLIM<T>::quiet_NaN() :
+            // indistinguishable from one or <= zero
             GCLIM<T>::epsilon() > abs(x - T(1)) ? \
                 T(0) :
             GCLIM<T>::epsilon() > x ? \

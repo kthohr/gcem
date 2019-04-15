@@ -138,7 +138,10 @@ T
 incomplete_beta_check(const T a, const T b, const T z)
 noexcept
 {
-    return( // indistinguishable from zero
+    return( // NaN check
+            any_nan(a, b, z) ? \
+                GCLIM<T>::quiet_NaN() :
+            // indistinguishable from zero
             GCLIM<T>::epsilon() > z ? \
                 T(0) :
             // parameter check for performance

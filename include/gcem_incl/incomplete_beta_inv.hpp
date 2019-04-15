@@ -297,7 +297,10 @@ T
 incomplete_beta_inv_check(const T alpha_par, const T beta_par, const T p)
 noexcept
 {
-    return( // indistinguishable from zero or one
+    return( // NaN check
+            any_nan(alpha_par, beta_par, p) ? \
+                GCLIM<T>::quiet_NaN() :
+            // indistinguishable from zero or one
             GCLIM<T>::epsilon() > p ? \
                 T(0) :
             GCLIM<T>::epsilon() > abs(T(1) - p) ? \

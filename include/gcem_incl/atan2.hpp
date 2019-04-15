@@ -34,7 +34,11 @@ T
 atan2_compute(const T y, const T x)
 noexcept
 {
-    return( GCLIM<T>::epsilon() > abs(x) ? \
+    return( // NaN check
+            any_nan(y,x) ? \
+                GCLIM<T>::quiet_NaN() :
+            //
+            GCLIM<T>::epsilon() > abs(x) ? \
             //
                 GCLIM<T>::epsilon() > abs(y) ? \
                     neg_zero(y) ? \

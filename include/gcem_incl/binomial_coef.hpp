@@ -52,7 +52,11 @@ T
 binomial_coef_check(const T n, const T k)
 noexcept
 {
-    return static_cast<T>(binomial_coef_recur(static_cast<ullint_t>(n),static_cast<ullint_t>(k)));
+    return( // NaN check
+            (is_nan(n) || is_nan(k)) ? \
+                GCLIM<T>::quiet_NaN() :
+            //
+            static_cast<T>(binomial_coef_recur(static_cast<ullint_t>(n),static_cast<ullint_t>(k))) );
 }
 
 template<typename T1, typename T2, typename TC = common_t<T1,T2>>

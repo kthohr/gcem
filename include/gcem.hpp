@@ -27,13 +27,14 @@ namespace gcem
 {
     #include "gcem_incl/quadrature/gauss_legendre_50.hpp"
 
+    #include "gcem_incl/is_inf.hpp"
+    #include "gcem_incl/is_nan.hpp"
+    #include "gcem_incl/is_finite.hpp"
+
     #include "gcem_incl/abs.hpp"
     #include "gcem_incl/floor.hpp"
     #include "gcem_incl/is_odd.hpp"
     #include "gcem_incl/is_even.hpp"
-    #include "gcem_incl/is_inf.hpp"
-    #include "gcem_incl/is_nan.hpp"
-    #include "gcem_incl/is_finite.hpp"
     #include "gcem_incl/max.hpp"
     #include "gcem_incl/min.hpp"
     #include "gcem_incl/sqrt.hpp"

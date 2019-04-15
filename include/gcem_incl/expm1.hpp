@@ -44,7 +44,11 @@ T
 expm1_check(const T x)
 noexcept
 {
-    return( abs(x) > T(1e-04) ? \
+    return( // NaN check
+            is_nan(x) ? \
+                GCLIM<T>::quiet_NaN() :
+            //
+            abs(x) > T(1e-04) ? \
             // if
                 exp(x) - T(1) :
             // else    
