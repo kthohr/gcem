@@ -232,12 +232,12 @@ print_test_fail(std::string fn_name, int test_number, const int print_level,
 //
 // macros
 
-#define GCEM_TEST_EXPECTED_VAL(gcem_fn, expected_val, args...)                                      \
+#define GCEM_TEST_EXPECTED_VAL(gcem_fn, expected_val, ...)                                          \
 {                                                                                                   \
     ++GCEM_TEST_NUMBER;                                                                             \
     std::string fn_name = #gcem_fn;                                                                 \
                                                                                                     \
-    auto f_val = gcem_fn(args);                                                                     \
+    auto f_val = gcem_fn(__VA_ARGS__);                                                              \
                                                                                                     \
     auto err_val = std::abs(f_val - expected_val) / (1 + std::abs(expected_val));                   \
                                                                                                     \
@@ -252,25 +252,25 @@ print_test_fail(std::string fn_name, int test_number, const int print_level,
     } else {                                                                                        \
         print_test_fail(fn_name,GCEM_TEST_NUMBER,TEST_PRINT_LEVEL,                                  \
                         TEST_PRINT_PRECISION_1,TEST_PRINT_PRECISION_2,                              \
-                        f_val,expected_val,args);                                                   \
+                        f_val,expected_val,__VA_ARGS__);                                            \
     }                                                                                               \
                                                                                                     \
     if (test_success && TEST_PRINT_LEVEL > 0)                                                       \
     {                                                                                               \
         print_test_pass(fn_name,TEST_PRINT_LEVEL,                                                   \
                         TEST_PRINT_PRECISION_1,TEST_PRINT_PRECISION_2,                              \
-                        f_val,err_val,args);                                                        \
+                        f_val,err_val,__VA_ARGS__);                                                 \
     }                                                                                               \
 }
 
-#define GCEM_TEST_COMPARE_VALS(gcem_fn, std_fn, args...)                                            \
+#define GCEM_TEST_COMPARE_VALS(gcem_fn, std_fn, ...)                                                \
 {                                                                                                   \
     ++GCEM_TEST_NUMBER;                                                                             \
                                                                                                     \
     std::string fn_name = #gcem_fn;                                                                 \
                                                                                                     \
-    auto gcem_fn_val = gcem_fn(args);                                                               \
-    auto std_fn_val  = std_fn(args);                                                                \
+    auto gcem_fn_val = gcem_fn(__VA_ARGS__);                                                        \
+    auto std_fn_val  = std_fn(__VA_ARGS__);                                                         \
                                                                                                     \
     auto err_val = std::abs(gcem_fn_val - std_fn_val) / (1 + std::abs(std_fn_val));                 \
                                                                                                     \
@@ -285,14 +285,14 @@ print_test_fail(std::string fn_name, int test_number, const int print_level,
     } else {                                                                                        \
         print_test_fail(fn_name,GCEM_TEST_NUMBER,TEST_PRINT_LEVEL,                                  \
                         TEST_PRINT_PRECISION_1,TEST_PRINT_PRECISION_2,                              \
-                        gcem_fn_val,std_fn_val,args);                                               \
+                        gcem_fn_val,std_fn_val,__VA_ARGS__);                                        \
     }                                                                                               \
                                                                                                     \
     if (test_success && TEST_PRINT_LEVEL > 0)                                                       \
     {                                                                                               \
         print_test_pass(fn_name,TEST_PRINT_LEVEL,                                                   \
                         TEST_PRINT_PRECISION_1,TEST_PRINT_PRECISION_2,                              \
-                        gcem_fn_val,err_val,args);                                                  \
+                        gcem_fn_val,err_val,__VA_ARGS__);                                           \
     }                                                                                               \
 }
 
