@@ -22,30 +22,22 @@
 
 int main()
 {
-    std::cout << "\n*** begin log_binomial_coef test ***\n" << std::endl;
+    print_begin("log_binomial_coef");
 
     //
 
-    std::function<long double (long double, long double)> test_fn = gcem::log_binomial_coef<long double, long double>;
-    std::string test_fn_name = "gcem::log_binomial_coef";
+    GCEM_TEST_EXPECTED_VAL(gcem::log_binomial_coef,               0,  0,  0);
+    GCEM_TEST_EXPECTED_VAL(gcem::log_binomial_coef,     TEST_NEGINF,  0,  1);
+    GCEM_TEST_EXPECTED_VAL(gcem::log_binomial_coef,               0,  1,  0);
+    GCEM_TEST_EXPECTED_VAL(gcem::log_binomial_coef,               0,  1,  1);
+    GCEM_TEST_EXPECTED_VAL(gcem::log_binomial_coef, std::log(10.0L),  5,  2);
+    GCEM_TEST_EXPECTED_VAL(gcem::log_binomial_coef, std::log(45.0L), 10,  8);
+    GCEM_TEST_EXPECTED_VAL(gcem::log_binomial_coef, std::log(10.0L), 10,  9);
+    GCEM_TEST_EXPECTED_VAL(gcem::log_binomial_coef,               0, 10, 10);
 
     //
 
-    static constexpr long double test_vals_1[] = { 0.0L, 0.0L, 1.0L, 1.0L, 5.0L, 10.0L, 10.0L, 10.0L };
-    static constexpr long double test_vals_2[] = { 0.0L, 1.0L, 0.0L, 1.0L, 2.0L, 8.0L,  9.0L,  10.0L };
-
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,0,test_fn,0.0L,true,"",2,2,false,false);
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,1,test_fn,.0L,true,"",2,2,true,false); // ignore input value
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,2,test_fn,0.0L,true,"",2,2,false,false);
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,3,test_fn,0.0L,true,"",2,2,false,false);
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,4,test_fn,std::log(10.0L),true,"",2,2,false,false);
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,5,test_fn,std::log(45.0L),true,"",2,2,false,false);
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,6,test_fn,std::log(10.0L),true,"",2,2,false,false);
-    PRINT_TEST_2_EXPECT(test_fn_name,test_vals_1,test_vals_2,7,test_fn,0.0L,false,"",2,2,false,false);
-
-    //
-
-    std::cout << "\n*** end log_binomial_coef test ***\n" << std::endl;
+    print_final("log_binomial_coef");
 
     return 0;
 }

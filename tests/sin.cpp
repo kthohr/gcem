@@ -18,35 +18,31 @@
   ##
   ################################################################################*/
 
+#define TEST_PRINT_PRECISION_1 3
+#define TEST_PRINT_PRECISION_2 18
+
 #include "gcem_tests.hpp"
 
 int main()
 {
-    std::cout << "\n*** begin sin test ***\n" << std::endl;
+    print_begin("sin");
 
     //
 
-    std::function<long double (long double)> test_fn = gcem::sin<long double>;
-    std::string test_fn_name = "gcem::sin";
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,-1.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,0.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,0.001L);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,1.001L);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,1.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,11.1L);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,50.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,150.0L);
 
-    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::sin(x); };
-    std::string std_fn_name = "std::sin";
-
-    //
-
-    static constexpr long double test_vals[] = { 0.0L, 0.001L, 1.001L, 1.5L, 11.1L, 50.0L, -1.5L };
-
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,false," ",6,18,false,false);
+    GCEM_TEST_COMPARE_VALS(gcem::sin,std::sin,TEST_NAN);
 
     //
 
-    std::cout << "\n*** end sin test ***\n" << std::endl;
+    print_final("sin");
 
     return 0;
 }

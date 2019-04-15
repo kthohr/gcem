@@ -18,33 +18,28 @@
   ##
   ################################################################################*/
 
+#define TEST_PRINT_PRECISION_1 2
+#define TEST_PRINT_PRECISION_2 18
+
 #include "gcem_tests.hpp"
 
 int main()
 {
-    std::cout << "\n*** begin lgamma test ***\n" << std::endl;
+    print_begin("lgamma");
 
     //
 
-    std::function<long double (long double)> test_fn = gcem::lgamma<long double>;
-    std::string test_fn_name = "gcem::lgamma";
+    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma,  1.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma,  0.7L);
+    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma,  1.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma,  0.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma, -1.0L);
 
-    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::lgamma(x); };
-    std::string std_fn_name = "std::lgamma";
-
-    //
-
-    static constexpr long double test_vals[] = { 1.5L, 0.7L, 1.0L, 0.0L, -1.0L };
-
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",3,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",3,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",3,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",3,18,true,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,false," ",3,18,true,false);
+    GCEM_TEST_COMPARE_VALS(gcem::lgamma,std::lgamma, TEST_NAN);
 
     //
-    
-    std::cout << "\n*** end lgamma test ***\n" << std::endl;
+
+    print_final("lgamma");
 
     return 0;
 }

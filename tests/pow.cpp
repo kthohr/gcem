@@ -18,36 +18,36 @@
   ##
   ################################################################################*/
 
+#define TEST_PRINT_PRECISION_1 5
+#define TEST_PRINT_PRECISION_2 18
+
 #include "gcem_tests.hpp"
 
 int main()
 {
-    std::cout << "\n*** begin pow test ***\n" << std::endl;
+    print_begin("pow");
 
     //
 
-    std::function<long double (long double, long double)> test_fn_int = [] (long double x, long double y) -> long double \
-        { return gcem::pow<long double>(x,size_t(y)); };
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 0.199900000000000208L, 3.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 0.5L,  2.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 1.5L,  0.99L);
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 41.5L, 7.0L);
 
-    std::function<long double (long double, long double)> test_fn = gcem::pow<long double, long double>;
-    std::string test_fn_name = "gcem::pow";
+    // int versions
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 0.5L,  2L);
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 41.5L, 7L);
+    
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow,  std::numeric_limits<long double>::quiet_NaN(), 2);
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow,  2, std::numeric_limits<long double>::quiet_NaN());
 
-    std::function<long double (long double, long double)> std_fn  = [] (long double x, long double y) -> long double { return std::pow(x,y); };
-    std::string std_fn_name = "std::pow";
-
-    //
-
-    static constexpr long double test_vals_1[] = { 0.199900000000000208L, 0.5L, 1.5L, 41.5L };
-    static constexpr long double test_vals_2[] = { 3.5L, 2.0L, 0.99L, 7.0L };
-
-    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,0,test_fn,std_fn,true," ",5,18,false,false);
-    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,1,test_fn_int,std_fn,true," ",3,18,false,false);
-    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,2,test_fn,std_fn,true," ",3,18,false,false);
-    PRINT_TEST_2_COMPARE(test_fn_name,std_fn_name,test_vals_1,test_vals_2,3,test_fn_int,std_fn,false," ",3,18,false,false);
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, std::numeric_limits<long double>::infinity(), 2);
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, std::numeric_limits<long double>::infinity(), - 2);
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, std::numeric_limits<long double>::infinity(), 0);
 
     //
 
-    std::cout << "\n*** end pow test ***\n" << std::endl;
+    print_final("pow");
 
     return 0;
 }

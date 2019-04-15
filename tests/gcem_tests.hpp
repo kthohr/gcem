@@ -29,9 +29,11 @@
 //
 // tolerance
 
+int GCEM_TEST_NUMBER = 0;
+
 #ifndef TEST_VAL_TYPES
-#define TEST_VAL_TYPES long double
-#define TEST_VAL_TYPES_V 1
+    #define TEST_VAL_TYPES long double
+    #define TEST_VAL_TYPES_V 1
 #endif
 
 #ifndef TEST_ERR_TOL
@@ -55,256 +57,309 @@
 #endif
 
 #ifdef TEST_VAL_TYPES_V
-#define TEST_IS_INF(val) std::isinf(val)
-#define TEST_IS_NAN(val) std::isnan(val)
+    #define VAL_IS_INF(val) std::isinf(val)
+    #define VAL_IS_NAN(val) std::isnan(val)
 #else
-#define TEST_IS_INF(val) false
-#define TEST_IS_NAN(val) false
+    #define VAL_IS_INF(val) false
+    #define VAL_IS_NAN(val) false
+#endif
+
+#ifndef TEST_NAN
+    #define TEST_NAN gcem::GCLIM<double>::quiet_NaN()
+#endif
+
+#ifndef TEST_POSINF
+    #define TEST_POSINF gcem::GCLIM<double>::infinity()
+#endif
+
+#ifndef TEST_NEGINF
+    #define TEST_NEGINF -gcem::GCLIM<double>::infinity()
 #endif
 
 //
-// one input
 
-template<typename T>
-inline
-T
-print_test_1(const std::string fn_name, const T val_inp_1, std::function<T (const T val_inp)> fn_eval, 
-             const bool new_line=false, const std::string extra_space="", 
-             const int precision_1=2, const int precision_2=18)
-{
-    T f_val = fn_eval(val_inp_1);
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(precision_1) << fn_name \
-              << "(" << val_inp_1 << ")" << extra_space << " = " \
-              << std::setprecision(precision_2) << f_val << std::endl;
-    if (new_line) std::cout << std::endl;
-    return f_val;
-}
+#ifndef TEST_PRINT_LEVEL
+    #define TEST_PRINT_LEVEL 3
+#endif
 
-#define PRINT_TEST_1_EXPECT(fn_name, vals_inp, j, fn_eval, expected_val,                                        \
-                            new_line, extra_space,                                                              \
-                            precision_1, precision_2, is_inf, is_nan)                                           \
-{                                                                                                               \
-    constexpr TEST_VAL_TYPES val_1 = vals_inp[j];                                                               \
-                                                                                                                \
-    TEST_VAL_TYPES f_val = print_test_1(fn_name,val_1,fn_eval,false,extra_space,precision_1,precision_2);       \
-                                                                                                                \
-    bool test_pass = false;                                                                                     \
-                                                                                                                \
-    printf("  -");                                                                                              \
-    if (!is_nan && !is_inf) {                                                                                   \
-        TEST_VAL_TYPES err_val = std::abs(f_val - expected_val);                                                \
-        PRINT_ERR(err_val);                                                                                     \
-        test_pass = (err_val < TEST_ERR_TOL) ? true : false;                                                    \
-    } else if (is_nan) {                                                                                        \
-        if (TEST_IS_NAN(f_val)) {                                                                               \
-            test_pass = true;                                                                                   \
-        }                                                                                                       \
-    } else if (is_inf) {                                                                                        \
-        if (TEST_IS_INF(f_val)) {                                                                               \
-            test_pass = true;                                                                                   \
-        }                                                                                                       \
-    } else {                                                                                                    \
-        printf("unknown error!");                                                                               \
-    }                                                                                                           \
-                                                                                                                \
-    if (test_pass) {                                                                                            \
-        std::cout << "\033[32m OK.\033[0m" << std::endl;                                                        \
-    } else {                                                                                                    \
-        std::cout << "\033[31m FAIL.\033[0m" << std::endl;                                                      \
-    }                                                                                                           \
-                                                                                                                \
-    if (new_line) std::cout << std::endl;                                                                       \
-}                                                                                                               \
-                                                                                                                \
+#ifndef TEST_PRINT_PRECISION_1
+    #define TEST_PRINT_PRECISION_1 2
+#endif
 
-#define PRINT_TEST_1_COMPARE(fn_name_1, fn_name_2, vals_inp, j,                                                 \
-                             fn_eval_1, fn_eval_2, new_line, extra_space,                                       \
-                             precision_1, precision_2, is_inf, is_nan)                                          \
-{                                                                                                               \
-    constexpr TEST_VAL_TYPES c_val = vals_inp[j];                                                               \
-    TEST_VAL_TYPES x_val = vals_inp[j];                                                                         \
-                                                                                                                \
-    TEST_VAL_TYPES f_val_1 = print_test_1(fn_name_1,c_val,fn_eval_1,false,"",precision_1,precision_2);          \
-    TEST_VAL_TYPES f_val_2 = print_test_1(fn_name_2,x_val,fn_eval_2,false,extra_space,precision_1,precision_2); \
-                                                                                                                \
-    bool test_pass = false;                                                                                     \
-                                                                                                                \
-    printf("  -");                                                                                              \
-    if (!is_nan && !is_inf) {                                                                                   \
-        TEST_VAL_TYPES err_val = std::abs(f_val_1 - f_val_2);                                                   \
-        PRINT_ERR(err_val);                                                                                     \
-        test_pass = (err_val < TEST_ERR_TOL) ? true : false;                                                    \
-    } else if (is_nan) {                                                                                        \
-        if (std::isnan(f_val_1) && std::isnan(f_val_2)) {                                                       \
-            test_pass = true;                                                                                   \
-        }                                                                                                       \
-    } else if (is_inf) {                                                                                        \
-        if (std::isinf(f_val_1) && std::isinf(f_val_2)) {                                                       \
-            test_pass = true;                                                                                   \
-        }                                                                                                       \
-    } else {                                                                                                    \
-        printf("unknown error!");                                                                               \
-    }                                                                                                           \
-                                                                                                                \
-    if (test_pass) {                                                                                            \
-        std::cout << "\033[32m OK.\033[0m" << std::endl;                                                        \
-    } else {                                                                                                    \
-        std::cout << "\033[31m FAIL.\033[0m" << std::endl;                                                      \
-    }                                                                                                           \
-                                                                                                                \
-    if (new_line) std::cout << std::endl;                                                                       \
-}                                                                                                               \
+#ifndef TEST_PRINT_PRECISION_2
+    #define TEST_PRINT_PRECISION_2 5
+#endif
+
+#ifndef GCEM_UNUSED_PAR
+    #define GCEM_UNUSED_PAR(x) (void)(x)
+#endif
 
 //
-// two inputs
+// printing pass
 
-template<typename T>
+template<typename T1, typename T2, typename T3>
 inline
-T
-print_test_2(const std::string fn_name, const T val_inp_1, const T val_inp_2, std::function<T (const T val_inp, const T par_inp)> fn_eval, 
-             const bool new_line=false, const std::string extra_space="", 
-             const int precision_1=2, const int precision_2=18)
+void
+print_test_pass(std::string fn_name, const int print_level, 
+                int print_precision_1, int print_precision_2,
+                const T1 f_val, const T2 err_val, 
+                const T3 par_1)
 {
-    T f_val = fn_eval(val_inp_1,val_inp_2);
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(precision_1) << fn_name \
-              << "(" << val_inp_1 << "," << val_inp_2 << ")" << extra_space << " = " \
-              << std::setprecision(precision_2) << f_val << std::endl;
-    if (new_line) std::cout << std::endl;
-    return f_val;
+    std::cout << "[\033[32mOK\033[0m] ";
+    std::cout << std::setiosflags(std::ios::fixed)
+              << std::setprecision(print_precision_1) << fn_name
+              << "(" << par_1 << ") = "
+              << std::setprecision(print_precision_2) << f_val << "\n";
+
+    if (print_level > 1 && !std::isnan(err_val))
+        std::cout << "    - error value = " << err_val << "\n";
+
+    std::cout << std::endl;
 }
 
-#define PRINT_TEST_2_EXPECT(fn_name, vals_inp_1, vals_inp_2, j, fn_eval, expected_val,                          \
-                            new_line, extra_space,                                                              \
-                            precision_1, precision_2, is_inf, is_nan)                                           \
-{                                                                                                               \
-    constexpr TEST_VAL_TYPES val_1 = vals_inp_1[j];                                                             \
-    constexpr TEST_VAL_TYPES val_2 = vals_inp_2[j];                                                             \
-                                                                                                                \
-    TEST_VAL_TYPES f_val = print_test_2(fn_name,val_1,val_2,fn_eval,false,extra_space,precision_1,precision_2); \
-                                                                                                                \
-    bool test_pass = false;                                                                                     \
-                                                                                                                \
-    printf("  -");                                                                                              \
-    if (!is_nan && !is_inf) {                                                                                   \
-        TEST_VAL_TYPES err_val = std::abs(f_val - expected_val);                                                \
-        PRINT_ERR(err_val);                                                                                     \
-        test_pass = (err_val < TEST_ERR_TOL) ? true : false;                                                    \
-    } else if (is_nan) {                                                                                        \
-        if (TEST_IS_NAN(f_val)) {                                                                               \
-            test_pass = true;                                                                                   \
-        }                                                                                                       \
-    } else if (is_inf) {                                                                                        \
-        if (TEST_IS_INF(f_val)) {                                                                               \
-            test_pass = true;                                                                                   \
-        }                                                                                                       \
-    } else {                                                                                                    \
-        printf("unknown error!");                                                                               \
-    }                                                                                                           \
-                                                                                                                \
-    if (test_pass) {                                                                                            \
-        std::cout << "\033[32m OK.\033[0m" << std::endl;                                                        \
-    } else {                                                                                                    \
-        std::cout << "\033[31m FAIL.\033[0m" << std::endl;                                                      \
-    }                                                                                                           \
-                                                                                                                \
-    if (new_line) std::cout << std::endl;                                                                       \
-}                                                                                                               \
+template<typename T1, typename T2, typename T3, typename T4>
+inline
+void
+print_test_pass(std::string fn_name, const int print_level, 
+                int print_precision_1, int print_precision_2,
+                const T1 f_val, const T2 err_val, 
+                const T3 par_1, const T4 par_2)
+{
+    std::cout << "[\033[32mOK\033[0m] ";
+    std::cout << std::setiosflags(std::ios::fixed)
+              << std::setprecision(print_precision_1) << fn_name
+              << "(" << par_1 << "," << par_2 << ") = "
+              << std::setprecision(print_precision_2) << f_val << "\n";
 
-#define PRINT_TEST_2_COMPARE(fn_name_1, fn_name_2, vals_inp_1, vals_inp_2, j,                                               \
-                             fn_eval_1, fn_eval_2, new_line, extra_space,                                                   \
-                             precision_1, precision_2, is_inf, is_nan)                                                      \
-{                                                                                                                           \
-    constexpr TEST_VAL_TYPES c_val_1 = vals_inp_1[j];                                                                       \
-    constexpr TEST_VAL_TYPES c_val_2 = vals_inp_2[j];                                                                       \
-    TEST_VAL_TYPES x_val_1 = vals_inp_1[j];                                                                                 \
-    TEST_VAL_TYPES x_val_2 = vals_inp_2[j];                                                                                 \
-                                                                                                                            \
-    TEST_VAL_TYPES f_val_1 = print_test_2(fn_name_1,c_val_1,c_val_2,fn_eval_1,false,"",precision_1,precision_2);            \
-    TEST_VAL_TYPES f_val_2 = print_test_2(fn_name_2,x_val_1,x_val_2,fn_eval_2,false,extra_space,precision_1,precision_2);   \
-                                                                                                                            \
-    bool test_pass = false;                                                                                                 \
-                                                                                                                            \
-    printf("  -");                                                                                                          \
-    if (!is_nan && !is_inf) {                                                                                               \
-        TEST_VAL_TYPES err_val = std::abs(f_val_1 - f_val_2);                                                               \
-        PRINT_ERR(err_val);                                                                                                 \
-        test_pass = (err_val < TEST_ERR_TOL) ? true : false;                                                                \
-    } else if (is_nan) {                                                                                                    \
-        if (std::isnan(f_val_1) && std::isnan(f_val_2)) {                                                                   \
-            test_pass = true;                                                                                               \
-        }                                                                                                                   \
-    } else if (is_inf) {                                                                                                    \
-        if (std::isinf(f_val_1) && std::isinf(f_val_2)) {                                                                   \
-            test_pass = true;                                                                                               \
-        }                                                                                                                   \
-    } else {                                                                                                                \
-        printf("unknown error!");                                                                                           \
-    }                                                                                                                       \
-                                                                                                                            \
-    if (test_pass) {                                                                                                        \
-        std::cout << "\033[32m OK.\033[0m" << std::endl;                                                                    \
-    } else {                                                                                                                \
-        std::cout << "\033[31m FAIL.\033[0m" << std::endl;                                                                  \
-    }                                                                                                                       \
-                                                                                                                            \
-    if (new_line) std::cout << std::endl;                                                                                   \
-}                                                                                                                           \
+    if (print_level > 1 && !std::isnan(err_val))
+        std::cout << "    - error value = " << err_val << "\n";
+
+    std::cout << std::endl;
+}
+
+template<typename T1, typename T2, typename T3, typename T4, typename T5>
+inline
+void
+print_test_pass(std::string fn_name, const int print_level, 
+                int print_precision_1, int print_precision_2,
+                const T1 f_val, const T2 err_val, 
+                const T3 par_1, const T4 par_2, const T5 par_3)
+{
+    std::cout << "[\033[32mOK\033[0m] ";
+    std::cout << std::setiosflags(std::ios::fixed)
+              << std::setprecision(print_precision_1) << fn_name
+              << "(" << par_1 << "," << par_2 << "," << par_3 << ") = "
+              << std::setprecision(print_precision_2) << f_val << "\n";
+
+    if (print_level > 1 && !std::isnan(err_val))
+        std::cout << "    - error value = " << err_val << "\n";
+
+    std::cout << std::endl;
+}
 
 //
-// three inputs
+// printing fail
 
-template<typename T>
+template<typename T1, typename T2, typename T3>
 inline
-T
-print_test_3(const std::string fn_name, const T val_inp_1, const T val_inp_2, const T val_inp_3, 
-             std::function<T (const T val_inp, const T par_inp_1, const T par_inp_2)> fn_eval, 
-             const bool new_line=false, const std::string extra_space="", 
-             const int precision_1=2, const int precision_2=18)
+void
+print_test_fail(std::string fn_name, int test_number, const int print_level, 
+                int print_precision_1, int print_precision_2,
+                const T1 f_val, const T2 expected_val, 
+                const T3 par_1)
 {
-    T f_val = fn_eval(val_inp_1,val_inp_2,val_inp_3);
-    std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(precision_1) << fn_name \
-              << "(" << val_inp_1 << "," << val_inp_2 << "," << val_inp_3 << ")" << extra_space << " = " \
-              << std::setprecision(precision_2) << f_val << std::endl;
-    if (new_line) std::cout << std::endl;
-    return f_val;
+    GCEM_UNUSED_PAR(print_level);
+    GCEM_UNUSED_PAR(print_precision_1);
+    GCEM_UNUSED_PAR(print_precision_2);
+
+    std::cerr << "\033[31m Test failed!\033[0m\n";
+    std::cerr << "  - Test number: " << test_number << "\n";
+    std::cerr << "  - Function Call:  " << fn_name
+              << "(" << par_1 << ");\n";
+    std::cerr << "  - Expected value: " << expected_val << "\n";
+    std::cerr << "  - Actual value:   " << f_val << "\n";
+    std::cerr << std::endl;
+
+    throw std::runtime_error("test fail");
 }
 
-#define PRINT_TEST_3_EXPECT(fn_name, vals_inp_1, vals_inp_2, vals_inp_3,                                                \
-                            j, fn_eval, expected_val,                                                                   \
-                            new_line, extra_space,                                                                      \
-                            precision_1, precision_2, is_inf, is_nan)                                                   \
-{                                                                                                                       \
-    constexpr TEST_VAL_TYPES val_1 = vals_inp_1[j];                                                                     \
-    constexpr TEST_VAL_TYPES val_2 = vals_inp_2[j];                                                                     \
-    constexpr TEST_VAL_TYPES val_3 = vals_inp_3[j];                                                                     \
-                                                                                                                        \
-    TEST_VAL_TYPES f_val = print_test_3(fn_name,val_1,val_2,val_3,fn_eval,false,extra_space,precision_1,precision_2);   \
-                                                                                                                        \
-    bool test_pass = false;                                                                                             \
-                                                                                                                        \
-    printf("  -");                                                                                                      \
-    if (!is_nan && !is_inf) {                                                                                           \
-        TEST_VAL_TYPES err_val = std::abs(f_val - expected_val);                                                        \
-        PRINT_ERR(err_val);                                                                                             \
-        test_pass = (err_val < TEST_ERR_TOL) ? true : false;                                                            \
-    } else if (is_nan) {                                                                                                \
-        if (TEST_IS_NAN(f_val)) {                                                                                       \
-            test_pass = true;                                                                                           \
-        }                                                                                                               \
-    } else if (is_inf) {                                                                                                \
-        if (TEST_IS_INF(f_val)) {                                                                                       \
-            test_pass = true;                                                                                           \
-        }                                                                                                               \
-    } else {                                                                                                            \
-        printf("unknown error!");                                                                                       \
-    }                                                                                                                   \
-                                                                                                                        \
-    if (test_pass) {                                                                                                    \
-        std::cout << "\033[32m OK.\033[0m" << std::endl;                                                                \
-    } else {                                                                                                            \
-        std::cout << "\033[31m FAIL.\033[0m" << std::endl;                                                              \
-    }                                                                                                                   \
-                                                                                                                        \
-    if (new_line) std::cout << std::endl;                                                                               \
-}                                                                                                                       \
+template<typename T1, typename T2, typename T3, typename T4>
+inline
+void
+print_test_fail(std::string fn_name, int test_number, const int print_level, 
+                int print_precision_1, int print_precision_2,
+                const T1 f_val, const T2 expected_val, 
+                const T3 par_1, const T4 par_2)
+{
+    GCEM_UNUSED_PAR(print_level);
+    GCEM_UNUSED_PAR(print_precision_1);
+    GCEM_UNUSED_PAR(print_precision_2);
 
+    std::cerr << "\033[31m Test failed!\033[0m\n";
+    std::cerr << "  - Test number: " << test_number << "\n";
+    std::cerr << "  - Function Call:  " << fn_name
+              << "(" << par_1 << "," << par_2 << ");\n";
+    std::cerr << "  - Expected value: " << expected_val << "\n";
+    std::cerr << "  - Actual value:   " << f_val << "\n";
+    std::cerr << std::endl;
+
+    throw std::runtime_error("test fail");
+}
+
+template<typename T1, typename T2, typename T3, typename T4, typename T5>
+inline
+void
+print_test_fail(std::string fn_name, int test_number, const int print_level, 
+                int print_precision_1, int print_precision_2,
+                const T1 f_val, const T2 expected_val, 
+                const T3 par_1, const T4 par_2, const T5 par_3)
+{
+    GCEM_UNUSED_PAR(print_level);
+    GCEM_UNUSED_PAR(print_precision_1);
+    GCEM_UNUSED_PAR(print_precision_2);
+
+    std::cerr << "\033[31m Test failed!\033[0m\n";
+    std::cerr << "  - Test number: " << test_number << "\n";
+    std::cerr << "  - Function Call:  " << fn_name
+              << "(" << par_1 << "," << par_2 << "," << par_3 << ");\n";
+    std::cerr << "  - Expected value: " << expected_val << "\n";
+    std::cerr << "  - Actual value:   " << f_val << "\n";
+    std::cerr << std::endl;
+
+    throw std::runtime_error("test fail");
+}
+
+//
+// macros
+
+#define GCEM_TEST_EXPECTED_VAL(gcem_fn, expected_val, args...)                                      \
+{                                                                                                   \
+    ++GCEM_TEST_NUMBER;                                                                             \
+    std::string fn_name = #gcem_fn;                                                                 \
+                                                                                                    \
+    auto f_val = gcem_fn(args);                                                                     \
+                                                                                                    \
+    auto err_val = std::abs(f_val - expected_val) / (1 + std::abs(expected_val));                   \
+                                                                                                    \
+    bool test_success = false;                                                                      \
+                                                                                                    \
+    if (VAL_IS_NAN(expected_val) && VAL_IS_NAN(f_val)) {                                            \
+        test_success = true;                                                                        \
+    } else if(!VAL_IS_NAN(f_val) && VAL_IS_INF(f_val) && f_val == expected_val) {                   \
+        test_success = true;                                                                        \
+    } else if(err_val < TEST_ERR_TOL) {                                                             \
+        test_success = true;                                                                        \
+    } else {                                                                                        \
+        print_test_fail(fn_name,GCEM_TEST_NUMBER,TEST_PRINT_LEVEL,                                  \
+                        TEST_PRINT_PRECISION_1,TEST_PRINT_PRECISION_2,                              \
+                        f_val,expected_val,args);                                                   \
+    }                                                                                               \
+                                                                                                    \
+    if (test_success && TEST_PRINT_LEVEL > 0)                                                       \
+    {                                                                                               \
+        print_test_pass(fn_name,TEST_PRINT_LEVEL,                                                   \
+                        TEST_PRINT_PRECISION_1,TEST_PRINT_PRECISION_2,                              \
+                        f_val,err_val,args);                                                        \
+    }                                                                                               \
+}
+
+#define GCEM_TEST_COMPARE_VALS(gcem_fn, std_fn, args...)                                            \
+{                                                                                                   \
+    ++GCEM_TEST_NUMBER;                                                                             \
+                                                                                                    \
+    std::string fn_name = #gcem_fn;                                                                 \
+                                                                                                    \
+    auto gcem_fn_val = gcem_fn(args);                                                               \
+    auto std_fn_val  = std_fn(args);                                                                \
+                                                                                                    \
+    auto err_val = std::abs(gcem_fn_val - std_fn_val) / (1 + std::abs(std_fn_val));                 \
+                                                                                                    \
+    bool test_success = false;                                                                      \
+                                                                                                    \
+    if (std::isnan(gcem_fn_val) && std::isnan(std_fn_val)) {                                        \
+        test_success = true;                                                                        \
+    } else if(!std::isnan(gcem_fn_val) && std::isinf(gcem_fn_val) && gcem_fn_val == std_fn_val) {   \
+        test_success = true;                                                                        \
+    } else if(err_val < TEST_ERR_TOL) {                                                             \
+        test_success = true;                                                                        \
+    } else {                                                                                        \
+        print_test_fail(fn_name,GCEM_TEST_NUMBER,TEST_PRINT_LEVEL,                                  \
+                        TEST_PRINT_PRECISION_1,TEST_PRINT_PRECISION_2,                              \
+                        gcem_fn_val,std_fn_val,args);                                               \
+    }                                                                                               \
+                                                                                                    \
+    if (test_success && TEST_PRINT_LEVEL > 0)                                                       \
+    {                                                                                               \
+        print_test_pass(fn_name,TEST_PRINT_LEVEL,                                                   \
+                        TEST_PRINT_PRECISION_1,TEST_PRINT_PRECISION_2,                              \
+                        gcem_fn_val,err_val,args);                                                  \
+    }                                                                                               \
+}
+
+//
+// begin and end print
+
+inline
+void 
+finish_print_line(int k)
+{
+    for (int i=0; i < 80 - k; ++i) {
+        printf(" ");
+    }
+    printf("#");
+}
+
+inline
+void 
+print_begin(std::string fn_name)
+{
+    // GCEM_UNUSED_PAR(fn_name);
+    if (TEST_PRINT_LEVEL > 0) {
+    std::cout << 
+        "\n################################################################################\n";
+    std::cout << 
+        "\n\033[36m~~~~ Begin tests for: " << fn_name << "\033[0m\n";
+    std::cout << std::endl;
+    }
+}
+
+inline
+void 
+print_final(std::string fn_name)
+{
+    std::cout.precision(1);
+
+    std::cout << 
+        "################################################################################\n" <<
+        "#                                TESTS SUMMARY                                 #\n";
+    
+    //
+
+    std::cout << 
+        "#  - Test suite: " << fn_name;
+        finish_print_line(14 + int(fn_name.length()) + 4);
+    std::cout << std::endl;
+
+    //
+
+    std::cout << 
+        "#  - Number of tests: " << GCEM_TEST_NUMBER;
+        finish_print_line(20 + (GCEM_TEST_NUMBER > 9 ? 1 : 0) + 4);
+    std::cout << std::endl;
+
+    //
+
+    std::cout << 
+        "#  - Error tolerance: " << std::scientific << TEST_ERR_TOL;
+        finish_print_line(30);
+    std::cout << std::endl;
+
+    //
+
+    std::cout << 
+        "#                                   [\033[32mPASS\033[0m]                                     #\n" <<
+        "################################################################################\n";
+    //
+
+    std::cout << std::endl;
+}

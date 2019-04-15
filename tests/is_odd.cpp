@@ -38,7 +38,7 @@ int main()
     if (run_val == 6)
         std::cout << "\033[32m All OK.\033[0m" << std::endl;
     else
-        std::cout << "\033[32m Fail.\033[0m" << std::endl;
+        throw std::runtime_error("test fail");
 
     //
 

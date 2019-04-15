@@ -18,35 +18,30 @@
   ##
   ################################################################################*/
 
+#define TEST_PRINT_PRECISION_1 3
+#define TEST_PRINT_PRECISION_2 18
+
 #include "gcem_tests.hpp"
 
 int main()
 {
-    std::cout << "\n*** begin asinh test ***\n" << std::endl;
+    print_begin("asinh");
 
     //
 
-    std::function<long double (long double)> test_fn = gcem::asinh<long double>;
-    std::string test_fn_name = "gcem::asinh";
+    GCEM_TEST_COMPARE_VALS(gcem::asinh,std::asinh,0.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::asinh,std::asinh,0.001L);
+    GCEM_TEST_COMPARE_VALS(gcem::asinh,std::asinh,1.001L);
+    GCEM_TEST_COMPARE_VALS(gcem::asinh,std::asinh,1.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::asinh,std::asinh,11.1L);
+    GCEM_TEST_COMPARE_VALS(gcem::asinh,std::asinh,50.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::asinh,std::asinh,-1.5L);
 
-    std::function<long double (long double)> std_fn  = [] (long double x) -> long double { return std::asinh(x); };
-    std::string std_fn_name = "std::asinh";
-
-    //
-
-    static constexpr long double test_vals[] = { 0.0L, 0.001L, 1.001L, 1.5L, 11.1L, 50.0L, -1.5L };
-
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,0,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,1,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,2,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,3,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,4,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,5,test_fn,std_fn,true," ",6,18,false,false);
-    PRINT_TEST_1_COMPARE(test_fn_name,std_fn_name,test_vals,6,test_fn,std_fn,false," ",6,18,false,false);
+    GCEM_TEST_COMPARE_VALS(gcem::asinh,std::asinh,TEST_NAN);
 
     //
 
-    std::cout << "\n*** end asinh test ***\n" << std::endl;
+    print_final("asinh");
 
     return 0;
 }
