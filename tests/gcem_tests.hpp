@@ -111,9 +111,12 @@ print_test_pass(std::string fn_name, const int print_level,
               << "(" << par_1 << ") = "
               << std::setprecision(print_precision_2) << f_val << "\n";
 
-    if (print_level > 1 && !VAL_IS_NAN(err_val))
-        std::cout << "    - error value = " << err_val << "\n";
+    if (print_level > 1 && !VAL_IS_NAN(err_val)) {
+        std::cout << std::setprecision(3) << std::scientific
+                  << "    - error value = " << err_val << "\n";
+    }
 
+    std::cout << std::defaultfloat;
     std::cout << std::endl;
 }
 
@@ -131,9 +134,12 @@ print_test_pass(std::string fn_name, const int print_level,
               << "(" << par_1 << "," << par_2 << ") = "
               << std::setprecision(print_precision_2) << f_val << "\n";
 
-    if (print_level > 1 && !VAL_IS_NAN(err_val))
-        std::cout << "    - error value = " << err_val << "\n";
+    if (print_level > 1 && !VAL_IS_NAN(err_val)) {
+        std::cout << std::setprecision(3) << std::scientific
+                  << "    - error value = " << err_val << "\n";
+    }
 
+    std::cout << std::defaultfloat;
     std::cout << std::endl;
 }
 
@@ -151,9 +157,12 @@ print_test_pass(std::string fn_name, const int print_level,
               << "(" << par_1 << "," << par_2 << "," << par_3 << ") = "
               << std::setprecision(print_precision_2) << f_val << "\n";
 
-    if (print_level > 1 && !VAL_IS_NAN(err_val))
-        std::cout << "    - error value = " << err_val << "\n";
+    if (print_level > 1 && !VAL_IS_NAN(err_val)) {
+        std::cout << std::setprecision(3) << std::scientific
+                  << "    - error value = " << err_val << "\n";
+    }
 
+    std::cout << std::defaultfloat;
     std::cout << std::endl;
 }
 
