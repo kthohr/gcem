@@ -47,6 +47,8 @@ Full documentation is available online:
 
 [![Documentation Status](https://readthedocs.org/projects/gcem/badge/?version=latest)](https://gcem.readthedocs.io/en/latest/?badge=latest)
 
+A PDF version is available [here](https://buildmedia.readthedocs.org/media/pdf/gcem/latest/gcem.pdf).
+
 ## Installation and Tests
 
 GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply add the header files to your project using:
@@ -187,5 +189,5 @@ main:                                   # @main
 
 ## Related libraries
 
-For a library built on the GCEM compile-time functionality, see [StatsLib](https://github.com/kthohr/stats).
+For a library built on GCEM's compile-time functionality, see [StatsLib](https://github.com/kthohr/stats).
 
