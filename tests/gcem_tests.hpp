@@ -19,6 +19,7 @@
   ################################################################################*/
 
 #include <cmath>
+#include <ios>
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -97,6 +98,30 @@ int GCEM_TEST_NUMBER = 0;
 //
 // printing pass
 
+#ifndef TRAVIS_CLANG_CXX
+
+#define TEST_PASS_PRINT_FINISH                                                                      \
+    if (print_level > 1 && !VAL_IS_NAN(err_val)) {                                                  \
+        std::cout << std::setprecision(3) << std::scientific                                        \
+                  << "    - error value = " << err_val << "\n";                                     \
+    }                                                                                               \
+                                                                                                    \
+    std::cout << std::defaultfloat;                                                                 \
+    std::cout << std::endl;                                                                         \
+
+#else
+
+#define TEST_PASS_PRINT_FINISH                                                                      \
+    if (print_level > 1 && !VAL_IS_NAN(err_val)) {                                                  \
+        std::cout << "    - error value = " << err_val << "\n";                                     \
+    }                                                                                               \
+                                                                                                    \
+    std::cout << std::endl;                                                                         \
+
+#endif
+
+//
+
 template<typename T1, typename T2, typename T3>
 inline
 void
@@ -111,13 +136,7 @@ print_test_pass(std::string fn_name, const int print_level,
               << "(" << par_1 << ") = "
               << std::setprecision(print_precision_2) << f_val << "\n";
 
-    if (print_level > 1 && !VAL_IS_NAN(err_val)) {
-        std::cout << std::setprecision(3) << std::scientific
-                  << "    - error value = " << err_val << "\n";
-    }
-
-    std::cout << std::defaultfloat;
-    std::cout << std::endl;
+    TEST_PASS_PRINT_FINISH
 }
 
 template<typename T1, typename T2, typename T3, typename T4>
@@ -134,13 +153,7 @@ print_test_pass(std::string fn_name, const int print_level,
               << "(" << par_1 << "," << par_2 << ") = "
               << std::setprecision(print_precision_2) << f_val << "\n";
 
-    if (print_level > 1 && !VAL_IS_NAN(err_val)) {
-        std::cout << std::setprecision(3) << std::scientific
-                  << "    - error value = " << err_val << "\n";
-    }
-
-    std::cout << std::defaultfloat;
-    std::cout << std::endl;
+    TEST_PASS_PRINT_FINISH
 }
 
 template<typename T1, typename T2, typename T3, typename T4, typename T5>
@@ -157,13 +170,7 @@ print_test_pass(std::string fn_name, const int print_level,
               << "(" << par_1 << "," << par_2 << "," << par_3 << ") = "
               << std::setprecision(print_precision_2) << f_val << "\n";
 
-    if (print_level > 1 && !VAL_IS_NAN(err_val)) {
-        std::cout << std::setprecision(3) << std::scientific
-                  << "    - error value = " << err_val << "\n";
-    }
-
-    std::cout << std::defaultfloat;
-    std::cout << std::endl;
+    TEST_PASS_PRINT_FINISH
 }
 
 //

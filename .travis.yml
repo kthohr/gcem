@@ -64,6 +64,7 @@ matrix:
             - llvm-toolchain-trusty-5.0
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+        - TRAVIS_CLANG_BUILD="y"
       compiler: clang
 
     - os: linux
@@ -77,6 +78,7 @@ matrix:
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+        - TRAVIS_CLANG_BUILD="y"
       compiler: clang
 
     - os: linux
@@ -90,6 +92,7 @@ matrix:
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
       env:
         - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
+        - TRAVIS_CLANG_BUILD="y"
       compiler: clang
 
     - os: osx

@@ -12,6 +12,10 @@ else
 	OPT_FLAGS = -g -O0 -Wall -Wextra --coverage -fno-inline -fno-inline-small-functions -fno-default-inline
 endif
 
+ifneq ($(TRAVIS_CLANG_BUILD),)
+	OPT_FLAGS = $(OPT_FLAGS) -DTRAVIS_CLANG_CXX
+endif
+
 # source directories
 SDIR = .
 HEADER_DIR = $(SDIR)/../include
