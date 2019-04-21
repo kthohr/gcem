@@ -41,8 +41,16 @@ noexcept
             GCLIM<T>::epsilon() > abs(x - T(1)) ? \
                 T(1) :
             GCLIM<T>::epsilon() > abs(x) ? \
-                GCLIM<T>::quiet_NaN() :
-             // else
+                GCLIM<T>::infinity() :
+            // negative numbers
+            x < T(0) ? \
+                // check for integer
+                GCLIM<T>::epsilon() > abs(x - find_whole(x)) ? \
+                    GCLIM<T>::quiet_NaN() :
+                // else
+                tgamma(x+T(1)) / x :
+
+            // else
                 exp(lgamma(x)) );
 }
 

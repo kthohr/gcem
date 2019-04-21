@@ -18,7 +18,7 @@
   ##
   ################################################################################*/
 
-#define TEST_PRINT_PRECISION_1 2
+#define TEST_PRINT_PRECISION_1 3
 #define TEST_PRINT_PRECISION_2 18
 
 #include "gcem_tests.hpp"
@@ -36,6 +36,19 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma,  5.0L);
 
     GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, TEST_NAN);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, 1.0);
+
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, 0.9);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, 0.1);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, 0.001);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, 0.0);
+
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, -0.1);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, -1);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, -1.1);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, -2);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, -3);
+    GCEM_TEST_COMPARE_VALS(gcem::tgamma,std::tgamma, -4);
 
     //
 
