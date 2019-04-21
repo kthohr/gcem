@@ -13,7 +13,7 @@ else
 endif
 
 ifneq ($(TRAVIS_CLANG_BUILD),)
-	OPT_FLAGS = $(OPT_FLAGS) -DTRAVIS_CLANG_CXX
+	OPT_FLAGS += -DTRAVIS_CLANG_CXX
 endif
 
 # source directories
