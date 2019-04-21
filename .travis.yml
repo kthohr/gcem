@@ -59,6 +59,32 @@ matrix:
       addons:
         apt:
           packages:
+            - g++-8
+          sources: &sources
+            - ubuntu-toolchain-r-test
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - GCEM_CXX_STD="-std=c++14"
+      compiler: gcc
+
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
+            - g++-8
+          sources: &sources
+            - ubuntu-toolchain-r-test
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - GCEM_CXX_STD="-std=c++17"
+      compiler: gcc
+
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
             - clang-5.0
           sources: &sources
             - llvm-toolchain-trusty-5.0

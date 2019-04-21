@@ -4,7 +4,11 @@ ifeq ($(CXX),)
 	CXX = g++
 endif
 
-CXX_STD = -std=c++11
+ifeq ($(GCEM_CXX_STD),)
+	CXX_STD = -std=c++11
+else
+	CXX_STD=$(GCEM_CXX_STD)
+endif
 
 ifneq (,$(findstring clang,$(CXX)))
 	OPT_FLAGS = -g -O0 -Wall -Wextra --coverage -fno-inline
