@@ -48,7 +48,7 @@ noexcept
                 GCLIM<T>::epsilon() > abs(x - find_whole(x)) ? \
                     GCLIM<T>::quiet_NaN() :
                 // else
-                tgamma(x+T(1)) / x :
+                tgamma_check(x+T(1)) / x :
 
             // else
                 exp(lgamma(x)) );
