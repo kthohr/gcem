@@ -30,7 +30,7 @@ T
 round_int(const T x)
 noexcept
 {
-    return find_whole(x);
+    return static_cast<T>(find_whole(x));
 }
 
 template<typename T>
@@ -49,7 +49,7 @@ noexcept
             GCLIM<T>::epsilon() > abs(x) ? \
                 x :
             // else
-                sgn(x)*round_int(abs(x)) );
+                sgn(x) * round_int(abs(x)) );
 }
 
 }
