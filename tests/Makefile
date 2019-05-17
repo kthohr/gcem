@@ -125,6 +125,9 @@ other:
 pow:
 	$(GCEM_MAKE_CALL)
 
+rounding:
+	$(GCEM_MAKE_CALL)
+
 sin:
 	$(GCEM_MAKE_CALL)
 

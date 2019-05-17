@@ -18,34 +18,25 @@
   ##
   ################################################################################*/
 
-#ifndef _gcem_floor_HPP
-#define _gcem_floor_HPP
+#ifndef _gcem_trunc_HPP
+#define _gcem_trunc_HPP
 
 namespace internal
 {
 
 template<typename T>
 constexpr
-int
-floor_resid(const T x, const T x_whole)
+T
+trunc_int(const T x)
 noexcept
 {
-    return( (x < 0) && (x < x_whole) );
+    return( T(static_cast<llint_t>(x)) );
 }
 
 template<typename T>
 constexpr
 T
-floor_int(const T x, const T x_whole)
-noexcept
-{
-    return( x_whole - static_cast<T>(floor_resid(x,x_whole)) );
-}
-
-template<typename T>
-constexpr
-T
-floor_check(const T x)
+trunc_check(const T x)
 noexcept
 {
     return( // NaN check
@@ -58,25 +49,25 @@ noexcept
             GCLIM<T>::epsilon() > abs(x) ? \
                 x :
             // else
-                floor_int(x, T(static_cast<llint_t>(x))) );
+                trunc_int(x) );
 }
 
 }
 
 /**
- * Compile-time floor function
+ * Compile-time trunc function
  *
  * @param x a real-valued input.
- * @return computes the floor-value of the input.
+ * @return computes the trunc-value of the input, essentially returning the integer part of the input.
  */
 
 template<typename T>
 constexpr
 return_t<T>
-floor(const T x)
+trunc(const T x)
 noexcept
 {
-    return internal::floor_check( static_cast<return_t<T>>(x) );
+    return internal::trunc_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

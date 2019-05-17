@@ -18,34 +18,25 @@
   ##
   ################################################################################*/
 
-#ifndef _gcem_floor_HPP
-#define _gcem_floor_HPP
+#ifndef _gcem_round_HPP
+#define _gcem_round_HPP
 
 namespace internal
 {
 
 template<typename T>
 constexpr
-int
-floor_resid(const T x, const T x_whole)
+T
+round_int(const T x)
 noexcept
 {
-    return( (x < 0) && (x < x_whole) );
+    return find_whole(x);
 }
 
 template<typename T>
 constexpr
 T
-floor_int(const T x, const T x_whole)
-noexcept
-{
-    return( x_whole - static_cast<T>(floor_resid(x,x_whole)) );
-}
-
-template<typename T>
-constexpr
-T
-floor_check(const T x)
+round_check(const T x)
 noexcept
 {
     return( // NaN check
@@ -58,25 +49,25 @@ noexcept
             GCLIM<T>::epsilon() > abs(x) ? \
                 x :
             // else
-                floor_int(x, T(static_cast<llint_t>(x))) );
+                sgn(x)*round_int(abs(x)) );
 }
 
 }
 
 /**
- * Compile-time floor function
+ * Compile-time round function
  *
  * @param x a real-valued input.
- * @return computes the floor-value of the input.
+ * @return computes the rounding value of the input.
  */
 
 template<typename T>
 constexpr
 return_t<T>
-floor(const T x)
+round(const T x)
 noexcept
 {
-    return internal::floor_check( static_cast<return_t<T>>(x) );
+    return internal::round_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

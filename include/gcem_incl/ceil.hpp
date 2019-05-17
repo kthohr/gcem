@@ -18,8 +18,8 @@
   ##
   ################################################################################*/
 
-#ifndef _gcem_floor_HPP
-#define _gcem_floor_HPP
+#ifndef _gcem_ceil_HPP
+#define _gcem_ceil_HPP
 
 namespace internal
 {
@@ -27,25 +27,25 @@ namespace internal
 template<typename T>
 constexpr
 int
-floor_resid(const T x, const T x_whole)
+ceil_resid(const T x, const T x_whole)
 noexcept
 {
-    return( (x < 0) && (x < x_whole) );
+    return( (x > 0) && (x > x_whole) );
 }
 
 template<typename T>
 constexpr
 T
-floor_int(const T x, const T x_whole)
+ceil_int(const T x, const T x_whole)
 noexcept
 {
-    return( x_whole - static_cast<T>(floor_resid(x,x_whole)) );
+    return( x_whole + static_cast<T>(ceil_resid(x,x_whole)) );
 }
 
 template<typename T>
 constexpr
 T
-floor_check(const T x)
+ceil_check(const T x)
 noexcept
 {
     return( // NaN check
@@ -58,25 +58,25 @@ noexcept
             GCLIM<T>::epsilon() > abs(x) ? \
                 x :
             // else
-                floor_int(x, T(static_cast<llint_t>(x))) );
+                ceil_int(x, T(static_cast<llint_t>(x))) );
 }
 
 }
 
 /**
- * Compile-time floor function
+ * Compile-time ceil function
  *
  * @param x a real-valued input.
- * @return computes the floor-value of the input.
+ * @return computes the ceiling-value of the input.
  */
 
 template<typename T>
 constexpr
 return_t<T>
-floor(const T x)
+ceil(const T x)
 noexcept
 {
-    return internal::floor_check( static_cast<return_t<T>>(x) );
+    return internal::ceil_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

@@ -56,6 +56,7 @@ build_script:
   - .\log_binomial_coef.test
   - .\other.test
   - .\pow.test
+  - .\rounding.test
   - .\sin.test
   - .\sinh.test
   - .\sqrt.test

@@ -32,7 +32,9 @@ namespace gcem
     #include "gcem_incl/is_finite.hpp"
 
     #include "gcem_incl/abs.hpp"
+    #include "gcem_incl/ceil.hpp"
     #include "gcem_incl/floor.hpp"
+    #include "gcem_incl/trunc.hpp"
     #include "gcem_incl/is_odd.hpp"
     #include "gcem_incl/is_even.hpp"
     #include "gcem_incl/max.hpp"
@@ -46,6 +48,7 @@ namespace gcem
     #include "gcem_incl/find_fraction.hpp"
     #include "gcem_incl/find_whole.hpp"
     #include "gcem_incl/mantissa.hpp"
+    #include "gcem_incl/round.hpp"
 
     #include "gcem_incl/pow_integral.hpp"
     #include "gcem_incl/exp.hpp"
