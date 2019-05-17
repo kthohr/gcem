@@ -30,7 +30,7 @@ int
 floor_resid(const T x, const T x_whole)
 noexcept
 {
-    return( (x < 0) && (x < x_whole) );
+    return( (x < T(0)) && (x < x_whole) );
 }
 
 template<typename T>
