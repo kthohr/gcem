@@ -19,7 +19,7 @@
   ################################################################################*/
 
 /*
- * find the whole number part of x = n + r, where -0.5 < r < 0.5
+ * find the whole number part of x = n + r, where -0.5 <= r <= 0.5
  */
 
 #ifndef _gcem_find_whole_HPP
@@ -34,11 +34,11 @@ llint_t
 find_whole(const T x)
 noexcept
 {
-    return( abs(x - internal::floor(x)) > T(0.5) ? \
+    return( abs(x - internal::floor_check(x)) >= T(0.5) ? \
             // if 
-                static_cast<llint_t>(internal::floor(x) + sgn(x)) :
+                static_cast<llint_t>(internal::floor_check(x) + sgn(x)) :
             // else 
-                static_cast<llint_t>(internal::floor(x)) );
+                static_cast<llint_t>(internal::floor_check(x)) );
 }
 
 }

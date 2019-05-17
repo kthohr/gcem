@@ -83,6 +83,7 @@ set(GCEM_TESTS
     log_binomial_coef.cpp
     other.cpp
     pow.cpp
+    rounding.cpp
     sin.cpp
     sinh.cpp
     sqrt.cpp

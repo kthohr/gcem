@@ -1,4 +1,4 @@
-.. Copyright (c) 2016--2018 Keith O'Hara
+.. Copyright (c) 2016-2019 Keith O'Hara
 
    Distributed under the terms of the Apache License, Version 2.0.
 
@@ -11,6 +11,10 @@ Basic functions
 .. doxygenfunction:: abs(const T)
    :project: gcem
 
+.. _ceil-function-reference:
+.. doxygenfunction:: ceil(const T)
+   :project: gcem
+
 .. _exp-function-reference:
 .. doxygenfunction:: exp(const T)
    :project: gcem
@@ -21,6 +25,10 @@ Basic functions
 
 .. _factorial-func-ref:
 .. doxygenfunction:: factorial(const T)
+   :project: gcem
+
+.. _floor-func-ref:
+.. doxygenfunction:: floor(const T)
    :project: gcem
 
 .. _log-function-reference:
@@ -43,10 +51,18 @@ Basic functions
 .. doxygenfunction:: pow(const T1, const T2)
    :project: gcem
 
+.. _round-func-ref:
+.. doxygenfunction:: round(const T)
+   :project: gcem
+
 .. _sgn-function-reference:
 .. doxygenfunction:: sgn(const T)
    :project: gcem
 
 .. _sqrt-function-reference:
 .. doxygenfunction:: sqrt(const T)
+   :project: gcem
+
+.. _trunc-func-ref:
+.. doxygenfunction:: trunc(const T)
    :project: gcem

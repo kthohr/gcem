@@ -52,6 +52,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/atanh.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/beta.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/binomial_coef.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/ceil.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/cos.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/cosh.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/erf_inv.hpp
@@ -89,6 +90,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/pow.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/quadrature/gauss_legendre_30.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/quadrature/gauss_legendre_50.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/round.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/sgn.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/sin.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/sinh.hpp
@@ -96,6 +98,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/tan.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/tanh.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/tgamma.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/trunc.hpp
 )
 
 #

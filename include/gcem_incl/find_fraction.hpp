@@ -19,7 +19,7 @@
   ################################################################################*/
 
 /*
- * find the fraction part of x = n + r, where -0.5 < r < 0.5
+ * find the fraction part of x = n + r, where -0.5 <= r <= 0.5
  */
 
 #ifndef _gcem_find_fraction_HPP
@@ -34,11 +34,11 @@ T
 find_fraction(const T x)
 noexcept
 {
-    return( abs(x - internal::floor(x)) > T(0.5) ? \
+    return( abs(x - internal::floor_check(x)) >= T(0.5) ? \
             // if 
-                x - internal::floor(x) - sgn(x) : 
+                x - internal::floor_check(x) - sgn(x) : 
             //else 
-                x - internal::floor(x) );
+                x - internal::floor_check(x) );
 }
 
 }

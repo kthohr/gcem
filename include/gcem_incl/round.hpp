@@ -18,12 +18,8 @@
   ##
   ################################################################################*/
 
-/*
- * the ('true') gamma function
- */
-
-#ifndef _gcem_tgamma_HPP
-#define _gcem_tgamma_HPP
+#ifndef _gcem_round_HPP
+#define _gcem_round_HPP
 
 namespace internal
 {
@@ -31,50 +27,47 @@ namespace internal
 template<typename T>
 constexpr
 T
-tgamma_check(const T x)
+round_int(const T x)
+noexcept
+{
+    return static_cast<T>(find_whole(x));
+}
+
+template<typename T>
+constexpr
+T
+round_check(const T x)
 noexcept
 {
     return( // NaN check
             is_nan(x) ? \
                 GCLIM<T>::quiet_NaN() :
-            // indistinguishable from one or zero
-            GCLIM<T>::epsilon() > abs(x - T(1)) ? \
-                T(1) :
+            // +/- infinite
+            !is_finite(x) ? \
+                x :
+            // signed-zero cases
             GCLIM<T>::epsilon() > abs(x) ? \
-                GCLIM<T>::infinity() :
-            // negative numbers
-            x < T(0) ? \
-                // check for integer
-                GCLIM<T>::epsilon() > abs(x - find_whole(x)) ? \
-                    GCLIM<T>::quiet_NaN() :
-                // else
-                tgamma_check(x+T(1)) / x :
-
+                x :
             // else
-                exp(lgamma(x)) );
+                sgn(x) * round_int(abs(x)) );
 }
 
 }
 
 /**
- * Compile-time gamma function
+ * Compile-time round function
  *
  * @param x a real-valued input.
- * @return computes the `true' gamma function
- * \f[ \Gamma(x) = \int_0^\infty y^{x-1} \exp(-y) dy \f]
- * using a polynomial form:
- * \f[ \Gamma(x+1) \approx (x+g+0.5)^{x+0.5} \exp(-x-g-0.5) \sqrt{2 \pi} \left[ c_0 + \frac{c_1}{x+1} + \frac{c_2}{x+2} + \cdots + \frac{c_n}{x+n} \right] \f]
- * where the value \f$ g \f$ and the coefficients \f$ (c_0, c_1, \ldots, c_n) \f$
- * are taken from Paul Godfrey, whose note can be found here: http://my.fit.edu/~gabdo/gamma.txt
+ * @return computes the rounding value of the input.
  */
 
 template<typename T>
 constexpr
 return_t<T>
-tgamma(const T x)
+round(const T x)
 noexcept
 {
-    return internal::tgamma_check( static_cast<return_t<T>>(x) );
+    return internal::round_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

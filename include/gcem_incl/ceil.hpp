@@ -18,63 +18,65 @@
   ##
   ################################################################################*/
 
-/*
- * the ('true') gamma function
- */
-
-#ifndef _gcem_tgamma_HPP
-#define _gcem_tgamma_HPP
+#ifndef _gcem_ceil_HPP
+#define _gcem_ceil_HPP
 
 namespace internal
 {
 
 template<typename T>
 constexpr
+int
+ceil_resid(const T x, const T x_whole)
+noexcept
+{
+    return( (x > T(0)) && (x > x_whole) );
+}
+
+template<typename T>
+constexpr
 T
-tgamma_check(const T x)
+ceil_int(const T x, const T x_whole)
+noexcept
+{
+    return( x_whole + static_cast<T>(ceil_resid(x,x_whole)) );
+}
+
+template<typename T>
+constexpr
+T
+ceil_check(const T x)
 noexcept
 {
     return( // NaN check
             is_nan(x) ? \
                 GCLIM<T>::quiet_NaN() :
-            // indistinguishable from one or zero
-            GCLIM<T>::epsilon() > abs(x - T(1)) ? \
-                T(1) :
+            // +/- infinite
+            !is_finite(x) ? \
+                x :
+            // signed-zero cases
             GCLIM<T>::epsilon() > abs(x) ? \
-                GCLIM<T>::infinity() :
-            // negative numbers
-            x < T(0) ? \
-                // check for integer
-                GCLIM<T>::epsilon() > abs(x - find_whole(x)) ? \
-                    GCLIM<T>::quiet_NaN() :
-                // else
-                tgamma_check(x+T(1)) / x :
-
+                x :
             // else
-                exp(lgamma(x)) );
+                ceil_int(x, T(static_cast<llint_t>(x))) );
 }
 
 }
 
 /**
- * Compile-time gamma function
+ * Compile-time ceil function
  *
  * @param x a real-valued input.
- * @return computes the `true' gamma function
- * \f[ \Gamma(x) = \int_0^\infty y^{x-1} \exp(-y) dy \f]
- * using a polynomial form:
- * \f[ \Gamma(x+1) \approx (x+g+0.5)^{x+0.5} \exp(-x-g-0.5) \sqrt{2 \pi} \left[ c_0 + \frac{c_1}{x+1} + \frac{c_2}{x+2} + \cdots + \frac{c_n}{x+n} \right] \f]
- * where the value \f$ g \f$ and the coefficients \f$ (c_0, c_1, \ldots, c_n) \f$
- * are taken from Paul Godfrey, whose note can be found here: http://my.fit.edu/~gabdo/gamma.txt
+ * @return computes the ceiling-value of the input.
  */
 
 template<typename T>
 constexpr
 return_t<T>
-tgamma(const T x)
+ceil(const T x)
 noexcept
 {
-    return internal::tgamma_check( static_cast<return_t<T>>(x) );
+    return internal::ceil_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

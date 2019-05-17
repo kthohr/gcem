@@ -70,13 +70,13 @@ noexcept
     return( is_nan(x) ? \
                 GCLIM<T>::quiet_NaN() :
             //
-            x == - GCLIM<T>::infinity() ? \
+            is_neginf(x) ? \
                 T(0) :
             //
             GCLIM<T>::epsilon() > abs(x) ? \
                 T(1) : 
             //
-            x == GCLIM<T>::infinity() ? \
+            is_posinf(x) ? \
                 GCLIM<T>::infinity() :
             //
             abs(x) < T(2) ? \
