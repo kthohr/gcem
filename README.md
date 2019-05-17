@@ -28,6 +28,7 @@ The library is actively maintained, and is still being extended. A list of featu
 
 * basic library functions:
     - ```abs```, ```max```, ```min```, ```pow```, ```sqrt```, 
+    - `ceil`, `floor`, `round`, `trunc`,
     - ```exp```, ```expm1```, ```log```, ```log1p```, and more
 * trigonometric functions:
     - basic: ```cos```, ```sin```, ```tan```
