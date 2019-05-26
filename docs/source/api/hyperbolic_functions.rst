@@ -5,7 +5,7 @@
    The full license is in the file LICENSE, distributed with this software.
 
 Hyperbolic functions
-===============
+====================
 
 .. _cosh-function-reference:
 .. doxygenfunction:: cosh(const T)
@@ -20,7 +20,7 @@ Hyperbolic functions
    :project: gcem
 
 Inverse hyperbolic functions
------------------
+----------------------------
 
 .. _acosh-func-ref:
 .. doxygenfunction:: acosh(const T)

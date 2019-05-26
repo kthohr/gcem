@@ -5,7 +5,7 @@
    The full license is in the file LICENSE, distributed with this software.
 
 Algorithms
-===============
+==========
 
 .. _gcd-function-reference:
 .. doxygenfunction:: gcd(const T1, const T2)

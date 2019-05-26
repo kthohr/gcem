@@ -5,7 +5,7 @@
    The full license is in the file LICENSE, distributed with this software.
 
 Trigonometric functions
-===============
+=======================
 
 .. _cos-function-reference:
 .. doxygenfunction:: cos(const T)
@@ -20,7 +20,7 @@ Trigonometric functions
    :project: gcem
 
 Inverse trigonometric functions
------------------
+-------------------------------
 
 .. _acos-function-reference:
 .. doxygenfunction:: acos(const T)

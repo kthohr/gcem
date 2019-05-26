@@ -5,7 +5,7 @@
    The full license is in the file LICENSE, distributed with this software.
 
 Special functions
-===============
+=================
 
 .. _binom-func-ref:
 .. doxygenfunction:: binomial_coef(const T1, const T2)
@@ -36,7 +36,7 @@ Special functions
    :project: gcem
 
 Incomplete integral functions
------------------
+-----------------------------
 
 .. _erf-function-reference:
 .. doxygenfunction:: erf(const T)
@@ -51,7 +51,7 @@ Incomplete integral functions
    :project: gcem
 
 Inverse incomplete integral functions
------------------
+-------------------------------------
 
 .. _erf_inv-func-ref:
 .. doxygenfunction:: erf_inv(const T)
