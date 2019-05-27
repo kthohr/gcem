@@ -5,7 +5,7 @@ GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ l
 
 Features:
 
-* The library is written in C++11 ```constexpr``` format, and is C++11/14/17 compatible.
+* The library is written in C++11 `constexpr` format, and is C++11/14/17 compatible.
 * Continued fraction expansions and series expansions are implemented using recursive templates.
 * The `gcem::` syntax is identical to the C++ standard library (`std::`).
 * Tested and accurate to floating-point precision against the C++ standard library.
@@ -27,18 +27,18 @@ Features:
 
 The library is actively maintained and is still being extended. A list of features includes:
 
-* basic library functions:
+* Basic library functions:
     - `abs`, `max`, `min`, `pow`, `sqrt`, 
     - `ceil`, `floor`, `round`, `trunc`,
     - `exp`, `expm1`, `log`, `log1p`, and more
-* trigonometric functions:
+* Trigonometric functions:
     - basic: `cos`, `sin`, `tan`
     - inverse: `acos`, `asin`, `atan`, `atan2`
-* hyperbolic (area) functions: 
+* Hyperbolic (area) functions: 
     - `cosh`, `sinh`, `tanh`, `acosh`, `asinh`, `atanh`
-* algorithms:
+* Algorithms:
     - `gcd`, `lcm`
-* special functions:
+* Special functions:
     - factorials and the binomial coefficient: `factorial`, `binomial_coef`
     - beta, gamma, and multivariate gamma functions: `beta`, `lbeta`, `lgamma`, `tgamma`, `lmgamma`
     - the Gaussian error function and inverse error function: `erf`, `erf_inv`
@@ -49,11 +49,11 @@ Full documentation is available online:
 
 [![Documentation Status](https://readthedocs.org/projects/gcem/badge/?version=latest)](https://gcem.readthedocs.io/en/latest/?badge=latest)
 
-A PDF version is available [here](https://buildmedia.readthedocs.org/media/pdf/gcem/latest/gcem.pdf).
+A PDF version of the documentation is available [here](https://buildmedia.readthedocs.org/media/pdf/gcem/latest/gcem.pdf).
 
 ## Installation
 
-GCE-Math is a header-only library and does not require any additional libraries (beyond a C++11 compatible compiler). Simply add the header files to your project using:
+GCE-Math is a header-only library and does not require any additional libraries or utilities (beyond a C++11 compatible compiler). Simply add the header files to your project using:
 ```cpp
 #include "gcem.hpp"
 ```
@@ -120,7 +120,7 @@ You can test the library online using an interactive Jupyter notebook:
 
 ## General Syntax
 
-GCE-Math functions are written as C++ templates with `constexpr` specifiers, the format of which might be confusing to users unfamiliar with template-based programming. As an example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (`erf`) is defined as:
+GCE-Math functions are written as C++ templates with `constexpr` specifiers, the format of which might appear confusing to users unfamiliar with template-based programming. As an example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (`erf`) is defined as:
 ```cpp
 template<typename T>
 constexpr
