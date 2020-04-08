@@ -107,9 +107,9 @@ add_library(gcem INTERFACE)
 target_include_directories(gcem INTERFACE $<BUILD_INTERFACE:${GCEM_INCLUDE_DIR}>
                                           $<INSTALL_INTERFACE:include>)
 
-OPTION(BUILD_TESTS "gcem test suite" OFF)
+OPTION(GCEM_BUILD_TESTS "gcem test suite" OFF)
 
-if(BUILD_TESTS)
+if(GCEM_BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
