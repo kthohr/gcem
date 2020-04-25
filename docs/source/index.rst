@@ -26,6 +26,7 @@ The library is actively maintained, and is still being extended. A list of featu
 
 * basic library functions:
     - ``abs``, ``max``, ``min``, ``pow``, ``sqrt``
+    - ``ceil``, ``floor``, ``round``, ``trunc``, ``fmod``,
     - ``exp``, ``expm1``, ``log``, ``log1p``, and more
 * trigonometric functions:
     - basic: ``cos``, ``sin``, ``tan``
@@ -44,7 +45,7 @@ The library is actively maintained, and is still being extended. A list of featu
 General Syntax
 --------------
 
-GCE-Math functions are written as C++ templates with ``constexpr`` specifiers, the format of which might be confusing to users unfamiliar with template-based programming. As an example, the `Gaussian error function <https://en.wikipedia.org/wiki/Error_function>`_ (``erf``) is defined as:
+GCE-Math functions are written as C++ templates with ``constexpr`` specifiers. As an example, the `Gaussian error function <https://en.wikipedia.org/wiki/Error_function>`_ (``erf``) is defined as:
 
 .. code:: cpp
 

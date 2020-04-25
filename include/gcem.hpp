@@ -49,6 +49,7 @@ namespace gcem
     #include "gcem_incl/find_whole.hpp"
     #include "gcem_incl/mantissa.hpp"
     #include "gcem_incl/round.hpp"
+    #include "gcem_incl/fmod.hpp"
 
     #include "gcem_incl/pow_integral.hpp"
     #include "gcem_incl/exp.hpp"

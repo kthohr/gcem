@@ -64,6 +64,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/find_fraction.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/find_whole.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/floor.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/fmod.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/gcd.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/gcem_options.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/incomplete_beta.hpp

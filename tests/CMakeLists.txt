@@ -70,6 +70,7 @@ set(GCEM_TESTS
     exp.cpp
     expm1.cpp
     factorial.cpp
+    fmod.cpp
     gcd.cpp
     incomplete_beta.cpp
     incomplete_beta_inv.cpp
@@ -80,6 +81,7 @@ set(GCEM_TESTS
     lgamma.cpp
     log.cpp
     log1p.cpp
+    log2.cpp
     log_binomial_coef.cpp
     other.cpp
     pow.cpp

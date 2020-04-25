@@ -86,6 +86,9 @@ expm1:
 factorial:
 	$(GCEM_MAKE_CALL)
 
+fmod:
+	$(GCEM_MAKE_CALL)
+
 gcd:
 	$(GCEM_MAKE_CALL)
 

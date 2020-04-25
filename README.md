@@ -29,7 +29,7 @@ The library is actively maintained and is still being extended. A list of featur
 
 * Basic library functions:
     - `abs`, `max`, `min`, `pow`, `sqrt`, 
-    - `ceil`, `floor`, `round`, `trunc`,
+    - `ceil`, `floor`, `round`, `trunc`, `fmod`,
     - `exp`, `expm1`, `log`, `log1p`, `log2`, and more
 * Trigonometric functions:
     - basic: `cos`, `sin`, `tan`
