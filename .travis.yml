@@ -169,8 +169,9 @@ matrix:
           packages:
             - clang-10
           sources: &sources
-            - llvm-toolchain-bionic-10
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - ubuntu-toolchain-r-test
+            - sourceline: 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
       env:
         - MATRIX_EVAL="CC=clang-10 && CXX=clang++-10"
         - TRAVIS_CLANG_BUILD="y"
@@ -183,8 +184,9 @@ matrix:
           packages:
             - clang-11
           sources: &sources
-            - llvm-toolchain-bionic-11
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - ubuntu-toolchain-r-test
+            - sourceline: 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
       env:
         - MATRIX_EVAL="CC=clang-11 && CXX=clang++-11"
         - TRAVIS_CLANG_BUILD="y"
@@ -197,8 +199,9 @@ matrix:
           packages:
             - clang-11
           sources: &sources
-            - llvm-toolchain-bionic-11
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - ubuntu-toolchain-r-test
+            - sourceline: 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
       env:
         - MATRIX_EVAL="CC=clang-11 && CXX=clang++-11"
         - TRAVIS_CLANG_BUILD="y"
