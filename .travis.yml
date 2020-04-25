@@ -5,7 +5,7 @@ sudo: required
 matrix:
   include:
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
@@ -17,7 +17,7 @@ matrix:
       compiler: gcc
     
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
@@ -29,7 +29,7 @@ matrix:
       compiler: gcc
 
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
@@ -43,7 +43,7 @@ matrix:
       compiler: gcc
 
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
@@ -55,7 +55,7 @@ matrix:
       compiler: gcc
 
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
@@ -68,7 +68,7 @@ matrix:
       compiler: gcc
 
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
@@ -81,7 +81,7 @@ matrix:
       compiler: gcc
 
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
@@ -94,26 +94,26 @@ matrix:
       compiler: gcc
 
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
             - clang-5.0
           sources: &sources
-            - llvm-toolchain-trusty-5.0
+            - llvm-toolchain-bionic-5.0
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
         - TRAVIS_CLANG_BUILD="y"
       compiler: clang
 
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
             - clang-6.0
           sources: &sources
-            - llvm-toolchain-trusty-6.0
+            - llvm-toolchain-bionic-6.0
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
@@ -121,13 +121,13 @@ matrix:
       compiler: clang
 
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
             - clang-7
           sources: &sources
-            - llvm-toolchain-trusty-7
+            - llvm-toolchain-bionic-7
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
       env:
         - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
@@ -135,13 +135,13 @@ matrix:
       compiler: clang
 
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
             - clang-8
           sources: &sources
-            - llvm-toolchain-trusty-8
+            - llvm-toolchain-bionic-8
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
       env:
         - MATRIX_EVAL="CC=clang-8 && CXX=clang++-8"
@@ -149,13 +149,13 @@ matrix:
       compiler: clang
 
     - os: linux
-      dist: trusty
+      dist: bionic
       addons:
         apt:
           packages:
             - clang-9
           sources: &sources
-            - llvm-toolchain-trusty-9
+            - llvm-toolchain-bionic-9
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
       env:
         - MATRIX_EVAL="CC=clang-9 && CXX=clang++-9"
