@@ -85,6 +85,19 @@ matrix:
       addons:
         apt:
           packages:
+            - g++-9
+          sources: &sources
+            - ubuntu-toolchain-r-test
+      env:
+        - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+        - GCEM_CXX_STD="-std=c++17"
+      compiler: gcc
+
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
             - clang-5.0
           sources: &sources
             - llvm-toolchain-trusty-5.0
@@ -118,6 +131,34 @@ matrix:
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
       env:
         - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
+        - TRAVIS_CLANG_BUILD="y"
+      compiler: clang
+
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
+            - clang-8
+          sources: &sources
+            - llvm-toolchain-trusty-8
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+      env:
+        - MATRIX_EVAL="CC=clang-8 && CXX=clang++-8"
+        - TRAVIS_CLANG_BUILD="y"
+      compiler: clang
+
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
+            - clang-9
+          sources: &sources
+            - llvm-toolchain-trusty-9
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+      env:
+        - MATRIX_EVAL="CC=clang-9 && CXX=clang++-9"
         - TRAVIS_CLANG_BUILD="y"
       compiler: clang
 
