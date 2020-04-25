@@ -18,8 +18,8 @@
   ##
   ################################################################################*/
 
-#ifndef _gcem_misc_HPP
-#define _gcem_misc_HPP
+#ifndef _gcem_HPP
+#define _gcem_HPP
 
 #include "gcem_incl/gcem_options.hpp"
 
