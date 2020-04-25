@@ -25,23 +25,24 @@
 
 int main()
 {
-    print_begin("sinh");
+    print_begin("log2");
 
     //
 
-    GCEM_TEST_COMPARE_VALS(gcem::sinh,std::sinh,0.0L);
-    GCEM_TEST_COMPARE_VALS(gcem::sinh,std::sinh,0.001L);
-    GCEM_TEST_COMPARE_VALS(gcem::sinh,std::sinh,0.5L);
-    GCEM_TEST_COMPARE_VALS(gcem::sinh,std::sinh,-0.5L);
-    GCEM_TEST_COMPARE_VALS(gcem::sinh,std::sinh,0.7568025L);
-    GCEM_TEST_COMPARE_VALS(gcem::sinh,std::sinh,1.0L);
-    GCEM_TEST_COMPARE_VALS(gcem::sinh,std::sinh,5.0L);
-
-    GCEM_TEST_COMPARE_VALS(gcem::sinh,std::sinh,TEST_NAN);
+    GCEM_TEST_COMPARE_VALS(gcem::log2, std::log2,  0.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::log2, std::log2,  0.00199900000000000208L);
+    GCEM_TEST_COMPARE_VALS(gcem::log2, std::log2,  1.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::log2, std::log2,  41.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::log2, std::log2,  0.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::log2, std::log2, -1.0L);
+    
+    GCEM_TEST_COMPARE_VALS(gcem::log2, std::log2, -std::numeric_limits<long double>::infinity());
+    GCEM_TEST_COMPARE_VALS(gcem::log2, std::log2,  std::numeric_limits<long double>::infinity());
+    GCEM_TEST_COMPARE_VALS(gcem::log2, std::log2,  std::numeric_limits<long double>::quiet_NaN());
 
     //
 
-    print_final("sinh");
+    print_final("log2");
 
     return 0;
 }

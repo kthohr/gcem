@@ -119,6 +119,9 @@ log:
 log1p:
 	$(GCEM_MAKE_CALL)
 
+log2:
+	$(GCEM_MAKE_CALL)
+
 other:
 	$(GCEM_MAKE_CALL)
 

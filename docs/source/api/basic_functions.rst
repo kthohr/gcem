@@ -1,4 +1,4 @@
-.. Copyright (c) 2016-2019 Keith O'Hara
+.. Copyright (c) 2016-2020 Keith O'Hara
 
    Distributed under the terms of the Apache License, Version 2.0.
 
@@ -37,6 +37,10 @@ Basic functions
 
 .. _log1p-func-ref:
 .. doxygenfunction:: log1p(const T)
+   :project: gcem
+
+.. _log2-function-reference:
+.. doxygenfunction:: log2(const T)
    :project: gcem
 
 .. _max-function-reference:

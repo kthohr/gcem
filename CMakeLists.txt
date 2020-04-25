@@ -1,6 +1,6 @@
 ################################################################################
 ##
-##   Copyright (C) 2016-2019 Keith O'Hara
+##   Copyright (C) 2016-2020 Keith O'Hara
 ##
 ##   This file is part of the GCE-Math C++ library.
 ##
@@ -82,6 +82,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/log_binomial_coef.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/log.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/log1p.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/log2.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/mantissa.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/max.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/min.hpp

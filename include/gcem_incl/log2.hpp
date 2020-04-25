@@ -18,8 +18,12 @@
   ##
   ################################################################################*/
 
-#ifndef _gcem_round_HPP
-#define _gcem_round_HPP
+/*
+ * compile-time binary logarithm function
+ */
+
+#ifndef _gcem_log2_HPP
+#define _gcem_log2_HPP
 
 namespace internal
 {
@@ -27,47 +31,43 @@ namespace internal
 template<typename T>
 constexpr
 T
-round_int(const T x)
+log2_check(const T x)
 noexcept
 {
-    return static_cast<T>(find_whole(x));
-}
-
-template<typename T>
-constexpr
-T
-round_check(const T x)
-noexcept
-{
-    return( // NaN check
-            is_nan(x) ? \
+    return( is_nan(x) ? \
                 GCLIM<T>::quiet_NaN() :
-            // +/- infinite
-            !is_finite(x) ? \
-                x :
-            // signed-zero cases
-            GCLIM<T>::epsilon() > abs(x) ? \
-                x :
-            // else
-                sgn(x) * round_int(abs(x)) );
+            // x < 0
+            x < T(0) ? \
+                GCLIM<T>::quiet_NaN() :
+            // x ~= 0
+            GCLIM<T>::epsilon() > x ? \
+                - GCLIM<T>::infinity() :
+            // indistinguishable from 1
+            GCLIM<T>::epsilon() > abs(x - T(1)) ? \
+                T(0) : 
+            // 
+            x == GCLIM<T>::infinity() ? \
+                GCLIM<T>::infinity() :
+            // else: log_2(x) = ln(x) / ln(2)
+                T(log(x) / GCEM_LOG_2) );
 }
 
 }
 
 /**
- * Compile-time round function
+ * Compile-time binary logarithm function
  *
  * @param x a real-valued input.
- * @return computes the rounding value of the input.
+ * @return \f$ \log_2(x) \f$ using \f[ \log_{2}(x) = \frac{\log_e(x)}{\log_e(2)} \f] 
  */
 
 template<typename T>
 constexpr
 return_t<T>
-round(const T x)
+log2(const T x)
 noexcept
 {
-    return internal::round_check( static_cast<return_t<T>>(x) );
+    return internal::log2_check( static_cast<return_t<T>>(x) );
 }
 
 #endif

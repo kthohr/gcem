@@ -1,6 +1,6 @@
 /*################################################################################
   ##
-  ##   Copyright (C) 2016-2019 Keith O'Hara
+  ##   Copyright (C) 2016-2020 Keith O'Hara
   ##
   ##   This file is part of the GCE-Math C++ library.
   ##
@@ -55,6 +55,7 @@ namespace gcem
     #include "gcem_incl/expm1.hpp"
     #include "gcem_incl/log.hpp"
     #include "gcem_incl/log1p.hpp"
+    #include "gcem_incl/log2.hpp"
     #include "gcem_incl/pow.hpp"
 
     #include "gcem_incl/gcd.hpp"

@@ -25,7 +25,7 @@ html_static_path = ['_static']
 source_suffix = '.rst'
 master_doc = 'index'
 project = 'gcem'
-copyright = '2016-2019 Keith O\'Hara'
+copyright = '2016-2020 Keith O\'Hara'
 author = 'Keith O\'Hara'
 
 exclude_patterns = []
@@ -33,4 +33,3 @@ highlight_language = 'c++'
 pygments_style = 'sphinx'
 todo_include_todos = False
 htmlhelp_basename = 'gcemdoc'
-

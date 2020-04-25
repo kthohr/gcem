@@ -30,7 +30,7 @@ The library is actively maintained and is still being extended. A list of featur
 * Basic library functions:
     - `abs`, `max`, `min`, `pow`, `sqrt`, 
     - `ceil`, `floor`, `round`, `trunc`,
-    - `exp`, `expm1`, `log`, `log1p`, and more
+    - `exp`, `expm1`, `log`, `log1p`, `log2`, and more
 * Trigonometric functions:
     - basic: `cos`, `sin`, `tan`
     - inverse: `acos`, `asin`, `atan`, `atan2`
@@ -99,13 +99,13 @@ make
 ./run_tests
 ```
 
-With CMake, the option `BUILD_TESTS=1` generates the necessary Makefiles to build the test suite.
+With CMake, the option `GCEM_BUILD_TESTS=1` generates the necessary Makefiles to build the test suite.
 ```bash
 cd ./gcem
 mkdir build
 
 cd build
-cmake ../ -DBUILD_TESTS=1 -DCMAKE_INSTALL_PREFIX=/gcem/install/location
+cmake ../ -DGCEM_BUILD_TESTS=1 -DCMAKE_INSTALL_PREFIX=/gcem/install/location
 make gcem_tests
 
 cd tests
