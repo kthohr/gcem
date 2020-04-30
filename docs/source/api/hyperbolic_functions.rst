@@ -7,6 +7,15 @@
 Hyperbolic functions
 ====================
 
+**Table of contents**
+
+.. contents:: :local:
+
+----
+
+Hyperbolic functions
+--------------------
+
 .. _cosh-function-reference:
 .. doxygenfunction:: cosh(const T)
    :project: gcem
@@ -18,6 +27,8 @@ Hyperbolic functions
 .. _tanh-function-reference:
 .. doxygenfunction:: tanh(const T)
    :project: gcem
+
+----
 
 Inverse hyperbolic functions
 ----------------------------

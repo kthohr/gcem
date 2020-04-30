@@ -63,7 +63,7 @@ Mathematical functions
 +---------------------------------------+----------------------------------------------------+
 | :ref:`log1p <log1p-func-ref>`         | natural logarithm 1 plus argument function         |
 +---------------------------------------+----------------------------------------------------+
-| :ref:`log1p <log2-func-ref>`          | binary logarithm function                          |
+| :ref:`log2 <log2-func-ref>`           | binary logarithm function                          |
 +---------------------------------------+----------------------------------------------------+
 | :ref:`max <max-function-reference>`   | maximum between two numbers                        |
 +---------------------------------------+----------------------------------------------------+

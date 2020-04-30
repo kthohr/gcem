@@ -7,6 +7,15 @@
 Trigonometric functions
 =======================
 
+**Table of contents**
+
+.. contents:: :local:
+
+----
+
+Trigonometric functions
+-----------------------
+
 .. _cos-function-reference:
 .. doxygenfunction:: cos(const T)
    :project: gcem
@@ -18,6 +27,8 @@ Trigonometric functions
 .. _tan-function-reference:
 .. doxygenfunction:: tan(const T)
    :project: gcem
+
+----
 
 Inverse trigonometric functions
 -------------------------------

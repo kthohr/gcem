@@ -43,7 +43,7 @@ Basic functions
 .. doxygenfunction:: log1p(const T)
    :project: gcem
 
-.. _log2-function-reference:
+.. _log2-func-ref:
 .. doxygenfunction:: log2(const T)
    :project: gcem
 

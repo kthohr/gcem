@@ -7,6 +7,15 @@
 Special functions
 =================
 
+**Table of contents**
+
+.. contents:: :local:
+
+----
+
+Binomial function
+-----------------
+
 .. _binom-func-ref:
 .. doxygenfunction:: binomial_coef(const T1, const T2)
    :project: gcem
@@ -15,6 +24,11 @@ Special functions
 .. doxygenfunction:: log_binomial_coef(const T1, const T2)
    :project: gcem
 
+----
+
+Beta function
+-------------
+
 .. _beta-function-reference:
 .. doxygenfunction:: beta(const T1, const T2)
    :project: gcem
@@ -22,6 +36,11 @@ Special functions
 .. _lbeta-func-ref:
 .. doxygenfunction:: lbeta(const T1, const T2)
    :project: gcem
+
+----
+
+Gamma function
+--------------
 
 .. _tgamma-func-ref:
 .. doxygenfunction:: tgamma(const T)
@@ -34,6 +53,8 @@ Special functions
 .. _lmgamma-func-ref:
 .. doxygenfunction:: lmgamma(const T1, const T2)
    :project: gcem
+
+----
 
 Incomplete integral functions
 -----------------------------
@@ -49,6 +70,8 @@ Incomplete integral functions
 .. _ig-func-ref:
 .. doxygenfunction:: incomplete_gamma(const T1, const T2)
    :project: gcem
+
+----
 
 Inverse incomplete integral functions
 -------------------------------------
