@@ -140,6 +140,9 @@ pow:
 rounding:
 	$(GCEM_MAKE_CALL)
 
+signbit:
+	$(GCEM_MAKE_CALL)
+
 sin:
 	$(GCEM_MAKE_CALL)
 

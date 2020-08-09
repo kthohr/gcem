@@ -67,6 +67,10 @@ Basic functions
 .. doxygenfunction:: round(const T)
    :project: gcem
 
+.. _signbit-func-ref:
+.. doxygenfunction:: signbit(const T)
+   :project: gcem
+
 .. _sgn-function-reference:
 .. doxygenfunction:: sgn(const T)
    :project: gcem

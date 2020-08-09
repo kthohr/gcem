@@ -41,6 +41,7 @@ namespace gcem
     #include "gcem_incl/min.hpp"
     #include "gcem_incl/sqrt.hpp"
 
+    #include "gcem_incl/signbit.hpp"
     #include "gcem_incl/copysign.hpp"
     #include "gcem_incl/neg_zero.hpp"
     #include "gcem_incl/sgn.hpp"

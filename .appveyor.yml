@@ -59,6 +59,7 @@ build_script:
   - .\other.test
   - .\pow.test
   - .\rounding.test
+  - .\signbit.test
   - .\sin.test
   - .\sinh.test
   - .\sqrt.test

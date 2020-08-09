@@ -88,6 +88,7 @@ set(GCEM_TESTS
     other.cpp
     pow.cpp
     rounding.cpp
+    signbit.cpp
     sin.cpp
     sinh.cpp
     sqrt.cpp

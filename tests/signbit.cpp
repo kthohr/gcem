@@ -18,24 +18,40 @@
   ##
   ################################################################################*/
 
-#ifndef _gcem_copysign_HPP
-#define _gcem_copysign_HPP
+#define TEST_PRINT_PRECISION_1 2
+#define TEST_PRINT_PRECISION_2 2
 
-/**
- * Compile-time copy sign function
- *
- * @param x a real-valued input
- * @param y a real-valued input
- * @return replace the signbit of \c x with the signbit of \c y.
- */
+#include "gcem_tests.hpp"
 
-template <typename T1, typename T2>
+template<typename T>
 constexpr
-T1
-copysign(const T1 x, const T2 y)
-noexcept
+int
+std_test_fn(const T x)
 {
-    return( signbit(x) != signbit(y) ? -x : x );
+    return static_cast<int>(std::signbit(x));
 }
 
-#endif
+int main()
+{
+    print_begin("signbit");
+
+    //
+
+
+
+    GCEM_TEST_COMPARE_VALS(gcem::signbit,std_test_fn,  1.0);
+    GCEM_TEST_COMPARE_VALS(gcem::signbit,std_test_fn, -1.0);
+
+    GCEM_TEST_COMPARE_VALS(gcem::signbit,std_test_fn,  0.0);
+    GCEM_TEST_COMPARE_VALS(gcem::signbit,std_test_fn, -0.0);
+    
+    GCEM_TEST_COMPARE_VALS(gcem::signbit,std_test_fn, TEST_POSINF);
+    GCEM_TEST_COMPARE_VALS(gcem::signbit,std_test_fn, TEST_NEGINF);
+    GCEM_TEST_COMPARE_VALS(gcem::signbit,std_test_fn, TEST_NAN);
+
+    //
+
+    print_final("signbit");
+
+    return 0;
+}

@@ -94,6 +94,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/quadrature/gauss_legendre_30.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/quadrature/gauss_legendre_50.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/round.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/signbit.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/sgn.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/sin.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/sinh.hpp

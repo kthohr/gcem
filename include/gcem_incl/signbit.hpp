@@ -18,24 +18,27 @@
   ##
   ################################################################################*/
 
-#ifndef _gcem_copysign_HPP
-#define _gcem_copysign_HPP
+#ifndef _gcem_signbit_HPP
+#define _gcem_signbit_HPP
 
 /**
- * Compile-time copy sign function
+ * Compile-time sign bit detection function
  *
  * @param x a real-valued input
- * @param y a real-valued input
- * @return replace the signbit of \c x with the signbit of \c y.
+ * @return return true if \c x is negative, otherwise return false.
  */
 
-template <typename T1, typename T2>
-constexpr
-T1
-copysign(const T1 x, const T2 y)
+template <typename T>
+constexpr 
+bool
+signbit(const T x)
 noexcept
 {
-    return( signbit(x) != signbit(y) ? -x : x );
+#ifdef _MSC_VER
+    return( (x == T(0)) ? (_fpclass(x) == _FPCLASS_NZ) : (x < T(0)) );
+#else
+    return GCEM_SIGNBIT(x);
+#endif
 }
 
 #endif
