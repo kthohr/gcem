@@ -28,6 +28,7 @@ install:
   - cd tests
 
 build_script:
+  - .\abs.test
   - .\acos.test
   - .\acosh.test
   - .\asin.test
