@@ -55,6 +55,7 @@ endif()
 #
 
 set(GCEM_TESTS
+    abs.cpp
     acos.cpp
     acosh.cpp
     asin.cpp

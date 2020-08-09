@@ -41,6 +41,9 @@ clean:
 
 GCEM_MAKE_CALL= $(CXX) $(CXX_STD) $(OPT_FLAGS) -I$(HEADER_DIR) $@.cpp -o $@.test $(LIBS)
 
+abs:
+	$(GCEM_MAKE_CALL)
+
 acos:
 	$(GCEM_MAKE_CALL)
 

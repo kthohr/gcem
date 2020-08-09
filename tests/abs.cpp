@@ -18,19 +18,35 @@
   ##
   ################################################################################*/
 
-#include <iostream>
-#include "gcem.hpp"
+#define TEST_PRINT_PRECISION_1 6
+#define TEST_PRINT_PRECISION_2 18
+
+#include "gcem_tests.hpp"
 
 int main()
 {
-    double x = 1.5;
-    
-    gcem::sgn(x);
-    gcem::sgn(-x);
-    gcem::internal::find_fraction(x);
-    gcem::internal::find_whole(x);
-    
-    gcem::internal::neg_zero(-0.0);
+    print_begin("abs");
+
+    //
+
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs, 0.0);
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs,-0.0);
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs, 1.0);
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs,-1.0);
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs, 0);
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs, 1);
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs,-1);
+
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs, INT64_MIN);
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs, INT64_MAX);
+
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs, TEST_NAN);
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs, TEST_NEGINF);
+    GCEM_TEST_COMPARE_VALS(gcem::abs,std::abs, TEST_POSINF);
+
+    //
+
+    print_final("abs");
 
     return 0;
 }
