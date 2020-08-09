@@ -18,19 +18,24 @@
   ##
   ################################################################################*/
 
-#include <iostream>
-#include "gcem.hpp"
+#include "gcem_tests.hpp"
+
+// test misc functions
 
 int main()
 {
-    double x = 1.5;
-    
-    gcem::sgn(x);
-    gcem::sgn(-x);
-    gcem::internal::find_fraction(x);
-    gcem::internal::find_whole(x);
-    
-    gcem::internal::neg_zero(-0.0);
+        
+    GCEM_TEST_EXPECTED_VAL(gcem::sgn,  1,  1.5);
+    GCEM_TEST_EXPECTED_VAL(gcem::sgn, -1, -1.5);
+
+    GCEM_TEST_EXPECTED_VAL(gcem::internal::find_fraction, -0.5,  1.5);
+    GCEM_TEST_EXPECTED_VAL(gcem::internal::find_fraction,  1.5, -1.5);
+
+    GCEM_TEST_EXPECTED_VAL(gcem::internal::find_whole,  1,  1.5);
+    GCEM_TEST_EXPECTED_VAL(gcem::internal::find_whole, -3, -1.5);
+
+    GCEM_TEST_EXPECTED_VAL(gcem::internal::neg_zero, 0,  0.0);
+    GCEM_TEST_EXPECTED_VAL(gcem::internal::neg_zero, 1,  -0.0);
 
     return 0;
 }
