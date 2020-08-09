@@ -37,6 +37,7 @@ build_script:
   - .\atan2.test
   - .\atanh.test
   - .\binomial_coef.test
+  - .\copysign.test
   - .\cos.test
   - .\cosh.test
   - .\erf.test

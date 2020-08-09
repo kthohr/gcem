@@ -49,6 +49,8 @@ Mathematical functions
 +---------------------------------------+----------------------------------------------------+
 | :ref:`ceil <ceil-function-reference>` | ceiling function                                   |
 +---------------------------------------+----------------------------------------------------+
+| :ref:`copysign <copysign-func-ref>`   | copy sign function                                 |
++---------------------------------------+----------------------------------------------------+
 | :ref:`exp <exp-function-reference>`   | exponential function                               |
 +---------------------------------------+----------------------------------------------------+
 | :ref:`expm1 <expm1-func-ref>`         | exponential minus 1 function                       |

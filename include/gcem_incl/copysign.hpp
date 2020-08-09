@@ -18,20 +18,24 @@
   ##
   ################################################################################*/
 
-/*
- * extract signbit for signed zeros
+#ifndef _gcem_copysign_HPP
+#define _gcem_copysign_HPP
+
+/**
+ * Compile-time copy sign function
+ *
+ * @param x a real-valued input
+ * @param y a real-valued input
+ * @return replace the signbit of x with the signbit of y.
  */
 
-namespace internal
-{
-
-template<typename T>
+template <typename T1, typename T2>
 constexpr 
-bool 
-neg_zero(const T x)
+T1
+copysign(const T1 x, const T2 y)
 noexcept
 {
-    return( (x == T(0.0)) && (copysign(T(1.0), x) == T(-1.0)) );
+    return( GCEM_SIGNBIT(x) != GCEM_SIGNBIT(y) ? -x : x );
 }
 
-}
+#endif

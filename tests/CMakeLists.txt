@@ -64,6 +64,7 @@ set(GCEM_TESTS
     atan2.cpp
     atanh.cpp
     binomial_coef.cpp
+    copysign.cpp
     cos.cpp
     cosh.cpp
     erf.cpp

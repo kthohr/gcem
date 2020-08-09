@@ -24,7 +24,7 @@
 
 int main()
 {
-        
+    
     GCEM_TEST_EXPECTED_VAL(gcem::sgn,  1,  1.5);
     GCEM_TEST_EXPECTED_VAL(gcem::sgn, -1, -1.5);
 

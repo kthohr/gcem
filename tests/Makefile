@@ -68,6 +68,9 @@ atanh:
 binomial_coef:
 	$(GCEM_MAKE_CALL)
 
+copysign:
+	$(GCEM_MAKE_CALL)
+
 cos:
 	$(GCEM_MAKE_CALL)
 

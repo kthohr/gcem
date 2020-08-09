@@ -53,6 +53,7 @@ set(GCEM_HEADERS
     ${GCEM_INCLUDE_DIR}/gcem_incl/beta.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/binomial_coef.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/ceil.hpp
+    ${GCEM_INCLUDE_DIR}/gcem_incl/copysign.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/cos.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/cosh.hpp
     ${GCEM_INCLUDE_DIR}/gcem_incl/erf_inv.hpp

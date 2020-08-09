@@ -15,6 +15,10 @@ Basic functions
 .. doxygenfunction:: ceil(const T)
    :project: gcem
 
+.. _copysign-func-ref:
+.. doxygenfunction:: copysign(const T1, const T2)
+   :project: gcem
+
 .. _exp-function-reference:
 .. doxygenfunction:: exp(const T)
    :project: gcem
