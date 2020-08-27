@@ -107,9 +107,8 @@ noexcept
             a > T(90)   ? min(z, a + 8*sqrt(a))  :
             a > T(70)   ? min(z, a + 7*sqrt(a))  :
             a > T(50)   ? min(z, a + 6*sqrt(a))  :
-            a > T(40)   ? min(z, a + 5*sqrt(a))  :
             // else
-                min(z, a + 4*sqrt(a)) );
+                min(z, a + 5*sqrt(a)) );
 }
 
 template<typename T>
@@ -121,13 +120,38 @@ noexcept
     return incomplete_gamma_quad_recur(incomplete_gamma_quad_lb(a,z), incomplete_gamma_quad_ub(a,z), a,lgamma(a),0);
 }
 
+// reverse cf expansion
+// see: https://functions.wolfram.com/GammaBetaErf/Gamma2/10/0003/
+
+template<typename T>
+constexpr
+T
+incomplete_gamma_cf_2_recur(const T a, const T z, const int depth)
+noexcept
+{
+    return( depth < 100 ? \
+            // if
+                (1 + (depth-1)*2 - a + z) + depth*(a - depth)/incomplete_gamma_cf_2_recur(a,z,depth+1) :
+            // else
+                (1 + (depth-1)*2 - a + z) );
+}
+
+template<typename T>
+constexpr
+T
+incomplete_gamma_cf_2(const T a, const T z)
+noexcept
+{   // lower (regularized) incomplete gamma function
+    return( T(1.0) - exp(a*log(z) - z - lgamma(a)) / incomplete_gamma_cf_2_recur(a,z,1) );
+}
+
 // cf expansion
 // see: http://functions.wolfram.com/GammaBetaErf/Gamma2/10/0009/
 
 template<typename T>
 constexpr
 T
-incomplete_gamma_cf_coef(const T a, const T z, const int depth)
+incomplete_gamma_cf_1_coef(const T a, const T z, const int depth)
 noexcept
 {
     return( is_odd(depth) ? - (a - 1 + T(depth+1)/T(2)) * z : T(depth)/T(2) * z );
@@ -136,12 +160,12 @@ noexcept
 template<typename T>
 constexpr
 T
-incomplete_gamma_cf_recur(const T a, const T z, const int depth)
+incomplete_gamma_cf_1_recur(const T a, const T z, const int depth)
 noexcept
 {
     return( depth < GCEM_INCML_GAMMA_MAX_ITER ? \
             // if
-                (a + depth - 1) + incomplete_gamma_cf_coef(a,z,depth)/incomplete_gamma_cf_recur(a,z,depth+1) :
+                (a + depth - 1) + incomplete_gamma_cf_1_coef(a,z,depth)/incomplete_gamma_cf_1_recur(a,z,depth+1) :
             // else
                 (a + depth - 1) );
 }
@@ -149,10 +173,10 @@ noexcept
 template<typename T>
 constexpr
 T
-incomplete_gamma_cf(const T a, const T z)
+incomplete_gamma_cf_1(const T a, const T z)
 noexcept
 {   // lower (regularized) incomplete gamma function
-    return( exp(a*log(z) - z) / tgamma(a) / incomplete_gamma_cf_recur(a,z,1) );
+    return( exp(a*log(z) - z - lgamma(a)) / incomplete_gamma_cf_1_recur(a,z,1) );
 }
 
 //
@@ -176,8 +200,10 @@ noexcept
             GCLIM<T>::epsilon() > a ? \
                 T(1) : 
             // cf or quadrature
-            a < T(10) ?
-                incomplete_gamma_cf(a,z) :
+            (a < T(10)) && (z - a < T(10)) ?
+                incomplete_gamma_cf_1(a,z) :
+            (a < T(10)) || (z/a > T(3)) ?
+                incomplete_gamma_cf_2(a,z) :
             // else
                 incomplete_gamma_quad(a,z) );
 }

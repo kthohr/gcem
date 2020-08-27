@@ -59,6 +59,23 @@ int main()
     GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.52943655952003709775L,  997.0L,  999.0L);
     GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.45389544705967349580L, 1005.0L, 1001.0L);
 
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.99947774194996708008L,   3.0L,   12.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.99914335878922466705L,   5.0L,   15.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.99998305525606989708L,   5.0L,   20.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.99999973309165746116L,   5.0L,   25.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.99999999995566213329L,   5.0L,   35.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 1.0L                   ,   5.0L,   50.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 1.0L                   ,   5.0L,  500.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.99791274095086501816L,   9.0L,   20.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.99999999914307291515L,   9.0L,   40.0L);
+
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.88153558847098478779L,  11.0L,   15.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.98918828117334733907L,  11.0L,   20.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.99941353837024693441L,  11.0L,   25.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.99999933855955824846L,  11.0L,   35.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 0.99999999999354982627L,  11.0L,   50.0L);
+    GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, 1.0L                   ,  11.0L,  500.0L);
+
     //
 
     GCEM_TEST_EXPECTED_VAL(gcem::incomplete_gamma, TEST_NAN, -0.1, 0.0);
