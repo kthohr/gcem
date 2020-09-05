@@ -45,7 +45,7 @@ The library is actively maintained, and is still being extended. A list of featu
 General Syntax
 --------------
 
-GCE-Math functions are written as C++ templates with ``constexpr`` specifiers. As an example, the `Gaussian error function <https://en.wikipedia.org/wiki/Error_function>`_ (``erf``) is defined as:
+GCE-Math functions are written as C++ templates with ``constexpr`` specifiers. For example, the `Gaussian error function <https://en.wikipedia.org/wiki/Error_function>`_ (``erf``) is defined as:
 
 .. code:: cpp
 
@@ -54,7 +54,7 @@ GCE-Math functions are written as C++ templates with ``constexpr`` specifiers. A
     return_t<T>
     erf(const T x) noexcept;
 
-where a set of internal templated ``constexpr`` functions will implement a continued fraction expansion to return a value of type ``return_t<T>``. This output type ('``return_t<T>``') is generally determined by the input type, e.g., ``int``, ``float``, ``double``, ``long double``, etc. When ``T`` is an intergral type, the output will be upgraded to ``return_t<T> = double``, otherwise ``return_t<T> = T``. For types not covered by ``std::is_integral``, recasts should be used.
+A set of internal templated ``constexpr`` functions will implement a continued fraction expansion and return a value of type ``return_t<T>``. The output type ('``return_t<T>``') is generally determined by the input type, e.g., ``int``, ``float``, ``double``, ``long double``, etc; when ``T`` is an intergral type, the output will be upgraded to ``return_t<T> = double``, otherwise ``return_t<T> = T``. For types not covered by ``std::is_integral``, recasts should be used.
 
 
 Contents

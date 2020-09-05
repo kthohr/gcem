@@ -120,14 +120,16 @@ You can test the library online using an interactive Jupyter notebook:
 
 ## General Syntax
 
-GCE-Math functions are written as C++ templates with `constexpr` specifiers, the format of which might appear confusing to users unfamiliar with template-based programming. As an example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (`erf`) is defined as:
+GCE-Math functions are written as C++ templates with `constexpr` specifiers, the format of which might appear confusing to users unfamiliar with template-based programming. 
+
+For example, the [Gaussian error function](https://en.wikipedia.org/wiki/Error_function) (`erf`) is defined as:
 ```cpp
 template<typename T>
 constexpr
 return_t<T>
 erf(const T x) noexcept;
 ```
-where a set of internal templated `constexpr` functions will implement a continued fraction expansion to return a value of type `return_t<T>`. This output type ('`return_t<T>`') is generally determined by the input type, e.g., `int`, `float`, `double`, `long double`, etc. When `T` is an intergral type, the output will be upgraded to `return_t<T> = double`, otherwise `return_t<T> = T`. For types not covered by `std::is_integral`, recasts should be used.
+A set of internal templated `constexpr` functions will implement a continued fraction expansion and return a value of type `return_t<T>`. The output type ('`return_t<T>`') is generally determined by the input type, e.g., `int`, `float`, `double`, `long double`, etc.; when `T` is an intergral type, the output will be upgraded to `return_t<T> = double`, otherwise `return_t<T> = T`. For types not covered by `std::is_integral`, recasts should be used.
 
 ## Examples
 
@@ -193,5 +195,4 @@ main:                                   # @main
 
 ## Related libraries
 
-For a library built on GCEM's compile-time functionality, see [StatsLib](https://github.com/kthohr/stats).
-
+* [StatsLib](https://github.com/kthohr/stats) is built on GCEM's compile-time functionality.
