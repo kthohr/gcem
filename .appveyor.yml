@@ -25,10 +25,12 @@ install:
   - conda install cmake -c conda-forge
   - cmake -G "NMake Makefiles" -D GCEM_BUILD_TESTS=1 -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -D CMAKE_BUILD_TYPE=Release .
   - nmake gcem_tests
-  - cd tests
 
 build_script:
-  - for %%f in (*.test) do (
+  - cd tests
+  - cmd: dir
+  - cmd: >-
+    for %%f in (*.test) do (
       echo %%~nf
       .\%%~nf
     )
