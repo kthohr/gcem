@@ -64,7 +64,7 @@ foreach( file_ ${GCEM_TESTS} )
     get_filename_component(filename ${file_} NAME)
     string( REPLACE ".cpp" ".test" testname ${filename} )
 
-    add_executable( ${testname} EXCLUDE_FROM_ALL ${filename} ${GCEM_HEADERS})
+    add_executable( ${testname} EXCLUDE_FROM_ALL ${filename} )
     target_link_libraries( ${testname} gcem )
     
     list(APPEND GCEM_TESTS_EX ${testname})
