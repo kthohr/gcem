@@ -24,12 +24,28 @@ jobs:
             cxxstd: "11"
           }
         - {
-            name: "ubuntu_latest_gcc_9_cxx14",
+            name: "ubuntu_latest_gcc9_cxx14",
             os: ubuntu-latest,
             build_type: "Release",
             cc: "gcc-9",
             cxx: "g++-9",
             cxxstd: "14"
+          }
+        - {
+            name: "ubuntu_latest_gcc10_cxx14",
+            os: ubuntu-latest,
+            build_type: "Release",
+            cc: "gcc-10",
+            cxx: "g++-10",
+            cxxstd: "14"
+          }
+        - {
+            name: "ubuntu_latest_gcc11_cxx17",
+            os: ubuntu-latest,
+            build_type: "Release",
+            cc: "gcc-11",
+            cxx: "g++-11",
+            cxxstd: "17"
           }
         - {
             name: "macos_latest_clang_cxx11",
