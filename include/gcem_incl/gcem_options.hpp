@@ -22,6 +22,21 @@
 #include <limits>
 #include <type_traits>
 
+// undef some functions from math.h
+// see issue #29
+
+#ifdef abs
+    #undef abs
+#endif
+
+#ifdef round
+    #undef round
+#endif
+
+#ifdef signbit
+    #undef signbit
+#endif
+
 //
 // version
 
@@ -34,7 +49,7 @@
 #endif
 
 #ifndef GCEM_VERSION_PATCH
-    #define GCEM_VERSION_PATCH 1
+    #define GCEM_VERSION_PATCH 2
 #endif
 
 //
