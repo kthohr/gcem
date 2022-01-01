@@ -1,5 +1,5 @@
 # GCE-Math
-[![Build Status](https://travis-ci.org/kthohr/gcem.svg?branch=master)](https://travis-ci.org/kthohr/gcem) [![Build status](https://ci.appveyor.com/api/projects/status/5kxxkmisln1j4h6b?svg=true)](https://ci.appveyor.com/project/kthohr/gcem) [![Coverage Status](https://codecov.io/github/kthohr/gcem/coverage.svg?branch=master)](https://codecov.io/github/kthohr/gcem?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/19bf49e64ca04c848f6a0a8030d1f131)](https://www.codacy.com/app/kthohr/gcem?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kthohr/gcem&amp;utm_campaign=Badge_Grade) [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/kthohr/gcem.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kthohr/gcem) [![Documentation Status](https://readthedocs.org/projects/gcem/badge/?version=latest)](https://gcem.readthedocs.io/en/latest/?badge=latest)
+[![Build Status](https://github.com/kthohr/gcem/actions/workflows/main.yml/badge.svg)](https://github.com/kthohr/gcem/actions/workflows/main.yml) [![Build status](https://ci.appveyor.com/api/projects/status/5kxxkmisln1j4h6b?svg=true)](https://ci.appveyor.com/project/kthohr/gcem) [![Coverage Status](https://codecov.io/github/kthohr/gcem/coverage.svg?branch=master)](https://codecov.io/github/kthohr/gcem?branch=master) [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/kthohr/gcem.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kthohr/gcem) [![Documentation Status](https://readthedocs.org/projects/gcem/badge/?version=latest)](https://gcem.readthedocs.io/en/latest/?badge=latest)
 
 GCE-Math (**G**eneralized **C**onstant **E**xpression Math) is a templated C++ library enabling compile-time computation of mathematical functions.
 
@@ -30,7 +30,7 @@ The library is actively maintained and is still being extended. A list of featur
 * Basic library functions:
     - `abs`, `max`, `min`, `pow`, `sqrt`, 
     - `ceil`, `floor`, `round`, `trunc`, `fmod`,
-    - `exp`, `expm1`, `log`, `log1p`, `log2`, and more
+    - `exp`, `expm1`, `log`, `log1p`, `log2`, `log10`, and more
 * Trigonometric functions:
     - basic: `cos`, `sin`, `tan`
     - inverse: `acos`, `asin`, `atan`, `atan2`
@@ -129,7 +129,7 @@ constexpr
 return_t<T>
 erf(const T x) noexcept;
 ```
-A set of internal templated `constexpr` functions will implement a continued fraction expansion and return a value of type `return_t<T>`. The output type ('`return_t<T>`') is generally determined by the input type, e.g., `int`, `float`, `double`, `long double`, etc.; when `T` is an intergral type, the output will be upgraded to `return_t<T> = double`, otherwise `return_t<T> = T`. For types not covered by `std::is_integral`, recasts should be used.
+A set of internal templated `constexpr` functions will implement a continued fraction expansion and return a value of type `return_t<T>`. The output type ('`return_t<T>`') is generally determined by the input type, e.g., `int`, `float`, `double`, `long double`, etc.; when `T` is an integral type, the output will be upgraded to `return_t<T> = double`, otherwise `return_t<T> = T`. For types not covered by `std::is_integral`, recasts should be used.
 
 ## Examples
 
