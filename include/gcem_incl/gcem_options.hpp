@@ -45,11 +45,11 @@
 #endif
 
 #ifndef GCEM_VERSION_MINOR
-    #define GCEM_VERSION_MINOR 13
+    #define GCEM_VERSION_MINOR 14
 #endif
 
 #ifndef GCEM_VERSION_PATCH
-    #define GCEM_VERSION_PATCH 2
+    #define GCEM_VERSION_PATCH 0
 #endif
 
 //
