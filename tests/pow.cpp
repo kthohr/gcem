@@ -32,6 +32,7 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 0.199900000000000208L, 3.5L);
     GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 0.5L,  2.0L);
     GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 1.5L,  0.99L);
+    GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 2.0L,  1.0L);
     GCEM_TEST_COMPARE_VALS(gcem::pow,std::pow, 41.5L, 7.0L);
 
     // int versions
