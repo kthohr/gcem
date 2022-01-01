@@ -58,7 +58,7 @@ noexcept
  * Compile-time common logarithm function
  *
  * @param x a real-valued input.
- * @return \f$ \log_10(x) \f$ using \f[ \log_{10}(x) = \frac{\log_e(x)}{\log_e(10)} \f] 
+ * @return \f$ \log_{10}(x) \f$ using \f[ \log_{10}(x) = \frac{\log_e(x)}{\log_e(10)} \f] 
  */
 
 template<typename T>
