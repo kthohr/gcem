@@ -24,6 +24,14 @@ jobs:
             cxxstd: "11"
           }
         - {
+            name: "ubuntu_latest_gcc_cxx11_coverage",
+            os: ubuntu-latest,
+            build_type: "Coverage",
+            cc: "gcc",
+            cxx: "g++",
+            cxxstd: "11"
+          }
+        - {
             name: "ubuntu_latest_gcc9_cxx14",
             os: ubuntu-latest,
             build_type: "Release",
@@ -91,3 +99,20 @@ jobs:
           echo "Testing env.CXXT: ${{ env.CXXT }}"
           make
           ./run_tests
+
+      - name: Coverage
+        if: startsWith(matrix.config.build_type, 'Coverage')
+        shell: bash
+        working-directory: tests
+        run: |
+          export SHOULD_RUN_COVERAGE="y"
+          ./cov_check
+          cd ..
+          curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
+          curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
+          gpgv codecov.SHA256SUM.sig codecov.SHA256SUM
+          shasum -a 256 -c codecov.SHA256SUM
+          chmod +x codecov
+          ./codecov
