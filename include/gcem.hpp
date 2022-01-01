@@ -59,6 +59,7 @@ namespace gcem
     #include "gcem_incl/log.hpp"
     #include "gcem_incl/log1p.hpp"
     #include "gcem_incl/log2.hpp"
+    #include "gcem_incl/log10.hpp"
     #include "gcem_incl/pow.hpp"
 
     #include "gcem_incl/gcd.hpp"

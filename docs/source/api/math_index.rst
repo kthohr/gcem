@@ -67,6 +67,8 @@ Mathematical functions
 +---------------------------------------+----------------------------------------------------+
 | :ref:`log2 <log2-func-ref>`           | binary logarithm function                          |
 +---------------------------------------+----------------------------------------------------+
+| :ref:`log10 <log10-func-ref>`         | common logarithm function                          |
++---------------------------------------+----------------------------------------------------+
 | :ref:`max <max-function-reference>`   | maximum between two numbers                        |
 +---------------------------------------+----------------------------------------------------+
 | :ref:`min <min-function-reference>`   | minimum between two numbers                        |

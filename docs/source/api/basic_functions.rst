@@ -51,6 +51,10 @@ Basic functions
 .. doxygenfunction:: log2(const T)
    :project: gcem
 
+.. _log10-func-ref:
+.. doxygenfunction:: log10(const T)
+   :project: gcem
+
 .. _max-function-reference:
 .. doxygenfunction:: max(const T1, const T2)
    :project: gcem
