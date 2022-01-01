@@ -48,6 +48,14 @@ jobs:
             cxxstd: "17"
           }
         - {
+            name: "ubuntu_latest_clang10_cxx11",
+            os: ubuntu-latest,
+            build_type: "Release",
+            cc: "clang-10",
+            cxx: "clang++-10",
+            cxxstd: "11"
+          }
+        - {
             name: "macos_latest_clang_cxx11",
             os: macos-latest,
             build_type: "Release",
