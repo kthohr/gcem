@@ -12,4 +12,8 @@ if [[ "${SHOULD_RUN_COVERAGE}" == "y" ]]; then
     for t in ./*.cpp; do
         $CCOV "$t" > /dev/null 2>&1
     done
+
+    $CCOV exp.cpp > /dev/null 2>&1
+    $CCOV log.cpp > /dev/null 2>&1
+    $CCOV pow.cpp > /dev/null 2>&1
 fi
