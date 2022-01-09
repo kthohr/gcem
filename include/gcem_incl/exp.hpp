@@ -58,7 +58,7 @@ T
 exp_split(const T x)
 noexcept
 {
-    return( pow_integral(GCEM_E,find_whole(x)) * exp_cf(find_fraction(x)) );
+    return( static_cast<T>(pow_integral(GCEM_E,find_whole(x))) * exp_cf(find_fraction(x)) );
 }
 
 template<typename T>
