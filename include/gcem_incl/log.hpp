@@ -108,8 +108,8 @@ noexcept
             // x < 0
             x < T(0) ? \
                 GCLIM<T>::quiet_NaN() :
-            // x ~= 0
-            GCLIM<T>::epsilon() > x ? \
+            // x == 0
+            x == T(0) ? \
                 - GCLIM<T>::infinity() :
             // indistinguishable from 1
             GCLIM<T>::epsilon() > abs(x - T(1)) ? \
