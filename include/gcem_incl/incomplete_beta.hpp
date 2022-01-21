@@ -142,7 +142,7 @@ noexcept
             any_nan(a, b, z) ? \
                 GCLIM<T>::quiet_NaN() :
             // indistinguishable from zero
-            GCLIM<T>::epsilon() > z ? \
+            GCLIM<T>::min() > z ? \
                 T(0) :
             // parameter check for performance
             (a + T(1))/(a + b + T(2)) > z ? \

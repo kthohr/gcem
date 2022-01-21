@@ -49,7 +49,7 @@
 #endif
 
 #ifndef GCEM_VERSION_PATCH
-    #define GCEM_VERSION_PATCH 0
+    #define GCEM_VERSION_PATCH 1
 #endif
 
 //
@@ -130,7 +130,7 @@ namespace gcem
 #endif
 
 #ifndef GCEM_ERF_INV_MAX_ITER
-    #define GCEM_ERF_INV_MAX_ITER 55
+    #define GCEM_ERF_INV_MAX_ITER 60
 #endif
 
 #ifndef GCEM_EXP_MAX_ITER_SMALL

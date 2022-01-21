@@ -38,9 +38,9 @@ noexcept
             x > T(1) ? \
                 GCLIM<T>::quiet_NaN() :
             // indistinguishable from one or zero
-            GCLIM<T>::epsilon() > abs(x -  T(1)) ? \
+            GCLIM<T>::min() > abs(x -  T(1)) ? \
                 T(GCEM_HALF_PI) :
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 T(0) :
             // else
                 atan( x/sqrt(T(1) - x*x) ) );

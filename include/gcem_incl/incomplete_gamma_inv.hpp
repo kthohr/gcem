@@ -218,14 +218,14 @@ noexcept
             any_nan(a, p) ? \
                 GCLIM<T>::quiet_NaN() :
             //
-            GCLIM<T>::epsilon() > p ? \
+            GCLIM<T>::min() > p ? \
                 T(0) :
             p > T(1) ? \
                 GCLIM<T>::quiet_NaN() :
-            GCLIM<T>::epsilon() > abs(T(1) - p) ? \
+            GCLIM<T>::min() > abs(T(1) - p) ? \
                 GCLIM<T>::infinity() :
             //
-            GCLIM<T>::epsilon() > a ? \
+            GCLIM<T>::min() > a ? \
                 T(0) :
             // else
                 incomplete_gamma_inv_begin(incomplete_gamma_inv_initial_val(a,p),a,p,lgamma(a)) );

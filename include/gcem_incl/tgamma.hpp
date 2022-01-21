@@ -38,14 +38,14 @@ noexcept
             is_nan(x) ? \
                 GCLIM<T>::quiet_NaN() :
             // indistinguishable from one or zero
-            GCLIM<T>::epsilon() > abs(x - T(1)) ? \
+            GCLIM<T>::min() > abs(x - T(1)) ? \
                 T(1) :
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 GCLIM<T>::infinity() :
             // negative numbers
             x < T(0) ? \
                 // check for integer
-                GCLIM<T>::epsilon() > abs(x - find_whole(x)) ? \
+                GCLIM<T>::min() > abs(x - find_whole(x)) ? \
                     GCLIM<T>::quiet_NaN() :
                 // else
                 tgamma_check(x+T(1)) / x :

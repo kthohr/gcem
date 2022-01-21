@@ -34,7 +34,7 @@ T
 sqrt_recur(const T x, const T xn, const int count)
 noexcept
 {
-    return( abs(xn - x/xn) / (T(1) + xn) < GCLIM<T>::epsilon() ? \
+    return( abs(xn - x/xn) / (T(1) + xn) < GCLIM<T>::min() ? \
             // if
                 xn :
             count < GCEM_SQRT_MAX_ITER ? \
@@ -58,9 +58,9 @@ noexcept
             is_posinf(x) ? \
                 x :
             // indistinguishable from zero or one
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 T(0) :
-            GCLIM<T>::epsilon() > abs(T(1)-x) ? \
+            GCLIM<T>::min() > abs(T(1)-x) ? \
                 x :
             // else
             x > T(4) ? \

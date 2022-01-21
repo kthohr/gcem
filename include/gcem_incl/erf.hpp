@@ -65,10 +65,10 @@ noexcept
 {
     return( depth < GCEM_ERF_MAX_ITER ? \
             // if
-                (2*depth - 1) - 2*xx \
+                (2*depth - T(1)) - 2*xx \
                     + 4*depth*xx / erf_cf_small_recur(xx,depth+1) :
             // else
-                (2*depth - 1) - 2*xx );
+                (2*depth - T(1)) - 2*xx );
 }
 
 template<typename T>
@@ -111,7 +111,7 @@ noexcept
             is_neginf(x) ? \
                 - T(1) :
             // indistinguishable from zero
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 T(0) :
             // else
                 x < T(0) ? \

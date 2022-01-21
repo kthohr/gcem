@@ -43,7 +43,7 @@ T
 tan_series_exp(const T x)
 noexcept
 {
-    return( GCLIM<T>::epsilon() > abs(x - T(GCEM_HALF_PI)) ? \
+    return( GCLIM<T>::min() > abs(x - T(GCEM_HALF_PI)) ? \
             // the value tan(pi/2) is somewhat of a convention;
             // technically the function is not defined at EXACTLY pi/2,
             // but this is floating point pi/2
@@ -107,7 +107,7 @@ noexcept
             is_nan(x) ? \
                 GCLIM<T>::quiet_NaN() :
             // indistinguishable from zero 
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 T(0) :
             // else
                 x < T(0) ? \

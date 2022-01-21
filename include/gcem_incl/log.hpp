@@ -109,10 +109,10 @@ noexcept
             x < T(0) ? \
                 GCLIM<T>::quiet_NaN() :
             // x ~= 0
-            GCLIM<T>::epsilon() > x ? \
+            GCLIM<T>::min() > x ? \
                 - GCLIM<T>::infinity() :
             // indistinguishable from 1
-            GCLIM<T>::epsilon() > abs(x - T(1)) ? \
+            GCLIM<T>::min() > abs(x - T(1)) ? \
                 T(0) : 
             // 
             x == GCLIM<T>::infinity() ? \
@@ -123,6 +123,21 @@ noexcept
                     log_breakup(x) :
                 // else
                     log_main(x) );
+}
+
+template<typename T>
+constexpr
+return_t<T>
+log_integral_check(const T x)
+noexcept
+{
+    return( std::is_integral<T>::value ? \
+                x == T(0) ? \
+                    - GCLIM<return_t<T>>::infinity() :
+                x > T(1) ? \
+                    log_check( static_cast<return_t<T>>(x) ) :
+                    static_cast<return_t<T>>(0) :
+            log_check( static_cast<return_t<T>>(x) ) );
 }
 
 }
@@ -141,7 +156,7 @@ return_t<T>
 log(const T x)
 noexcept
 {
-    return internal::log_check( static_cast<return_t<T>>(x) );
+    return internal::log_integral_check( x );
 }
 
 #endif

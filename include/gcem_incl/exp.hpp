@@ -73,7 +73,7 @@ noexcept
             is_neginf(x) ? \
                 T(0) :
             //
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 T(1) : 
             //
             is_posinf(x) ? \

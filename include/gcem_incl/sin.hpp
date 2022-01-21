@@ -49,16 +49,16 @@ noexcept
             is_nan(x) ? \
                 GCLIM<T>::quiet_NaN() :
             // indistinguishable from zero
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 T(0) :
             // special cases: pi/2 and pi
-            GCLIM<T>::epsilon() > abs(x - T(GCEM_HALF_PI)) ? \
+            GCLIM<T>::min() > abs(x - T(GCEM_HALF_PI)) ? \
                 T(1) :
-            GCLIM<T>::epsilon() > abs(x + T(GCEM_HALF_PI)) ? \
+            GCLIM<T>::min() > abs(x + T(GCEM_HALF_PI)) ? \
                 - T(1) :
-            GCLIM<T>::epsilon() > abs(x - T(GCEM_PI)) ? \
+            GCLIM<T>::min() > abs(x - T(GCEM_PI)) ? \
                 T(0) :
-            GCLIM<T>::epsilon() > abs(x + T(GCEM_PI)) ? \
+            GCLIM<T>::min() > abs(x + T(GCEM_PI)) ? \
                 - T(0) :
             // else
                 sin_compute( tan(x/T(2)) ) );

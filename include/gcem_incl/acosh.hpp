@@ -41,7 +41,7 @@ noexcept
             x < T(1) ? \
                 GCLIM<T>::quiet_NaN() :
             // indistinguishable from 1
-            GCLIM<T>::epsilon() > abs(x - T(1)) ? \
+            GCLIM<T>::min() > abs(x - T(1)) ? \
                 T(0) :
             // else
                 log( x + sqrt(x*x - T(1)) ) );

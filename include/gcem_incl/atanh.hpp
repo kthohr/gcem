@@ -49,10 +49,10 @@ noexcept
             // function is defined for |x| < 1
             T(1) < abs(x) ? \
                 GCLIM<T>::quiet_NaN() :
-            GCLIM<T>::epsilon() > (T(1) - abs(x)) ? \
+            GCLIM<T>::min() > (T(1) - abs(x)) ? \
                 sgn(x)*GCLIM<T>::infinity() :
             // indistinguishable from zero
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 T(0) :
             // else
                 atanh_compute(x) );

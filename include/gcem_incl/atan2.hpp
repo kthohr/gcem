@@ -38,9 +38,9 @@ noexcept
             any_nan(y,x) ? \
                 GCLIM<T>::quiet_NaN() :
             //
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
             //
-                GCLIM<T>::epsilon() > abs(y) ? \
+                GCLIM<T>::min() > abs(y) ? \
                     neg_zero(y) ? \
                         neg_zero(x) ? - T(GCEM_PI) : - T(0) :
                         neg_zero(x) ?   T(GCEM_PI) :   T(0) :

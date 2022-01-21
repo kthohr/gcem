@@ -126,7 +126,7 @@ noexcept
             is_nan(x) ? \
                 GCLIM<T>::quiet_NaN() :
             // indistinguishable from zero
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 T(0) :
             // negative or positive
             x < T(0) ? \

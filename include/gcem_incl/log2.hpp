@@ -30,26 +30,12 @@ namespace internal
 
 template<typename T>
 constexpr
-T
+return_t<T>
 log2_check(const T x)
 noexcept
 {
-    return( is_nan(x) ? \
-                GCLIM<T>::quiet_NaN() :
-            // x < 0
-            x < T(0) ? \
-                GCLIM<T>::quiet_NaN() :
-            // x ~= 0
-            GCLIM<T>::epsilon() > x ? \
-                - GCLIM<T>::infinity() :
-            // indistinguishable from 1
-            GCLIM<T>::epsilon() > abs(x - T(1)) ? \
-                T(0) : 
-            // 
-            x == GCLIM<T>::infinity() ? \
-                GCLIM<T>::infinity() :
-            // else: log_2(x) = ln(x) / ln(2)
-                T(log(x) / GCEM_LOG_2) );
+    // log_2(x) = ln(x) / ln(2)
+    return return_t<T>(log(x) / GCEM_LOG_2);
 }
 
 }
@@ -67,7 +53,7 @@ return_t<T>
 log2(const T x)
 noexcept
 {
-    return internal::log2_check( static_cast<return_t<T>>(x) );
+    return internal::log2_check( x );
 }
 
 #endif

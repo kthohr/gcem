@@ -194,10 +194,10 @@ noexcept
             a < T(0) ? \
                 GCLIM<T>::quiet_NaN() :
             //
-            GCLIM<T>::epsilon() > z ? \
+            GCLIM<T>::min() > z ? \
                 T(0) : 
             //
-            GCLIM<T>::epsilon() > a ? \
+            GCLIM<T>::min() > a ? \
                 T(1) : 
             // cf or quadrature
             (a < T(10)) && (z - a < T(10)) ?

@@ -55,7 +55,7 @@ noexcept
             !is_finite(x) ? \
                 x :
             // signed-zero cases
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 x :
             // else
                 floor_int(x, T(static_cast<llint_t>(x))) );

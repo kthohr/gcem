@@ -227,10 +227,10 @@ noexcept
             abs(p) > T(1) ? \
                 GCLIM<T>::quiet_NaN() :
             // indistinguishable from 1
-            GCLIM<T>::epsilon() > abs(T(1) - p) ? \
+            GCLIM<T>::min() > abs(T(1) - p) ? \
                 GCLIM<T>::infinity() :
             // indistinguishable from - 1
-            GCLIM<T>::epsilon() > abs(T(1) + p) ? \
+            GCLIM<T>::min() > abs(T(1) + p) ? \
                 - GCLIM<T>::infinity() :
             // else
             erf_inv_recur_begin(erf_inv_initial_val(p),p) );

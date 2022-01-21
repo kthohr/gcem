@@ -201,9 +201,9 @@ incomplete_beta_inv_deriv_1(const T value, const T alpha_par, const T beta_par, 
 noexcept
 {   // derivative of the incomplete beta function w.r.t. x
     return( // indistinguishable from zero or one
-            GCLIM<T>::epsilon() > abs(value) ? \
+            GCLIM<T>::min() > abs(value) ? \
                 T(0) :
-            GCLIM<T>::epsilon() > abs(T(1) - value) ? \
+            GCLIM<T>::min() > abs(T(1) - value) ? \
                 T(0) :
             // else
                 exp( (alpha_par - T(1))*log(value) + (beta_par - T(1))*log(T(1) - value) - lb_val ) );
@@ -253,7 +253,7 @@ incomplete_beta_inv_recur(const T value, const T alpha_par, const T beta_par, co
 noexcept
 {
     return( // derivative = 0
-            GCLIM<T>::epsilon() > abs(deriv_1) ? \
+            GCLIM<T>::min() > abs(deriv_1) ? \
                 incomplete_beta_inv_decision( value, alpha_par, beta_par, p, T(0), lb_val,
                     GCEM_INCML_BETA_INV_MAX_ITER+1) :
             // else
@@ -301,9 +301,9 @@ noexcept
             any_nan(alpha_par, beta_par, p) ? \
                 GCLIM<T>::quiet_NaN() :
             // indistinguishable from zero or one
-            GCLIM<T>::epsilon() > p ? \
+            GCLIM<T>::min() > p ? \
                 T(0) :
-            GCLIM<T>::epsilon() > abs(T(1) - p) ? \
+            GCLIM<T>::min() > abs(T(1) - p) ? \
                 T(1) :
             // else
                 incomplete_beta_inv_begin(incomplete_beta_inv_initial_val(alpha_par,beta_par,p),

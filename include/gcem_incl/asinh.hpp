@@ -38,7 +38,7 @@ noexcept
             is_nan(x) ? \
                 GCLIM<T>::quiet_NaN() :
             // indistinguishable from zero
-            GCLIM<T>::epsilon() > abs(x) ? \
+            GCLIM<T>::min() > abs(x) ? \
                 T(0) :
             // else
                 log( x + sqrt(x*x + T(1)) ) );
