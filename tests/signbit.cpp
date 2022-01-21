@@ -37,8 +37,6 @@ int main()
 
     //
 
-
-
     GCEM_TEST_COMPARE_VALS(gcem::signbit,std_test_fn,  1.0);
     GCEM_TEST_COMPARE_VALS(gcem::signbit,std_test_fn, -1.0);
 

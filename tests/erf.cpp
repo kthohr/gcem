@@ -18,8 +18,10 @@
   ##
   ################################################################################*/
 
+#define TEST_ERR_TOL 1e-12
+
 #define TEST_PRINT_PRECISION_1 3
-#define TEST_PRINT_PRECISION_2 18
+#define TEST_PRINT_PRECISION_2 10
 
 #include "gcem_tests.hpp"
 
@@ -32,11 +34,13 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -3.0L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -2.5L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -2.11L);
-    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -2.05L);
+    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -2.099L);
+    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -2.0L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -1.3L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  0.0L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  1.3L);
-    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  2.05L);
+    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  2.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  2.099L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  2.11L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  2.5L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  3.0L);

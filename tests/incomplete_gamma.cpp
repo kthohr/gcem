@@ -18,6 +18,8 @@
   ##
   ################################################################################*/
 
+#define TEST_ERR_TOL 1e-12
+
 #define TEST_PRINT_PRECISION_1 3
 #define TEST_PRINT_PRECISION_2 18
 
