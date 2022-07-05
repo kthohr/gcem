@@ -30,13 +30,11 @@ T
 round_int(const T x)
 noexcept
 {
-    T floor_check_res = internal::floor_check(x);
-
-    return( abs(x - floor_check_res) >= T(0.5) ? \
+    return( abs(x - internal::floor_check(x)) >= T(0.5) ? \
             // if 
-                floor_check_res + sgn(x) : \
+                internal::floor_check(x) + sgn(x) : \
             // else 
-                floor_check_res );
+                internal::floor_check(x) );
 }
 
 template<typename T>
