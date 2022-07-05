@@ -81,7 +81,7 @@ noexcept
     return (
         (abs(x) >= 9223372036854775808.l) ? \
         x : \
-        ((long double)static_cast<ullint_t>(x)) * ((x < 0) ? -1.l : 1.l) );
+        ((long double)static_cast<ullint_t>(abs(x))) * ((x < 0) ? -1.l : 1.l) );
 }
 
 template<typename T>
