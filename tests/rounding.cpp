@@ -39,6 +39,7 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::floor,std::floor, -4.7);
     GCEM_TEST_COMPARE_VALS(gcem::floor,std::floor, -5.0);
 
+    GCEM_TEST_COMPARE_VALS(gcem::floor,std::floor,  std::numeric_limits<float>::max());
     GCEM_TEST_COMPARE_VALS(gcem::floor,std::floor, -std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::floor,std::floor,  std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::floor,std::floor,  std::numeric_limits<long double>::quiet_NaN());
@@ -55,6 +56,7 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::ceil,std::ceil, -4.7);
     GCEM_TEST_COMPARE_VALS(gcem::ceil,std::ceil, -5.0);
 
+    GCEM_TEST_COMPARE_VALS(gcem::ceil,std::ceil,  std::numeric_limits<float>::max());
     GCEM_TEST_COMPARE_VALS(gcem::ceil,std::ceil, -std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::ceil,std::ceil,  std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::ceil,std::ceil,  std::numeric_limits<long double>::quiet_NaN());
@@ -71,6 +73,7 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::trunc,std::trunc, -4.7);
     GCEM_TEST_COMPARE_VALS(gcem::trunc,std::trunc, -5.0);
 
+    GCEM_TEST_COMPARE_VALS(gcem::trunc,std::trunc,  std::numeric_limits<float>::max());
     GCEM_TEST_COMPARE_VALS(gcem::trunc,std::trunc, -std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::trunc,std::trunc,  std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::trunc,std::trunc,  std::numeric_limits<long double>::quiet_NaN());
@@ -88,6 +91,7 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::round,std::round, -4.7);
     GCEM_TEST_COMPARE_VALS(gcem::round,std::round, -5.0);
 
+    GCEM_TEST_COMPARE_VALS(gcem::round,std::round,  std::numeric_limits<float>::max());
     GCEM_TEST_COMPARE_VALS(gcem::round,std::round, -std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::round,std::round,  std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::round,std::round,  std::numeric_limits<long double>::quiet_NaN());
