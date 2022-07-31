@@ -7,7 +7,7 @@ Features:
 
 * The library is written in C++11 `constexpr` format, and is C++11/14/17 compatible.
 * Continued fraction expansions and series expansions are implemented using recursive templates.
-* The `gcem::` syntax is identical to the C++ standard library (`std::`).
+* The `gcem::` syntax is identical to that of the C++ standard library (`std::`).
 * Tested and accurate to floating-point precision against the C++ standard library.
 * Released under a permissive, non-GPL license.
 
