@@ -45,11 +45,11 @@
 #endif
 
 #ifndef GCEM_VERSION_MINOR
-    #define GCEM_VERSION_MINOR 14
+    #define GCEM_VERSION_MINOR 15
 #endif
 
 #ifndef GCEM_VERSION_PATCH
-    #define GCEM_VERSION_PATCH 1
+    #define GCEM_VERSION_PATCH 0
 #endif
 
 //
@@ -171,6 +171,10 @@ namespace gcem
 
 #ifndef GCEM_SQRT_MAX_ITER
     #define GCEM_SQRT_MAX_ITER 100
+#endif
+
+#ifndef GCEM_INV_SQRT_MAX_ITER
+    #define GCEM_INV_SQRT_MAX_ITER 100
 #endif
 
 #ifndef GCEM_TAN_MAX_ITER

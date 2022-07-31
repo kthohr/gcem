@@ -25,7 +25,7 @@ Status
 The library is actively maintained, and is still being extended. A list of features includes:
 
 * basic library functions:
-    - ``abs``, ``max``, ``min``, ``pow``, ``sqrt``
+    - ``abs``, ``max``, ``min``, ``pow``, ``sqrt``, ``inv_sqrt``
     - ``ceil``, ``floor``, ``round``, ``trunc``, ``fmod``,
     - ``exp``, ``expm1``, ``log``, ``log1p``, and more
 * trigonometric functions:

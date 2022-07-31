@@ -28,7 +28,7 @@ Features:
 The library is actively maintained and is still being extended. A list of features includes:
 
 * Basic library functions:
-    - `abs`, `max`, `min`, `pow`, `sqrt`, 
+    - `abs`, `max`, `min`, `pow`, `sqrt`, `inv_sqrt`, 
     - `ceil`, `floor`, `round`, `trunc`, `fmod`,
     - `exp`, `expm1`, `log`, `log1p`, `log2`, `log10`, and more
 * Trigonometric functions:

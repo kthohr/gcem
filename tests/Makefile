@@ -110,6 +110,9 @@ incomplete_gamma:
 incomplete_gamma_inv:
 	$(GCEM_MAKE_CALL)
 
+inv_sqrt:
+	$(GCEM_MAKE_CALL)
+
 is_odd:
 	$(GCEM_MAKE_CALL)
 

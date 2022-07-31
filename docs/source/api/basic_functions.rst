@@ -83,6 +83,10 @@ Basic functions
 .. doxygenfunction:: sqrt(const T)
    :project: gcem
 
+.. _inv_sqrt-func-ref:
+.. doxygenfunction:: inv_sqrt(const T)
+   :project: gcem
+
 .. _trunc-func-ref:
 .. doxygenfunction:: trunc(const T)
    :project: gcem

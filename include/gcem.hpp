@@ -40,6 +40,7 @@ namespace gcem
     #include "gcem_incl/max.hpp"
     #include "gcem_incl/min.hpp"
     #include "gcem_incl/sqrt.hpp"
+    #include "gcem_incl/inv_sqrt.hpp"
 
     #include "gcem_incl/signbit.hpp"
     #include "gcem_incl/copysign.hpp"
