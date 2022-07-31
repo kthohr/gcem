@@ -30,7 +30,62 @@ T
 round_int(const T x)
 noexcept
 {
-    return static_cast<T>(find_whole(x));
+    return( abs(x - internal::floor_check(x)) >= T(0.5) ? \
+            // if 
+                internal::floor_check(x) + sgn(x) : \
+            // else 
+                internal::floor_check(x) );
+}
+
+template<typename T>
+constexpr
+T
+round_check_internal(const T x)
+noexcept
+{
+    return x;
+}
+
+template<>
+constexpr
+float
+round_check_internal<float>(const float x)
+noexcept
+{
+    //threshold = 8388608.f;
+
+    return (
+        (abs(x) >= 8388608.f) ? \
+        x : \
+        round_int(x) );
+}
+
+template<>
+constexpr
+double
+round_check_internal<double>(const double x)
+noexcept
+{
+    //threshold = 4503599627370496.;
+
+    return (
+        (abs(x) >= 4503599627370496.) ? \
+        x : \
+        round_int(x) );
+}
+
+template<>
+constexpr
+long double
+round_check_internal<long double>(const long double x)
+noexcept
+{
+    //threshold = 9223372036854775808.l;
+
+    return (
+        (abs(x) >= 9223372036854775808.l) ? \
+        x : \
+        round_int(x) );
 }
 
 template<typename T>
