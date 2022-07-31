@@ -57,12 +57,11 @@ float
 ceil_check_internal<float>(const float x)
 noexcept
 {
-    //threshold = 8388608.f;
-
-    return (
-        (abs(x) >= 8388608.f) ? \
-        x : \
-        ceil_int(x, float(static_cast<int>(x))) );
+    return( abs(x) >= 8388608.f ? \
+            // if
+                x : \
+            // else
+                ceil_int(x, float(static_cast<int>(x))) );
 }
 
 template<>
@@ -71,12 +70,11 @@ double
 ceil_check_internal<double>(const double x)
 noexcept
 {
-    //threshold = 4503599627370496.;
-
-    return (
-        (abs(x) >= 4503599627370496.) ? \
-        x : \
-        ceil_int(x, double(static_cast<llint_t>(x))) );
+    return( abs(x) >= 4503599627370496. ? \
+            // if
+                x : \
+            // else
+                ceil_int(x, double(static_cast<llint_t>(x))) );
 }
 
 template<>
@@ -85,12 +83,11 @@ long double
 ceil_check_internal<long double>(const long double x)
 noexcept
 {
-    //threshold = 9223372036854775808.l;
-
-    return (
-        (abs(x) >= 9223372036854775808.l) ? \
-        x : \
-        ceil_int(x, ((long double)static_cast<ullint_t>(abs(x))) * ((x < 0) ? -1.l : 1.l)) );
+    return( abs(x) >= 9223372036854775808.l ? \
+            // if
+                x : \
+            // else
+                ceil_int(x, ((long double)static_cast<ullint_t>(abs(x))) * sgn(x)) );
 }
 
 template<typename T>

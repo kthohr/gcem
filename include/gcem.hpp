@@ -30,6 +30,11 @@ namespace gcem
     #include "gcem_incl/is_inf.hpp"
     #include "gcem_incl/is_nan.hpp"
     #include "gcem_incl/is_finite.hpp"
+    
+    #include "gcem_incl/signbit.hpp"
+    #include "gcem_incl/copysign.hpp"
+    #include "gcem_incl/neg_zero.hpp"
+    #include "gcem_incl/sgn.hpp"
 
     #include "gcem_incl/abs.hpp"
     #include "gcem_incl/ceil.hpp"
@@ -41,11 +46,6 @@ namespace gcem
     #include "gcem_incl/min.hpp"
     #include "gcem_incl/sqrt.hpp"
     #include "gcem_incl/inv_sqrt.hpp"
-
-    #include "gcem_incl/signbit.hpp"
-    #include "gcem_incl/copysign.hpp"
-    #include "gcem_incl/neg_zero.hpp"
-    #include "gcem_incl/sgn.hpp"
 
     #include "gcem_incl/find_exponent.hpp"
     #include "gcem_incl/find_fraction.hpp"

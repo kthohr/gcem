@@ -48,12 +48,11 @@ float
 trunc_check_internal<float>(const float x)
 noexcept
 {
-    //threshold = 8388608.f;
-
-    return (
-        (abs(x) >= 8388608.f) ? \
-        x : \
-        trunc_int(x) );
+    return( abs(x) >= 8388608.f ? \
+            // if
+                x : \
+            // else
+                trunc_int(x) );
 }
 
 template<>
@@ -62,12 +61,11 @@ double
 trunc_check_internal<double>(const double x)
 noexcept
 {
-    //threshold = 4503599627370496.;
-
-    return (
-        (abs(x) >= 4503599627370496.) ? \
-        x : \
-        trunc_int(x) );
+    return( abs(x) >= 4503599627370496. ? \
+            // if
+                x : \
+            // else
+                trunc_int(x) );
 }
 
 template<>
@@ -76,12 +74,11 @@ long double
 trunc_check_internal<long double>(const long double x)
 noexcept
 {
-    //threshold = 9223372036854775808.l;
-
-    return (
-        (abs(x) >= 9223372036854775808.l) ? \
-        x : \
-        ((long double)static_cast<ullint_t>(abs(x))) * ((x < 0) ? -1.l : 1.l) );
+    return( abs(x) >= 9223372036854775808.l ? \
+            // if
+                x : \
+            // else
+                ((long double)static_cast<ullint_t>(abs(x))) * sgn(x) );
 }
 
 template<typename T>
