@@ -9,7 +9,7 @@ Introduction
 
 GCE-Math (\ **G**\ eneralized **C**\ onstant **E**\ xpression Math) is a templated C++ library enabling compile-time computation of mathematical functions.
 
-* The library is written in C++11 ``constexpr`` format, and is C++11/14/17 compatible.
+* The library is written in C++11 ``constexpr`` format, and is C++11/14/17/20 compatible.
 * Continued fraction and series expansions are implemented using recursive templates.
 * The ``gcem::`` syntax is identical to that of the C++ standard library (``std::``).
 * Tested and accurate to floating-point precision against the C++ standard library.
