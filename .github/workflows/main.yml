@@ -56,12 +56,52 @@ jobs:
             cxxstd: "17"
           }
         - {
+            name: "ubuntu_latest_gcc12_cxx20",
+            os: ubuntu-latest,
+            build_type: "Release",
+            cc: "gcc-12",
+            cxx: "g++-12",
+            cxxstd: "20"
+          }
+        - {
             name: "ubuntu_latest_clang10_cxx11",
             os: ubuntu-latest,
             build_type: "Release",
             cc: "clang-10",
             cxx: "clang++-10",
             cxxstd: "11"
+          }
+        - {
+            name: "ubuntu_latest_clang11_cxx14",
+            os: ubuntu-latest,
+            build_type: "Release",
+            cc: "clang-11",
+            cxx: "clang++-11",
+            cxxstd: "14"
+          }
+        - {
+            name: "ubuntu_latest_clang12_cxx14",
+            os: ubuntu-latest,
+            build_type: "Release",
+            cc: "clang-12",
+            cxx: "clang++-12",
+            cxxstd: "14"
+          }
+        - {
+            name: "ubuntu_latest_clang13_cxx17",
+            os: ubuntu-latest,
+            build_type: "Release",
+            cc: "clang-13",
+            cxx: "clang++-13",
+            cxxstd: "17"
+          }
+        - {
+            name: "ubuntu_latest_clang14_cxx20",
+            os: ubuntu-latest,
+            build_type: "Release",
+            cc: "clang-14",
+            cxx: "clang++-14",
+            cxxstd: "20"
           }
         - {
             name: "macos_latest_clang_cxx11",
