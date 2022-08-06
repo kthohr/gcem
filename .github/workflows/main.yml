@@ -56,11 +56,11 @@ jobs:
             cxxstd: "17"
           }
         - {
-            name: "ubuntu_latest_gcc12_cxx20",
+            name: "ubuntu_latest_gcc11_cxx20",
             os: ubuntu-latest,
             build_type: "Release",
-            cc: "gcc-12",
-            cxx: "g++-12",
+            cc: "gcc-11",
+            cxx: "g++-11",
             cxxstd: "20"
           }
         - {
@@ -88,16 +88,16 @@ jobs:
             cxxstd: "14"
           }
         - {
-            name: "ubuntu_latest_clang13_cxx17",
-            os: ubuntu-latest,
+            name: "ubuntu22_clang13_cxx17",
+            os: ubuntu-22.04,
             build_type: "Release",
             cc: "clang-13",
             cxx: "clang++-13",
             cxxstd: "17"
           }
         - {
-            name: "ubuntu_latest_clang14_cxx20",
-            os: ubuntu-latest,
+            name: "ubuntu22_clang14_cxx20",
+            os: ubuntu-22.04,
             build_type: "Release",
             cc: "clang-14",
             cxx: "clang++-14",
