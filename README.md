@@ -60,14 +60,12 @@ GCE-Math is a header-only library and does not require any additional libraries 
 
 ### Conda 
 
-[![Anaconda-Server Badge](https://anaconda.org/kthohr/gcem/badges/version.svg)](https://anaconda.org/kthohr/gcem) [![Anaconda-Server Badge](https://anaconda.org/kthohr/gcem/badges/platforms.svg)](https://anaconda.org/kthohr/gcem)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/gcem/badges/version.svg)](https://anaconda.org/conda-forge/gcem) [![Anaconda-Server Badge](https://anaconda.org/conda-forge/gcem/badges/platforms.svg)](https://anaconda.org/conda-forge/gcem)
 
-<!-- [![Anaconda-Server Badge](https://anaconda.org/kthohr/gcem/badges/platforms.svg)](https://anaconda.org/kthohr/gcem) -->
-
-You can install GCE-Math using the conda package manager.
+You can install GCE-Math using the Conda package manager.
 
 ```bash
-conda install -c kthohr gcem
+conda install -c conda-forge gcem
 ```
 
 ### CMake
