@@ -15,7 +15,7 @@ html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 def setup(app):
-    app.add_stylesheet("main_stylesheet.css")
+    app.add_css_file("main_stylesheet.css")
 
 # extensions = ['breathe','sphinx.ext.mathjax']
 extensions = ['breathe','sphinxcontrib.katex']
