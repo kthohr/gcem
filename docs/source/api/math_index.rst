@@ -61,6 +61,8 @@ Mathematical functions
 +---------------------------------------+----------------------------------------------------+
 | :ref:`fmod <fmod-func-ref>`           | remainder of division function                     |
 +---------------------------------------+----------------------------------------------------+
+| :ref:`hypot <hypot-func-ref>`         | Pythagorean addition function                      |
++---------------------------------------+----------------------------------------------------+
 | :ref:`log <log-function-reference>`   | natural logarithm function                         |
 +---------------------------------------+----------------------------------------------------+
 | :ref:`log1p <log1p-func-ref>`         | natural logarithm 1 plus argument function         |

@@ -98,6 +98,9 @@ fmod:
 gcd:
 	$(GCEM_MAKE_CALL)
 
+hypot:
+	$(GCEM_MAKE_CALL)
+
 incomplete_beta:
 	$(GCEM_MAKE_CALL)
 

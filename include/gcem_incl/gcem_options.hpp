@@ -53,7 +53,7 @@
 #endif
 
 #ifndef GCEM_VERSION_MINOR
-    #define GCEM_VERSION_MINOR 15
+    #define GCEM_VERSION_MINOR 16
 #endif
 
 #ifndef GCEM_VERSION_PATCH

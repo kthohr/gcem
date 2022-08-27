@@ -39,6 +39,10 @@ Basic functions
 .. doxygenfunction:: fmod(const T1, const T2)
    :project: gcem
 
+.. _hypot-func-ref:
+.. doxygenfunction:: hypot(const T1, const T2)
+   :project: gcem
+
 .. _log-function-reference:
 .. doxygenfunction:: log(const T)
    :project: gcem

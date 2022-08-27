@@ -46,6 +46,7 @@ namespace gcem
     #include "gcem_incl/min.hpp"
     #include "gcem_incl/sqrt.hpp"
     #include "gcem_incl/inv_sqrt.hpp"
+    #include "gcem_incl/hypot.hpp"
 
     #include "gcem_incl/find_exponent.hpp"
     #include "gcem_incl/find_fraction.hpp"
