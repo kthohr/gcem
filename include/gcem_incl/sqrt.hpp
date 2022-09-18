@@ -46,7 +46,26 @@ noexcept
 template<typename T>
 constexpr
 T
-sqrt_check(const T x, const T m_val)
+sqrt_simplify(const T x, const T m_val)
+noexcept
+{
+    return( x > T(1e+08) ? \
+                sqrt_simplify(x / T(1e+08), T(10000) * m_val) :
+            x > T(1e+06) ? \
+                sqrt_simplify(x / T(1e+06), T(1000) * m_val) :
+            x > T(10000) ? \
+                sqrt_simplify(x / T(10000), T(100) * m_val) :
+            x > T(100) ? \
+                sqrt_simplify(x / T(100), T(10) * m_val) :
+            x > T(4) ? \
+                sqrt_simplify(x / T(4), T(2) * m_val) :
+                m_val * sqrt_recur(x, x / T(2), 0) );
+}
+
+template<typename T>
+constexpr
+T
+sqrt_check(const T x)
 noexcept
 {
     return( is_nan(x) ? \
@@ -63,9 +82,7 @@ noexcept
             GCLIM<T>::min() > abs(T(1) - x) ? \
                 x :
             // else
-            x > T(4) ? \
-                sqrt_check(x/T(4), T(2)*m_val) :
-                m_val * sqrt_recur(x, x/T(2), 0) );
+            sqrt_simplify(x, T(1)) );
 }
 
 }
@@ -84,7 +101,7 @@ return_t<T>
 sqrt(const T x)
 noexcept
 {
-    return internal::sqrt_check( static_cast<return_t<T>>(x), return_t<T>(1) );
+    return internal::sqrt_check( static_cast<return_t<T>>(x) );
 }
 
 #endif
