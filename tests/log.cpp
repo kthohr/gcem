@@ -36,10 +36,14 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::log,std::log,  1.0L);
     GCEM_TEST_COMPARE_VALS(gcem::log,std::log,  1.5L);
     GCEM_TEST_COMPARE_VALS(gcem::log,std::log,  41.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::log,std::log,  123456789.5L);
+
     GCEM_TEST_COMPARE_VALS(gcem::log,std::log,  0.0L);
     GCEM_TEST_COMPARE_VALS(gcem::log,std::log, -1.0L);
+
     GCEM_TEST_COMPARE_VALS(gcem::log,std::log,  1e-500L);
     GCEM_TEST_COMPARE_VALS(gcem::log,std::log,  std::numeric_limits<long double>::min());
+    GCEM_TEST_COMPARE_VALS(gcem::log,std::log,  std::numeric_limits<double>::max());
     
     GCEM_TEST_COMPARE_VALS(gcem::log,std::log, -std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::log,std::log,  std::numeric_limits<long double>::infinity());

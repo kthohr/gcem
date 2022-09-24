@@ -18,7 +18,7 @@
   ##
   ################################################################################*/
 
-// g++-mp-7 -O3 -Wall -std=c++11 -fconstexpr-depth=20 -fconstexpr-steps=1271242 -I./../include sqrt.cpp -o sqrt.test -framework Accelerate
+// $CXX -O3 -Wall -std=c++11 -fconstexpr-depth=650 -fconstexpr-steps=1271242 -I./../include sqrt.cpp -o sqrt.test -framework Accelerate
 
 #define TEST_PRINT_PRECISION_1 6
 #define TEST_PRINT_PRECISION_2 18
@@ -36,12 +36,20 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  1.5L);
     GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  2.0L);
     GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  41.5L);
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  123456789.5L);
+
     GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  0.0L);
     GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt, -1.0L);
+
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  1e-500L);
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  std::numeric_limits<long double>::min());
+    GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  std::numeric_limits<double>::max());
     
     GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt, -std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  std::numeric_limits<long double>::infinity());
     GCEM_TEST_COMPARE_VALS(gcem::sqrt,std::sqrt,  std::numeric_limits<long double>::quiet_NaN());
+
+    // constexpr auto v = gcem::sqrt(std::numeric_limits<double>::max());
 
     //
 
