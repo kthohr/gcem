@@ -50,11 +50,11 @@ sqrt_simplify(const T x, const T m_val)
 noexcept
 {
     return( x > T(1e+08) ? \
-                sqrt_simplify(x / T(1e+08), T(10000) * m_val) :
+                sqrt_simplify(x / T(1e+08), T(1e+04) * m_val) :
             x > T(1e+06) ? \
-                sqrt_simplify(x / T(1e+06), T(1000) * m_val) :
-            x > T(10000) ? \
-                sqrt_simplify(x / T(10000), T(100) * m_val) :
+                sqrt_simplify(x / T(1e+06), T(1e+03) * m_val) :
+            x > T(1e+04) ? \
+                sqrt_simplify(x / T(1e+04), T(1e+02) * m_val) :
             x > T(100) ? \
                 sqrt_simplify(x / T(100), T(10) * m_val) :
             x > T(4) ? \
