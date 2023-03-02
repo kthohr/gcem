@@ -64,11 +64,11 @@ jobs:
             cxxstd: "20"
           }
         - {
-            name: "ubuntu_latest_clang10_cxx11",
+            name: "ubuntu_latest_clang11_cxx11",
             os: ubuntu-latest,
             build_type: "Release",
-            cc: "clang-10",
-            cxx: "clang++-10",
+            cc: "clang-11",
+            cxx: "clang++-11",
             cxxstd: "11"
           }
         - {
