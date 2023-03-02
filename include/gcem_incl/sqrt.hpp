@@ -37,10 +37,12 @@ noexcept
     return( abs(xn - x/xn) / (T(1) + xn) < GCLIM<T>::min() ? \
             // if
                 xn :
-            count < GCEM_SQRT_MAX_ITER ? \
             // else
-                sqrt_recur(x, T(0.5)*(xn + x/xn), count+1) :
-                xn );
+                count < GCEM_SQRT_MAX_ITER ? \
+                // if
+                    sqrt_recur(x, T(0.5)*(xn + x/xn), count+1) :
+                // else
+                    xn );
 }
 
 template<typename T>
