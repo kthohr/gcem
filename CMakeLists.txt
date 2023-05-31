@@ -60,7 +60,7 @@ OPTION(GCEM_BUILD_TESTS "gcem test suite" OFF)
 
 add_library(gcem INTERFACE)
 target_include_directories(gcem INTERFACE $<BUILD_INTERFACE:${GCEM_INCLUDE_DIR}>
-                                          $<INSTALL_INTERFACE:include>)
+                                          $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
 
 if(GCEM_BUILD_TESTS)
     add_subdirectory(tests)
@@ -80,7 +80,7 @@ export(EXPORT ${PROJECT_NAME}-targets
        FILE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Targets.cmake")
 
 install(DIRECTORY ${GCEM_INCLUDE_DIR}/
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
 
 #
 
