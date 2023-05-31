@@ -58,18 +58,18 @@ OPTION(GCEM_BUILD_TESTS "gcem test suite" OFF)
 
 # install
 
+include(CMakePackageConfigHelpers)
+include(GNUInstallDirs)
+
 add_library(gcem INTERFACE)
 target_include_directories(gcem INTERFACE $<BUILD_INTERFACE:${GCEM_INCLUDE_DIR}>
-                                          $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
+                                          $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}>)
 
 if(GCEM_BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
 #
-
-include(CMakePackageConfigHelpers)
-include(GNUInstallDirs)
 
 install(
     TARGETS gcem
