@@ -50,11 +50,19 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::atan,std::atan,900.0L);
     GCEM_TEST_COMPARE_VALS(gcem::atan,std::atan,1001.0L);
 
+    GCEM_TEST_COMPARE_VALS(gcem::atan,std::atan,1000000.0L);
+
     GCEM_TEST_COMPARE_VALS(gcem::atan,std::atan,TEST_NAN);
 
     //
 
     print_final("atan");
+
+    // constexpr long double ct1 = gcem::atan(0.99L);
+    // std::cout << "ct1 = " << ct1 << std::endl;
+
+    // constexpr long double ct2 = gcem::atan(4.99L);
+    // std::cout << "ct2 = " << ct2 << std::endl;
 
     return 0;
 }
