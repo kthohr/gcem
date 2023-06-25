@@ -28,6 +28,28 @@
 namespace internal
 {
 
+#if __cplusplus >= 201402L // C++14 version
+
+template<typename T>
+constexpr
+T
+tanh_cf(const T xx, const int depth_end)
+noexcept
+{
+    int depth = GCEM_TANH_MAX_ITER - 1;
+    T res = T(2*(depth+1) - 1);
+
+    while (depth > depth_end - 1) {
+        res = T(2*depth - 1) + xx / res;
+
+        --depth;
+    }
+
+    return res;
+}
+
+#else // C++11 version
+
 template<typename T>
 constexpr
 T
@@ -40,6 +62,8 @@ noexcept
             // else
                 T(2*depth - 1) );
 }
+
+#endif
 
 template<typename T>
 constexpr
