@@ -37,7 +37,12 @@ int main()
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -2.099L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -2.0L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -1.3L);
+    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -0.7L);
+    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf, -0.1L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  0.0L);
+    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  0.1L);
+    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  0.7L);
+    GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  1.3L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  1.3L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  2.0L);
     GCEM_TEST_COMPARE_VALS(gcem::erf, std::erf,  2.099L);
