@@ -75,15 +75,13 @@ You can also install the library from source using CMake.
 ```bash
 # clone gcem from GitHub
 git clone https://github.com/kthohr/gcem ./gcem
+cd cgem
 
-# make a build directory
-cd ./gcem
-mkdir build
-cd build
+# configure
+cmake -H. -Bbuild -DCMAKE_INSTALL_PREFIX=/gcem/install/location
 
-# generate Makefiles and install
-cmake .. -DCMAKE_INSTALL_PREFIX=/gcem/install/location
-make install
+# build and install
+cmake --build build --target install
 ```
 For example, `/gcem/install/location` could be `/usr/local/`.
 
@@ -99,14 +97,11 @@ make
 
 With CMake, the option `GCEM_BUILD_TESTS=1` generates the necessary Makefiles to build the test suite.
 ```bash
-cd ./gcem
-mkdir build
+cd gcem
+cmake -H. -Bbuild -DGCEM_BUILD_TESTS=1 -DCMAKE_INSTALL_PREFIX=/gcem/install/location
+cmake --build build --target gcem_tests
 
-cd build
-cmake ../ -DGCEM_BUILD_TESTS=1 -DCMAKE_INSTALL_PREFIX=/gcem/install/location
-make gcem_tests
-
-cd tests
+cd build/tests
 ./exp.test
 ```
 
